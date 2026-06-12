@@ -10,9 +10,10 @@ const cursorRing = document.querySelector(".cursor-ring");
 const cursorDot = document.querySelector(".cursor-dot");
 const cursorLabel = document.querySelector(".cursor-label");
 
-const storedTheme = localStorage.getItem("theme");
-const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
-root.dataset.theme = storedTheme || (prefersLight ? "light" : "dark");
+const themeVersion = "2026-06-dark-default";
+const storedTheme =
+  localStorage.getItem("theme-version") === themeVersion ? localStorage.getItem("theme") : null;
+root.dataset.theme = ["dark", "light"].includes(storedTheme) ? storedTheme : "dark";
 
 function refreshIcons() {
   if (window.lucide) {
@@ -21,11 +22,16 @@ function refreshIcons() {
 }
 
 function setTheme(theme) {
-  root.dataset.theme = theme;
-  localStorage.setItem("theme", theme);
+  const nextTheme = theme === "light" ? "light" : "dark";
+  root.dataset.theme = nextTheme;
+  localStorage.setItem("theme", nextTheme);
+  localStorage.setItem("theme-version", themeVersion);
+  document
+    .querySelector('meta[name="theme-color"]')
+    ?.setAttribute("content", nextTheme === "dark" ? "#05070a" : "#f7f9fc");
   const icon = themeToggle?.querySelector("i");
   if (icon) {
-    icon.dataset.lucide = theme === "dark" ? "sun" : "moon";
+    icon.dataset.lucide = nextTheme === "dark" ? "sun" : "moon";
     refreshIcons();
   }
 }

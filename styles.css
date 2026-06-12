@@ -20,6 +20,24 @@
   --shadow: 0 24px 90px rgba(0, 0, 0, 0.48);
   --mx: 50%;
   --my: 50%;
+  --bg-grid-cyan: rgba(82, 240, 223, 0.085);
+  --bg-grid-red: rgba(255, 95, 74, 0.07);
+  --bg-wash: rgba(82, 240, 223, 0.12);
+  --scan-cyan: rgba(82, 240, 223, 0.08);
+  --scan-red: rgba(255, 95, 74, 0.08);
+  --scan-line: rgba(255, 255, 255, 0.018);
+  --hero-scan: rgba(255, 255, 255, 0.025);
+  --console-bg: rgba(5, 7, 10, 0.68);
+  --console-soft-bg: rgba(5, 7, 10, 0.58);
+  --caption-bg: rgba(5, 7, 10, 0.78);
+  --caption-ink: #ffffff;
+  --cursor-label-bg: rgba(5, 7, 10, 0.72);
+  --cursor-label-ink: #ffffff;
+  --cursor-blend: difference;
+  --primary-ink: #041014;
+  --card-sheen: rgba(82, 240, 223, 0.08);
+  --visual-grid: rgba(255, 255, 255, 0.04);
+  --visual-fill: rgba(255, 255, 255, 0.02);
 }
 
 [data-theme="light"] {
@@ -39,6 +57,24 @@
   --violet: #694ed4;
   --blue: #2d61c7;
   --shadow: 0 22px 80px rgba(17, 31, 46, 0.14);
+  --bg-grid-cyan: rgba(0, 127, 117, 0.075);
+  --bg-grid-red: rgba(198, 77, 56, 0.055);
+  --bg-wash: rgba(0, 127, 117, 0.08);
+  --scan-cyan: rgba(0, 127, 117, 0.055);
+  --scan-red: rgba(198, 77, 56, 0.052);
+  --scan-line: rgba(16, 23, 29, 0.045);
+  --hero-scan: rgba(16, 23, 29, 0.035);
+  --console-bg: rgba(255, 255, 255, 0.84);
+  --console-soft-bg: rgba(255, 255, 255, 0.74);
+  --caption-bg: rgba(17, 23, 29, 0.82);
+  --caption-ink: #ffffff;
+  --cursor-label-bg: rgba(17, 23, 29, 0.82);
+  --cursor-label-ink: #ffffff;
+  --cursor-blend: normal;
+  --primary-ink: #ffffff;
+  --card-sheen: rgba(0, 127, 117, 0.075);
+  --visual-grid: rgba(16, 23, 29, 0.055);
+  --visual-fill: rgba(255, 255, 255, 0.42);
 }
 
 * {
@@ -53,9 +89,9 @@ body {
   margin: 0;
   min-width: 320px;
   background:
-    linear-gradient(90deg, rgba(82, 240, 223, 0.085) 1px, transparent 1px),
-    linear-gradient(0deg, rgba(255, 95, 74, 0.07) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(82, 240, 223, 0.12), transparent 620px),
+    linear-gradient(90deg, var(--bg-grid-cyan) 1px, transparent 1px),
+    linear-gradient(0deg, var(--bg-grid-red) 1px, transparent 1px),
+    linear-gradient(180deg, var(--bg-wash), transparent 620px),
     var(--bg);
   background-size: 46px 46px, 46px 46px, auto, auto;
   color: var(--ink);
@@ -71,8 +107,8 @@ body::before {
   inset: 0;
   z-index: -3;
   background:
-    linear-gradient(110deg, transparent 0 28%, rgba(82, 240, 223, 0.08) 28% 29%, transparent 29% 62%, rgba(255, 95, 74, 0.08) 62% 63%, transparent 63%),
-    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px 9px);
+    linear-gradient(110deg, transparent 0 28%, var(--scan-cyan) 28% 29%, transparent 29% 62%, var(--scan-red) 62% 63%, transparent 63%),
+    repeating-linear-gradient(90deg, var(--scan-line) 0 1px, transparent 1px 9px);
   pointer-events: none;
 }
 
@@ -141,7 +177,7 @@ svg {
     height 180ms ease,
     border-color 180ms ease,
     opacity 180ms ease;
-  mix-blend-mode: difference;
+  mix-blend-mode: var(--cursor-blend);
 }
 
 .cursor-dot {
@@ -156,8 +192,8 @@ svg {
   transform: translate(16px, 16px);
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: rgba(5, 7, 10, 0.72);
-  color: #fff;
+  background: var(--cursor-label-bg);
+  color: var(--cursor-label-ink);
   padding: 5px 8px;
   font-size: 0.68rem;
   font-weight: 900;
@@ -328,7 +364,7 @@ body.pointer-grow .cursor-ring {
   inset: 0;
   z-index: -2;
   background:
-    repeating-linear-gradient(0deg, transparent 0 3px, rgba(255, 255, 255, 0.025) 3px 4px),
+    repeating-linear-gradient(0deg, transparent 0 3px, var(--hero-scan) 3px 4px),
     linear-gradient(90deg, var(--bg) 0%, transparent 32%, transparent 68%, var(--bg) 100%),
     linear-gradient(180deg, transparent 52%, var(--bg) 100%);
   pointer-events: none;
@@ -422,7 +458,7 @@ h3 {
   margin-top: 28px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: rgba(5, 7, 10, 0.58);
+  background: var(--console-soft-bg);
   padding: 12px;
   box-shadow: inset 0 0 28px rgba(82, 240, 223, 0.06);
 }
@@ -477,7 +513,7 @@ h3 {
 .button.primary {
   border-color: color-mix(in srgb, var(--cyan), black 10%);
   background: var(--cyan);
-  color: #041014;
+  color: var(--primary-ink);
 }
 
 .button.icon-button-link {
@@ -702,7 +738,7 @@ svg[data-lucide],
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background:
-    linear-gradient(145deg, rgba(82, 240, 223, 0.08), transparent 42%),
+    linear-gradient(145deg, var(--card-sheen), transparent 42%),
     var(--panel);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
@@ -784,7 +820,7 @@ svg[data-lucide],
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background:
-    linear-gradient(145deg, rgba(82, 240, 223, 0.08), transparent 48%),
+    linear-gradient(145deg, var(--card-sheen), transparent 48%),
     var(--panel);
   padding: 18px;
   overflow: hidden;
@@ -851,7 +887,7 @@ svg[data-lucide],
   gap: 18px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: rgba(5, 7, 10, 0.68);
+  background: var(--console-bg);
   padding: 12px;
   backdrop-filter: blur(14px);
 }
@@ -944,9 +980,9 @@ svg[data-lucide],
   border-radius: var(--radius);
   overflow: hidden;
   background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(0deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    rgba(255, 255, 255, 0.02);
+    linear-gradient(90deg, var(--visual-grid) 1px, transparent 1px),
+    linear-gradient(0deg, var(--visual-grid) 1px, transparent 1px),
+    var(--visual-fill);
   background-size: 26px 26px;
 }
 
@@ -1273,8 +1309,8 @@ svg[data-lucide],
   bottom: 12px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: rgba(5, 7, 10, 0.78);
-  color: #fff;
+  background: var(--caption-bg);
+  color: var(--caption-ink);
   padding: 10px;
   font-size: 0.86rem;
   font-weight: 850;
