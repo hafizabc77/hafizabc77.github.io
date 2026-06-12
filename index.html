@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Mustofa A. Ahmed - machine learning systems researcher focused on heterogeneous hardware deployment, model acceleration, and high-energy physics applications."
+      content="Mustofa A. Ahmed - AI systems researcher building deployment-aware machine learning for high-energy physics, heterogeneous hardware, model scaling, and acceleration."
     />
-    <meta name="theme-color" content="#101316" />
-    <meta property="og:title" content="Mustofa A. Ahmed | ML Systems Portfolio" />
+    <meta name="theme-color" content="#080b0f" />
+    <meta property="og:title" content="Mustofa A. Ahmed | AI x High-Energy Physics" />
     <meta
       property="og:description"
-      content="Research, deployment systems, publications, and engineering work by Mustofa A. Ahmed."
+      content="A research cockpit for AI systems, HEP model scaling, reinforcement learning, knowledge graphs, MOBO, and hardware-aware deployment."
     />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://github.com/hafizabc77.png?size=640" />
-    <title>Mustofa A. Ahmed | ML Systems Portfolio</title>
+    <title>Mustofa A. Ahmed | AI x High-Energy Physics</title>
     <link rel="preconnect" href="https://github.com" />
     <link rel="stylesheet" href="styles.css" />
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
@@ -26,7 +26,7 @@
         "@type": "Person",
         "name": "Mustofa A. Ahmed",
         "alternateName": "hafizabc77",
-        "jobTitle": "Research Fellow",
+        "jobTitle": "AI Systems Researcher",
         "affiliation": {
           "@type": "Organization",
           "name": "Institute of High Energy Physics"
@@ -41,16 +41,18 @@
             "name": "Yangzhou University"
           }
         ],
-        "url": "https://github.com/hafizabc77",
         "sameAs": [
           "https://github.com/hafizabc77",
-          "https://www.linkedin.com/in/hafizabc77"
+          "https://www.linkedin.com/in/hafizabc77/"
         ],
         "email": "mailto:pemustofa@ihep.ac.cn",
         "knowsAbout": [
-          "Machine learning systems",
-          "Model deployment",
+          "Artificial intelligence",
           "High-energy physics",
+          "Model scaling",
+          "Reinforcement learning",
+          "Knowledge graphs",
+          "Multi-objective Bayesian optimization",
           "Heterogeneous computing",
           "Model acceleration"
         ]
@@ -64,9 +66,9 @@
       <nav class="nav-shell" aria-label="Primary navigation">
         <a class="brand" href="#top" aria-label="Mustofa A. Ahmed home">
           <span class="brand-mark" aria-hidden="true">MA</span>
-          <span>
-            <strong>Mustofa Ahmed</strong>
-            <small>hafizabc77</small>
+          <span class="brand-copy">
+            <strong>Mustofa A. Ahmed</strong>
+            <small>AI systems for physics</small>
           </span>
         </a>
 
@@ -75,13 +77,14 @@
         </button>
 
         <div class="nav-links" data-open="false">
-          <a href="#work">Work</a>
-          <a href="#research">Research</a>
-          <a href="#experience">Experience</a>
-          <a href="#skills">Skills</a>
+          <a href="#systems">Systems</a>
+          <a href="#scaling">Scaling</a>
+          <a href="#ai-stack">AI Stack</a>
+          <a href="#notebook">Notebook</a>
+          <a href="#publications">Papers</a>
           <a href="#contact">Contact</a>
           <button class="icon-button theme-toggle" type="button" aria-label="Toggle color theme">
-            <i data-lucide="moon"></i>
+            <i data-lucide="sun"></i>
           </button>
         </div>
       </nav>
@@ -89,355 +92,486 @@
 
     <main id="main">
       <section class="hero" id="top" aria-labelledby="hero-title">
-        <canvas id="signal-canvas" aria-hidden="true"></canvas>
-        <div class="hero-grid">
+        <canvas id="hero-canvas" aria-hidden="true"></canvas>
+
+        <div class="hero-inner">
           <div class="hero-copy">
             <p class="eyebrow">
-              <span>Research Fellow at IHEP</span>
-              <span>M.Sc. Computer Science, UCAS</span>
+              <span>AI systems</span>
+              <span>High-energy physics</span>
+              <span>Hardware-aware deployment</span>
             </p>
-            <h1 id="hero-title">Mustofa A. Ahmed</h1>
+            <h1 id="hero-title">Building AI that survives contact with detectors, data, and hardware.</h1>
             <p class="hero-lede">
-              I build machine learning systems that move from physics research to real deployment:
-              hardware-aware model acceleration, AutoML pipelines, and heterogeneous computing for
-              high-energy physics.
+              I work at the boundary of machine learning systems and high-energy physics:
+              scaling ParticleNet and ParT-style models, diagnosing statistical-limit gaps,
+              optimizing LHAASO-WCDA GRB pipelines, and compressing models for GPUs, FPGAs,
+              NPUs, and embedded deployment.
             </p>
 
             <div class="hero-actions" aria-label="Primary actions">
               <a class="button primary" href="assets/Mustofa-Ahmed-CV.pdf" target="_blank" rel="noreferrer">
                 <i data-lucide="file-down"></i>
-                Download CV
+                CV
               </a>
-              <a class="button" href="mailto:pemustofa@ihep.ac.cn">
-                <i data-lucide="mail"></i>
-                Email
+              <a class="button" href="assets/Thesis-Defense-Mustofa-Ahmed.pdf" target="_blank" rel="noreferrer">
+                <i data-lucide="presentation"></i>
+                Thesis deck
               </a>
-              <a class="button icon-only" href="https://github.com/hafizabc77" target="_blank" rel="noreferrer" aria-label="GitHub profile">
+              <a class="button" href="https://github.com/hafizabc77" target="_blank" rel="noreferrer">
                 <i data-lucide="github"></i>
+                GitHub
               </a>
-              <a class="button icon-only" href="https://www.linkedin.com/in/hafizabc77" target="_blank" rel="noreferrer" aria-label="LinkedIn profile">
+              <a class="button" href="https://www.linkedin.com/in/hafizabc77/" target="_blank" rel="noreferrer">
                 <i data-lucide="linkedin"></i>
+                LinkedIn
               </a>
             </div>
           </div>
 
-          <aside class="profile-panel" aria-label="Profile summary">
-            <div class="avatar-shell">
+          <aside class="identity-panel" aria-label="Profile and live research signals">
+            <div class="identity-top">
               <img src="https://github.com/hafizabc77.png?size=420" alt="Mustofa A. Ahmed GitHub avatar" />
+              <div>
+                <p>Mustofa A. Ahmed</p>
+                <span>Research Fellow, IHEP</span>
+                <span>UCAS M.Sc. Computer Science</span>
+              </div>
             </div>
-            <div class="profile-meta">
-              <span><i data-lucide="map-pin"></i> Beijing, China</span>
-              <span><i data-lucide="cpu"></i> HEP deployment systems</span>
-              <span><i data-lucide="languages"></i> English, Mandarin, Amharic</span>
+
+            <div class="signal-console" aria-label="Research focus metrics">
+              <div class="console-row">
+                <span>LHAASO-WCDA</span>
+                <strong>GRB triggerless ML</strong>
+              </div>
+              <div class="console-row">
+                <span>CEPC/CMS</span>
+                <strong>Higgs model scaling</strong>
+              </div>
+              <div class="console-row">
+                <span>AutoDeploy</span>
+                <strong>hardware-goal search</strong>
+              </div>
+              <div class="console-row">
+                <span>Acceleration</span>
+                <strong>prune -> quantize -> deploy</strong>
+              </div>
+            </div>
+
+            <div class="mini-chart" aria-hidden="true">
+              <svg viewBox="0 0 420 180" role="img">
+                <path class="chart-grid" d="M28 142H392M28 106H392M28 70H392M28 34H392" />
+                <path class="chart-axis" d="M28 18V150H398" />
+                <path class="curve curve-a" d="M38 138 C90 138, 118 128, 150 92 S220 34, 286 30 S352 28, 392 28" />
+                <path class="curve curve-b" d="M38 134 C90 118, 128 88, 168 62 S252 48, 392 44" />
+                <path class="curve curve-c" d="M38 146 C98 132, 146 108, 196 86 S302 64, 392 62" />
+                <g class="chart-dots">
+                  <circle cx="150" cy="92" r="5" />
+                  <circle cx="286" cy="30" r="5" />
+                  <circle cx="196" cy="86" r="5" />
+                  <circle cx="392" cy="44" r="5" />
+                </g>
+              </svg>
             </div>
           </aside>
         </div>
 
-        <div class="metric-strip" aria-label="Highlights">
+        <div class="hero-metrics" aria-label="Profile highlights">
           <article>
-            <strong>2023-2026</strong>
-            <span>UCAS M.Sc. research on intelligent ML deployment</span>
+            <span>Research axis</span>
+            <strong>N x D x E x C</strong>
+            <p>Model size, unique events, training effort, compression and deployment.</p>
           </article>
           <article>
-            <strong>3</strong>
-            <span>Published research papers across HEP, compression, and IoT</span>
+            <span>AI toolkit</span>
+            <strong>RL + KG + MOBO</strong>
+            <p>Search, decisioning, structure, and multi-objective optimization.</p>
           </article>
           <article>
-            <strong>4+</strong>
-            <span>Accelerator targets: NVIDIA GPUs, Xilinx FPGAs, Ascend NPUs, MCUs</span>
+            <span>Physics target</span>
+            <strong>Close the gap</strong>
+            <p>Prioritize hard channels such as H -> ZZ* near the statistical limit.</p>
           </article>
         </div>
       </section>
 
-      <section class="section" id="work" aria-labelledby="work-title">
+      <section class="section systems-section" id="systems" aria-labelledby="systems-title">
         <div class="section-heading">
-          <p class="eyebrow">Selected Work</p>
-          <h2 id="work-title">Deployment-minded research and engineering.</h2>
-          <p>
-            Projects combine model quality, latency, hardware constraints, and practical tooling for
-            research teams that need systems to run outside notebooks.
-          </p>
+          <p class="eyebrow"><span>Research operating system</span></p>
+          <h2 id="systems-title">A portfolio shaped like the work: physics questions flow into AI search, then into deployable systems.</h2>
         </div>
 
-        <div class="project-grid">
-          <article class="project-card featured">
-            <div class="card-topline">
-              <span>Thesis project</span>
-              <i data-lucide="network"></i>
-            </div>
-            <h3>AutoDeploy</h3>
+        <div class="system-flow" aria-label="Research system flow">
+          <article>
+            <i data-lucide="telescope"></i>
+            <span>01</span>
+            <h3>Physics signals</h3>
+            <p>LHAASO-WCDA GRB detection, CEPC/CMS Higgs classification, event-level particle clouds, generator robustness.</p>
+          </article>
+          <div class="flow-rail" aria-hidden="true"></div>
+          <article>
+            <i data-lucide="brain-circuit"></i>
+            <span>02</span>
+            <h3>AI search layer</h3>
+            <p>Rainbow DQN, distributional RL, knowledge graphs, GFlowNet ideas, MOBO, graph ML, and policy models.</p>
+          </article>
+          <div class="flow-rail" aria-hidden="true"></div>
+          <article>
+            <i data-lucide="cpu"></i>
+            <span>03</span>
+            <h3>Deployment target</h3>
+            <p>ONNX graph optimization, TensorRT, HLS, pruning, quantization, KD, NAS, GPUs, FPGAs, NPUs, embedded systems.</p>
+          </article>
+        </div>
+
+        <div class="research-grid">
+          <article class="research-card wide">
+            <div class="card-kicker">AutoDeploy thesis direction</div>
+            <h3>Knowledge-driven HEP deployment</h3>
             <p>
-              Intelligent toolkit for hardware- and goal-aware ML deployment on heterogeneous
-              accelerators in high-energy physics.
+              A framework for turning physics models into hardware-aware deployment candidates:
+              map objectives, detect constraints, search the Pareto surface, and choose a model
+              that fits accuracy, latency, memory, and accelerator limits.
             </p>
-            <div class="tag-row">
-              <span>AutoML</span>
-              <span>ONNX</span>
-              <span>TensorRT</span>
-              <span>HLS</span>
+            <div class="chip-row">
+              <span>Knowledge graph</span>
+              <span>MOBO</span>
+              <span>Policy search</span>
+              <span>Hardware constraints</span>
             </div>
           </article>
-
-          <article class="project-card">
-            <div class="card-topline">
-              <span>Particle physics</span>
-              <i data-lucide="atom"></i>
-            </div>
-            <h3>Hardware-aware ParticleNet</h3>
-            <p>
-              ParticleNet deployment research for CEPC and CMS workflows, with attention to
-              accelerator-specific constraints and model compression.
-            </p>
-            <div class="tag-row">
-              <span>PyTorch</span>
-              <span>FPGA</span>
-              <span>Pruning</span>
-            </div>
+          <article class="research-card">
+            <div class="card-kicker">GRB pipeline</div>
+            <h3>LHAASO-WCDA sensitivity</h3>
+            <p>Bayesian optimization and ML pipelines for triggerless gamma-ray burst analysis.</p>
           </article>
-
-          <article class="project-card">
-            <div class="card-topline">
-              <span>Astroparticle ML</span>
-              <i data-lucide="activity"></i>
-            </div>
-            <h3>LHAASO GRB Optimization</h3>
-            <p>
-              Machine learning and Bayesian optimization pipelines for improving triggerless
-              gamma-ray burst sensitivity in LHAASO-WCDA analysis.
-            </p>
-            <div class="tag-row">
-              <span>Bayesian optimization</span>
-              <span>HEP</span>
-              <span>Pipelines</span>
-            </div>
+          <article class="research-card">
+            <div class="card-kicker">Higgs analysis</div>
+            <h3>CEPC model scaling</h3>
+            <p>ParticleNet and ParT scaling over model size, data size, epochs, features, objectives, and generator effects.</p>
           </article>
-
-          <article class="project-card">
-            <div class="card-topline">
-              <span>Embedded systems</span>
-              <i data-lucide="home"></i>
-            </div>
-            <h3>SECHA</h3>
-            <p>
-              Smart, energy-efficient, cost-effective home automation system designed for
-              developing-country constraints.
-            </p>
-            <div class="tag-row">
-              <span>IoT</span>
-              <span>Microcontrollers</span>
-              <span>Automation</span>
-            </div>
+          <article class="research-card">
+            <div class="card-kicker">Compression axis</div>
+            <h3>Acceleration after limits</h3>
+            <p>Pruning, quantization, KD, NAS, TensorRT, HLS, and ONNX optimization for practical deployment.</p>
           </article>
         </div>
       </section>
 
-      <section class="section split-section" id="research" aria-labelledby="research-title">
-        <div class="section-heading compact">
-          <p class="eyebrow">Research</p>
-          <h2 id="research-title">Publication pipeline.</h2>
-          <p>
-            Work spans high-energy physics analysis, ML deployment, hybrid compression systems,
-            robotics perception, and secure distributed storage.
-          </p>
-          <div class="filter-group" role="group" aria-label="Publication filters">
-            <button class="filter active" type="button" data-filter="all">All</button>
-            <button class="filter" type="button" data-filter="published">Published</button>
-            <button class="filter" type="button" data-filter="submitted">Submitted</button>
+      <section class="section scaling-section" id="scaling" aria-labelledby="scaling-title">
+        <div class="section-heading">
+          <p class="eyebrow"><span>HEP scaling lab</span></p>
+          <h2 id="scaling-title">From bigger models to better physics: measure the gap, identify the bottleneck, then improve the right axis.</h2>
+        </div>
+
+        <div class="lab-shell">
+          <div class="lab-controls" role="tablist" aria-label="Scaling research views">
+            <button class="lab-tab active" type="button" data-lab="scaling" role="tab" aria-selected="true">
+              <i data-lucide="chart-spline"></i>
+              Scaling law
+            </button>
+            <button class="lab-tab" type="button" data-lab="bottleneck" role="tab" aria-selected="false">
+              <i data-lucide="scan-search"></i>
+              Bottleneck
+            </button>
+            <button class="lab-tab" type="button" data-lab="robustness" role="tab" aria-selected="false">
+              <i data-lucide="shield-check"></i>
+              Robustness
+            </button>
+            <button class="lab-tab" type="button" data-lab="compression" role="tab" aria-selected="false">
+              <i data-lucide="gauge"></i>
+              Compression
+            </button>
+          </div>
+
+          <div class="lab-stage">
+            <div class="lab-copy">
+              <span id="lab-kicker">Joint model-data scaling</span>
+              <h3 id="lab-title">Fit model size N and unique events D instead of guessing which axis matters.</h3>
+              <p id="lab-body">
+                Extend Higgs scaling from one data axis into a Chinchilla-style physics view:
+                model size, data size, training effort, features, objective design, generator
+                robustness, optimizer dynamics, and compression are tracked separately.
+              </p>
+              <div class="lab-equation" id="lab-equation">U(N,D) = U_inf + A / N^alpha + B / D^beta</div>
+            </div>
+
+            <div class="lab-visual" aria-label="Interactive scaling visualization">
+              <div class="axis-label y">uncertainty / loss</div>
+              <div class="axis-label x">model size, data, and deployment cost</div>
+              <svg id="lab-svg" viewBox="0 0 640 360" role="img">
+                <path class="svg-grid" d="M70 295H585M70 238H585M70 181H585M70 124H585M70 67H585" />
+                <path class="svg-axis" d="M70 38V306H596" />
+                <path class="svg-limit" d="M70 244H596" />
+                <path class="svg-main curve-a" d="M90 285 C148 270, 192 236, 236 176 S336 72, 440 64 S520 60, 574 58" />
+                <path class="svg-main curve-b" d="M90 286 C150 256, 188 208, 242 162 S372 124, 574 118" />
+                <path class="svg-main curve-c" d="M90 292 C150 282, 204 244, 272 214 S424 172, 574 168" />
+                <g class="svg-points">
+                  <circle cx="236" cy="176" r="7" />
+                  <circle cx="440" cy="64" r="7" />
+                  <circle cx="272" cy="214" r="7" />
+                  <circle cx="574" cy="118" r="7" />
+                </g>
+              </svg>
+            </div>
           </div>
         </div>
+      </section>
 
-        <div class="publication-list" aria-live="polite">
-          <article class="publication" data-kind="published">
-            <span class="pub-kind">Published</span>
+      <section class="section ai-stack-section" id="ai-stack" aria-labelledby="ai-stack-title">
+        <div class="section-heading">
+          <p class="eyebrow"><span>AI stack</span></p>
+          <h2 id="ai-stack-title">Methods that fit the problem: search, structure, uncertainty, and deployability.</h2>
+        </div>
+
+        <div class="method-grid">
+          <article class="method-card rl-card">
+            <div class="method-head">
+              <i data-lucide="route"></i>
+              <div>
+                <span>Reinforcement learning</span>
+                <h3>Rainbow DQN and distributional value reasoning</h3>
+              </div>
+            </div>
+            <p>
+              Useful for policy-style decisions in deployment search: choose architectures,
+              compression steps, cut strategies, or scheduling actions while tracking uncertain
+              outcome distributions instead of a single expected value.
+            </p>
+            <div class="rl-board" aria-hidden="true">
+              <span class="agent"></span>
+              <span></span><span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </article>
+
+          <article class="method-card kg-card">
+            <div class="method-head">
+              <i data-lucide="share-2"></i>
+              <div>
+                <span>Knowledge graph</span>
+                <h3>Structure for models, hardware, objectives, and physics context</h3>
+              </div>
+            </div>
+            <p>
+              A KG can connect model families, accelerator constraints, physics channels,
+              generator settings, score cuts, calibration risks, and prior experiment results.
+            </p>
+            <div class="kg-visual" aria-hidden="true">
+              <svg viewBox="0 0 420 210">
+                <path d="M74 104L168 52L258 88L344 42M168 52L190 154L304 168M74 104L190 154L258 88M258 88L304 168L344 42" />
+                <g>
+                  <circle cx="74" cy="104" r="18" />
+                  <circle cx="168" cy="52" r="18" />
+                  <circle cx="258" cy="88" r="18" />
+                  <circle cx="344" cy="42" r="18" />
+                  <circle cx="190" cy="154" r="18" />
+                  <circle cx="304" cy="168" r="18" />
+                </g>
+              </svg>
+            </div>
+          </article>
+
+          <article class="method-card mobo-card">
+            <div class="method-head">
+              <i data-lucide="chart-scatter"></i>
+              <div>
+                <span>MOBO</span>
+                <h3>Search the Pareto frontier, not a single score</h3>
+              </div>
+            </div>
+            <p>
+              Multi-objective Bayesian optimization fits hardware-aware ML: accuracy, uncertainty,
+              latency, memory, energy, and compression ratio are all objectives or constraints.
+            </p>
+            <div class="pareto" aria-hidden="true">
+              <span style="--x: 12%; --y: 76%"></span>
+              <span style="--x: 20%; --y: 60%"></span>
+              <span style="--x: 35%; --y: 52%"></span>
+              <span style="--x: 48%; --y: 38%"></span>
+              <span style="--x: 62%; --y: 31%"></span>
+              <span style="--x: 78%; --y: 20%"></span>
+              <span style="--x: 28%; --y: 82%"></span>
+              <span style="--x: 56%; --y: 70%"></span>
+              <span style="--x: 84%; --y: 58%"></span>
+            </div>
+          </article>
+
+          <article class="method-card accel-card">
+            <div class="method-head">
+              <i data-lucide="zap"></i>
+              <div>
+                <span>Acceleration</span>
+                <h3>Compress after understanding the performance limit</h3>
+              </div>
+            </div>
+            <p>
+              Scaling asks what is fundamentally achievable; compression asks how to preserve that
+              result while becoming smaller, faster, cheaper, and deployable.
+            </p>
+            <div class="pipeline" aria-label="Compression pipeline">
+              <span>scale</span>
+              <i data-lucide="arrow-right"></i>
+              <span>prune</span>
+              <i data-lucide="arrow-right"></i>
+              <span>quantize</span>
+              <i data-lucide="arrow-right"></i>
+              <span>deploy</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section notebook-section" id="notebook" aria-labelledby="notebook-title">
+        <div class="section-heading">
+          <p class="eyebrow"><span>Research notebook</span></p>
+          <h2 id="notebook-title">Actual working notes behind the portfolio.</h2>
+          <p>
+            These pages capture the current research direction: Higgs scaling, model/data axes,
+            bottleneck diagnosis, generator robustness, score cuts, compression, KD, NAS, and how
+            deployment fits into the physics loop.
+          </p>
+        </div>
+
+        <div class="notebook-viewer">
+          <figure class="note-frame">
+            <img
+              id="note-main"
+              src="assets/research-notes/scaling-notes-1.png"
+              alt="Research notes page 1 about Higgs model and data scaling"
+            />
+            <figcaption id="note-caption">Notes 1/7 - joint model, data, and training scaling for Higgs classification.</figcaption>
+          </figure>
+
+          <div class="note-controls" aria-label="Notebook pages">
+            <button class="note-thumb active" type="button" data-note="1">
+              <img src="assets/research-notes/scaling-notes-1.png" alt="Notebook page 1 thumbnail" loading="lazy" />
+              <span>01</span>
+            </button>
+            <button class="note-thumb" type="button" data-note="2">
+              <img src="assets/research-notes/scaling-notes-2.png" alt="Notebook page 2 thumbnail" loading="lazy" />
+              <span>02</span>
+            </button>
+            <button class="note-thumb" type="button" data-note="3">
+              <img src="assets/research-notes/scaling-notes-3.png" alt="Notebook page 3 thumbnail" loading="lazy" />
+              <span>03</span>
+            </button>
+            <button class="note-thumb" type="button" data-note="4">
+              <img src="assets/research-notes/scaling-notes-4.png" alt="Notebook page 4 thumbnail" loading="lazy" />
+              <span>04</span>
+            </button>
+            <button class="note-thumb" type="button" data-note="5">
+              <img src="assets/research-notes/scaling-notes-5.png" alt="Notebook page 5 thumbnail" loading="lazy" />
+              <span>05</span>
+            </button>
+            <button class="note-thumb" type="button" data-note="6">
+              <img src="assets/research-notes/scaling-notes-6.png" alt="Notebook page 6 thumbnail" loading="lazy" />
+              <span>06</span>
+            </button>
+            <button class="note-thumb" type="button" data-note="7">
+              <img src="assets/research-notes/scaling-notes-7.png" alt="Notebook page 7 thumbnail" loading="lazy" />
+              <span>07</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section publication-section" id="publications" aria-labelledby="publication-title">
+        <div class="section-heading">
+          <p class="eyebrow"><span>Papers and outputs</span></p>
+          <h2 id="publication-title">Published work plus active submissions across HEP, deployment systems, compression, and robotics.</h2>
+        </div>
+
+        <div class="publication-grid">
+          <article class="publication">
+            <span>Published / 2025</span>
             <h3>Enhancing GRB detection: Bayesian optimization of triggerless data analysis for LHAASO-WCDA</h3>
-            <p>EPJ Web of Conferences, vol. 337, 2025.</p>
+            <p>EPJ Web of Conferences, vol. 337.</p>
             <a href="https://doi.org/10.1051/epjconf/202533701330" target="_blank" rel="noreferrer">doi: 10.1051/epjconf/202533701330</a>
           </article>
-
-          <article class="publication" data-kind="published">
-            <span class="pub-kind">Published</span>
+          <article class="publication">
+            <span>Published / 2024</span>
             <h3>Fast lossless image compression for synchrotron radiation facility using deep learning and hybrid architecture</h3>
-            <p>Radiation Detection Technology and Methods, vol. 8(4), 2024.</p>
+            <p>Radiation Detection Technology and Methods, vol. 8(4).</p>
             <a href="https://doi.org/10.1007/s41605-024-00490-9" target="_blank" rel="noreferrer">doi: 10.1007/s41605-024-00490-9</a>
           </article>
-
-          <article class="publication" data-kind="published">
-            <span class="pub-kind">Published</span>
+          <article class="publication">
+            <span>Published / 2023</span>
             <h3>SECHA: A smart energy-efficient and cost-effective home automation system for developing countries</h3>
-            <p>Journal of Computer Networks and Communications, 2023.</p>
+            <p>Journal of Computer Networks and Communications.</p>
             <a href="https://doi.org/10.1155/2023/8571506" target="_blank" rel="noreferrer">doi: 10.1155/2023/8571506</a>
           </article>
-
-          <article class="publication" data-kind="submitted">
-            <span class="pub-kind">Submitted</span>
+          <article class="publication submitted">
+            <span>Submitted / 2026</span>
             <h3>A knowledge-driven framework for HEP model deployment on heterogeneous hardware</h3>
-            <p>Submitted to Radiation Detection Technology and Methods, 2026.</p>
+            <p>Submitted to Radiation Detection Technology and Methods.</p>
           </article>
-
-          <article class="publication" data-kind="submitted">
-            <span class="pub-kind">Submitted</span>
+          <article class="publication submitted">
+            <span>Submitted / 2026</span>
             <h3>MCG: A multi-data-center content gateway for topology-hiding and secure WAN storage access</h3>
-            <p>Submitted to IEEE CSCWD, 2026.</p>
+            <p>Submitted to IEEE CSCWD.</p>
           </article>
-
-          <article class="publication" data-kind="submitted">
-            <span class="pub-kind">Submitted</span>
+          <article class="publication submitted">
+            <span>Submitted / 2025</span>
             <h3>GL-VINS-Mono: Lidar-assisted monocular visual-inertial odometry in GNSS-denied environments</h3>
-            <p>Submitted to IEEE Robotics and Automation Letters, 2025.</p>
+            <p>Submitted to IEEE Robotics and Automation Letters.</p>
           </article>
         </div>
       </section>
 
       <section class="section github-section" aria-labelledby="github-title">
         <div class="section-heading">
-          <p class="eyebrow">GitHub</p>
-          <h2 id="github-title">Recent public repositories.</h2>
-          <p>
-            This panel loads public repository metadata from GitHub in the browser. If the API is
-            unavailable, the page still links directly to the profile.
-          </p>
+          <p class="eyebrow"><span>Engineering trace</span></p>
+          <h2 id="github-title">Recent public GitHub repositories.</h2>
+          <p>The cards below load from GitHub in the browser and fall back gracefully if the API is unavailable.</p>
         </div>
         <div class="repo-grid" id="repo-grid">
-          <article class="repo-card skeleton">
-            <span></span>
-            <strong></strong>
-            <p></p>
-          </article>
-          <article class="repo-card skeleton">
-            <span></span>
-            <strong></strong>
-            <p></p>
-          </article>
-          <article class="repo-card skeleton">
-            <span></span>
-            <strong></strong>
-            <p></p>
-          </article>
+          <article class="repo-card skeleton"><span></span><strong></strong><p></p></article>
+          <article class="repo-card skeleton"><span></span><strong></strong><p></p></article>
+          <article class="repo-card skeleton"><span></span><strong></strong><p></p></article>
         </div>
       </section>
 
-      <section class="section timeline-section" id="experience" aria-labelledby="experience-title">
-        <div class="section-heading compact">
-          <p class="eyebrow">Experience</p>
-          <h2 id="experience-title">From web systems to physics ML.</h2>
-        </div>
-        <div class="timeline">
-          <article>
-            <time>2023-2026</time>
-            <div>
-              <h3>Research Fellow, Institute of High Energy Physics</h3>
-              <p>
-                ML pipelines for LHAASO GRB sensitivity, hardware-aware ParticleNet deployment for
-                CEPC/CMS, and AutoDeploy research for accelerator-aware model deployment.
-              </p>
-            </div>
-          </article>
-          <article>
-            <time>2023-2026</time>
-            <div>
-              <h3>M.Sc. Computer Science, University of Chinese Academy of Sciences</h3>
-              <p>
-                Thesis: AutoDeploy, an intelligent toolkit for ML deployment on heterogeneous
-                hardware in high-energy physics.
-              </p>
-            </div>
-          </article>
-          <article>
-            <time>2021-2022</time>
-            <div>
-              <h3>Web Developer, GeePower Energy Technology Co., Ltd.</h3>
-              <p>
-                Full-stack company website development with database design, query work, and
-                optimization.
-              </p>
-            </div>
-          </article>
-          <article>
-            <time>2019-2023</time>
-            <div>
-              <h3>B.Sc. Microelectronics Engineering, Yangzhou University</h3>
-              <p>
-                Built SECHA, a smart energy-efficient home automation system for developing-country
-                deployment constraints.
-              </p>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="section" id="skills" aria-labelledby="skills-title">
+      <section class="section skills-section" aria-labelledby="skills-title">
         <div class="section-heading">
-          <p class="eyebrow">Skills</p>
-          <h2 id="skills-title">Systems depth across the deployment stack.</h2>
+          <p class="eyebrow"><span>Capability map</span></p>
+          <h2 id="skills-title">A practical stack for AI research that has to run.</h2>
         </div>
 
-        <div class="skill-board">
+        <div class="skill-matrix">
           <article>
-            <i data-lucide="code-2"></i>
-            <h3>Programming</h3>
-            <p>Python, C++, Bash, PyTorch, TensorFlow, LaTeX</p>
+            <span>Languages</span>
+            <p>Python, C++, Bash, LaTeX, English, Mandarin, Amharic</p>
           </article>
           <article>
-            <i data-lucide="brain-circuit"></i>
-            <h3>Machine Learning</h3>
-            <p>RL, MOBO, Graph ML, GFlowNet, Rainbow DQN, AutoML, recommender and policy models</p>
+            <span>ML frameworks</span>
+            <p>PyTorch, TensorFlow, graph ML, RL, GFlowNet, AutoML, recommender and policy models</p>
           </article>
           <article>
-            <i data-lucide="gauge"></i>
-            <h3>Acceleration</h3>
-            <p>Quantization, pruning, HLS, TensorRT, ONNX graph optimization</p>
+            <span>Acceleration</span>
+            <p>Quantization, pruning, HLS, TensorRT, ONNX graph optimization, NAS, KD</p>
           </article>
           <article>
-            <i data-lucide="server-cog"></i>
-            <h3>Systems</h3>
+            <span>Systems</span>
             <p>Docker, Linux, Git, CI/CD, orchestration, experiment tracking</p>
           </article>
           <article>
-            <i data-lucide="hard-drive"></i>
-            <h3>Hardware</h3>
+            <span>Hardware</span>
             <p>NVIDIA GPUs, Xilinx FPGAs, Huawei Ascend NPUs, microcontrollers, embedded systems</p>
           </article>
           <article>
-            <i data-lucide="database"></i>
-            <h3>Data</h3>
-            <p>Neo4j, MySQL, EOS, SeaweedFS</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section recognition-section" aria-labelledby="recognition-title">
-        <div class="section-heading compact">
-          <p class="eyebrow">Recognition</p>
-          <h2 id="recognition-title">Awards and certifications.</h2>
-        </div>
-        <div class="recognition-grid">
-          <article>
-            <span>2026</span>
-            <h3>25th Director's Grant Award</h3>
-            <p>Best Graduation Projects.</p>
-          </article>
-          <article>
-            <span>2023-2026</span>
-            <h3>ANSO Scholarship for Young Talents</h3>
-            <p>Graduate scholarship support.</p>
-          </article>
-          <article>
-            <span>2021</span>
-            <h3>Yangjie Excellent Student Scholarship</h3>
-            <p>Academic recognition at Yangzhou University.</p>
-          </article>
-          <article>
-            <span>Certifications</span>
-            <h3>AI, Google IT, cybersecurity, and HSK 4</h3>
-            <p>Helsinki University, Google, Duke University, University of Maryland, and Chinese proficiency.</p>
+            <span>Data/storage</span>
+            <p>Neo4j, MySQL, EOS, SeaweedFS, topology-aware storage access</p>
           </article>
         </div>
       </section>
 
       <section class="contact-section" id="contact" aria-labelledby="contact-title">
         <div>
-          <p class="eyebrow">Contact</p>
-          <h2 id="contact-title">Open to research collaboration and deployment-focused ML systems work.</h2>
+          <p class="eyebrow"><span>Contact</span></p>
+          <h2 id="contact-title">Looking for AI systems work where physics, search, and deployment constraints all matter.</h2>
         </div>
         <div class="contact-actions">
           <a class="button primary" href="mailto:pemustofa@ihep.ac.cn">
@@ -448,7 +582,7 @@
             <i data-lucide="github"></i>
             GitHub
           </a>
-          <a class="button" href="https://www.linkedin.com/in/hafizabc77" target="_blank" rel="noreferrer">
+          <a class="button" href="https://www.linkedin.com/in/hafizabc77/" target="_blank" rel="noreferrer">
             <i data-lucide="linkedin"></i>
             LinkedIn
           </a>
@@ -457,7 +591,7 @@
     </main>
 
     <footer class="site-footer">
-      <p>Designed for GitHub Pages. Built as a static portfolio for Mustofa A. Ahmed.</p>
+      <p>Static GitHub Pages portfolio for Mustofa A. Ahmed.</p>
       <a href="#top" aria-label="Back to top">
         <i data-lucide="arrow-up"></i>
       </a>
