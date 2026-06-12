@@ -16,10 +16,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://github.com/hafizabc77.png?size=640" />
     <title>Mustofa A. Ahmed | AI Systems for HEP</title>
-    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-    <link rel="manifest" href="site.webmanifest" />
     <link rel="preconnect" href="https://github.com" />
-    <link rel="preconnect" href="https://unpkg.com" crossorigin />
     <link rel="stylesheet" href="styles.css" />
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
     <script src="script.js" defer></script>
@@ -78,10 +75,9 @@
 
         <div class="nav-links" data-open="false">
           <a class="magnetic" href="#mission" data-cursor="go">Mission</a>
-          <a class="magnetic" href="#cases" data-cursor="go">Cases</a>
           <a class="magnetic" href="#lab" data-cursor="go">Lab</a>
           <a class="magnetic" href="#methods" data-cursor="go">AI Stack</a>
-          <a class="magnetic" href="#frontiers" data-cursor="go">Frontiers</a>
+          <a class="magnetic" href="#artifacts" data-cursor="go">Artifacts</a>
           <a class="magnetic" href="#papers" data-cursor="go">Papers</a>
           <button class="icon-button theme-toggle magnetic" type="button" aria-label="Toggle color theme" data-cursor="theme">
             <i data-lucide="sun"></i>
@@ -102,15 +98,16 @@
               <span>UCAS M.Sc. Computer Science</span>
             </p>
             <h1 id="hero-title" class="kinetic-title reveal" data-scramble>
-              <span>Deployable</span>
               <span>AI</span>
-              <span>Systems</span>
-              <span>for HEP</span>
+              <span>for</span>
+              <span>High</span>
+              <span>Energy</span>
+              <span>Physics</span>
             </h1>
             <p class="hero-lede reveal">
-              I build deployment-aware AI systems for high-energy physics. My work turns detector
-              data, physics objectives, and accelerator constraints into machine learning that can
-              be searched, scaled, compressed, and deployed.
+              I design intelligent systems that turn detector data, physics objectives, and
+              accelerator constraints into deployable machine learning: LHAASO-WCDA GRB pipelines,
+              CEPC Higgs scaling, AutoDeploy, RL/KG/MOBO search, and model compression.
             </p>
 
             <div class="command-strip reveal" aria-label="Research focus">
@@ -193,29 +190,6 @@
             <span>Rainbow DQN</span><span>Distributional RL</span><span>Knowledge Graphs</span><span>MOBO</span><span>LHAASO-WCDA</span><span>GRB Detection</span><span>ParticleNet</span><span>ParT</span><span>CEPC</span><span>TensorRT</span><span>HLS</span><span>ONNX</span>
           </div>
         </div>
-      </section>
-
-      <section class="proof-strip section" aria-label="Profile proof points">
-        <article class="proof-chip reveal">
-          <span>Published</span>
-          <strong>3 papers</strong>
-          <p>HEP GRB detection, synchrotron compression, and IoT systems.</p>
-        </article>
-        <article class="proof-chip reveal">
-          <span>Thesis</span>
-          <strong>AutoDeploy</strong>
-          <p>Knowledge-driven ML deployment over hardware and objective constraints.</p>
-        </article>
-        <article class="proof-chip reveal">
-          <span>Physics</span>
-          <strong>LHAASO + CEPC</strong>
-          <p>Triggerless GRB analysis and Higgs classification scaling.</p>
-        </article>
-        <article class="proof-chip reveal">
-          <span>Hardware</span>
-          <strong>GPU / FPGA / NPU</strong>
-          <p>Compression, HLS, TensorRT, ONNX, pruning, and quantization.</p>
-        </article>
       </section>
 
       <section class="mission section" id="mission" aria-labelledby="mission-title">
@@ -304,11 +278,10 @@
         </div>
       </section>
 
-      <section class="cases section" id="cases" aria-labelledby="cases-title">
+      <section class="cases section" aria-labelledby="cases-title">
         <div class="section-heading reveal">
           <p class="eyebrow"><span>Case studies</span></p>
           <h2 id="cases-title">Four research directions, one deployment-first lens.</h2>
-          <p>Each case is compressed into problem, method, and impact so the homepage stays visual-first.</p>
         </div>
 
         <div class="case-reel">
@@ -316,22 +289,12 @@
             <span>01</span>
             <h3>LHAASO-WCDA GRB</h3>
             <p>Triggerless gamma-ray burst sensitivity via ML pipelines and Bayesian optimization.</p>
-            <dl class="case-meta">
-              <div><dt>Problem</dt><dd>Weak transients in noisy event windows</dd></div>
-              <div><dt>Method</dt><dd>Bayesian optimization over analysis cuts</dd></div>
-              <div><dt>Impact</dt><dd>Better sensitivity workflow for LHAASO-WCDA</dd></div>
-            </dl>
             <div class="case-visual grb-visual" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
           </article>
           <article class="case-card tilt-card reveal" data-cursor="Higgs">
             <span>02</span>
             <h3>CEPC Higgs Scaling</h3>
             <p>ParticleNet and ParT scaling to understand attainable performance and hard-mode bottlenecks.</p>
-            <dl class="case-meta">
-              <div><dt>Problem</dt><dd>Which axis closes H -> ZZ* gaps?</dd></div>
-              <div><dt>Method</dt><dd>Joint N x D scaling and gap-ratio analysis</dd></div>
-              <div><dt>Impact</dt><dd>Prioritize data, capacity, features, or robustness</dd></div>
-            </dl>
             <div class="case-visual chart-visual" aria-hidden="true">
               <i style="--h: 30%"></i><i style="--h: 72%"></i><i style="--h: 54%"></i><i style="--h: 88%"></i><i style="--h: 40%"></i>
             </div>
@@ -340,11 +303,6 @@
             <span>03</span>
             <h3>AutoDeploy</h3>
             <p>Knowledge-driven hardware and objective search for heterogeneous AI deployment.</p>
-            <dl class="case-meta">
-              <div><dt>Problem</dt><dd>Model choice depends on physics and hardware</dd></div>
-              <div><dt>Method</dt><dd>KG + MOBO + policy search over candidates</dd></div>
-              <div><dt>Impact</dt><dd>Deployable model candidates, not notebook-only wins</dd></div>
-            </dl>
             <div class="case-visual graph-visual" aria-hidden="true">
               <b></b><b></b><b></b><b></b><b></b><b></b>
             </div>
@@ -353,11 +311,6 @@
             <span>04</span>
             <h3>Model Acceleration</h3>
             <p>Compression paths that preserve physics performance while reducing latency, memory, and cost.</p>
-            <dl class="case-meta">
-              <div><dt>Problem</dt><dd>Physics models are too large for fast deployment</dd></div>
-              <div><dt>Method</dt><dd>Pruning, quantization, KD, NAS, TensorRT, HLS</dd></div>
-              <div><dt>Impact</dt><dd>Smaller models after scaling limits are understood</dd></div>
-            </dl>
             <div class="case-visual compression-visual" aria-hidden="true">
               <span>scale</span><span>prune</span><span>quant</span><span>deploy</span>
             </div>
@@ -439,79 +392,26 @@
         </div>
       </section>
 
-      <section class="frontiers section" id="frontiers" aria-labelledby="frontiers-title">
+      <section class="artifacts section" id="artifacts" aria-labelledby="artifacts-title">
         <div class="section-heading reveal">
-          <p class="eyebrow"><span>Frontier diagrams</span></p>
-          <h2 id="frontiers-title">The notebook becomes live diagrams, not heavy screenshots.</h2>
-          <p>Custom lightweight visuals translate the research notes into model/data scaling, statistical-limit gaps, AutoDeploy search, and compression flow.</p>
+          <p class="eyebrow"><span>Research artifacts</span></p>
+          <h2 id="artifacts-title">The notebook becomes texture, not a PDF dump.</h2>
+          <p>Fragments from the scaling notes are used as visual evidence behind the concepts: model/data curves, gap ratios, score cuts, compression, KD, and NAS.</p>
         </div>
 
-        <div class="frontier-grid">
-          <article class="frontier-card tilt-card reveal" data-cursor="N x D">
-            <div class="frontier-copy">
-              <span>Model/data scaling</span>
-              <h3>Find where extra data or capacity still moves physics uncertainty.</h3>
-            </div>
-            <svg class="frontier-svg scaling-svg" viewBox="0 0 520 320" aria-hidden="true">
-              <path class="svg-grid" d="M58 254H472M58 198H472M58 142H472M58 86H472M138 54V272M218 54V272M298 54V272M378 54V272" />
-              <path class="svg-axis" d="M58 42V272H486" />
-              <path class="svg-limit" d="M58 218H486" />
-              <path class="svg-curve svg-cyan" d="M76 250C124 245 165 218 205 164C258 94 329 70 474 66" />
-              <path class="svg-curve svg-red" d="M76 252C136 229 180 188 236 144C310 86 393 101 474 98" />
-              <path class="svg-curve svg-amber" d="M76 268C142 252 192 238 260 206C344 166 408 154 474 146" />
-            </svg>
-          </article>
-
-          <article class="frontier-card tilt-card reveal" data-cursor="gap">
-            <div class="frontier-copy">
-              <span>Statistical-limit gap</span>
-              <h3>Prioritize channels with high gap ratio instead of scaling blindly.</h3>
-            </div>
-            <svg class="frontier-svg gap-svg" viewBox="0 0 520 320" aria-hidden="true">
-              <path class="svg-grid" d="M62 250H470M62 204H470M62 158H470M62 112H470M62 66H470" />
-              <path class="svg-axis" d="M62 42V268H480" />
-              <g class="gap-bars">
-                <rect x="88" y="176" width="36" height="74" /><rect x="130" y="205" width="24" height="45" />
-                <rect x="178" y="80" width="36" height="170" /><rect x="220" y="174" width="24" height="76" />
-                <rect x="268" y="116" width="36" height="134" /><rect x="310" y="190" width="24" height="60" />
-                <rect x="358" y="94" width="36" height="156" /><rect x="400" y="218" width="24" height="32" />
-              </g>
-              <path class="svg-limit" d="M62 156H480" />
-              <text x="362" y="54">H -> ZZ*</text>
-            </svg>
-          </article>
-
-          <article class="frontier-card tilt-card reveal" data-cursor="KG">
-            <div class="frontier-copy">
-              <span>AutoDeploy search</span>
-              <h3>Connect physics, models, hardware, and objectives before optimization.</h3>
-            </div>
-            <svg class="frontier-svg deploy-svg" viewBox="0 0 520 320" aria-hidden="true">
-              <path class="kg-edge" d="M92 156L190 82L302 118L424 72M190 82L232 238L376 226M92 156L232 238L302 118M302 118L376 226L424 72" />
-              <g class="kg-nodes">
-                <circle cx="92" cy="156" r="24" /><circle cx="190" cy="82" r="24" /><circle cx="302" cy="118" r="24" />
-                <circle cx="424" cy="72" r="24" /><circle cx="232" cy="238" r="24" /><circle cx="376" cy="226" r="24" />
-              </g>
-              <text x="67" y="161">HEP</text><text x="167" y="87">KG</text><text x="273" y="123">MOBO</text>
-              <text x="400" y="77">RL</text><text x="203" y="243">ONNX</text><text x="344" y="231">FPGA</text>
-            </svg>
-          </article>
-
-          <article class="frontier-card tilt-card reveal" data-cursor="deploy">
-            <div class="frontier-copy">
-              <span>Compression flow</span>
-              <h3>Scale first, understand bottlenecks, then compress for deployment.</h3>
-            </div>
-            <div class="flow-diagram" aria-hidden="true">
-              <span>scale</span>
-              <i></i>
-              <span>prune</span>
-              <i></i>
-              <span>quantize</span>
-              <i></i>
-              <span>deploy</span>
-            </div>
-          </article>
+        <div class="artifact-wall">
+          <figure class="artifact artifact-a reveal tilt-card" data-cursor="scaling">
+            <img src="assets/research-notes/scaling-notes-4.png" alt="Research notes fragment showing expected scaling plots" loading="lazy" />
+            <figcaption>Expected plots and bottleneck diagnosis</figcaption>
+          </figure>
+          <figure class="artifact artifact-b reveal tilt-card" data-cursor="compression">
+            <img src="assets/research-notes/scaling-notes-6.png" alt="Research notes fragment showing compression methods" loading="lazy" />
+            <figcaption>Compression as a complementary axis</figcaption>
+          </figure>
+          <figure class="artifact artifact-c reveal tilt-card" data-cursor="kd/nas">
+            <img src="assets/research-notes/scaling-notes-7.png" alt="Research notes fragment showing knowledge distillation and NAS" loading="lazy" />
+            <figcaption>KD, NAS, and deployment frontier</figcaption>
+          </figure>
         </div>
       </section>
 
