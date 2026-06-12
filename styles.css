@@ -704,6 +704,41 @@ svg[data-lucide],
   }
 }
 
+.proof-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.proof-chip {
+  min-height: 164px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 18px 0;
+}
+
+.proof-chip span,
+.frontier-copy span {
+  display: block;
+  color: var(--cyan);
+  font-size: 0.76rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.proof-chip strong {
+  display: block;
+  margin-top: 18px;
+  color: var(--ink);
+  font-size: 1.54rem;
+  line-height: 1;
+}
+
+.proof-chip p {
+  margin: 12px 0 0;
+  color: var(--muted);
+}
+
 .section {
   padding: 112px 0 0;
 }
@@ -733,21 +768,58 @@ svg[data-lucide],
 
 .mission-card,
 .case-card,
+.frontier-card,
 .method-panel,
 .repo-card {
+  position: relative;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background:
     linear-gradient(145deg, var(--card-sheen), transparent 42%),
     var(--panel);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  overflow: hidden;
+}
+
+.mission-card::before,
+.case-card::before,
+.frontier-card::before,
+.method-panel::before,
+.repo-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: 0;
+  background:
+    radial-gradient(circle at var(--px, 50%) var(--py, 50%), color-mix(in srgb, var(--cyan), transparent 70%), transparent 28%),
+    linear-gradient(120deg, color-mix(in srgb, var(--cyan), transparent 88%), transparent 46%),
+    linear-gradient(300deg, color-mix(in srgb, var(--red), transparent 91%), transparent 54%);
+  opacity: 0;
+  transition: opacity 220ms ease;
+  pointer-events: none;
+}
+
+.mission-card:hover::before,
+.case-card:hover::before,
+.frontier-card:hover::before,
+.method-panel:hover::before,
+.repo-card:hover::before,
+.case-card.is-active-case::before {
+  opacity: 1;
+}
+
+.mission-card > *,
+.case-card > *,
+.frontier-card > *,
+.method-panel > *,
+.repo-card > * {
+  position: relative;
+  z-index: 1;
 }
 
 .mission-card {
-  position: relative;
   min-height: 300px;
   padding: 20px;
-  overflow: hidden;
   transform-style: preserve-3d;
 }
 
@@ -970,6 +1042,41 @@ svg[data-lucide],
 
 .case-card p {
   margin: 14px 0 0;
+}
+
+.case-card.is-active-case {
+  border-color: color-mix(in srgb, var(--cyan), transparent 22%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 18px 52px color-mix(in srgb, var(--cyan), transparent 88%);
+}
+
+.case-card.is-active-case .case-visual {
+  border-color: color-mix(in srgb, var(--cyan), transparent 28%);
+}
+
+.case-meta {
+  display: grid;
+  gap: 8px;
+  margin: 20px 0;
+}
+
+.case-meta div {
+  border-left: 1px solid var(--line);
+  padding-left: 10px;
+}
+
+.case-meta dt {
+  color: var(--cyan);
+  font-size: 0.68rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.case-meta dd {
+  margin: 3px 0 0;
+  color: var(--muted);
+  font-size: 0.86rem;
 }
 
 .case-visual {
@@ -1278,66 +1385,180 @@ svg[data-lucide],
   font-size: 1rem;
 }
 
-.artifact-wall {
-  position: relative;
-  min-height: 760px;
+.frontier-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  perspective: 1200px;
 }
 
-.artifact {
-  position: absolute;
-  margin: 0;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--panel-strong);
+.frontier-card {
+  position: relative;
+  min-height: 500px;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 20px;
+  padding: 20px;
   overflow: hidden;
-  box-shadow: var(--shadow);
   transform-style: preserve-3d;
 }
 
-.artifact img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
-  filter: saturate(0.98) contrast(1.08);
+.frontier-copy,
+.frontier-svg,
+.flow-diagram {
+  position: relative;
+  z-index: 1;
 }
 
-.artifact figcaption {
-  position: absolute;
-  left: 12px;
-  right: 12px;
-  bottom: 12px;
+.frontier-copy h3 {
+  max-width: 520px;
+  margin-top: 14px;
+  font-size: 1.45rem;
+}
+
+.frontier-svg {
+  width: 100%;
+  min-height: 300px;
+  align-self: end;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: var(--caption-bg);
-  color: var(--caption-ink);
-  padding: 10px;
-  font-size: 0.86rem;
-  font-weight: 850;
+  background:
+    linear-gradient(90deg, var(--visual-grid) 1px, transparent 1px),
+    linear-gradient(0deg, var(--visual-grid) 1px, transparent 1px),
+    var(--visual-fill);
+  background-size: 28px 28px;
 }
 
-.artifact-a {
-  top: 18px;
-  left: 0;
-  width: 52%;
-  height: 520px;
-  --base-rotate: -3deg;
+.svg-grid,
+.svg-axis,
+.svg-limit,
+.svg-curve,
+.kg-edge {
+  fill: none;
 }
 
-.artifact-b {
-  top: 110px;
-  right: 4%;
-  width: 42%;
-  height: 420px;
-  --base-rotate: 4deg;
+.svg-grid {
+  stroke: var(--line);
+  stroke-width: 1;
 }
 
-.artifact-c {
-  right: 20%;
-  bottom: 0;
-  width: 44%;
-  height: 360px;
-  --base-rotate: -1deg;
+.svg-axis,
+.kg-edge {
+  stroke: var(--line-strong);
+  stroke-width: 2;
+}
+
+.svg-limit {
+  stroke: var(--green);
+  stroke-width: 2;
+  stroke-dasharray: 8 9;
+}
+
+.svg-curve {
+  stroke-width: 5;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 12px color-mix(in srgb, var(--cyan), transparent 60%));
+  stroke-dasharray: 520;
+  stroke-dashoffset: 520;
+  animation: drawCurve 4.8s ease-in-out infinite alternate;
+}
+
+.svg-cyan {
+  stroke: var(--cyan);
+}
+
+.svg-red {
+  stroke: var(--red);
+  animation-delay: 0.4s;
+}
+
+.svg-amber {
+  stroke: var(--amber);
+  animation-delay: 0.8s;
+}
+
+.gap-bars rect:nth-child(odd) {
+  fill: var(--cyan);
+  opacity: 0.82;
+}
+
+.gap-bars rect:nth-child(even) {
+  fill: var(--red);
+  opacity: 0.72;
+}
+
+.gap-svg text,
+.deploy-svg text {
+  fill: var(--muted);
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.kg-nodes circle {
+  fill: var(--panel-strong);
+  stroke: var(--cyan);
+  stroke-width: 3;
+}
+
+.kg-nodes circle:nth-child(2n) {
+  stroke: var(--red);
+}
+
+.kg-nodes circle:nth-child(3n) {
+  stroke: var(--green);
+}
+
+.flow-diagram {
+  align-self: end;
+  display: grid;
+  grid-template-columns: 1fr 34px 1fr 34px 1fr 34px 1fr;
+  align-items: center;
+  gap: 10px;
+  min-height: 300px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(90deg, var(--visual-grid) 1px, transparent 1px),
+    linear-gradient(0deg, var(--visual-grid) 1px, transparent 1px),
+    var(--visual-fill);
+  background-size: 28px 28px;
+  padding: 22px;
+}
+
+.flow-diagram span {
+  min-height: 74px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel-strong);
+  color: var(--ink);
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.flow-diagram i {
+  position: relative;
+  height: 2px;
+  background: linear-gradient(90deg, var(--cyan), var(--red));
+}
+
+.flow-diagram i::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  right: 0;
+  width: 11px;
+  height: 11px;
+  border-top: 2px solid var(--red);
+  border-right: 2px solid var(--red);
+  transform: rotate(45deg);
+}
+
+@keyframes drawCurve {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 .paper-list {
@@ -1502,6 +1723,96 @@ svg[data-lucide],
   background: var(--panel);
 }
 
+.not-found {
+  min-height: calc(100svh - var(--header-h));
+  display: grid;
+  align-items: center;
+  padding: 70px 0;
+}
+
+.not-found-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(320px, 0.56fr);
+  gap: 34px;
+  align-items: center;
+}
+
+.error-code {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--cyan);
+  font-size: 0.78rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.error-title {
+  margin-top: 18px;
+  font-size: clamp(3rem, 11vw, 8rem);
+  text-transform: uppercase;
+}
+
+.error-copy {
+  max-width: 680px;
+  margin: 22px 0 0;
+  color: var(--muted);
+  font-size: 1.08rem;
+}
+
+.error-panel {
+  position: relative;
+  min-height: 440px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(circle at 30% 28%, color-mix(in srgb, var(--cyan), transparent 74%), transparent 26%),
+    radial-gradient(circle at 70% 64%, color-mix(in srgb, var(--red), transparent 78%), transparent 30%),
+    var(--panel);
+  overflow: hidden;
+}
+
+.error-panel::before,
+.error-panel::after {
+  content: "";
+  position: absolute;
+  inset: 50%;
+  width: 280px;
+  height: 280px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.error-panel::after {
+  width: 150px;
+  height: 150px;
+  border-color: color-mix(in srgb, var(--red), transparent 28%);
+}
+
+.error-track {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 48%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--cyan), var(--red), transparent);
+  transform: rotate(-16deg);
+}
+
+.error-track:nth-child(2) {
+  top: 64%;
+  transform: rotate(24deg);
+  background: linear-gradient(90deg, transparent, var(--amber), var(--green), transparent);
+}
+
+.error-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 30px;
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(34px);
@@ -1543,7 +1854,8 @@ svg[data-lucide],
 
   .hero-shell,
   .lab-layout,
-  .contact-section {
+  .contact-section,
+  .not-found-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1556,6 +1868,8 @@ svg[data-lucide],
   .case-reel,
   .method-board,
   .repo-grid,
+  .frontier-grid,
+  .proof-strip,
   .capability-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1643,6 +1957,8 @@ svg[data-lucide],
   .case-reel,
   .method-board,
   .repo-grid,
+  .frontier-grid,
+  .proof-strip,
   .capability-grid {
     grid-template-columns: 1fr;
   }
@@ -1656,22 +1972,25 @@ svg[data-lucide],
     border-bottom: 0;
   }
 
-  .artifact-wall {
-    min-height: auto;
-    display: grid;
-    gap: 14px;
-  }
-
-  .artifact {
-    position: relative;
-    inset: auto;
-    width: 100%;
-    height: 420px;
-    transform: none;
-  }
-
   .button {
     width: 100%;
+  }
+
+  .flow-diagram {
+    grid-template-columns: 1fr;
+  }
+
+  .flow-diagram i {
+    width: 2px;
+    height: 34px;
+    margin: 0 auto;
+  }
+
+  .flow-diagram i::after {
+    top: auto;
+    right: -5px;
+    bottom: 0;
+    transform: rotate(135deg);
   }
 }
 
@@ -1725,9 +2044,6 @@ svg[data-lucide],
     min-height: auto;
   }
 
-  .artifact {
-    height: 340px;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

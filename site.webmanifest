@@ -1,0 +1,18 @@
+{
+  "name": "Mustofa A. Ahmed Portfolio",
+  "short_name": "Mustofa Ahmed",
+  "description": "AI systems portfolio for high-energy physics, deployment, scaling, and acceleration.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#05070a",
+  "theme_color": "#05070a",
+  "icons": [
+    {
+      "src": "assets/favicon.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

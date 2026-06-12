@@ -10,7 +10,7 @@ const cursorRing = document.querySelector(".cursor-ring");
 const cursorDot = document.querySelector(".cursor-dot");
 const cursorLabel = document.querySelector(".cursor-label");
 
-const themeVersion = "2026-06-dark-default";
+const themeVersion = "2026-06-v3-dark-default";
 const storedTheme =
   localStorage.getItem("theme-version") === themeVersion ? localStorage.getItem("theme") : null;
 root.dataset.theme = ["dark", "light"].includes(storedTheme) ? storedTheme : "dark";
@@ -172,6 +172,17 @@ const sceneObserver = new IntersectionObserver(
 
 document.querySelectorAll(".scene-step").forEach((step) => sceneObserver.observe(step));
 
+const caseObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      entry.target.classList.toggle("is-active-case", entry.isIntersecting);
+    });
+  },
+  { threshold: 0.52, rootMargin: "-14% 0px -18% 0px" }
+);
+
+document.querySelectorAll(".case-card").forEach((card) => caseObserver.observe(card));
+
 const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_+-/[]{}";
 
 function scramble(element) {
@@ -201,38 +212,53 @@ document.querySelectorAll("[data-scramble]").forEach((item) => {
   item.addEventListener("mouseenter", () => scramble(item));
 });
 
+const pointerBound = {
+  global: false,
+  cursorItems: new WeakSet(),
+  magneticItems: new WeakSet(),
+  tiltCards: new WeakSet()
+};
+
 function setupPointerInteractions() {
   const finePointer = window.matchMedia("(pointer: fine)").matches;
-  if (!finePointer || !cursorRing || !cursorDot) return;
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!finePointer || reducedMotion || !cursorRing || !cursorDot || !cursorLabel) return;
 
   let pointerX = window.innerWidth / 2;
   let pointerY = window.innerHeight / 2;
   let ringX = pointerX;
   let ringY = pointerY;
 
-  window.addEventListener(
-    "pointermove",
-    (event) => {
-      pointerX = event.clientX;
-      pointerY = event.clientY;
-      root.style.setProperty("--mx", `${pointerX}px`);
-      root.style.setProperty("--my", `${pointerY}px`);
-      body.classList.add("pointer-ready");
-      cursorDot.style.transform = `translate(${pointerX}px, ${pointerY}px) translate(-50%, -50%)`;
-      cursorLabel.style.transform = `translate(${pointerX + 18}px, ${pointerY + 18}px)`;
-    },
-    { passive: true }
-  );
+  if (!pointerBound.global) {
+    pointerBound.global = true;
 
-  function animateCursor() {
-    ringX += (pointerX - ringX) * 0.18;
-    ringY += (pointerY - ringY) * 0.18;
-    cursorRing.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
-    requestAnimationFrame(animateCursor);
+    window.addEventListener(
+      "pointermove",
+      (event) => {
+        pointerX = event.clientX;
+        pointerY = event.clientY;
+        root.style.setProperty("--mx", `${pointerX}px`);
+        root.style.setProperty("--my", `${pointerY}px`);
+        body.classList.add("pointer-ready");
+        cursorDot.style.transform = `translate(${pointerX}px, ${pointerY}px) translate(-50%, -50%)`;
+        cursorLabel.style.transform = `translate(${pointerX + 18}px, ${pointerY + 18}px)`;
+      },
+      { passive: true }
+    );
+
+    function animateCursor() {
+      ringX += (pointerX - ringX) * 0.18;
+      ringY += (pointerY - ringY) * 0.18;
+      cursorRing.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
   }
-  animateCursor();
 
   document.querySelectorAll("[data-cursor]").forEach((item) => {
+    if (pointerBound.cursorItems.has(item)) return;
+    pointerBound.cursorItems.add(item);
+
     item.addEventListener("mouseenter", () => {
       body.classList.add("pointer-grow", "pointer-label");
       cursorLabel.textContent = item.dataset.cursor;
@@ -243,6 +269,9 @@ function setupPointerInteractions() {
   });
 
   document.querySelectorAll(".magnetic").forEach((item) => {
+    if (pointerBound.magneticItems.has(item)) return;
+    pointerBound.magneticItems.add(item);
+
     item.addEventListener("pointermove", (event) => {
       const rect = item.getBoundingClientRect();
       const x = event.clientX - rect.left - rect.width / 2;
@@ -255,16 +284,23 @@ function setupPointerInteractions() {
   });
 
   document.querySelectorAll(".tilt-card").forEach((card) => {
+    if (pointerBound.tiltCards.has(card)) return;
+    pointerBound.tiltCards.add(card);
+
     card.addEventListener("pointermove", (event) => {
       const rect = card.getBoundingClientRect();
       const px = (event.clientX - rect.left) / rect.width;
       const py = (event.clientY - rect.top) / rect.height;
       card.style.setProperty("--rx", `${(0.5 - py) * 9}deg`);
       card.style.setProperty("--ry", `${(px - 0.5) * 10}deg`);
+      card.style.setProperty("--px", `${px * 100}%`);
+      card.style.setProperty("--py", `${py * 100}%`);
     });
     card.addEventListener("pointerleave", () => {
       card.style.setProperty("--rx", "0deg");
       card.style.setProperty("--ry", "0deg");
+      card.style.setProperty("--px", "50%");
+      card.style.setProperty("--py", "50%");
     });
   });
 }
@@ -299,15 +335,16 @@ function formatDate(value) {
 
 function renderFallbackRepos() {
   repoGrid.innerHTML = `
-    <article class="repo-card">
+    <article class="repo-card tilt-card" data-cursor="github">
       <strong><i data-lucide="github"></i> hafizabc77</strong>
-      <p>GitHub repository metadata could not be loaded in this browser session.</p>
+      <p>GitHub live metadata is unavailable right now, but the engineering trace is still one click away.</p>
       <div class="repo-meta">
         <span><i data-lucide="external-link"></i><a href="https://github.com/hafizabc77" target="_blank" rel="noreferrer">Open profile</a></span>
       </div>
     </article>
   `;
   refreshIcons();
+  setupPointerInteractions();
 }
 
 async function loadRepos() {
