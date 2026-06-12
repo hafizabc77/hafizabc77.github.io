@@ -1,9 +1,14 @@
 const root = document.documentElement;
+const body = document.body;
 const header = document.querySelector(".site-header");
 const navToggle = document.querySelector(".nav-toggle");
 const navLinks = document.querySelector(".nav-links");
 const themeToggle = document.querySelector(".theme-toggle");
 const repoGrid = document.querySelector("#repo-grid");
+const scrollProgress = document.querySelector(".scroll-rail span");
+const cursorRing = document.querySelector(".cursor-ring");
+const cursorDot = document.querySelector(".cursor-dot");
+const cursorLabel = document.querySelector(".cursor-label");
 
 const storedTheme = localStorage.getItem("theme");
 const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
@@ -44,9 +49,17 @@ document.querySelectorAll(".nav-links a").forEach((link) => {
   });
 });
 
-window.addEventListener("scroll", () => {
+function updateScrollState() {
+  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
   header.dataset.elevated = String(window.scrollY > 18);
-});
+  if (scrollProgress) {
+    scrollProgress.style.setProperty("--scroll", `${progress}%`);
+  }
+}
+
+window.addEventListener("scroll", updateScrollState, { passive: true });
+updateScrollState();
 
 const navAnchors = [...document.querySelectorAll(".nav-links a")];
 const observedSections = [...document.querySelectorAll("main section[id]")];
@@ -63,157 +76,203 @@ const sectionObserver = new IntersectionObserver(
       anchor.classList.toggle("active", anchor.getAttribute("href") === `#${visible.target.id}`);
     });
   },
-  {
-    rootMargin: "-32% 0px -54% 0px",
-    threshold: [0.16, 0.35, 0.6]
-  }
+  { rootMargin: "-34% 0px -55% 0px", threshold: [0.15, 0.35, 0.6] }
 );
 
 observedSections.forEach((section) => sectionObserver.observe(section));
 
-const labData = {
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        const scrambleTarget = entry.target.matches("[data-scramble]")
+          ? entry.target
+          : entry.target.querySelector("[data-scramble]");
+        if (scrambleTarget) scramble(scrambleTarget);
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.16, rootMargin: "0px 0px -8% 0px" }
+);
+
+document.querySelectorAll(".reveal").forEach((item) => revealObserver.observe(item));
+
+const labVisual = document.querySelector("#lab-visual");
+const labMode = document.querySelector("#lab-mode");
+const labEquation = document.querySelector("#lab-equation");
+const labPaths = document.querySelectorAll(".live-curve");
+
+const labScenes = {
   scaling: {
-    kicker: "Joint model-data scaling",
-    title: "Fit model size N and unique events D instead of guessing which axis matters.",
-    body:
-      "Extend Higgs scaling from one data axis into a Chinchilla-style physics view: model size, data size, training effort, features, objective design, generator robustness, optimizer dynamics, and compression are tracked separately.",
-    equation: "U(N,D) = U_inf + A / N^alpha + B / D^beta",
+    label: "Scaling law",
+    equation: "U(N,D)=Uinf+A/N^alpha+B/D^beta",
     paths: [
-      "M90 285 C148 270, 192 236, 236 176 S336 72, 440 64 S520 60, 574 58",
-      "M90 286 C150 256, 188 208, 242 162 S372 124, 574 118",
-      "M90 292 C150 282, 204 244, 272 214 S424 172, 574 168"
+      "M96 408C168 392 222 328 280 242C350 140 458 98 690 86",
+      "M96 410C176 370 236 286 318 222C424 138 542 152 690 144",
+      "M96 438C180 408 240 384 330 336C456 268 552 248 690 234"
     ]
   },
-  bottleneck: {
-    kicker: "Statistical-limit gap",
-    title: "Use gap_abs and gap_ratio to decide whether the work is data-, model-, feature-, or robustness-limited.",
-    body:
-      "The priority is not simply a larger network. If U stays above the statistical limit, diagnose whether new simulated events, better features, architecture scaling, score binning, or generator robustness will move the frontier.",
-    equation: "gap_ratio = U / U_stat; prioritize highest-gap modes such as H -> ZZ*",
+  grb: {
+    label: "GRB sensitivity",
+    equation: "argmax sensitivity(cuts, windows, background)",
     paths: [
-      "M90 238 C150 226, 208 218, 270 205 S430 176, 574 160",
-      "M90 270 C140 242, 194 214, 246 188 S386 146, 574 132",
-      "M90 292 C168 286, 230 282, 304 270 S466 252, 574 248"
+      "M96 410C160 386 210 356 282 298C356 238 468 180 690 132",
+      "M96 388C176 362 252 316 324 248C424 154 546 126 690 112",
+      "M96 436C170 418 244 382 344 336C472 278 570 260 690 252"
     ]
   },
-  robustness: {
-    kicker: "Generator and systematic robustness",
-    title: "Separate Pythia8 and Herwig7 behavior before declaring a scaling result solved.",
-    body:
-      "Two-body modes may stay stable while harder modes diverge as data and model size grow. Robustness needs its own axis, otherwise scaling can improve one generator while hiding systematic gaps.",
-    equation: "gap_gen = (U_Herwig - U_Pythia) / U_Pythia",
+  gap: {
+    label: "Gap ratio",
+    equation: "gap_ratio = U / Ustat",
     paths: [
-      "M90 265 C170 236, 240 184, 310 124 S442 86, 574 82",
-      "M90 278 C166 254, 248 206, 320 148 S470 118, 574 116",
-      "M90 290 C160 284, 236 258, 308 286 S468 276, 574 232"
+      "M96 326C164 324 236 318 316 298C414 274 528 220 690 166",
+      "M96 392C184 358 260 304 336 236C442 142 558 126 690 118",
+      "M96 438C178 424 254 410 344 390C472 360 582 348 690 336"
     ]
   },
-  compression: {
-    kicker: "Deployment after understanding limits",
-    title: "Compression is a complementary axis: scale first, understand bottlenecks, then make the model smaller and faster.",
-    body:
-      "Pruning, quantization, KD, and NAS can preserve physics performance while reducing latency, memory, and cost. They should not be confused with the primary scaling question of what is fundamentally attainable.",
-    equation: "scale -> prune -> fine-tune -> quantize -> fine-tune -> deploy",
+  compress: {
+    label: "Compression frontier",
+    equation: "scale -> prune -> quantize -> deploy",
     paths: [
-      "M90 230 C152 158, 214 108, 300 88 S460 74, 574 74",
-      "M90 246 C166 224, 238 218, 330 216 S494 214, 574 214",
-      "M90 286 C150 240, 224 214, 294 208 S438 206, 574 202"
+      "M96 236C186 160 254 126 348 104C456 78 570 82 690 78",
+      "M96 294C174 282 266 276 360 276C482 276 586 264 690 254",
+      "M96 410C172 360 250 324 348 308C466 288 570 292 690 286"
     ]
   }
 };
 
-const labTabs = document.querySelectorAll(".lab-tab");
-const labKicker = document.querySelector("#lab-kicker");
-const labTitle = document.querySelector("#lab-title");
-const labBody = document.querySelector("#lab-body");
-const labEquation = document.querySelector("#lab-equation");
-const labPaths = document.querySelectorAll("#lab-svg .svg-main");
-
-function setLabView(key) {
-  const data = labData[key];
-  if (!data) return;
-
-  labTabs.forEach((tab) => {
-    const active = tab.dataset.lab === key;
-    tab.classList.toggle("active", active);
-    tab.setAttribute("aria-selected", String(active));
+function setLabScene(mode) {
+  const scene = labScenes[mode];
+  if (!scene) return;
+  labVisual.dataset.mode = mode;
+  labMode.textContent = scene.label;
+  labEquation.textContent = scene.equation;
+  labPaths.forEach((path, index) => path.setAttribute("d", scene.paths[index]));
+  document.querySelectorAll(".scene-step").forEach((step) => {
+    step.classList.toggle("active", step.dataset.mode === mode);
   });
-
-  labKicker.textContent = data.kicker;
-  labTitle.textContent = data.title;
-  labBody.textContent = data.body;
-  labEquation.textContent = data.equation;
-  labPaths.forEach((path, index) => path.setAttribute("d", data.paths[index]));
 }
 
-labTabs.forEach((tab) => {
-  tab.addEventListener("click", () => setLabView(tab.dataset.lab));
+const sceneObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) setLabScene(entry.target.dataset.mode);
+    });
+  },
+  { threshold: 0.58 }
+);
+
+document.querySelectorAll(".scene-step").forEach((step) => sceneObserver.observe(step));
+
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_+-/[]{}";
+
+function scramble(element) {
+  const original = element.dataset.original || element.textContent;
+  element.dataset.original = original;
+  let frame = 0;
+  const maxFrames = 16;
+  clearInterval(element._scrambleTimer);
+  element._scrambleTimer = setInterval(() => {
+    const output = original
+      .split("")
+      .map((char, index) => {
+        if (char === " " || index < (frame / maxFrames) * original.length) return char;
+        return letters[Math.floor(Math.random() * letters.length)];
+      })
+      .join("");
+    element.textContent = output;
+    frame += 1;
+    if (frame > maxFrames) {
+      clearInterval(element._scrambleTimer);
+      element.textContent = original;
+    }
+  }, 32);
+}
+
+document.querySelectorAll("[data-scramble]").forEach((item) => {
+  item.addEventListener("mouseenter", () => scramble(item));
 });
 
-const noteData = {
-  1: {
-    src: "assets/research-notes/scaling-notes-1.png",
-    alt: "Research notes page 1 about Higgs model and data scaling",
-    caption: "Notes 1/7 - joint model, data, and training scaling for Higgs classification."
-  },
-  2: {
-    src: "assets/research-notes/scaling-notes-2.png",
-    alt: "Research notes page 2 about unique events, epochs, and scaling thresholds",
-    caption: "Notes 2/7 - unique events, epochs, compute formula, and overfitting threshold."
-  },
-  3: {
-    src: "assets/research-notes/scaling-notes-3.png",
-    alt: "Research notes page 3 about ParticleNet, ParT, ACSI, robustness, and score cuts",
-    caption: "Notes 3/7 - ParticleNet vs ParT, ACSI link, generator effect, and score-cut optimization."
-  },
-  4: {
-    src: "assets/research-notes/scaling-notes-4.png",
-    alt: "Research notes page 4 about expected plots, bottlenecks, and experiment sequence",
-    caption: "Notes 4/7 - expected plots, bottleneck definitions, and first experiment sequence."
-  },
-  5: {
-    src: "assets/research-notes/scaling-notes-5.png",
-    alt: "Research notes page 5 about scaling axes and gap quantification",
-    caption: "Notes 5/7 - extra axes, loss-floor bottlenecks, gap quantification, and expected outcomes."
-  },
-  6: {
-    src: "assets/research-notes/scaling-notes-6.png",
-    alt: "Research notes page 6 about compression, pruning, quantization, lottery tickets, and methods",
-    caption: "Notes 6/7 - compression as a complementary axis: pruning, quantization, KD, NAS."
-  },
-  7: {
-    src: "assets/research-notes/scaling-notes-7.png",
-    alt: "Research notes page 7 about knowledge distillation, NAS, and compression-scaling fit",
-    caption: "Notes 7/7 - KD, NAS, compression-scaling relationship, and important extra axes."
+function setupPointerInteractions() {
+  const finePointer = window.matchMedia("(pointer: fine)").matches;
+  if (!finePointer || !cursorRing || !cursorDot) return;
+
+  let pointerX = window.innerWidth / 2;
+  let pointerY = window.innerHeight / 2;
+  let ringX = pointerX;
+  let ringY = pointerY;
+
+  window.addEventListener(
+    "pointermove",
+    (event) => {
+      pointerX = event.clientX;
+      pointerY = event.clientY;
+      root.style.setProperty("--mx", `${pointerX}px`);
+      root.style.setProperty("--my", `${pointerY}px`);
+      body.classList.add("pointer-ready");
+      cursorDot.style.transform = `translate(${pointerX}px, ${pointerY}px) translate(-50%, -50%)`;
+      cursorLabel.style.transform = `translate(${pointerX + 18}px, ${pointerY + 18}px)`;
+    },
+    { passive: true }
+  );
+
+  function animateCursor() {
+    ringX += (pointerX - ringX) * 0.18;
+    ringY += (pointerY - ringY) * 0.18;
+    cursorRing.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
+    requestAnimationFrame(animateCursor);
   }
-};
+  animateCursor();
 
-const noteMain = document.querySelector("#note-main");
-const noteCaption = document.querySelector("#note-caption");
-const noteThumbs = document.querySelectorAll(".note-thumb");
-
-noteThumbs.forEach((button) => {
-  button.addEventListener("click", () => {
-    const note = noteData[button.dataset.note];
-    if (!note) return;
-
-    noteMain.src = note.src;
-    noteMain.alt = note.alt;
-    noteCaption.textContent = note.caption;
-    noteThumbs.forEach((thumb) => thumb.classList.toggle("active", thumb === button));
+  document.querySelectorAll("[data-cursor]").forEach((item) => {
+    item.addEventListener("mouseenter", () => {
+      body.classList.add("pointer-grow", "pointer-label");
+      cursorLabel.textContent = item.dataset.cursor;
+    });
+    item.addEventListener("mouseleave", () => {
+      body.classList.remove("pointer-grow", "pointer-label");
+    });
   });
-});
+
+  document.querySelectorAll(".magnetic").forEach((item) => {
+    item.addEventListener("pointermove", (event) => {
+      const rect = item.getBoundingClientRect();
+      const x = event.clientX - rect.left - rect.width / 2;
+      const y = event.clientY - rect.top - rect.height / 2;
+      item.style.transform = `translate(${x * 0.16}px, ${y * 0.16}px)`;
+    });
+    item.addEventListener("pointerleave", () => {
+      item.style.transform = "";
+    });
+  });
+
+  document.querySelectorAll(".tilt-card").forEach((card) => {
+    card.addEventListener("pointermove", (event) => {
+      const rect = card.getBoundingClientRect();
+      const px = (event.clientX - rect.left) / rect.width;
+      const py = (event.clientY - rect.top) / rect.height;
+      card.style.setProperty("--rx", `${(0.5 - py) * 9}deg`);
+      card.style.setProperty("--ry", `${(px - 0.5) * 10}deg`);
+    });
+    card.addEventListener("pointerleave", () => {
+      card.style.setProperty("--rx", "0deg");
+      card.style.setProperty("--ry", "0deg");
+    });
+  });
+}
 
 const languageColors = {
   Python: "#3572a5",
   JavaScript: "#c8a024",
-  "C++": "#ff6d57",
+  "C++": "#ff5f4a",
   C: "#9aa8b6",
   HTML: "#e06b41",
-  CSS: "#6da2ff",
-  Shell: "#68d983",
-  Jupyter: "#f3bd45",
-  TeX: "#48d6c8"
+  CSS: "#78a8ff",
+  Shell: "#7cff99",
+  Jupyter: "#ffd15a",
+  TeX: "#52f0df"
 };
 
 function escapeHtml(value) {
@@ -253,9 +312,7 @@ async function loadRepos() {
       headers: { Accept: "application/vnd.github+json" }
     });
 
-    if (!response.ok) {
-      throw new Error(`GitHub API returned ${response.status}`);
-    }
+    if (!response.ok) throw new Error(`GitHub API returned ${response.status}`);
 
     const repos = await response.json();
     const visibleRepos = repos
@@ -271,12 +328,12 @@ async function loadRepos() {
     repoGrid.innerHTML = visibleRepos
       .map((repo) => {
         const language = repo.language || "Code";
-        const color = languageColors[language] || "#48d6c8";
+        const color = languageColors[language] || "#52f0df";
         const description = repo.description || "Public repository from hafizabc77.";
 
         return `
-          <a class="repo-card" href="${escapeHtml(repo.html_url)}" target="_blank" rel="noreferrer">
-            <strong><i data-lucide="book-marked"></i>${escapeHtml(repo.name)}</strong>
+          <a class="repo-card tilt-card" href="${escapeHtml(repo.html_url)}" target="_blank" rel="noreferrer" data-cursor="repo">
+            <strong><i data-lucide="github"></i>${escapeHtml(repo.name)}</strong>
             <p>${escapeHtml(description)}</p>
             <div class="repo-meta">
               <span><span class="language-dot" style="background:${color}"></span>${escapeHtml(language)}</span>
@@ -290,23 +347,33 @@ async function loadRepos() {
       .join("");
 
     refreshIcons();
+    setupPointerInteractions();
   } catch (error) {
     renderFallbackRepos();
   }
 }
 
-function startHeroCanvas() {
-  const canvas = document.querySelector("#hero-canvas");
+function startFieldCanvas() {
+  const canvas = document.querySelector("#field-canvas");
   if (!canvas || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
   const ctx = canvas.getContext("2d");
-  const hits = [];
-  const tracks = [];
+  const particles = [];
+  const beams = [];
   let width = 0;
   let height = 0;
   let pixelRatio = 1;
+  let pointerX = -9999;
+  let pointerY = -9999;
   let frame = 0;
   let animationId;
+
+  function color(alpha, tone) {
+    const light = root.dataset.theme === "light";
+    if (tone < 0.35) return light ? `rgba(0, 127, 117, ${alpha})` : `rgba(82, 240, 223, ${alpha})`;
+    if (tone < 0.7) return light ? `rgba(198, 77, 56, ${alpha})` : `rgba(255, 95, 74, ${alpha})`;
+    return light ? `rgba(168, 114, 0, ${alpha})` : `rgba(255, 209, 90, ${alpha})`;
+  }
 
   function resize() {
     const rect = canvas.getBoundingClientRect();
@@ -316,84 +383,98 @@ function startHeroCanvas() {
     canvas.width = Math.floor(width * pixelRatio);
     canvas.height = Math.floor(height * pixelRatio);
     ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
-    hits.length = 0;
-    tracks.length = 0;
+    particles.length = 0;
+    beams.length = 0;
 
-    const hitCount = Math.max(70, Math.floor((width * height) / 16000));
-    for (let index = 0; index < hitCount; index += 1) {
-      hits.push({
+    const count = Math.max(120, Math.floor((width * height) / 10500));
+    for (let index = 0; index < count; index += 1) {
+      particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.38,
-        vy: (Math.random() - 0.5) * 0.38,
-        size: Math.random() * 2 + 1,
+        vx: (Math.random() - 0.5) * 0.42,
+        vy: (Math.random() - 0.5) * 0.42,
+        size: Math.random() * 2.2 + 0.8,
         tone: Math.random()
       });
     }
 
-    const trackCount = Math.max(7, Math.floor(width / 180));
-    for (let index = 0; index < trackCount; index += 1) {
-      tracks.push({
+    const beamCount = Math.max(8, Math.floor(width / 150));
+    for (let index = 0; index < beamCount; index += 1) {
+      beams.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        speed: 0.7 + Math.random() * 0.9,
-        length: 70 + Math.random() * 120,
+        length: 130 + Math.random() * 210,
+        speed: 0.9 + Math.random() * 1.7,
+        angle: -0.35 + Math.random() * 0.9,
         tone: Math.random()
       });
     }
   }
 
-  function color(alpha, tone) {
-    const dark = root.dataset.theme !== "light";
-    if (tone < 0.35) return dark ? `rgba(72, 214, 200, ${alpha})` : `rgba(8, 121, 111, ${alpha})`;
-    if (tone < 0.7) return dark ? `rgba(255, 109, 87, ${alpha})` : `rgba(201, 78, 58, ${alpha})`;
-    return dark ? `rgba(243, 189, 69, ${alpha})` : `rgba(166, 111, 18, ${alpha})`;
-  }
+  window.addEventListener(
+    "pointermove",
+    (event) => {
+      pointerX = event.clientX;
+      pointerY = event.clientY;
+    },
+    { passive: true }
+  );
 
   function animate() {
     frame += 1;
     ctx.clearRect(0, 0, width, height);
-
     ctx.lineWidth = 1;
-    hits.forEach((hit, index) => {
-      hit.x += hit.vx;
-      hit.y += hit.vy;
 
-      if (hit.x < -10) hit.x = width + 10;
-      if (hit.x > width + 10) hit.x = -10;
-      if (hit.y < -10) hit.y = height + 10;
-      if (hit.y > height + 10) hit.y = -10;
+    beams.forEach((beam) => {
+      beam.x += beam.speed;
+      beam.y += Math.sin(frame / 50 + beam.x * 0.01) * 0.12;
+      if (beam.x - beam.length > width + 60) {
+        beam.x = -beam.length;
+        beam.y = Math.random() * height;
+      }
+      const dx = Math.cos(beam.angle) * beam.length;
+      const dy = Math.sin(beam.angle) * beam.length;
+      ctx.strokeStyle = color(0.28, beam.tone);
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(beam.x, beam.y);
+      ctx.lineTo(beam.x - dx, beam.y - dy);
+      ctx.stroke();
+    });
 
-      ctx.fillStyle = color(0.62, hit.tone);
-      ctx.fillRect(hit.x, hit.y, hit.size, hit.size);
+    particles.forEach((particle, index) => {
+      const pointerDistance = Math.hypot(particle.x - pointerX, particle.y - pointerY);
+      if (pointerDistance < 150) {
+        const force = (150 - pointerDistance) / 150;
+        particle.vx += ((particle.x - pointerX) / Math.max(pointerDistance, 1)) * force * 0.04;
+        particle.vy += ((particle.y - pointerY) / Math.max(pointerDistance, 1)) * force * 0.04;
+      }
 
-      for (let next = index + 1; next < hits.length; next += 1) {
-        const other = hits[next];
-        const distance = Math.hypot(hit.x - other.x, hit.y - other.y);
-        const limit = width < 760 ? 84 : 118;
+      particle.vx *= 0.992;
+      particle.vy *= 0.992;
+      particle.x += particle.vx;
+      particle.y += particle.vy;
+
+      if (particle.x < -20) particle.x = width + 20;
+      if (particle.x > width + 20) particle.x = -20;
+      if (particle.y < -20) particle.y = height + 20;
+      if (particle.y > height + 20) particle.y = -20;
+
+      ctx.fillStyle = color(0.68, particle.tone);
+      ctx.fillRect(particle.x, particle.y, particle.size, particle.size);
+
+      for (let next = index + 1; next < particles.length; next += 1) {
+        const other = particles[next];
+        const distance = Math.hypot(particle.x - other.x, particle.y - other.y);
+        const limit = width < 760 ? 78 : 118;
         if (distance < limit) {
-          ctx.strokeStyle = color((1 - distance / limit) * 0.13, (hit.tone + other.tone) / 2);
+          ctx.strokeStyle = color((1 - distance / limit) * 0.14, (particle.tone + other.tone) / 2);
           ctx.beginPath();
-          ctx.moveTo(hit.x, hit.y);
+          ctx.moveTo(particle.x, particle.y);
           ctx.lineTo(other.x, other.y);
           ctx.stroke();
         }
       }
-    });
-
-    tracks.forEach((track) => {
-      track.x += track.speed;
-      track.y += Math.sin((frame + track.x) / 70) * 0.08;
-      if (track.x - track.length > width) {
-        track.x = -track.length;
-        track.y = Math.random() * height;
-      }
-      ctx.strokeStyle = color(0.32, track.tone);
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.moveTo(track.x, track.y);
-      ctx.lineTo(track.x - track.length, track.y + Math.sin(frame / 30) * 28);
-      ctx.stroke();
     });
 
     animationId = requestAnimationFrame(animate);
@@ -401,7 +482,6 @@ function startHeroCanvas() {
 
   resize();
   animate();
-
   window.addEventListener("resize", () => {
     cancelAnimationFrame(animationId);
     resize();
@@ -411,6 +491,7 @@ function startHeroCanvas() {
 
 window.addEventListener("load", () => {
   refreshIcons();
+  setupPointerInteractions();
   loadRepos();
-  startHeroCanvas();
+  startFieldCanvas();
 });
