@@ -12,11 +12,19 @@ Then open `http://localhost:4173`.
 
 ## Deploy to GitHub Pages
 
-1. Create a repository named `hafizabc77.github.io` on GitHub.
+1. Create an empty public repository named `hafizabc77.github.io` on GitHub.
 2. Push the files from this folder to that repository.
 3. In GitHub, open **Settings -> Pages**.
 4. Set **Source** to **Deploy from a branch**.
 5. Select the `main` branch and `/root`, then save.
+
+Recommended push commands for this machine:
+
+```bash
+cd /home/hafiz/agents/hafiz-portfolio
+git remote set-url origin git@github.com:hafizabc77/hafizabc77.github.io.git
+git push -u origin main
+```
 
 Your site will publish at:
 
