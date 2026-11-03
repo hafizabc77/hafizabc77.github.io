@@ -1,488 +1,356 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="Mustofa A. Ahmed - AI systems researcher building deployment-aware machine learning for high-energy physics, model scaling, reinforcement learning, knowledge graphs, MOBO, and acceleration."
-    />
-    <meta name="theme-color" content="#05070a" />
-    <meta property="og:title" content="Mustofa A. Ahmed | AI Systems for High-Energy Physics" />
-    <meta
-      property="og:description"
-      content="A kinetic portfolio for AI, HEP model scaling, AutoDeploy, LHAASO-WCDA GRB optimization, reinforcement learning, knowledge graphs, MOBO, and heterogeneous deployment."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://github.com/hafizabc77.png?size=640" />
-    <title>Mustofa A. Ahmed | AI Systems for HEP</title>
-    <link rel="preconnect" href="https://github.com" />
-    <link rel="stylesheet" href="styles.css" />
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
-    <script src="script.js" defer></script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Mustofa A. Ahmed",
-        "alternateName": "hafizabc77",
-        "jobTitle": "AI Systems Researcher",
-        "affiliation": {
-          "@type": "Organization",
-          "name": "Institute of High Energy Physics"
-        },
-        "sameAs": [
-          "https://github.com/hafizabc77",
-          "https://www.linkedin.com/in/hafizabc77/"
-        ],
-        "email": "mailto:pemustofa@ihep.ac.cn",
-        "knowsAbout": [
-          "Artificial intelligence",
-          "High-energy physics",
-          "Model scaling",
-          "Rainbow DQN",
-          "Distributional reinforcement learning",
-          "Knowledge graphs",
-          "Multi-objective Bayesian optimization",
-          "Model acceleration",
-          "Heterogeneous computing"
-        ]
-      }
-    </script>
-  </head>
-  <body>
-    <a class="skip-link" href="#main">Skip to content</a>
-    <div class="cursor" aria-hidden="true">
-      <span class="cursor-ring"></span>
-      <span class="cursor-dot"></span>
-      <span class="cursor-label"></span>
-    </div>
-    <div class="scroll-rail" aria-hidden="true"><span></span></div>
-
-    <header class="site-header" data-elevated="false">
-      <nav class="nav-shell" aria-label="Primary navigation">
-        <a class="brand magnetic" href="#top" data-cursor="home" aria-label="Mustofa A. Ahmed home">
-          <span class="brand-mark">MA</span>
-          <span>
-            <strong>Mustofa A. Ahmed</strong>
-            <small>AI x HEP systems</small>
-          </span>
-        </a>
-
-        <button class="nav-toggle magnetic" type="button" aria-label="Open navigation" aria-expanded="false" data-cursor="menu">
-          <i data-lucide="menu"></i>
-        </button>
-
-        <div class="nav-links" data-open="false">
-          <a class="magnetic" href="#mission" data-cursor="go">Mission</a>
-          <a class="magnetic" href="#lab" data-cursor="go">Lab</a>
-          <a class="magnetic" href="#methods" data-cursor="go">AI Stack</a>
-          <a class="magnetic" href="#artifacts" data-cursor="go">Artifacts</a>
-          <a class="magnetic" href="#papers" data-cursor="go">Papers</a>
-          <button class="icon-button theme-toggle magnetic" type="button" aria-label="Toggle color theme" data-cursor="theme">
-            <i data-lucide="sun"></i>
-          </button>
-        </div>
-      </nav>
-    </header>
-
-    <main id="main">
-      <section class="hero" id="top" aria-labelledby="hero-title" data-scene="hero">
-        <canvas id="field-canvas" aria-hidden="true"></canvas>
-        <div class="hero-noise" aria-hidden="true"></div>
-
-        <div class="hero-shell">
-          <div class="hero-copy">
-            <p class="eyebrow reveal">
-              <span>Research Fellow at IHEP</span>
-              <span>UCAS M.Sc. Computer Science</span>
-            </p>
-            <h1 id="hero-title" class="kinetic-title reveal" data-scramble>
-              <span>AI</span>
-              <span>for</span>
-              <span>High</span>
-              <span>Energy</span>
-              <span>Physics</span>
-            </h1>
-            <p class="hero-lede reveal">
-              I design intelligent systems that turn detector data, physics objectives, and
-              accelerator constraints into deployable machine learning: LHAASO-WCDA GRB pipelines,
-              CEPC Higgs scaling, AutoDeploy, RL/KG/MOBO search, and model compression.
-            </p>
-
-            <div class="command-strip reveal" aria-label="Research focus">
-              <span>autodeploy.search</span>
-              <code>{ physics: "HEP", objectives: ["accuracy", "latency", "memory"], hardware: ["GPU", "FPGA", "NPU"] }</code>
-            </div>
-
-            <div class="hero-actions reveal" aria-label="Primary actions">
-              <a class="button primary magnetic" href="assets/Mustofa-Ahmed-CV.pdf" target="_blank" rel="noreferrer" data-cursor="cv">
-                <i data-lucide="file-down"></i>
-                CV
-              </a>
-              <a class="button magnetic" href="assets/Thesis-Defense-Mustofa-Ahmed.pdf" target="_blank" rel="noreferrer" data-cursor="deck">
-                <i data-lucide="presentation"></i>
-                Thesis deck
-              </a>
-              <a class="button icon-button-link magnetic" href="https://github.com/hafizabc77" target="_blank" rel="noreferrer" aria-label="GitHub" data-cursor="code">
-                <i data-lucide="github"></i>
-              </a>
-              <a class="button icon-button-link magnetic" href="https://www.linkedin.com/in/hafizabc77/" target="_blank" rel="noreferrer" aria-label="LinkedIn" data-cursor="link">
-                <i data-lucide="linkedin"></i>
-              </a>
-            </div>
-          </div>
-
-          <aside class="detector-stage reveal" aria-label="Interactive identity visual">
-            <div class="portrait-lockup">
-              <img src="https://github.com/hafizabc77.png?size=420" alt="Mustofa A. Ahmed GitHub avatar" />
-              <div>
-                <strong>Mustofa</strong>
-                <span>AI systems / HEP deployment</span>
-              </div>
-            </div>
-
-            <div class="detector" aria-hidden="true">
-              <svg viewBox="0 0 520 520">
-                <defs>
-                  <path id="orbit-path" d="M260 72A188 188 0 1 1 259.9 72" />
-                </defs>
-                <g class="rings">
-                  <circle cx="260" cy="260" r="215" />
-                  <circle cx="260" cy="260" r="166" />
-                  <circle cx="260" cy="260" r="112" />
-                  <circle cx="260" cy="260" r="58" />
-                </g>
-                <g class="sectors">
-                  <path d="M260 260L260 36" />
-                  <path d="M260 260L484 260" />
-                  <path d="M260 260L260 484" />
-                  <path d="M260 260L36 260" />
-                  <path d="M260 260L418 102" />
-                  <path d="M260 260L418 418" />
-                  <path d="M260 260L102 418" />
-                  <path d="M260 260L102 102" />
-                </g>
-                <path class="particle-track track-a" d="M61 346C148 280 185 213 254 244C325 276 341 191 458 150" />
-                <path class="particle-track track-b" d="M82 175C166 190 182 315 266 306C344 298 366 376 449 384" />
-                <path class="particle-track track-c" d="M143 450C178 336 221 304 274 266C337 221 356 142 383 70" />
-                <g class="hits">
-                  <circle cx="110" cy="324" r="5" />
-                  <circle cx="181" cy="248" r="4" />
-                  <circle cx="269" cy="250" r="5" />
-                  <circle cx="340" cy="202" r="4" />
-                  <circle cx="435" cy="158" r="5" />
-                  <circle cx="250" cy="306" r="5" />
-                  <circle cx="358" cy="350" r="4" />
-                  <circle cx="150" cy="431" r="5" />
-                </g>
-                <text>
-                  <textPath href="#orbit-path" startOffset="0%">RAINBOW DQN  KG  MOBO  HIGGS SCALING  AUTODEPLOY  MODEL ACCELERATION</textPath>
-                </text>
-              </svg>
-            </div>
-          </aside>
-        </div>
-
-        <div class="ticker" aria-label="Core capabilities">
-          <div class="ticker-track">
-            <span>Rainbow DQN</span><span>Distributional RL</span><span>Knowledge Graphs</span><span>MOBO</span><span>LHAASO-WCDA</span><span>GRB Detection</span><span>ParticleNet</span><span>ParT</span><span>CEPC</span><span>TensorRT</span><span>HLS</span><span>ONNX</span>
-            <span>Rainbow DQN</span><span>Distributional RL</span><span>Knowledge Graphs</span><span>MOBO</span><span>LHAASO-WCDA</span><span>GRB Detection</span><span>ParticleNet</span><span>ParT</span><span>CEPC</span><span>TensorRT</span><span>HLS</span><span>ONNX</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="mission section" id="mission" aria-labelledby="mission-title">
-        <div class="section-heading reveal">
-          <p class="eyebrow"><span>Mission architecture</span></p>
-          <h2 id="mission-title">Not a portfolio of buzzwords. A pipeline for physics-grade AI decisions.</h2>
-        </div>
-
-        <div class="mission-grid">
-          <article class="mission-card tilt-card reveal" data-cursor="physics">
-            <span class="card-index">01</span>
-            <i data-lucide="telescope"></i>
-            <h3>Physics signal</h3>
-            <p>LHAASO-WCDA triggerless GRB analysis and CEPC/CMS Higgs classification define the real objective.</p>
-          </article>
-          <article class="mission-card tilt-card reveal" data-cursor="search">
-            <span class="card-index">02</span>
-            <i data-lucide="brain-circuit"></i>
-            <h3>AI search</h3>
-            <p>RL, knowledge graphs, MOBO, graph ML, and policy models search over models, cuts, data, and constraints.</p>
-          </article>
-          <article class="mission-card tilt-card reveal" data-cursor="deploy">
-            <span class="card-index">03</span>
-            <i data-lucide="cpu"></i>
-            <h3>Hardware reality</h3>
-            <p>GPU, FPGA, NPU, and embedded targets shape what “best” means after latency, memory, and energy enter.</p>
-          </article>
-          <article class="mission-card tilt-card reveal" data-cursor="limit">
-            <span class="card-index">04</span>
-            <i data-lucide="activity"></i>
-            <h3>Statistical limit</h3>
-            <p>Gap analysis decides whether to scale data, model capacity, features, objective design, or robustness.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="lab section" id="lab" aria-labelledby="lab-title">
-        <div class="lab-layout">
-          <div class="lab-sticky reveal">
-            <p class="eyebrow"><span>Scroll lab</span></p>
-            <h2 id="lab-title">A living model of the research loop.</h2>
-            <div class="lab-visual" id="lab-visual" data-mode="scaling" aria-label="Animated research visual">
-              <svg viewBox="0 0 760 520">
-                <path class="grid-lines" d="M78 420H696M78 340H696M78 260H696M78 180H696M78 100H696M162 72V442M278 72V442M394 72V442M510 72V442M626 72V442" />
-                <path class="axis" d="M78 64V440H710" />
-                <path class="limit-line" d="M78 364H710" />
-                <path class="live-curve curve-one" d="M96 408C168 392 222 328 280 242C350 140 458 98 690 86" />
-                <path class="live-curve curve-two" d="M96 410C176 370 236 286 318 222C424 138 542 152 690 144" />
-                <path class="live-curve curve-three" d="M96 438C180 408 240 384 330 336C456 268 552 248 690 234" />
-                <g class="live-dots">
-                  <circle cx="280" cy="242" r="8" />
-                  <circle cx="462" cy="98" r="8" />
-                  <circle cx="330" cy="336" r="8" />
-                  <circle cx="690" cy="144" r="8" />
-                </g>
-              </svg>
-              <div class="lab-readout">
-                <span id="lab-mode">Scaling law</span>
-                <strong id="lab-equation">U(N,D)=Uinf+A/N^alpha+B/D^beta</strong>
-              </div>
-            </div>
-          </div>
-
-          <div class="lab-steps">
-            <article class="scene-step reveal active" data-mode="scaling">
-              <span>01 / scaling</span>
-              <h3>Joint N x D scaling for Higgs tasks</h3>
-              <p>Move past a one-axis data curve. Fit model size, unique simulated events, epochs, features, and objectives as separate axes.</p>
-            </article>
-            <article class="scene-step reveal" data-mode="grb">
-              <span>02 / transient sky</span>
-              <h3>LHAASO-WCDA GRB optimization</h3>
-              <p>Bayesian optimization tunes triggerless analysis pipelines where sensitivity depends on search strategy, cuts, and uncertainty.</p>
-            </article>
-            <article class="scene-step reveal" data-mode="gap">
-              <span>03 / bottleneck</span>
-              <h3>Close the statistical-limit gap</h3>
-              <p>Large gap ratio means there is still room to improve. Hard channels such as H -> ZZ* become the priority.</p>
-            </article>
-            <article class="scene-step reveal" data-mode="compress">
-              <span>04 / deploy</span>
-              <h3>Compress only after the limit is understood</h3>
-              <p>Pruning, quantization, KD, NAS, TensorRT, HLS, and ONNX optimization turn the winning model into a deployable system.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="cases section" aria-labelledby="cases-title">
-        <div class="section-heading reveal">
-          <p class="eyebrow"><span>Case studies</span></p>
-          <h2 id="cases-title">Four research directions, one deployment-first lens.</h2>
-        </div>
-
-        <div class="case-reel">
-          <article class="case-card tilt-card reveal" data-cursor="GRB">
-            <span>01</span>
-            <h3>LHAASO-WCDA GRB</h3>
-            <p>Triggerless gamma-ray burst sensitivity via ML pipelines and Bayesian optimization.</p>
-            <div class="case-visual grb-visual" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-          </article>
-          <article class="case-card tilt-card reveal" data-cursor="Higgs">
-            <span>02</span>
-            <h3>CEPC Higgs Scaling</h3>
-            <p>ParticleNet and ParT scaling to understand attainable performance and hard-mode bottlenecks.</p>
-            <div class="case-visual chart-visual" aria-hidden="true">
-              <i style="--h: 30%"></i><i style="--h: 72%"></i><i style="--h: 54%"></i><i style="--h: 88%"></i><i style="--h: 40%"></i>
-            </div>
-          </article>
-          <article class="case-card tilt-card reveal" data-cursor="Auto">
-            <span>03</span>
-            <h3>AutoDeploy</h3>
-            <p>Knowledge-driven hardware and objective search for heterogeneous AI deployment.</p>
-            <div class="case-visual graph-visual" aria-hidden="true">
-              <b></b><b></b><b></b><b></b><b></b><b></b>
-            </div>
-          </article>
-          <article class="case-card tilt-card reveal" data-cursor="Accel">
-            <span>04</span>
-            <h3>Model Acceleration</h3>
-            <p>Compression paths that preserve physics performance while reducing latency, memory, and cost.</p>
-            <div class="case-visual compression-visual" aria-hidden="true">
-              <span>scale</span><span>prune</span><span>quant</span><span>deploy</span>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="methods section" id="methods" aria-labelledby="methods-title">
-        <div class="section-heading reveal">
-          <p class="eyebrow"><span>AI stack</span></p>
-          <h2 id="methods-title">Methods selected for decision quality, uncertainty, and deployability.</h2>
-        </div>
-
-        <div class="method-board">
-          <article class="method-panel reveal" data-cursor="RL">
-            <div class="method-title">
-              <i data-lucide="route"></i>
-              <h3 data-scramble>Rainbow DQN / Distributional RL</h3>
-            </div>
-            <p>Policy-style search over deployment actions, architecture choices, compression steps, and score-cut decisions.</p>
-            <div class="rl-lattice" aria-hidden="true">
-              <span></span><span></span><span></span><span></span><span></span>
-              <span></span><span class="agent"></span><span></span><span></span><span></span>
-              <span></span><span></span><span></span><span></span><span></span>
-              <span></span><span></span><span></span><span></span><span></span>
-            </div>
-          </article>
-
-          <article class="method-panel reveal" data-cursor="KG">
-            <div class="method-title">
-              <i data-lucide="share-2"></i>
-              <h3 data-scramble>Knowledge Graphs</h3>
-            </div>
-            <p>Connect physics channels, model families, datasets, objectives, hardware targets, and previous experiment results.</p>
-            <div class="kg-map" aria-hidden="true">
-              <svg viewBox="0 0 420 220">
-                <path d="M68 112L146 52L238 86L346 52M146 52L186 168L292 164M68 112L186 168L238 86M238 86L292 164L346 52" />
-                <circle cx="68" cy="112" r="18" /><circle cx="146" cy="52" r="18" /><circle cx="238" cy="86" r="18" /><circle cx="346" cy="52" r="18" /><circle cx="186" cy="168" r="18" /><circle cx="292" cy="164" r="18" />
-              </svg>
-            </div>
-          </article>
-
-          <article class="method-panel reveal" data-cursor="MOBO">
-            <div class="method-title">
-              <i data-lucide="chart-spline"></i>
-              <h3 data-scramble>Multi-objective Bayesian Optimization</h3>
-            </div>
-            <p>Search the accuracy-latency-memory-energy frontier instead of optimizing a single scalar score.</p>
-            <div class="pareto-field" aria-hidden="true">
-              <span style="--x: 12%; --y: 70%"></span><span style="--x: 23%; --y: 58%"></span><span style="--x: 36%; --y: 48%"></span><span style="--x: 50%; --y: 36%"></span><span style="--x: 68%; --y: 24%"></span><span style="--x: 80%; --y: 18%"></span><span style="--x: 40%; --y: 78%"></span><span style="--x: 74%; --y: 64%"></span>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="capability section" aria-labelledby="capability-title">
-        <div class="section-heading reveal">
-          <p class="eyebrow"><span>Capability console</span></p>
-          <h2 id="capability-title">The stack is wide because the deployment problem is wide.</h2>
-        </div>
-
-        <div class="capability-grid">
-          <article class="cap-item reveal" data-cursor="AI">
-            <span>AI methods</span>
-            <p>RL, Rainbow DQN, distributional RL, MOBO, Graph ML, GFlowNet ideas, AutoML, RecSys and policy models.</p>
-          </article>
-          <article class="cap-item reveal" data-cursor="HEP">
-            <span>HEP targets</span>
-            <p>LHAASO-WCDA GRB detection, CEPC/CMS Higgs classification, ParticleNet, ParT, score cuts, generator robustness.</p>
-          </article>
-          <article class="cap-item reveal" data-cursor="HW">
-            <span>Acceleration</span>
-            <p>Quantization, pruning, HLS, TensorRT, ONNX graph optimization, KD, NAS, GPUs, FPGAs, NPUs.</p>
-          </article>
-          <article class="cap-item reveal" data-cursor="SYS">
-            <span>Systems</span>
-            <p>Python, C++, Bash, Docker, Linux, Git, CI/CD, Neo4j, MySQL, EOS, SeaweedFS, experiment tracking.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="artifacts section" id="artifacts" aria-labelledby="artifacts-title">
-        <div class="section-heading reveal">
-          <p class="eyebrow"><span>Research artifacts</span></p>
-          <h2 id="artifacts-title">The notebook becomes texture, not a PDF dump.</h2>
-          <p>Fragments from the scaling notes are used as visual evidence behind the concepts: model/data curves, gap ratios, score cuts, compression, KD, and NAS.</p>
-        </div>
-
-        <div class="artifact-wall">
-          <figure class="artifact artifact-a reveal tilt-card" data-cursor="scaling">
-            <img src="assets/research-notes/scaling-notes-4.png" alt="Research notes fragment showing expected scaling plots" loading="lazy" />
-            <figcaption>Expected plots and bottleneck diagnosis</figcaption>
-          </figure>
-          <figure class="artifact artifact-b reveal tilt-card" data-cursor="compression">
-            <img src="assets/research-notes/scaling-notes-6.png" alt="Research notes fragment showing compression methods" loading="lazy" />
-            <figcaption>Compression as a complementary axis</figcaption>
-          </figure>
-          <figure class="artifact artifact-c reveal tilt-card" data-cursor="kd/nas">
-            <img src="assets/research-notes/scaling-notes-7.png" alt="Research notes fragment showing knowledge distillation and NAS" loading="lazy" />
-            <figcaption>KD, NAS, and deployment frontier</figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section class="papers section" id="papers" aria-labelledby="papers-title">
-        <div class="section-heading reveal">
-          <p class="eyebrow"><span>Papers</span></p>
-          <h2 id="papers-title">Published and submitted work across HEP, deployment, compression, storage, and robotics.</h2>
-        </div>
-
-        <div class="paper-list">
-          <article class="paper-item reveal">
-            <span>2025 / EPJ Web of Conferences</span>
-            <h3>Enhancing GRB detection: Bayesian optimization of triggerless data analysis for LHAASO-WCDA</h3>
-            <a class="magnetic" href="https://doi.org/10.1051/epjconf/202533701330" target="_blank" rel="noreferrer" data-cursor="doi">doi</a>
-          </article>
-          <article class="paper-item reveal">
-            <span>2024 / RDTM</span>
-            <h3>Fast lossless image compression for synchrotron radiation facility using deep learning and hybrid architecture</h3>
-            <a class="magnetic" href="https://doi.org/10.1007/s41605-024-00490-9" target="_blank" rel="noreferrer" data-cursor="doi">doi</a>
-          </article>
-          <article class="paper-item reveal">
-            <span>2023 / JCNC</span>
-            <h3>SECHA: A smart energy-efficient and cost-effective home automation system for developing countries</h3>
-            <a class="magnetic" href="https://doi.org/10.1155/2023/8571506" target="_blank" rel="noreferrer" data-cursor="doi">doi</a>
-          </article>
-          <article class="paper-item reveal submitted">
-            <span>Submitted</span>
-            <h3>A knowledge-driven framework for HEP model deployment on heterogeneous hardware</h3>
-          </article>
-        </div>
-      </section>
-
-      <section class="github-section section" aria-labelledby="github-title">
-        <div class="section-heading reveal">
-          <p class="eyebrow"><span>Engineering trace</span></p>
-          <h2 id="github-title">Recent public GitHub repositories.</h2>
-        </div>
-        <div class="repo-grid" id="repo-grid">
-          <article class="repo-card skeleton"><span></span><strong></strong><p></p></article>
-          <article class="repo-card skeleton"><span></span><strong></strong><p></p></article>
-          <article class="repo-card skeleton"><span></span><strong></strong><p></p></article>
-        </div>
-      </section>
-
-      <section class="contact-section" id="contact" aria-labelledby="contact-title">
-        <div class="contact-copy reveal">
-          <p class="eyebrow"><span>Contact</span></p>
-          <h2 id="contact-title">Let’s build AI systems that physics teams can actually deploy.</h2>
-        </div>
-        <div class="contact-actions reveal">
-          <a class="button primary magnetic" href="mailto:pemustofa@ihep.ac.cn" data-cursor="email">
-            <i data-lucide="send"></i>
-            Email
-          </a>
-          <a class="button magnetic" href="https://github.com/hafizabc77" target="_blank" rel="noreferrer" data-cursor="code">
-            <i data-lucide="github"></i>
-            GitHub
-          </a>
-          <a class="button magnetic" href="https://www.linkedin.com/in/hafizabc77/" target="_blank" rel="noreferrer" data-cursor="link">
-            <i data-lucide="linkedin"></i>
-            LinkedIn
-          </a>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <p>Mustofa A. Ahmed / AI systems for high-energy physics / 2026</p>
-      <a class="magnetic" href="#top" aria-label="Back to top" data-cursor="top">
-        <i data-lucide="arrow-up"></i>
-      </a>
-    </footer>
-  </body>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hafiz | AI & Machine Learning Engineer</title>
+<meta name="description" content="Abdulhafiz A. Mustofa — AI engineering, LLM inference, GPU deployment and real-time 3D. Explore experience, selected work and contact.">
+<link rel="icon" href="assets/showcase/logo.webp"><meta property="og:title" content="Hafiz — AI & Machine Learning Engineer"><meta property="og:description" content="LLM inference, GPU deployment and creative technology. Explore engineering experience and selected work."><meta property="og:type" content="website"><meta property="og:image" content="https://hafizabc77.github.io/assets/showcase/portrait.webp"><meta name="theme-color" content="#071d19">
+<link rel="canonical" href="https://hafizabc77.github.io/">
+<link rel="stylesheet" href="styles.css">
+<script src="script.js" defer>
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<canvas id="ambient" aria-hidden="true">
+</canvas>
+<div class="cursor" aria-hidden="true">
+</div>
+<div class="progress" aria-hidden="true">
+</div>
+<header>
+<a class="brand" href="#home">
+<img src="assets/showcase/logo.webp" width="92" height="51" alt="Hafiz">
+</a>
+<nav aria-label="Main navigation">
+<a href="#experience">
+<span class="" data-en="Experience" data-zh="经历">Experience</span>
+</a>
+<a href="#work">
+<span class="" data-en="Selected work" data-zh="精选项目">Selected work</span>
+</a>
+<a href="#creative">
+<span class="" data-en="Creative lab" data-zh="创意实验室">Creative lab</span>
+</a>
+<a href="#about">
+<span class="" data-en="About" data-zh="关于">About</span>
+</a>
+<a href="#contact">
+<span class="" data-en="Contact" data-zh="联系">Contact</span>
+</a>
+</nav>
+<button id="language" aria-label="Switch to Chinese">中文 <span>↔ EN</span>
+</button>
+<button id="menu" aria-label="Open menu" aria-expanded="false">☰</button>
+</header>
+<main id="main">
+<section class="hero" id="home">
+<div class="hero-copy">
+<p class="eyebrow" data-en="AI ENGINEERING · SYSTEMS · CREATIVE TECHNOLOGY" data-zh="AI 工程 · 系统优化 · 创意技术">AI ENGINEERING · SYSTEMS · CREATIVE TECHNOLOGY</p>
+<h1>Abdulhafiz<br>
+<i>A. Mustofa<span>.</span>
+</i>
+</h1>
+<p class="hero-line" data-en="Call me Hafiz. I turn complex ideas into working systems." data-zh="叫我 Hafiz。我将复杂想法转化为可运行的系统。">Call me Hafiz. I turn complex ideas into working systems.</p>
+<p class="hero-description" data-en="Machine learning engineer with hands-on experience in LLM inference, GPU deployment and scientific computing. A builder with a creative side." data-zh="拥有大语言模型推理、GPU 部署和科学计算实践经验的机器学习工程师，也热爱创意开发。">Machine learning engineer with hands-on experience in LLM inference, GPU deployment and scientific computing. A builder with a creative side.</p>
+<div class="actions">
+<a class="button primary" href="#work">
+<span class="" data-en="Explore my work ↗" data-zh="探索我的项目 ↗">Explore my work ↗</span>
+</a>
+<a class="button" href="mailto:mustofa@ihep.ac.cn">
+<span class="" data-en="Let’s connect" data-zh="联系我">Let’s connect</span>
+</a>
+</div>
+<p class="opportunity">
+<span>
+</span>
+<span class="" data-en="Interested in AI / ML engineering jobs & internships" data-zh="期待 AI / 机器学习工程相关工作与实习机会">Interested in AI / ML engineering jobs & internships</span>
+</p>
+</div>
+<figure class="hero-portrait">
+<img src="assets/showcase/portrait.webp" alt="Hafiz attending a technical event" fetchpriority="high" width="1600" height="1066">
+<figcaption>
+<span>HAFIZ / BEIJING</span>
+<span>AI × ENGINEERING</span>
+</figcaption>
+<div class="orbit orbit-one">
+</div>
+<div class="orbit orbit-two">
+</div>
+</figure>
+<div class="hero-footer">
+<span>UCAS · IHEP / CAS</span>
+<a href="#experience">
+<span class="" data-en="SCROLL TO DISCOVER ↓" data-zh="向下探索 ↓">SCROLL TO DISCOVER ↓</span>
+</a>
+<span>PORTFOLIO / 2026</span>
+</div>
+</section>
+<div class="ticker" aria-hidden="true">
+<div>PYTORCH <b>✦</b> vLLM <b>✦</b> TENSORRT <b>✦</b> CUDA <b>✦</b> UNREAL ENGINE 5 <b>✦</b> PYTHON <b>✦</b> PYTORCH <b>✦</b> vLLM <b>✦</b> TENSORRT <b>✦</b> CUDA <b>✦</b> UNREAL ENGINE 5</div>
+</div>
+<section id="experience" class="section experience">
+<div class="section-top">
+<p class="eyebrow" data-en="01 / EXPERIENCE" data-zh="01 / 实践经历">01 / EXPERIENCE</p>
+<h2 class="" data-en="Engineering experience.<br>A clear contribution." data-zh="工程实践。<br>贡献清晰可见。">Engineering experience.<br>A clear contribution.</h2>
+</div>
+<article class="internship reveal">
+<div class="company-mark">太初<span>TAICHU</span>
+</div>
+<div>
+<div class="meta">JUL — OCT 2026 / BEIJING</div>
+<h3 class="" data-en="Algorithm R&D Intern" data-zh="算法研发实习生">Algorithm R&D Intern</h3>
+<p class="company">中科紫东太初（北京）科技有限公司</p>
+<p class="large" data-en="Made speculative decoding work inside a real inference runtime." data-zh="让推测解码在实际推理运行时中运行。">Made speculative decoding work inside a real inference runtime.</p>
+<p class="" data-en="Reproduced DFlash and DSpark for Qwen3.5-4B, developed a DSpark-capable vLLM runtime, and investigated model-loading, hybrid-attention and CUDA Graph compatibility." data-zh="复现 Qwen3.5-4B 的 DFlash 与 DSpark，开发支持 DSpark 的 vLLM 运行时，并排查模型加载、混合注意力及 CUDA Graph 兼容性问题。">Reproduced DFlash and DSpark for Qwen3.5-4B, developed a DSpark-capable vLLM runtime, and investigated model-loading, hybrid-attention and CUDA Graph compatibility.</p>
+<p class="" data-en="Benchmarked target-only and speculative inference on GSM8K, HumanEval and MT-Bench using RTX 4090 systems." data-zh="使用 RTX 4090 系统，在 GSM8K、HumanEval 和 MT-Bench 上对比常规推理与推测推理。">Benchmarked target-only and speculative inference on GSM8K, HumanEval and MT-Bench using RTX 4090 systems.</p>
+<div class="tags">
+<span>vLLM</span>
+<span>PyTorch</span>
+<span>Runtime integration</span>
+<span>GPU benchmarking</span>
+</div>
+</div>
+</article>
+<div class="value-grid">
+<article class="reveal">
+<span class="number">01</span>
+<h3 class="" data-en="Build" data-zh="构建">Build</h3>
+<p class="" data-en="Integrate models, runtimes and deployment tools into usable workflows." data-zh="将模型、运行时与部署工具整合为可用工作流。">Integrate models, runtimes and deployment tools into usable workflows.</p>
+</article>
+<article class="reveal">
+<span class="number">02</span>
+<h3 class="" data-en="Measure" data-zh="评估">Measure</h3>
+<p class="" data-en="Use throughput, latency and correctness to understand system behavior." data-zh="通过吞吐量、延迟与正确性分析系统行为。">Use throughput, latency and correctness to understand system behavior.</p>
+</article>
+<article class="reveal">
+<span class="number">03</span>
+<h3 class="" data-en="Communicate" data-zh="沟通">Communicate</h3>
+<p class="" data-en="Turn experiments into clear technical explanations and reproducible evidence." data-zh="将实验转化为清晰的技术说明与可复现证据。">Turn experiments into clear technical explanations and reproducible evidence.</p>
+</article>
+</div>
+</section>
+<section id="work" class="section work">
+<div class="section-top">
+<p class="eyebrow" data-en="02 / SELECTED WORK" data-zh="02 / 精选项目">02 / SELECTED WORK</p>
+<h2 class="" data-en="Technical depth.<br>
+<i>Practical impact.</i>" data-zh="技术深度。<br>
+<i>实际价值。</i>">Technical depth.<br>
+<i>Practical impact.</i>
+</h2>
+<p class="" data-en="A quick view for recruiters. Open a project for the engineering details." data-zh="为招聘者提供快速概览，展开项目可查看工程细节。">A quick view for recruiters. Open a project for the engineering details.</p>
+</div>
+<article class="project reveal">
+<div class="project-visual">
+<div class="inference-art" aria-label="Conceptual speculative decoding animation">
+<span class="visual-label">SPECULATIVE DECODING</span>
+<div class="model">DRAFT <b>↘</b>
+</div>
+<div class="token-row">
+<span>t₁</span>
+<span>t₂</span>
+<span>t₃</span>
+<span>t₄</span>
+</div>
+<div class="model target">TARGET <b>✓</b>
+</div>
+<small>PROPOSE → VERIFY → CONTINUE</small>
+</div>
+</div>
+<div class="project-copy">
+<div class="meta">
+<span class="" data-en="Ongoing · IHEP" data-zh="进行中 · 高能所">Ongoing · IHEP</span>
+</div>
+<p class="eyebrow" data-en="LLM inference" data-zh="大语言模型推理">LLM inference</p>
+<h3 class="" data-en="Faster generation, understood through experiments." data-zh="以实验理解更快的文本生成。">Faster generation, understood through experiments.</h3>
+<p class="" data-en="Trained a three-layer DFlash draft model and evaluated draft-budget trade-offs in vLLM for Qwen3.5-4B." data-zh="训练三层 DFlash 草稿模型，基于 vLLM 评估 Qwen3.5-4B 的草稿预算权衡。">Trained a three-layer DFlash draft model and evaluated draft-budget trade-offs in vLLM for Qwen3.5-4B.</p>
+<details>
+<summary>
+<span class="" data-en="Engineering details +" data-zh="工程细节 +">Engineering details +</span>
+</summary>
+<p class="" data-en="Draft acceptance, scheduler behavior, latency, throughput and answer correctness. Subsequent IHEP experiments use RTX 5090 hardware, separate from the internship. Manuscript in preparation for CSCWD 2027; no acceptance claimed." data-zh="研究接受率、调度行为、延迟、吞吐量和回答正确性。后续高能所实验使用 RTX 5090，与实习工作区分。论文正在准备，目标 CSCWD 2027。">Draft acceptance, scheduler behavior, latency, throughput and answer correctness. Subsequent IHEP experiments use RTX 5090 hardware, separate from the internship. Manuscript in preparation for CSCWD 2027; no acceptance claimed.</p>
+</details>
+</div>
+</article>
+<article class="project reveal">
+<div class="project-visual">
+<img src="assets/showcase/autodeploy.webp" loading="lazy" alt="AutoDeploy project visual" width="1200" height="700">
+</div>
+<div class="project-copy">
+<div class="meta">
+<span class="" data-en="Engineering · Master’s thesis" data-zh="工程项目 · 硕士论文">Engineering · Master’s thesis</span>
+</div>
+<p class="eyebrow" data-en="AutoDeploy" data-zh="AutoDeploy 智能部署">AutoDeploy</p>
+<h3 class="" data-en="From model to optimized deployment." data-zh="从模型到优化部署。">From model to optimized deployment.</h3>
+<p class="" data-en="Built deployment workflows for high-energy physics models, connecting optimization choices with hardware constraints." data-zh="构建高能物理模型部署工作流，将优化方案与硬件约束相结合。">Built deployment workflows for high-energy physics models, connecting optimization choices with hardware constraints.</p>
+<details>
+<summary>
+<span class="" data-en="Engineering details +" data-zh="工程细节 +">Engineering details +</span>
+</summary>
+<p class="" data-en="ParT TensorRT FP16: 0.972 ms, approximately 10.4× eager baseline speed. ParticleNet TensorRT FP32: 0.456 ms, approximately 6.6×. NVIDIA V100, batch size 1, configuration-specific. ParticleNet FP16 showed an accuracy trade-off. CPU ParT reference: 15.7 ms." data-zh="ParT TensorRT FP16：0.972 ms，约为 eager 基线的 10.4 倍速度；ParticleNet TensorRT FP32：0.456 ms，约 6.6 倍。NVIDIA V100，批量为 1，仅对应特定配置。ParticleNet FP16 存在精度权衡。CPU ParT 参考延迟：15.7 ms。">ParT TensorRT FP16: 0.972 ms, approximately 10.4× eager baseline speed. ParticleNet TensorRT FP32: 0.456 ms, approximately 6.6×. NVIDIA V100, batch size 1, configuration-specific. ParticleNet FP16 showed an accuracy trade-off. CPU ParT reference: 15.7 ms.</p>
+</details>
+</div>
+</article>
+<article class="project reveal">
+<div class="project-visual">
+<img src="assets/showcase/hardware.webp" loading="lazy" alt="Hardware exploration project visual" width="1200" height="700">
+</div>
+<div class="project-copy">
+<div class="meta">
+<span class="" data-en="Exploration" data-zh="探索项目">Exploration</span>
+</div>
+<p class="eyebrow" data-en="Hardware exploration" data-zh="硬件探索">Hardware exploration</p>
+<h3 class="" data-en="Software meets silicon." data-zh="软件与芯片的交汇。">Software meets silicon.</h3>
+<p class="" data-en="Explored FPGA-oriented model deployment and hardware-aware machine learning." data-zh="探索面向 FPGA 的模型部署与硬件感知机器学习。">Explored FPGA-oriented model deployment and hardware-aware machine learning.</p>
+<details>
+<summary>
+<span class="" data-en="Engineering details +" data-zh="工程细节 +">Engineering details +</span>
+</summary>
+<p class="" data-en="Work spans model representation, deployment constraints and heterogeneous hardware. Hardware exploration is presented separately from the verified GPU benchmark results." data-zh="涉及模型表示、部署约束与异构硬件。硬件探索与已验证的 GPU 性能结果分开展示。">Work spans model representation, deployment constraints and heterogeneous hardware. Hardware exploration is presented separately from the verified GPU benchmark results.</p>
+</details>
+</div>
+</article>
+</section>
+<section id="creative" class="section creative">
+<div class="section-top">
+<p class="eyebrow" data-en="03 / THE CREATIVE SIDE" data-zh="03 / 创意开发">03 / THE CREATIVE SIDE</p>
+<h2 class="" data-en="I build systems.<br>
+<i>And worlds.</i>" data-zh="构建系统。<br>
+<i>也创造世界。</i>">I build systems.<br>
+<i>And worlds.</i>
+</h2>
+<p class="" data-en="Unreal Engine 5 · environment design · MetaHuman exploration" data-zh="Unreal Engine 5 · 场景设计 · MetaHuman 探索">Unreal Engine 5 · environment design · MetaHuman exploration</p>
+</div>
+<div class="cinema reveal">
+<video controls playsinline preload="none" poster="assets/showcase/environment.webp" aria-label="Unreal Engine creative showreel">
+<source src="assets/showcase/unreal-showreel.mp4" type="video/mp4">
+</video>
+<div class="cinema-caption">
+<span class="" data-en="Real-time 3D / personal creative exploration" data-zh="实时 3D / 个人创意探索">Real-time 3D / personal creative exploration</span>
+<span>UNREAL ENGINE 5</span>
+</div>
+</div>
+<p class="creative-description" data-en="An additional dimension to my engineering practice: experimenting with interactive scenes, visual storytelling and digital characters." data-zh="工程实践的另一面：探索交互场景、视觉叙事与数字角色。">An additional dimension to my engineering practice: experimenting with interactive scenes, visual storytelling and digital characters.</p>
+</section>
+<section id="about" class="section about">
+<div class="section-top">
+<p class="eyebrow" data-en="04 / ABOUT HAFIZ" data-zh="04 / 关于 HAFIZ">04 / ABOUT HAFIZ</p>
+<h2 class="" data-en="Curiosity, with<br>
+<i>the tools to build.</i>" data-zh="保持好奇。<br>
+<i>也具备实现能力。</i>">Curiosity, with<br>
+<i>the tools to build.</i>
+</h2>
+</div>
+<div class="about-layout">
+<div>
+<p class="large" data-en="I’m Abdulhafiz A. Mustofa, an AI and machine learning engineer based in Beijing. My experience connects LLM inference, model deployment and scientific computing—with a growing interest in autonomous agents." data-zh="我是 Abdulhafiz A. Mustofa，一名在北京的 AI 与机器学习工程师。我的经历涵盖大语言模型推理、模型部署和科学计算，也关注自主智能体。">I’m Abdulhafiz A. Mustofa, an AI and machine learning engineer based in Beijing. My experience connects LLM inference, model deployment and scientific computing—with a growing interest in autonomous agents.</p>
+<p class="" data-en="I enjoy debugging difficult systems, understanding performance bottlenecks and turning technical work into something people can use." data-zh="我喜欢调试复杂系统、理解性能瓶颈，并将技术成果转化为可用工具。">I enjoy debugging difficult systems, understanding performance bottlenecks and turning technical work into something people can use.</p>
+<div class="tags">
+<span>Python / PyTorch</span>
+<span>CUDA / TensorRT</span>
+<span>Docker / Linux / Git</span>
+<span>UE5 / MetaHuman</span>
+</div>
+<p class="" data-en="Languages: English · Amharic · Mandarin (HSK 4 passed in 2022, 264/300)." data-zh="语言：英语 · 阿姆哈拉语 · 中文（2022 年通过 HSK 四级，264/300）。">Languages: English · Amharic · Mandarin (HSK 4 passed in 2022, 264/300).</p>
+</div>
+<div class="education">
+<h3 class="" data-en="Education" data-zh="教育背景">Education</h3>
+<article>
+<span>2026 — PRESENT</span>
+<h4 class="" data-en="PhD · Computer Application Technology" data-zh="博士在读 · 计算机应用技术">PhD · Computer Application Technology</h4>
+<p>UCAS / IHEP, Chinese Academy of Sciences</p>
+</article>
+<article>
+<span>2023 — 2026</span>
+<h4 class="" data-en="Master of Engineering · Computer Application Technology" data-zh="工学硕士 · 计算机应用技术">Master of Engineering · Computer Application Technology</h4>
+<p>UCAS / IHEP, Chinese Academy of Sciences</p>
+</article>
+<article>
+<span>2019 — 2023</span>
+<h4 class="" data-en="B.Sc. · Microelectronics Engineering" data-zh="理学学士 · 微电子工程">B.Sc. · Microelectronics Engineering</h4>
+<p>Yangzhou University</p>
+</article>
+</div>
+</div>
+</section>
+<section class="section publications" id="publications">
+<div class="section-top">
+<p class="eyebrow" data-en="05 / PUBLICATIONS" data-zh="05 / 论文发表">05 / PUBLICATIONS</p>
+<h2 class="" data-en="Evidence behind<br>
+<i>the engineering.</i>" data-zh="工程实践背后的<br>
+<i>成果积累。</i>">Evidence behind<br>
+<i>the engineering.</i>
+</h2>
+</div>
+<article class="paper reveal">
+<span>2026</span>
+<div>
+<h3>A knowledge-driven framework for HEP model deployment on heterogeneous hardware</h3>
+<p>Radiation Detection Technology and Methods</p>
+</div>
+<span class="" data-en="Published" data-zh="已发表">Published</span>
+</article>
+<article class="paper reveal">
+<span>2026</span>
+<div>
+<h3>MCG: A Multi-Data-Center Content Gateway for Topology-Hiding and Secure WAN Storage Access</h3>
+<p>IEEE CSCWD</p>
+</div>
+<span class="" data-en="Published" data-zh="已发表">Published</span>
+</article>
+<article class="paper reveal">
+<span>2025</span>
+<div>
+<h3>Enhancing GRB Detection: Bayesian Optimization of Triggerless Data Analysis for LHAASO-WCDA</h3>
+<p>EPJ Web of Conferences</p>
+</div>
+<a href="https://doi.org/10.1051/epjconf/202533701330" aria-label="Read Enhancing GRB Detection: Bayesian Optimization of Triggerless Data Analysis for LHAASO-WCDA">↗</a>
+</article>
+<article class="paper reveal">
+<span>2024</span>
+<div>
+<h3>Fast lossless images compression for synchrotron radiation facility using deep learning and hybrid architecture</h3>
+<p>Radiation Detection Technology and Methods</p>
+</div>
+<a href="https://doi.org/10.1007/s41605-024-00490-9" aria-label="Read Fast lossless images compression for synchrotron radiation facility using deep learning and hybrid architecture">↗</a>
+</article>
+<article class="paper reveal">
+<span>2023</span>
+<div>
+<h3>SECHA: A Smart Energy-Efficient and Cost-Effective Home Automation System for Developing Countries</h3>
+<p>Journal of Computer Networks and Communications</p>
+</div>
+<a href="https://doi.org/10.1155/2023/8571506" aria-label="Read SECHA: A Smart Energy-Efficient and Cost-Effective Home Automation System for Developing Countries">↗</a>
+</article>
+</section>
+<section class="section contact" id="contact">
+<p class="eyebrow" data-en="06 / LET’S BUILD SOMETHING" data-zh="06 / 期待一起创造">06 / LET’S BUILD SOMETHING</p>
+<h2 class="" data-en="Your next teammate?" data-zh="期待成为你的新队友。">Your next teammate?</h2>
+<p class="" data-en="Let’s talk about AI engineering, machine learning systems or an interesting problem worth solving." data-zh="欢迎聊聊 AI 工程、机器学习系统，或任何值得解决的有趣问题。">Let’s talk about AI engineering, machine learning systems or an interesting problem worth solving.</p>
+<a class="email" href="mailto:mustofa@ihep.ac.cn">mustofa@ihep.ac.cn ↗</a>
+<div class="actions">
+<a class="button" href="mailto:hafizabc77@gmail.com">Gmail ↗</a>
+<a class="button" href="https://github.com/hafizabc77">GitHub ↗</a>
+<button class="button" id="copy-email">
+<span class="" data-en="Copy email" data-zh="复制邮箱">Copy email</span>
+</button>
+</div>
+<p id="copy-status" role="status">
+</p>
+</section>
+</main>
+<footer>
+<span>© 2026 Abdulhafiz A. Mustofa</span>
+<span class="solidarity">
+<img src="assets/showcase/flag.webp" width="44" height="25" alt="Palestinian flag">
+<span class="" data-en="For dignity. For peace." data-zh="尊严与和平。">For dignity. For peace.</span>
+</span>
+<a href="#home">↑ BACK TO TOP</a>
+</footer>
+<dialog id="image-dialog">
+<button aria-label="Close image">×</button>
+<img alt="Expanded project visual">
+</dialog>
+</body>
 </html>
