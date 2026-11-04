@@ -15,7 +15,25 @@ menu.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.
 nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false')}));
 document.querySelector('#copy-email').addEventListener('click',async()=>{const status=document.querySelector('#copy-status');try{await navigator.clipboard.writeText('mustofa@ihep.ac.cn');status.textContent=document.documentElement.lang==='en'?'Email copied.':'邮箱已复制。'}catch{status.textContent='mustofa@ihep.ac.cn'}});
 const dialog=document.querySelector('dialog');
-document.querySelectorAll('.project-visual img').forEach(img=>{img.tabIndex=0;img.setAttribute('role','button');img.setAttribute('aria-label','Enlarge '+img.alt);const open=()=>{dialog.querySelector('img').src=img.src;dialog.querySelector('img').alt=img.alt;dialog.showModal()};img.addEventListener('click',open);img.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}})});
+document.querySelectorAll('.project-visual img,[data-enlarge]').forEach(img=>{img.tabIndex=0;img.setAttribute('role','button');img.setAttribute('aria-label','Enlarge '+img.alt);const open=()=>{dialog.querySelector('img').src=img.src;dialog.querySelector('img').alt=img.alt;dialog.showModal()};img.addEventListener('click',open);img.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}})});
+const slides=[
+ ['autodeploy-cli.webp','AutoDeploy command-line interface','A practical interface for deployment, validation and diagnostics.','通过实用的命令行界面完成部署、验证与诊断。'],
+ ['autodeploy-graph.webp','AutoDeploy knowledge graph','Reusable knowledge connects models, tools, hardware and previous deployment runs.','知识图谱连接模型、工具、硬件与历史部署记录，让经验可以复用。'],
+ ['parser_workflow.webp','AutoDeploy model analysis workflow','Model analysis turns an input model into structured information for planning.','模型分析将输入模型转换为结构化信息，为部署规划提供依据。'],
+ ['orchestrator_overview.webp','AutoDeploy execution workflow','The orchestrator coordinates execution, validation and recovery, with traceable records.','编排器协调执行、验证与恢复，并保留可追溯的过程记录。']
+];
+let slideIndex=0;
+function changeSlide(direction){
+ slideIndex=(slideIndex+direction+slides.length)%slides.length;
+ const [src,alt,en,zh]=slides[slideIndex],img=document.querySelector('#autodeploy-slide'),caption=document.querySelector('.gallery-caption');
+ img.src='assets/showcase/'+src;img.alt=alt;img.setAttribute('aria-label','Enlarge '+alt);
+ caption.dataset.en=en;caption.dataset.zh=zh;caption.textContent=document.documentElement.lang==='en'?en:zh;
+ document.querySelector('#gallery-count').textContent=String(slideIndex+1).padStart(2,'0')+' / 04';
+ if(!reduced.matches)img.animate([{opacity:.25},{opacity:1}],{duration:350});
+}
+document.querySelector('#gallery-prev').addEventListener('click',()=>changeSlide(-1));
+document.querySelector('#gallery-next').addEventListener('click',()=>changeSlide(1));
+document.addEventListener('play',event=>{if(event.target.matches('audio,video'))document.querySelectorAll('audio,video').forEach(media=>{if(media!==event.target)media.pause()})},true);
 dialog.querySelector('button').addEventListener('click',()=>dialog.close());
 const progress=document.querySelector('.progress');
 addEventListener('scroll',()=>{const d=document.documentElement;progress.style.width=(scrollY/Math.max(1,d.scrollHeight-innerHeight)*100)+'%'},{passive:true});
