@@ -6,3 +6,22 @@
 @media(min-width:1600px){.project-visual .gallery img{height:440px}}
 @media(max-width:900px){.audio-grid{grid-template-columns:1fr}.audio-card{display:grid;grid-template-columns:40px 1fr;gap:8px 16px}.audio-card h3{margin:0}.audio-card p,.audio-card audio{grid-column:2}.audio-card audio{margin-top:8px}}
 @media(max-width:700px){.media-grid{grid-template-columns:1fr;gap:24px}.media-card>div{padding:20px}.project-visual .gallery img{height:250px}.gallery-caption{min-height:4.8em}.wechat-card{gap:16px;padding:16px;align-items:flex-start;flex-direction:column}.wechat-card img{width:150px}.scaling-note{padding:24px}.scaling-note h3{font-size:28px}.hobby-chips span{font-size:13px;padding:10px 14px}.audio-card{display:block}.audio-card h3{margin-top:10px}}
+
+/* Fluid type stays readable from phones to wide desktop displays. */
+body{font-size:clamp(16px,calc(14px + .28vw),19px)}
+.company-mark{background:#f3efdc;border-radius:24px;padding:24px 18px;aspect-ratio:1;min-width:0;overflow:hidden}
+.company-mark img{width:100%;height:auto;object-fit:contain}
+.company-mark span{color:#133b48;font-size:clamp(10px,.7vw,13px);letter-spacing:.08em;margin:18px 0 0}
+.hero-description,.section-top>p:last-child:not(.eyebrow),.project-copy p,.value-grid p,.education p,.paper p,.about-layout>div>p:last-child,.creative-description,.wechat-card p,.audio-card p{font-size:clamp(16px,calc(13px + .35vw),20px)}
+.hero-line{font-size:clamp(20px,1.5vw,27px);max-width:620px}
+.hero-description{max-width:600px}
+.internship .large{font-size:clamp(21px,1.6vw,28px)}
+.company{font-size:clamp(15px,1vw,19px)}
+.eyebrow,.project-copy .eyebrow,.meta,.tags span,.visual-label,.inference-art small,.opportunity,.hero-footer,.hero-portrait figcaption,.cinema-caption,.education article>span,.paper>span,footer{font-size:clamp(11px,calc(9px + .25vw),14px)}
+.button,summary{font-size:clamp(14px,1vw,18px)}
+nav{font-size:clamp(14px,.9vw,17px)}
+.value-grid h3,.education h3,h4{font-size:clamp(19px,1.35vw,25px)}
+.paper h3{font-size:clamp(18px,1.25vw,24px)}
+.gallery-caption{font-size:clamp(15px,1vw,19px)}
+.project-copy h3{font-size:clamp(35px,2.8vw,50px)}
+@media(max-width:700px){.company-mark{width:140px;padding:20px 14px}.company-mark span{font-size:10px;margin-top:12px}.hero-footer{letter-spacing:.06em}.paper{grid-template-columns:40px minmax(0,1fr) 28px}.cinema-caption{letter-spacing:.04em;flex-wrap:wrap}.hero-portrait figcaption{letter-spacing:.04em}nav{font-size:16px}}
