@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en" class="no-js" data-title-en="Creative lab | Mustofa A. Ahmed (Hafiz)" data-title-zh="创意实验室 | Mustofa A. Ahmed (Hafiz)">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Creative lab | Mustofa A. Ahmed (Hafiz)</title>
+<meta name="description" content="World building in Unreal Engine 5, AI-generated music and life away from the screen.">
+<meta name="theme-color" content="#071d19">
+<meta name="color-scheme" content="dark">
+<link rel="canonical" href="https://hafizabc77.github.io/creative.html">
+<link rel="icon" href="assets/showcase/logo.webp">
+<script>
+(function(){var d=document.documentElement,c=d.classList;c.remove('no-js');c.add('js','intro-done');
+var reduced=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(!reduced)c.add('fx');
+try{if(sessionStorage.getItem('hafiz-wipe')){c.add('wipe-in');sessionStorage.removeItem('hafiz-wipe')}}catch(e){}
+setTimeout(function(){if(!window.__fxReady){c.remove('fx','wipe-in');c.add('fx-failed')}},4000)})();
+</script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="creative-page">
+<div id="wipe" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+<canvas id="scene" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor" aria-hidden="true"><span class="cursor-label"></span></div>
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"></div>
+<header class="site-header">
+  <a class="brand" href="index.html" data-cursor="HOME" aria-label="Back to portfolio"><img src="assets/showcase/logo.webp" width="92" height="51" alt=""></a>
+  <a class="back" href="index.html" data-magnetic><span data-en="← Back to portfolio" data-zh="← 返回主页">← Back to portfolio</span></a>
+  <button id="language" type="button" lang="zh-CN" data-magnetic>中文</button>
+</header>
+<main id="main">
+  <section class="creative-hero" data-shape="vortex" data-dim=".8">
+    <p class="eyebrow" data-scramble data-en="Creative lab" data-zh="创意实验室">Creative lab</p>
+    <h1 class="page-title" data-split data-en="Curiosity has<br><i>more than one outlet.</i>" data-zh="好奇心，<br><i>不止一种表达。</i>">Curiosity has<br><i>more than one outlet.</i></h1>
+    <p class="hero-description" data-rise data-en="World building, AI music and a life in motion." data-zh="虚拟世界、AI 音乐与运动中的生活。">World building, AI music and a life in motion.</p>
+  </section>
+
+  <section class="cinema-section" id="cinema-section" data-shape="network" data-dim=".25">
+    <div class="cinema-sticky">
+      <div class="cinema" id="cinema">
+        <video controls playsinline preload="none" poster="assets/showcase/environment.webp" aria-label="Unreal Engine hobby showreel" data-cursor="PLAY"><source src="assets/showcase/unreal-showreel.mp4" type="video/mp4"></video>
+        <div class="cinema-caption"><span data-en="Unreal Engine 5 · A world-building hobby" data-zh="Unreal Engine 5 · 虚拟世界创作爱好">Unreal Engine 5 · A world-building hobby</span><span>UE5 / MetaHuman</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="creative-body" data-shape="network" data-dim=".2">
+    <p class="creative-description" data-words data-en="I explore environment design, interactive scenes and digital characters with Unreal Engine 5 and MetaHuman. A space to experiment with visual storytelling." data-zh="我用 Unreal Engine 5 和 MetaHuman 探索场景设计、交互场景与数字角色，尝试用视觉讲述故事。">I explore environment design, interactive scenes and digital characters with Unreal Engine 5 and MetaHuman. A space to experiment with visual storytelling.</p>
+
+    <div class="media-grid">
+      <article class="media-card" data-spot data-reveal>
+        <video controls playsinline preload="none" poster="assets/showcase/palestine.webp" aria-label="For Palestine" data-cursor="PLAY"><source src="assets/showcase/palestine.mp4" type="video/mp4"></video>
+        <div>
+          <p class="eyebrow" data-en="Personal / AI-generated" data-zh="个人创作 / AI 生成">Personal / AI-generated</p>
+          <h3 data-en="For Palestine" data-zh="献给巴勒斯坦">For Palestine</h3>
+          <p data-en="An AI-generated music video I created for Palestine." data-zh="我为巴勒斯坦创作的全 AI 生成音乐视频。">An AI-generated music video I created for Palestine.</p>
+        </div>
+      </article>
+      <article class="media-card" data-spot data-reveal>
+        <video controls playsinline preload="none" poster="assets/showcase/xiao-mi.webp" aria-label="A song for Xiao Mi" data-cursor="PLAY"><source src="assets/showcase/xiao-mi.mp4" type="video/mp4"></video>
+        <div>
+          <p class="eyebrow" data-en="Personal / AI-generated" data-zh="个人创作 / AI 生成">Personal / AI-generated</p>
+          <h3 data-en="A song for Xiao Mi" data-zh="送给小米的一首歌">A song for Xiao Mi</h3>
+          <p data-en="A Chinese AI-generated music video made to comfort a close friend, Xiao Mi." data-zh="为安慰好朋友小米（Mi Wen Ge）而创作的中文 AI 生成音乐视频。">A Chinese AI-generated music video made to comfort a close friend, Xiao Mi.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="audio-grid">
+      <article class="audio-card" data-spot data-reveal><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><h3>Fire in the Rubble</h3><p data-en="AI-generated music · personal hobby" data-zh="AI 生成音乐 · 个人爱好">AI-generated music · personal hobby</p><audio controls preload="none" aria-label="Fire in the Rubble"><source src="assets/showcase/fire-in-the-rubble.mp3" type="audio/mpeg"></audio></article>
+      <article class="audio-card" data-spot data-reveal><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><h3>Lion of My Chest</h3><p data-en="AI-generated music · personal hobby" data-zh="AI 生成音乐 · 个人爱好">AI-generated music · personal hobby</p><audio controls preload="none" aria-label="Lion of My Chest"><source src="assets/showcase/lion-of-my-chest.mp3" type="audio/mpeg"></audio></article>
+      <article class="audio-card" data-spot data-reveal><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><h3>River to Sea</h3><p data-en="AI-generated music · personal hobby" data-zh="AI 生成音乐 · 个人爱好">AI-generated music · personal hobby</p><audio controls preload="none" aria-label="River to Sea"><source src="assets/showcase/river-to-sea.mp3" type="audio/mpeg"></audio></article>
+    </div>
+
+    <div class="off-screen" data-reveal>
+      <h2 data-en="Away from the screen" data-zh="屏幕之外">Away from the screen</h2>
+      <p data-en="Volleyball player. Spurs supporter. Always curious." data-zh="喜欢打排球，支持热刺，也始终保持好奇。">Volleyball player. Spurs supporter. Always curious.</p>
+      <p class="chips">
+        <span data-en="Volleyball" data-zh="排球">Volleyball</span>
+        <span data-en="Tottenham Hotspur · #COYS" data-zh="托特纳姆热刺 · #COYS">Tottenham Hotspur · #COYS</span>
+        <span data-en="Badminton · enthusiastic beginner" data-zh="羽毛球 · 热情的新手">Badminton · enthusiastic beginner</span>
+        <span data-en="Billiards" data-zh="台球">Billiards</span>
+        <span data-en="Working out" data-zh="健身">Working out</span>
+        <span data-en="Swimming" data-zh="游泳">Swimming</span>
+        <span data-en="Weirdly interesting questions" data-zh="奇奇怪怪又有趣的问题">Weirdly interesting questions</span>
+      </p>
+    </div>
+  </section>
+</main>
+<footer class="site-footer">
+  <span>© 2026 Mustofa A. Ahmed</span>
+  <span class="solidarity"><img src="assets/showcase/flag.webp" width="44" height="25" alt="Palestinian flag" loading="lazy"><span data-en="For dignity. For peace." data-zh="尊严与和平。">For dignity. For peace.</span></span>
+  <a href="index.html" data-en="Back to portfolio" data-zh="返回主页">Back to portfolio</a>
+</footer>
+<p id="toast" role="status" aria-live="polite"></p>
+<script src="assets/vendor/lenis.min.js"></script>
+<script src="scene.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

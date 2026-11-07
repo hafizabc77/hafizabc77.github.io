@@ -1,15 +1,11 @@
-# Hiring portfolio update
+# Review notes
 
-Direction: English/Chinese hiring portfolio, deep green and gold, real imagery, prominent Taichu internship, engineering projects, publications and Unreal video.
+Direction: the original deep green and gold, rebuilt as a motion-led portfolio where the site behaves like a running model, while a recruiter can still get the resume and contact details in one tap.
 
-Latest additions: Beyond Code section with Unreal Engine/MetaHuman, two clearly labeled AI-generated music videos, three AI-generated audio tracks and personal interests; WeChat ID and expandable QR code; foundation-model scaling and learning-curve experience; a four-image AutoDeploy gallery with bilingual explanations and image enlargement; CAS and Yangzhou emblems.
+Sources: the job-fair resume (November 2026). Publication titles, DOIs and author order were checked against Crossref, and the publishing name against the public ORCID record.
 
-Validation of the earlier redesign: browser layouts at 320, 390, 768, 1280 and 1920 pixels had no horizontal overflow in inspected views. Chinese switching, mobile navigation, image dialog and Unreal video playback were verified, with an empty browser error log.
+Name: the resume uses Mustofa A. Ahmed. Papers and ORCID use Abdulhafiz Ahmed Mustofa. The hero states both so that either name can be searched.
 
-Validation of this update: JavaScript syntax, unique IDs, internal navigation targets, referenced media and 92 paired English/Chinese content elements passed static checks. All three videos and three audio tracks decoded successfully; WebP integrity checks passed. AutoDeploy next-slide navigation and image enlargement were checked in the browser before the connection became unavailable. Final responsive visual inspection and playback of the newly added media remain unverified because of that browser outage.
+Figures: 3.03× is stated as "up to". 10.4× and 6.6× are specific to the configuration given in the AutoDeploy engineering details. The speculative decoding playground is labelled as a toy model, not measured data. The knowledge graph is a simplified view drawn from the AutoDeploy figure and the resume.
 
-Factual sources: supplied brief, CV, admission notices, thesis, internship certificate and publication screenshots. Master and PhD discipline resolved as Computer Application Technology. Documents remain outside repository; only selected showcase assets are added. Scaling notes are treated as background for experience, not proof of completed numerical results.
-
-Optional future additions: current downloadable CV, LinkedIn, Scholar and ORCID URLs. Old CV is retained at its existing path but not linked in the redesigned page because it contains older contact details. Citation metrics omitted because screenshots are a snapshot.
-
-The supplied Unreal video ends with an older domain. The website uses hafizabc77.github.io.
+Not linked: `assets/Mustofa-Ahmed-CV.pdf`, which contains older contact details.
