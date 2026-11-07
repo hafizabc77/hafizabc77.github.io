@@ -254,7 +254,7 @@
     const num = $('#loader-num'), label = $('#loader-text'), tokens = $$('.loader-tokens i', loader), stream = $('#loader-stream');
     const zh = currentLang() === 'zh';
     const phases = zh ? ['正在加载权重', '正在预热 GPU', '准备就绪'] : ['Loading weights', 'Warming up GPU', 'Ready'];
-    const words = zh ? ['让', 'AI 模型', '快到', '能真正', '落地。'] : ['AI models,', 'fast', 'enough for', 'the real', 'world.'];
+    const words = zh ? ['你好，', '叫我', 'Hafiz', '就', '好。'] : ['Hi,', 'you can', 'call me', 'Hafiz', '.'];
     let shown = 0;
     label.textContent = phases[0];
     const start = performance.now(), duration = 1250;
@@ -453,18 +453,6 @@
         });
       });
     });
-
-    // The manifesto's track fills from "first gradient" to "last millisecond" as you scroll.
-    const manifesto = $('.manifesto'), mLead = $('.mf-lead');
-    if (manifesto && mLead) {
-      let mTop = 0, mHeight = 1, mLast = -1;
-      measureTasks.push(() => { mTop = docTop(mLead); mHeight = mLead.offsetHeight; });
-      frameTasks.push(() => {
-        // Same pace as the headline's words, finishing just after "last millisecond" lights up.
-        const p = clamp((state.smoothY + state.vh * 0.84 - mTop) / (mHeight + state.vh * 0.46) * 0.94);
-        if (Math.abs(p - mLast) > 0.002) { mLast = p; manifesto.style.setProperty('--p', p.toFixed(3)); }
-      });
-    }
 
     const timeline = $('.timeline'), line = $('.timeline-line');
     if (timeline) {
@@ -1137,6 +1125,7 @@
   }
   function openDialog(dialog) {
     if (dialog.showModal) dialog.showModal(); else dialog.setAttribute('open', '');
+    root.classList.add('dialog-open');
     if (lenis) lenis.stop();
   }
   function wireEnlarge(scope) {
@@ -1163,12 +1152,38 @@
       const close = $('.dialog-close', dialog);
       if (close) close.addEventListener('click', () => (dialog.close ? dialog.close() : dialog.removeAttribute('open')));
       dialog.addEventListener('click', event => { if (event.target === dialog && dialog.close) dialog.close(); });
-      dialog.addEventListener('close', () => { if (lenis && !caseOpen) lenis.start(); });
+      dialog.addEventListener('close', () => {
+        if (lenis && !caseOpen) lenis.start();
+        if (!document.querySelector('dialog[open]')) root.classList.remove('dialog-open');
+      });
     });
     const wechat = $('#wechat-dialog');
     [$('#wechat-open'), $('#qr-card')].forEach(opener => {
       if (wechat && opener) opener.addEventListener('click', () => openDialog(wechat));
     });
+    // Resume links open a pop-up viewer on the page; Ctrl/Cmd/middle click still opens the PDF in a new tab.
+    const resume = $('#resume-dialog');
+    if (resume) {
+      const page = $('.rd-page', resume), download = $('.rd-download', resume), openPdf = $('.rd-open', resume), langs = $$('[data-rlang]', resume);
+      const show = lang => {
+        const code = lang === 'zh' ? 'ZH' : 'EN', file = `assets/Mustofa-Ahmed-Resume-${code}.pdf`;
+        langs.forEach(b => b.setAttribute('aria-checked', String(b.dataset.rlang === lang)));
+        page.src = page.dataset[code === 'ZH' ? 'srcZh' : 'srcEn'];
+        page.alt = code === 'ZH' ? 'Mustofa A. Ahmed (Hafiz) 的中文简历' : 'Resume of Mustofa A. Ahmed (Hafiz)';
+        download.href = file; download.setAttribute('download', `Mustofa-Ahmed-Resume-${code}.pdf`); openPdf.href = file;
+        $('.rd-scroll', resume).scrollTop = 0;
+      };
+      langs.forEach(b => b.addEventListener('click', () => show(b.dataset.rlang)));
+      window.__openResume = lang => { show(lang === 'zh' || lang === 'en' ? lang : currentLang()); openDialog(resume); };
+      document.addEventListener('click', event => {
+        const link = event.target.closest && event.target.closest('a[href*="Mustofa-Ahmed-Resume-"]');
+        if (!link || resume.contains(link) || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        const nav = $('#nav');
+        if (nav && nav.contains(link) && nav.classList.contains('open') && $('#menu')) $('#menu').click();
+        window.__openResume(/-ZH\.pdf$/i.test(link.getAttribute('href')) ? 'zh' : 'en');
+      });
+    }
     wireEnlarge(document);
   }
 
@@ -1367,8 +1382,8 @@
     const jump = id => () => { dialog.close(); goTo(document.getElementById(id)); };
     const study = id => () => { dialog.close(); if (window.__openCase) window.__openCase(id); };
     const COMMANDS = [
-      ['Open resume (English)', '查看英文简历', 'PDF', () => { dialog.close(); window.open('assets/Mustofa-Ahmed-Resume-EN.pdf', '_blank', 'noopener'); }],
-      ['Open resume (Chinese)', '查看中文简历', 'PDF', () => { dialog.close(); window.open('assets/Mustofa-Ahmed-Resume-ZH.pdf', '_blank', 'noopener'); }],
+      ['Open resume (English)', '查看英文简历', 'PDF', () => { dialog.close(); window.__openResume('en'); }],
+      ['Open resume (Chinese)', '查看中文简历', 'PDF', () => { dialog.close(); window.__openResume('zh'); }],
       ['Copy email', '复制邮箱', 'COPY', () => { dialog.close(); copyText('hafizabc77@gmail.com'); }],
       ['Copy WeChat ID', '复制微信号', 'COPY', () => { dialog.close(); copyText('hafizabc77'); }],
       ['Go to AutoDeploy, my flagship project', '前往旗舰项目 AutoDeploy', 'GO', jump('autodeploy')],

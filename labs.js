@@ -437,18 +437,18 @@
      ========================================================================== */
   // Rows: [label EN, label ZH, detail, latency, accuracy %, watts, AutoDeploy's own tuned setup]
   const LAB_DATA = {
-    cpu: { name: ['Intel Xeon Gold 6248', 'Intel Xeon Gold 6248'], unit: 'ms', est: false, base: 0, baseName: ['PyTorch on one thread', 'PyTorch 单线程'], rows: [
+    cpu: { name: ['Intel Xeon Gold 6248', 'Intel Xeon Gold 6248'], img: 'assets/showcase/xeon-6248.webp', unit: 'ms', est: false, base: 0, baseName: ['PyTorch on one thread', 'PyTorch 单线程'], rows: [
       ['PyTorch, one thread', 'PyTorch，单线程', 'FP32, as trained', 45.2, 94.0, 85],
       ['PyTorch, 20 threads', 'PyTorch，20 线程', 'FP32', 12.8, 94.0, 150],
       ['ONNX Runtime, tuned by AutoDeploy', 'ONNX Runtime，AutoDeploy 调优', 'fused graph, 20 threads', 8.6, 94.0, 145, true]
     ], fail: null, steps: ['s1_export', 's2_ort_session'] },
-    gpu: { name: ['NVIDIA Tesla V100', 'NVIDIA Tesla V100'], unit: 'ms', est: false, base: 0, baseName: ['the model as trained', '原始模型'], rows: [
+    gpu: { name: ['NVIDIA Tesla V100', 'NVIDIA Tesla V100'], img: 'assets/showcase/v100.webp', unit: 'ms', est: false, base: 0, baseName: ['the model as trained', '原始模型'], rows: [
       ['PyTorch, as trained', 'PyTorch，原始模型', 'FP32', 3.8, 94.0, 220],
       ['TensorRT, half precision', 'TensorRT，半精度', 'FP16', 0.82, 93.7, 200],
       ['TensorRT, 8-bit', 'TensorRT，8 位', 'INT8 post-training quantization', 0.51, 93.4, 190],
       ['AutoDeploy’s tuned setup', 'AutoDeploy 调优方案', 'FP16, searched kernels and workspace', 0.45, 93.5, 180, true]
     ], fail: ['s2_quant', 'calibration_overflow', 'ROLLBACK ckpt#0, safer calibration preset'], steps: ['s1_export', 's2_quant', 's3_compile'] },
-    fpga: { name: ['Xilinx Alveo U200', 'Xilinx Alveo U200'], unit: 'µs', est: true, base: 3, baseName: ['my best hand-tuned design', '我手工调出的最佳设计'], rows: [
+    fpga: { name: ['Xilinx Alveo U200', 'Xilinx Alveo U200'], img: 'assets/showcase/alveo-u200.webp', unit: 'µs', est: true, base: 3, baseName: ['my best hand-tuned design', '我手工调出的最佳设计'], rows: [
       ['hls4ml, 16-bit fixed point', 'hls4ml，16 位定点', 'ap_fixed<16,6>', 92, 93.0, 42],
       ['hls4ml, 8-bit fixed point', 'hls4ml，8 位定点', 'ap_fixed<8,4>', 68, 91.6, 38],
       ['Vitis AI, 8-bit', 'Vitis AI，8 位', 'INT8', 85, 92.3, 41],
@@ -549,12 +549,13 @@
     };
     const describe = () => {
       const d = LAB_DATA[target], sel = choose(), base = d.rows[d.base];
-      if (!sel) { pick.innerHTML = `<small>${esc(T('picksOn', { chip: d.name[L()] }))}</small><b class="bad">${T('none')}</b><span>${T('noneWhy')}</span>`; return; }
+      const chip = `<img class="pick-chip" src="${d.img}" alt="">`;
+      if (!sel) { pick.innerHTML = chip + `<small>${esc(T('picksOn', { chip: d.name[L()] }))}</small><b class="bad">${T('none')}</b><span>${T('noneWhy')}</span>`; return; }
       const lat = fmt(sel[3], d) + (d.est ? '*' : '');
       const acc = sel[4].toFixed(1);
       const baseName = d.baseName[L()];
       const line = sel === base ? T('only', { lat, acc }) : T('summary', { lat, acc, x: (base[3] / sel[3]).toFixed(1), base: baseName });
-      pick.innerHTML = `<small>${esc(T('picksOn', { chip: d.name[L()] }))}</small><b>${esc(sel[L()])}</b><span>${esc(line)}</span>${d.est ? `<em>* ${T('est')}</em>` : ''}`;
+      pick.innerHTML = chip + `<small>${esc(T('picksOn', { chip: d.name[L()] }))}</small><b>${esc(sel[L()])}</b><span>${esc(line)}</span>${d.est ? `<em>* ${T('est')}</em>` : ''}`;
     };
     const render = animate => {
       const d = LAB_DATA[target], sel = choose(), base = d.rows[d.base];

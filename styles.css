@@ -55,6 +55,10 @@ h3{font-size:clamp(20px,1.6vw,25px);font-weight:500;line-height:1.3}
 .has-cursor .cursor,.has-cursor .cursor-dot{opacity:1}
 .has-cursor,.has-cursor a,.has-cursor button,.has-cursor summary,.has-cursor input,.has-cursor canvas,.has-cursor video,.has-cursor img{cursor:none}
 .has-cursor #palette-input{cursor:text}
+/* Pop-ups sit in the browser top layer, above the custom cursor, so show the normal cursor while one is open */
+.has-cursor.dialog-open,.has-cursor.dialog-open *{cursor:auto}
+.has-cursor.dialog-open a,.has-cursor.dialog-open button,.has-cursor.dialog-open summary,.has-cursor.dialog-open [data-copy]{cursor:pointer}
+.dialog-open .cursor,.dialog-open .cursor-dot{opacity:0!important}
 .cursor{width:38px;height:38px;margin:-19px 0 0 -19px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;transition:width .35s var(--ease),height .35s var(--ease),margin .35s var(--ease),background .25s,border-color .25s}
 .cursor-label{font:400 10px/1 var(--mono);letter-spacing:.1em;color:var(--bg);opacity:0;transition:opacity .15s}
 .cursor-dot{width:5px;height:5px;margin:-2.5px 0 0 -2.5px;border-radius:50%;background:var(--gold)}
@@ -163,8 +167,7 @@ img.gl-on{opacity:0}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgb(132 199 162 / .6)}70%,100%{box-shadow:0 0 0 9px rgb(132 199 162 / 0)}}
 h1{font:500 clamp(68px,min(11vw,20vh),210px)/.9 var(--serif);letter-spacing:-.035em;text-shadow:0 2px 40px rgb(7 29 25 / .35)}
 h1 b{color:var(--mint);font-weight:500}
-.aka{margin-top:clamp(10px,1.5vh,20px);font-size:clamp(14px,1vw,16px);color:var(--ink);opacity:.85}
-.hero-line{margin-top:clamp(8px,1.2vh,16px);color:var(--ink);font-size:clamp(21px,2vw,32px);line-height:1.22;font-weight:500;max-width:22em}
+.hero-line{text-wrap:balance;margin-top:clamp(14px,2vh,26px);color:var(--ink);font-size:clamp(21px,2vw,32px);line-height:1.22;font-weight:500;max-width:22em}
 .hero-description{margin-top:8px;max-width:34em;font-size:clamp(15px,1.05vw,17px);line-height:1.5;color:var(--ink);opacity:.8}
 .hero .actions{margin-top:clamp(12px,2vh,26px)}
 .hero-stats{display:grid;grid-template-columns:repeat(4,auto) minmax(0,1fr);gap:10px clamp(18px,3vw,54px);align-items:end;margin-top:clamp(12px,2vh,28px);padding-top:clamp(10px,1.4vh,18px);border-top:1px solid rgb(243 239 220 / .2)}
@@ -181,25 +184,12 @@ h1 b{color:var(--mint);font-weight:500}
 .ticker-run span{font:400 clamp(13px,1.2vw,19px)/1 var(--mono);letter-spacing:.18em;color:var(--gold);white-space:nowrap;opacity:.8}
 @keyframes tickerRun{to{transform:translate3d(-50%,0,0)}}
 
-/* Manifesto: the whole life of a model, from the first gradient to the last millisecond */
-.manifesto{--p:1;padding-block:clamp(70px,12vw,170px)}
-.fx .manifesto{--p:0}
-.mf-kicker{margin-bottom:clamp(14px,2vw,26px)}
-.manifesto .mf-lead{font:400 clamp(46px,7.6vw,132px)/.98 var(--serif);letter-spacing:-.035em;color:var(--ink);max-width:12em}
-.mf-lead i{font-style:italic;color:var(--gold)}
-.mf-track{position:relative;margin:clamp(34px,5vw,72px) 0 clamp(30px,4.4vw,60px);padding-top:30px}
-.mf-track:before{content:'';position:absolute;left:0;right:0;top:5px;border-top:1px solid var(--line)}
-.mf-fill{position:absolute;left:0;right:0;top:4px;height:3px;border-radius:2px;background:linear-gradient(90deg,var(--mint),var(--gold));transform:scaleX(var(--p));transform-origin:left}
-.mf-stages{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
-.mf-stages li{--on:clamp(0,(var(--p) * 4 - var(--i)) * 2.2,1);position:relative;display:grid;gap:6px;opacity:calc(.32 + var(--on) * .68);font:400 clamp(15px,1.4vw,21px)/1.25 var(--sans);color:var(--ink)}
-.mf-stages li:before,.mf-stages li:after{content:'';position:absolute;left:0;top:-30px;width:11px;height:11px;border-radius:50%}
-.mf-stages li:before{border:1px solid var(--gold);background:var(--bg)}
-.mf-stages li:after{background:var(--gold);box-shadow:0 0 0 5px rgb(216 187 115 / .16);opacity:var(--on);transform:scale(calc(.4 + var(--on) * .6))}
-.mf-n{font:400 11px/1 var(--mono);letter-spacing:.14em;color:var(--gold)}
-.manifesto .mf-body{font:400 clamp(20px,2.1vw,34px)/1.45 var(--sans);letter-spacing:-.012em;color:var(--ink);max-width:33em}
-[lang=zh-CN] .manifesto .mf-lead{font-size:clamp(40px,6.2vw,104px);line-height:1.18;letter-spacing:.01em}
-[lang=zh-CN] .mf-lead i{font-style:normal}
-[lang=zh-CN] .manifesto .mf-body{font-size:clamp(18px,1.85vw,30px);line-height:1.75;letter-spacing:.02em}
+.hero-line .hello{display:block;margin-bottom:.12em}
+.hero-line b{font-weight:500;color:var(--gold)}
+/* Manifesto */
+.manifesto{padding-block:clamp(70px,13vw,190px)}
+.manifesto p{font:500 clamp(32px,5.1vw,84px)/1.12 var(--serif);letter-spacing:-.02em;color:var(--ink);max-width:21em}
+[lang=zh-CN] .manifesto p{font-family:var(--sans);font-size:clamp(26px,3.8vw,60px);line-height:1.45;font-weight:500;letter-spacing:.01em}
 
 /* Results story */
 .numbers{padding:0;height:calc(100vh * 4.4)}
@@ -821,7 +811,6 @@ img.agent-avatar{width:34px;height:34px;border-radius:50%;background:#fff;object
 /* Short laptop screens: scale the hero by height so the results stay in the first screen. */
 @media(min-width:761px) and (max-height:820px){
   .hero{padding-top:clamp(62px,9vh,80px);padding-bottom:12px}
-  .aka{margin-top:6px;font-size:13px}
   .hero-line{margin-top:4px;font-size:clamp(19px,3vh,26px)}
   .hero-description{margin-top:3px;font-size:14px}
   .button{min-height:42px;padding-block:7px}
@@ -889,7 +878,6 @@ img.agent-avatar{width:34px;height:34px;border-radius:50%;background:#fff;object
   .hero-copy{display:contents}
   .hero-tags{order:1}
   .hero h1{order:2}
-  .aka{order:3}
   .hero-media{order:4}
   .hero-line{order:5}
   .hero-description{order:6}
@@ -902,7 +890,6 @@ img.agent-avatar{width:34px;height:34px;border-radius:50%;background:#fff;object
   .hero-tags .eyebrow{font-size:11px;letter-spacing:.1em}
   .opportunity{font-size:12px;padding:3px 11px}
   h1{font-size:clamp(50px,15vw,88px)}
-  .aka{font-size:13px;margin-top:8px}
   .hero-line{font-size:21px;margin-top:6px}
   .hero-description{font-size:14.5px;line-height:1.45;margin-top:5px}
   .hero-copy .actions{display:none}
@@ -1159,13 +1146,29 @@ img.agent-avatar{width:34px;height:34px;border-radius:50%;background:#fff;object
   .chip-pick small,.lab-field .chip-pick small{display:none}
 }
 
+
+/* Chip photo in the lab result card */
+.dep-pick{position:relative;padding-right:clamp(100px,9vw,128px)}
+.pick-chip{position:absolute;right:14px;top:50%;width:clamp(72px,7vw,100px);height:clamp(72px,7vw,100px);object-fit:contain;transform:translateY(-50%);filter:drop-shadow(0 10px 16px rgb(0 0 0 / .5))}
+.chip-pick img{filter:drop-shadow(0 3px 5px rgb(0 0 0 / .45))}
+/* Resume viewer */
+#resume-dialog{width:min(94vw,900px);height:94vh;max-height:1200px;max-width:none;padding:0;overflow:hidden;background:var(--panel)}
+#resume-dialog[open]{display:flex;flex-direction:column;animation:popIn .45s var(--spring)}
+.rd-bar{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;padding:12px 64px 12px 20px;border-bottom:1px solid var(--line)}
+.rd-bar>b{margin-right:auto;font:500 24px/1 var(--serif);color:var(--ink)}
+.rd-lang button{font-family:var(--sans)}
+.rd-open{font-size:14px}
+#resume-dialog .dialog-close{top:7px;right:10px;color:var(--ink)}
+.rd-scroll{flex:1;min-height:0;overflow:auto;padding:clamp(10px,2.4vw,28px);background:#0a231e;overscroll-behavior:contain}
+.rd-page{display:block;width:100%;max-width:820px;height:auto;aspect-ratio:1700/2200;margin:0 auto;border-radius:4px;background:#fff;box-shadow:0 18px 50px rgb(0 0 0 / .45)}
 @media(max-width:760px){
-  .mf-track{padding:0 0 0 30px}
-  .mf-track:before{left:5px;right:auto;top:0;bottom:0;border-top:0;border-left:1px solid var(--line)}
-  .mf-fill{left:4px;right:auto;top:0;bottom:0;width:3px;height:auto;background:linear-gradient(180deg,var(--mint),var(--gold));transform:scaleY(var(--p));transform-origin:top}
-  .mf-stages{grid-template-columns:minmax(0,1fr);gap:16px}
-  .mf-stages li{grid-template-columns:30px minmax(0,1fr);align-items:baseline}
-  .mf-stages li:before,.mf-stages li:after{left:-30px;top:5px}
+  #resume-dialog{inset:0;width:100%;height:100%;max-height:none;margin:0;border:0;border-radius:0}
+  .rd-bar{gap:8px 10px;padding:10px 56px 10px 14px}
+  .rd-bar>b{font-size:19px}
+  .rd-bar .button{min-height:36px;padding:6px 14px;font-size:14px}
+  .rd-scroll{padding:8px}
+  .dep-pick{padding-right:84px}
+  .pick-chip{right:10px;width:62px;height:62px}
 }
 
 /* Motion turned off, or the script failed: everything is a plain, readable page. */

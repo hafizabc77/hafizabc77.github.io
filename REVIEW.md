@@ -4,7 +4,7 @@ Direction: the original deep green and gold, rebuilt as a motion-led portfolio w
 
 Sources: the job-fair resume (November 2026), the master's thesis and defense slides (June 2026), project slides, the published abstract of the LHAASO paper and a Google Scholar screenshot (November 2026). Publication titles, DOIs and author order were checked against Crossref, and the publishing name against the public ORCID record.
 
-Name: the resume uses Mustofa A. Ahmed. Papers and ORCID use Abdulhafiz Ahmed Mustofa. The hero now just says "Hi, I’m Hafiz." and the publishing name sits under the Publications heading, so either name can still be searched.
+Name: the resume uses Mustofa A. Ahmed. Papers and ORCID use Abdulhafiz Ahmed Mustofa. The hero shows the resume name and the line under it opens with "Hi, you can call me Hafiz." The publishing name sits under the Publications heading, so every name can still be searched.
 
 Copy: the hero, manifesto, section headings and leads were rewritten in a plainer first-person voice at the owner's request, to remove lines that read as machine-written or boastful.
 
@@ -31,6 +31,10 @@ Curiosity: the owner's personal AI project, based on the owner's own description
 Assistant logos: Qwen, llama.cpp and Ollama logos were supplied by the owner and recoloured to the site palette for a "built with" row. The Hermes avatar and the V100 card image were also supplied by the owner. The page states that Qwen3.8-27B runs on an NVIDIA V100, as the owner described.
 
 Unreal stills: the canyon and arena stills were supplied by the owner as captures from their Unreal Engine work. The arena uses Epic's standard UE5 mannequins. If any still is Epic's own demo footage rather than the owner's capture, it should be removed.
+
+Chip photos: the Intel Xeon Gold 6248 and Xilinx Alveo U200 product photos in the AutoDeploy lab were supplied by the owner (the Xeon with its background removed), next to the owner's V100 photo. They identify the hardware the thesis measured on.
+
+Resume viewer: resume buttons open a pop-up showing `assets/resume/resume-en-1.webp` and `resume-zh-1.webp`, which are renders of the two resume PDFs, with Download and Open PDF links. If a resume PDF changes, render its page again (for example with PyMuPDF at 1700 px wide) or the pop-up will show the old version. Ctrl/Cmd or middle click still opens the PDF in a new tab, and without JavaScript the links open the PDF directly.
 
 Ad blockers: class names, ids and file names must not start with `ad-` or contain words such as banner, sponsor or promo. Ad-blocker extensions (uBlock Origin, AdBlock, AdGuard) hide elements named like that, which once left the AutoDeploy story and half of the lab blank in Chrome. AutoDeploy elements use the `dep-` prefix and its figures the `deploy-` prefix.
 
