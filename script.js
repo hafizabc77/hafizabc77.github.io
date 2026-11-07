@@ -1,5 +1,5 @@
 /* Hand-written motion engine. One requestAnimationFrame loop drives everything:
-   smooth scrolling, scroll-linked effects, the cursor and the WebGL scene.
+   smooth scrolling, scroll-linked effects, the cursor and the WebGL stage.
    Every feature starts through safe(), so one failure cannot take down the page. */
 (function () {
   'use strict';
@@ -12,6 +12,7 @@
   const FX = root.classList.contains('fx');
   const FINE = matchMedia('(hover: hover) and (pointer: fine)').matches;
   const CJK = /[　-鿿＀-￯]/;
+  const params = new URLSearchParams(location.search);
 
   function safe(name, fn) {
     try { return fn(); } catch (error) { console.error(`[${name}]`, error); return undefined; }
@@ -21,6 +22,15 @@
   const measureTasks = [];
   const refreshTasks = []; // Run after the language changes.
   const state = { y: window.scrollY, smoothY: window.scrollY, velocity: 0, vw: innerWidth, vh: innerHeight };
+
+  /* Canvas helper: size to the element and the device pixel ratio. */
+  function fitCanvas(canvas) {
+    const box = canvas.getBoundingClientRect();
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const w = Math.max(1, Math.round(box.width * dpr)), h = Math.max(1, Math.round(box.height * dpr));
+    if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
+    return { w: box.width, h: box.height, dpr };
+  }
 
   /* ---------- Text splitting ---------- */
   function splitChars(el) {
@@ -87,7 +97,6 @@
     if (!final || CJK.test(final)) return;
     el._scrambling = true;
     el.setAttribute('aria-label', final);
-    // Hold the width so nearby items do not jitter while glyphs change.
     if (getComputedStyle(el).writingMode === 'horizontal-tb') el.style.minWidth = `${el.getBoundingClientRect().width}px`;
     const start = performance.now();
     const tick = now => {
@@ -107,7 +116,7 @@
      Order: ?lang= link, the visitor's earlier choice, then the phone's language. */
   const CHOICE_KEY = 'hafiz-lang-choice';
   function initialLanguage() {
-    const param = new URLSearchParams(location.search).get('lang');
+    const param = params.get('lang');
     if (param === 'zh' || param === 'en') return param;
     let stored = null;
     try { stored = localStorage.getItem(CHOICE_KEY); } catch (e) { /* storage can be blocked */ }
@@ -115,10 +124,13 @@
     return (navigator.language || '').toLowerCase().startsWith('zh') ? 'zh' : 'en';
   }
   const currentLang = () => (root.lang === 'en' ? 'en' : 'zh');
+  function translate(scope, lang) {
+    $$('[data-en]', scope).forEach(el => { el.innerHTML = el.dataset[lang]; });
+  }
   function setLanguage(lang) {
     root.lang = lang === 'zh' ? 'zh-CN' : 'en';
     $$('[data-scramble-hover],[data-scramble]').forEach(el => { if (el._scrambling) el._scrambleCancel = true; });
-    $$('[data-en]').forEach(el => { el.innerHTML = el.dataset[lang]; });
+    translate(document, lang);
     const title = root.dataset[lang === 'zh' ? 'titleZh' : 'titleEn'];
     if (title) document.title = title;
     $$('[data-resume]').forEach(a => { a.href = `assets/Mustofa-Ahmed-Resume-${lang === 'zh' ? 'ZH' : 'EN'}.pdf`; });
@@ -148,7 +160,10 @@
   let lenis = null;
   function initScroll() {
     if (FX && FINE && window.Lenis) {
-      lenis = new window.Lenis({ lerp: 0.085, wheelMultiplier: 1, smoothWheel: true });
+      lenis = new window.Lenis({
+        lerp: 0.12, wheelMultiplier: 1, smoothWheel: true,
+        prevent: node => node.classList.contains('case-scroll') || node.tagName === 'DIALOG' || node.id === 'palette-list'
+      });
       root.classList.add('lenis', 'lenis-smooth');
     }
     window.__jump = y => { if (lenis) lenis.scrollTo(y, { immediate: true, force: true }); else window.scrollTo({ top: y, behavior: 'instant' }); };
@@ -199,7 +214,6 @@
     const hero = $('.hero');
     if (!hero) return;
     $$('[data-split]', hero).forEach(el => el.classList.add('in'));
-    $('.hero-portrait', hero).classList.add('in');
     $$('[data-rise]', hero).forEach((el, i) => {
       el.style.setProperty('--d', `${240 + i * 75}ms`);
       el.classList.add('in');
@@ -219,7 +233,7 @@
     requestAnimationFrame(tick);
   }
 
-  /* ---------- Preloader ---------- */
+  /* ---------- Preloader: tokens stream in like a model generating ---------- */
   function runLoader() {
     const loader = $('#loader');
     if (!loader || !FX || root.classList.contains('intro-done')) {
@@ -227,24 +241,34 @@
       heroIn();
       return;
     }
-    const num = $('#loader-num'), label = $('#loader-text'), tokens = $$('.loader-tokens i', loader);
+    const num = $('#loader-num'), label = $('#loader-text'), tokens = $$('.loader-tokens i', loader), stream = $('#loader-stream');
     const zh = currentLang() === 'zh';
     const phases = zh ? ['正在加载权重', '正在预热 GPU', '准备就绪'] : ['Loading weights', 'Warming up GPU', 'Ready'];
+    const words = zh ? ['让', '大模型', '在', '真实硬件上', '飞起来。'] : ['Large', 'models,', 'real', 'hardware,', 'fast.'];
+    let shown = 0;
     label.textContent = phases[0];
-    const start = performance.now(), duration = 1050;
+    const start = performance.now(), duration = 1250;
     const tick = now => {
-      const t = clamp((now - start) / duration), eased = 1 - Math.pow(1 - t, 2.4);
+      const t = clamp((now - start) / duration), eased = 1 - Math.pow(1 - t, 2.2);
       const pct = Math.round(eased * 100);
       num.textContent = pct;
       label.textContent = phases[pct < 55 ? 0 : pct < 100 ? 1 : 2];
       tokens.forEach((token, i) => token.classList.toggle('on', i < Math.round(eased * tokens.length)));
+      const due = Math.floor(t * (words.length + 0.5));
+      while (shown < Math.min(due, words.length)) {
+        const span = document.createElement('span');
+        span.textContent = words[shown];
+        if (shown === words.length - 1) span.className = 'last';
+        stream.append(span);
+        shown += 1;
+      }
       if (t < 1) { requestAnimationFrame(tick); return; }
       try { sessionStorage.setItem('hafiz-intro-done', '1'); } catch (e) { /* ignore */ }
       setTimeout(() => {
         loader.classList.add('done');
         setTimeout(heroIn, 220);
         setTimeout(() => loader.remove(), 1100);
-      }, 130);
+      }, 140);
     };
     requestAnimationFrame(tick);
   }
@@ -283,22 +307,26 @@
     }, { passive: true });
     document.addEventListener('pointerover', event => {
       const el = event.target.closest('[data-cursor],a,button,summary,input,label,video');
-      const text = el && el.dataset.cursor;
+      // A filled cursor label would cover a button's own text, so buttons just get the larger ring.
+      const text = el && !el.closest('.button,.seg,.bit-picker,.role-tab,.copy,.track-play,.agent-prompts') && el.dataset.cursor;
       ring.classList.toggle('is-label', !!text);
       ring.classList.toggle('is-link', !!el && !text);
       label.textContent = text || '';
     }, { passive: true });
     document.addEventListener('pointerdown', () => ring.classList.add('is-down'));
     document.addEventListener('pointerup', () => ring.classList.remove('is-down'));
-    document.documentElement.addEventListener('pointerleave', () => { if (scene) scene.pointerLeave(); });
+    root.addEventListener('pointerleave', () => { if (scene) scene.pointerLeave(); });
     frameTasks.push(() => {
       rx = lerp(rx, pointer.x, 0.2);
       ry = lerp(ry, pointer.y, 0.2);
       ring.style.transform = `translate3d(${rx}px,${ry}px,0)`;
       dot.style.transform = `translate3d(${pointer.x}px,${pointer.y}px,0)`;
     });
-
-    $$('[data-magnetic]').forEach(el => {
+    wireHover(document);
+  }
+  function wireHover(scope) {
+    if (!FX || !FINE) return;
+    $$('[data-magnetic]', scope).forEach(el => {
       el.style.transition = 'transform .6s var(--ease)';
       el.addEventListener('pointermove', event => {
         const box = el.getBoundingClientRect();
@@ -311,8 +339,7 @@
         el.style.transform = '';
       });
     });
-
-    $$('[data-tilt]').forEach(el => {
+    $$('[data-tilt]', scope).forEach(el => {
       el.addEventListener('pointermove', event => {
         const box = el.getBoundingClientRect();
         el.style.setProperty('--ry', `${((event.clientX - box.left) / box.width - 0.5) * 9}deg`);
@@ -320,8 +347,7 @@
       });
       el.addEventListener('pointerleave', () => { el.style.setProperty('--rx', '0deg'); el.style.setProperty('--ry', '0deg'); });
     });
-
-    $$('[data-spot]').forEach(el => {
+    $$('[data-spot]', scope).forEach(el => {
       el.addEventListener('pointermove', event => {
         const box = el.getBoundingClientRect();
         el.style.setProperty('--mx', `${event.clientX - box.left}px`);
@@ -377,41 +403,44 @@
       menu.addEventListener('click', () => setOpen(!nav.classList.contains('open')));
       $$('a', nav).forEach(a => a.addEventListener('click', () => setOpen(false)));
     }
-    if (document.hasFocus && $('.scroll-cue')) {
-      frameTasks.push(() => { $('.scroll-cue').style.opacity = state.y > 40 ? 0 : 1; });
+    const clock = $('#clock');
+    if (clock) {
+      const format = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Shanghai', hour: '2-digit', minute: '2-digit' });
+      const update = () => { clock.textContent = `${currentLang() === 'zh' ? '北京' : 'BEIJING'} ${format.format(new Date())}`; };
+      update();
+      setInterval(update, 20000);
+      refreshTasks.push(update);
+    }
+    const flag = $('#flag-wave');
+    if (flag) {
+      const SLICES = 12, width = flag.offsetWidth || 38;
+      for (let i = 0; i < SLICES; i++) {
+        const slice = document.createElement('i');
+        slice.style.setProperty('--n', i);
+        slice.style.backgroundPosition = `${-(i / SLICES) * width}px 0`;
+        flag.append(slice);
+      }
     }
   }
 
-  /* ---------- Marquee that reacts to scroll speed and direction ---------- */
-  function initTicker() {
-    const track = $('.ticker-track');
-    if (!track || !FX) return;
-    let x = 0, half = 0, skew = 0, dir = 1;
-    measureTasks.push(() => { half = track.firstElementChild.getBoundingClientRect().width; });
-    frameTasks.push((dt) => {
-      if (!half) return;
-      if (Math.abs(state.velocity) > 0.2) dir = state.velocity > 0 ? 1 : -1;
-      x -= (0.045 * dt + Math.abs(state.velocity) * 0.5) * dir;
-      if (x <= -half) x += half;
-      if (x > 0) x -= half;
-      skew = lerp(skew, clamp(state.velocity * 0.32, -14, 14), 0.1);
-      track.style.transform = `translate3d(${x}px,0,0) skewX(${-skew}deg)`;
-    });
-  }
-
-  /* ---------- Scroll-linked words, timeline, parallax ---------- */
+  /* ---------- Scroll-linked words, timeline, ghost titles ---------- */
   function initScrollEffects() {
     if (!FX) return;
     let wordBlocks = [];
-    const collect = () => {
+    measureTasks.push(() => {
       wordBlocks = $$('[data-words]').map(el => ({ el, words: $$('.sw', el), top: docTop(el), height: el.offsetHeight }));
-    };
-    measureTasks.push(collect);
+    });
     frameTasks.push(() => {
       wordBlocks.forEach(block => {
+        if (state.smoothY + state.vh < block.top - 60 || state.smoothY > block.top + block.height + 60) return;
         const p = clamp((state.smoothY + state.vh * 0.84 - block.top) / (block.height + state.vh * 0.46));
+        if (Math.abs(p - (block.p == null ? -1 : block.p)) < 0.002) return;
+        block.p = p;
         const lit = p * block.words.length;
-        block.words.forEach((word, i) => { word.style.setProperty('--o', clamp(0.14 + (lit - i) * 0.5, 0.14, 1).toFixed(2)); });
+        block.words.forEach((word, i) => {
+          const value = clamp(0.14 + (lit - i) * 0.5, 0.14, 1).toFixed(2);
+          if (word._o !== value) { word._o = value; word.style.setProperty('--o', value); }
+        });
       });
     });
 
@@ -422,21 +451,33 @@
       frameTasks.push(() => line.style.setProperty('--p', clamp((state.smoothY + state.vh * 0.7 - top) / height).toFixed(3)));
     }
 
-    const portrait = $('.hero-portrait');
-    if (portrait) {
-      const mask = $('.portrait-mask img', portrait);
-      frameTasks.push(() => {
-        const p = clamp(state.smoothY / state.vh);
-        mask.style.setProperty('--pz', p.toFixed(3));
-        portrait.style.translate = `0 ${(p * state.vh * 0.14).toFixed(1)}px`;
+    let ghosts = [];
+    measureTasks.push(() => { ghosts = $$('[data-ghost]').map(el => ({ el, top: docTop(el.closest('section')), h: el.closest('section').offsetHeight })); });
+    frameTasks.push(() => {
+      ghosts.forEach(g => {
+        if (state.smoothY + state.vh < g.top || state.smoothY > g.top + g.h) return;
+        const p = clamp((state.smoothY + state.vh - g.top) / (g.h + state.vh));
+        g.el.style.transform = `translate3d(${(0.5 - p) * state.vw * 0.5}px,0,0)`;
       });
-    }
+    });
 
     const cinema = $('#cinema'), cinemaSection = $('#cinema-section');
     if (cinema && cinemaSection && innerWidth > 760) {
       let top = 0, range = 1;
       measureTasks.push(() => { top = docTop(cinemaSection); range = Math.max(1, cinemaSection.offsetHeight - state.vh); });
       frameTasks.push(() => cinema.style.setProperty('--p', clamp((state.smoothY - top + state.vh * 0.35) / (range * 0.75 + state.vh * 0.35)).toFixed(3)));
+    }
+
+    const pipeline = $('#pipeline');
+    if (pipeline) {
+      const pipes = $$('.pipe', pipeline);
+      let top = 0;
+      measureTasks.push(() => { top = docTop(pipeline); });
+      frameTasks.push(() => {
+        const p = clamp((state.smoothY + state.vh * 0.82 - top) / (state.vh * 0.5));
+        pipeline.style.setProperty('--p', p.toFixed(3));
+        pipes.forEach((pipe, i) => pipe.classList.toggle('on', p >= i / pipes.length));
+      });
     }
   }
 
@@ -464,7 +505,7 @@
     if (!section) return;
     const track = $('.track', section), bar = $('.projects-progress', section);
     const wanted = () => FX && FINE && innerWidth >= 1024 && innerHeight >= 620;
-    let top = 0, travel = 0, x = 0;
+    let top = 0, travel = 0, lastX = -1;
     const apply = () => {
       const on = wanted();
       root.classList.toggle('h-scroll', on);
@@ -481,16 +522,17 @@
     measureTasks.unshift(apply);
     frameTasks.push(() => {
       if (!travel) return;
-      const p = clamp((state.smoothY - top) / travel);
-      x = lerp(x, p * travel, 0.2);
-      track.style.transform = `translate3d(${-x.toFixed(1)}px,0,0)`;
+      const p = clamp((state.y - top) / travel);
+      const x = Math.round(p * travel * 2) / 2;
+      if (x === lastX) return;
+      lastX = x;
+      track.style.transform = `translate3d(${-x}px,0,0)`;
       bar.style.setProperty('--p', p.toFixed(4));
     });
-    // Tabbing into an off-screen panel must move the scroll story, not the clipped container.
     const sticky = $('.projects-sticky', section);
     section.addEventListener('focusin', event => {
       if (!travel) return;
-      sticky.scrollLeft = 0;
+      sticky.scrollLeft = 0; // Tabbing must move the scroll story, not the clipped container.
       const panel = event.target.closest('.panel');
       if (panel && event.target.matches(':focus-visible')) goTo(panel);
     });
@@ -573,7 +615,6 @@
     inK.addEventListener('input', read);
     inP.addEventListener('input', read);
     read();
-
     const reset = () => Object.values(lanes).forEach(lane => {
       lane.n = 0;
       lane.slots.forEach(slot => { slot.className = ''; });
@@ -587,14 +628,13 @@
       const { k, p } = read();
       const base = lanes.base;
       if (base.n < SLOTS) { base.slots[base.n++].className = 'on'; base.out.textContent = base.n; }
-
       const spec = lanes.spec, from = spec.n;
       let accepted = 0;
       while (accepted < k && Math.random() < p) accepted++;
       const drafted = Math.min(k, SLOTS - from);
       for (let i = 0; i < drafted; i++) spec.slots[from + i].className = 'draft';
       later(() => {
-        for (let i = 0; i < drafted; i++) spec.slots[from + i].className = i < accepted ? 'on' : (i === accepted ? 'on' : 'no');
+        for (let i = 0; i < drafted; i++) spec.slots[from + i].className = i <= accepted ? 'on' : 'no';
         const gained = Math.min(accepted + 1, drafted);
         spec.n = from + gained;
         spec.out.textContent = spec.n;
@@ -627,7 +667,7 @@
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     const COLORS = { model: '#d8bb73', tool: '#84c7a2', tech: '#c9d8cc', hw: '#d98a5f' };
-    const nodes = GRAPH_NODES.map(([label, kind]) => ({ label, kind, x: 0, y: 0, vx: 0, vy: 0, pin: false, links: new Set() }));
+    const nodes = GRAPH_NODES.map(([label, kind]) => ({ label, kind, x: 0, y: 0, vx: 0, vy: 0, links: new Set() }));
     const find = label => nodes.find(n => n.label === label);
     const edges = GRAPH_EDGES.map(([a, b]) => {
       const A = find(a), B = find(b);
@@ -730,41 +770,14 @@
     canvas.addEventListener('pointerup', release);
     canvas.addEventListener('pointercancel', release);
     canvas.addEventListener('pointerleave', () => { hover = null; });
-    new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; if (visible) { size(); } }, { threshold: 0.05 }).observe(canvas);
+    new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; if (visible) size(); }, { threshold: 0.05 }).observe(canvas);
     size();
   }
 
-  /* ---------- Terminal typed once when it scrolls into view ---------- */
-  function initTerminal() {
-    const output = $('#terminal-text');
-    if (!output) return;
-    const text = [
-      '$ assistant status',
-      'model    Qwen3.8-27B',
-      'runtime  llama.cpp (local)',
-      'agent    Hermes Agent, tool use',
-      'uptime   always on',
-      '$ '
-    ].join('\n');
-    if (!FX) { output.textContent = text; return; }
-    const io = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) return;
-      io.disconnect();
-      let i = 0;
-      const type = () => {
-        i += 1;
-        output.textContent = text.slice(0, i);
-        if (i < text.length) setTimeout(type, text[i] === '\n' ? 170 : 18);
-      };
-      type();
-    }, { threshold: 0.3 });
-    io.observe(output);
-  }
-
-  /* ---------- Floating image that follows the pointer over a list ---------- */
-  function initHoverList() {
-    const list = $('#hover-list');
-    if (!list || !FX || !FINE) return;
+  /* ---------- Floating image that follows the pointer over marked rows ---------- */
+  function initPreviews() {
+    const rows = $$('[data-preview]');
+    if (!rows.length || !FX || !FINE) return;
     const preview = document.createElement('div');
     preview.className = 'float-preview';
     preview.setAttribute('aria-hidden', 'true');
@@ -774,26 +787,27 @@
     document.body.append(preview);
     let tx = 0, ty = 0, x = 0, y = 0, shown = false;
     const aim = event => {
-      tx = Math.min(event.clientX + 40, innerWidth - preview.offsetWidth - 20);
-      ty = clamp(event.clientY - preview.offsetHeight / 2, 12, innerHeight - preview.offsetHeight - 12);
+      const w = preview.offsetWidth || 300, h = preview.offsetHeight || 200;
+      tx = Math.min(event.clientX + 40, innerWidth - w - 20);
+      ty = clamp(event.clientY - h / 2, 12, innerHeight - h - 12);
     };
-    $$('li', list).forEach(li => {
-      li.addEventListener('pointerenter', event => {
-        img.src = li.dataset.image;
+    rows.forEach(row => {
+      row.addEventListener('pointerenter', event => {
+        img.src = row.dataset.preview;
         aim(event);
-        if (!shown) { x = tx; y = ty; } // Appear at the pointer, rather than flying in from the corner.
+        if (!shown) { x = tx; y = ty; }
         preview.classList.add('show');
         shown = true;
       });
+      row.addEventListener('pointermove', aim);
+      row.addEventListener('pointerleave', () => { preview.classList.remove('show'); shown = false; });
     });
-    list.addEventListener('pointerleave', () => { preview.classList.remove('show'); shown = false; });
-    list.addEventListener('pointermove', aim);
     frameTasks.push(() => {
       if (!shown) return;
       const vx = tx - x;
       x += vx * 0.14;
       y += (ty - y) * 0.14;
-      preview.style.transform = `translate3d(${x}px,${y}px,0) rotate(${clamp(vx * 0.03, -8, 8)}deg) scale(1)`;
+      preview.style.transform = `translate3d(${x}px,${y}px,0) rotate(${clamp(vx * 0.03, -8, 8)}deg)`;
     });
   }
 
@@ -823,17 +837,250 @@
     };
     build();
     refreshTasks.push(build);
-    let active = false;
+    let active = false, lastPx = -1, lastPy = -1, lastPs = -1;
     new IntersectionObserver(([entry]) => { active = entry.isIntersecting; }, { threshold: 0 }).observe(title);
     frameTasks.push(() => {
       if (!active || !pointer.active) return;
-      chars.forEach(c => {
-        const box = c.getBoundingClientRect();
+      if (pointer.x === lastPx && pointer.y === lastPy && state.y === lastPs) return;
+      lastPx = pointer.x; lastPy = pointer.y; lastPs = state.y;
+      const boxes = chars.map(c => c.getBoundingClientRect());
+      chars.forEach((c, i) => {
+        const box = boxes[i];
         const cx = box.left + box.width / 2, cy = box.top + box.height / 2;
         const d = Math.hypot(pointer.x - cx, pointer.y - cy);
         const f = clamp(1 - d / 240);
-        c.style.transform = `translateY(${(-f * 18).toFixed(1)}px) rotate(${(f * (cx - pointer.x) * 0.04).toFixed(1)}deg)`;
+        c.style.transform = f > 0 ? `translateY(${(-f * 12).toFixed(1)}px)` : '';
         c.style.color = f > 0.45 ? 'var(--mint)' : '';
+      });
+    });
+  }
+
+  /* ---------- Scroll-driven film: MetaHuman from portrait to macro ---------- */
+  function initMeta() {
+    const section = $('#meta'), canvas = $('#meta-canvas');
+    if (!section || !canvas) return;
+    if (!FX) { canvas.remove(); return; }
+    const small = innerWidth < 760;
+    const COUNT = small ? 45 : 90;
+    const folder = small ? 'assets/metahuman-m' : 'assets/metahuman';
+    const ctx = canvas.getContext('2d');
+    const frames = new Array(COUNT);
+    const lines = $$('.meta-line', section), bar = $('.meta-progress', section);
+    let top = 0, range = 1, started = false, drawn = -1, lastDrawn = null, cw = 0, ch = 0, smooth = 0, activeLine = 0;
+    // Key frames first, so a fast scroller always has something close to show.
+    const queue = [];
+    for (let step = 8; step >= 1; step = Math.floor(step / 2)) {
+      for (let i = 0; i < COUNT; i += step) if (!queue.includes(i)) queue.push(i);
+    }
+    const pump = () => {
+      const i = queue.shift();
+      if (i === undefined) return;
+      const im = new Image();
+      im.decoding = 'async';
+      let retried = false;
+      im.onload = () => {
+        const ready = () => { im._ready = true; pump(); };
+        if (im.decode) im.decode().then(ready, ready); else ready();
+      };
+      im.onerror = () => {
+        if (retried) { pump(); return; }
+        retried = true;
+        setTimeout(() => { im.src = `${folder}/${String(i).padStart(3, '0')}.webp?r=1`; }, 400);
+      };
+      im.src = `${folder}/${String(i).padStart(3, '0')}.webp`;
+      frames[i] = im;
+    };
+    const start = () => {
+      if (started) return;
+      started = true;
+      for (let n = 0; n < 6; n++) pump(); // A few at a time keeps the rest of the page responsive.
+    };
+    new IntersectionObserver(([entry]) => { if (entry.isIntersecting) start(); }, { rootMargin: '150% 0px' }).observe(section);
+    measureTasks.push(() => {
+      top = docTop(section);
+      range = Math.max(1, section.offsetHeight - state.vh);
+      const box = canvas.getBoundingClientRect();
+      cw = Math.round(box.width * Math.min(devicePixelRatio || 1, 1.5));
+      ch = Math.round(box.height * Math.min(devicePixelRatio || 1, 1.5));
+      if (canvas.width !== cw || canvas.height !== ch) { canvas.width = cw; canvas.height = ch; drawn = -1; }
+    });
+    const best = i => {
+      if (frames[i] && frames[i]._ready) return frames[i];
+      for (let d = 1; d < COUNT; d++) {
+        const a = frames[i - d], b = frames[i + d];
+        if (a && a._ready) return a;
+        if (b && b._ready) return b;
+      }
+      return null;
+    };
+    frameTasks.push(() => {
+      if (!started || state.y < top - state.vh || state.y > top + range + state.vh) return;
+      const p = clamp((state.y - top) / range);
+      smooth = FINE ? p : lerp(smooth, p, 0.3); // Lenis already smooths the scroll on a desktop.
+      bar.style.setProperty('--p', smooth.toFixed(3));
+      const i = Math.min(COUNT - 1, Math.floor(smooth * COUNT));
+      const im = best(i);
+      if (im && (drawn !== i || lastDrawn !== im)) {
+        const s = Math.max(cw / im.naturalWidth, ch / im.naturalHeight);
+        const w = im.naturalWidth * s, h = im.naturalHeight * s;
+        ctx.drawImage(im, (cw - w) / 2, (ch - h) * 0.32, w, h);
+        drawn = i;
+        lastDrawn = im;
+      }
+      const lineIndex = smooth < 0.3 ? 0 : smooth < 0.62 ? 1 : 2;
+      if (lineIndex !== activeLine) {
+        activeLine = lineIndex;
+        lines.forEach((line, k) => line.classList.toggle('active', k === lineIndex));
+      }
+    });
+  }
+
+  /* ---------- Audio players with real waveforms; on a desktop the page reacts to the music ---------- */
+  function initTracks() {
+    const tracks = $$('.song');
+    if (!tracks.length) return;
+    const waves = window.WAVES || {};
+    let audioCtx = null, analyser = null, scopeAnalyser = null, bins = null, wave = null, playingEntry = null;
+    const fmt = s => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
+    const entries = tracks.map(track => {
+      const id = track.dataset.track;
+      const data = waves[id] || { duration: 0, peaks: [] };
+      const canvas = $('.wave', track), button = $('.track-play', track), time = $('.track-time', track);
+      const entry = { track, id, data, canvas, button, time, audio: null, progress: 0, source: null };
+      time.textContent = fmt(data.duration);
+      const draw = () => {
+        const a = fitCanvas(canvas);
+        const ctx = canvas.getContext('2d');
+        ctx.setTransform(a.dpr, 0, 0, a.dpr, 0, 0);
+        ctx.clearRect(0, 0, a.w, a.h);
+        const n = data.peaks.length || 1, bw = a.w / n;
+        data.peaks.forEach((v, i) => {
+          const h = Math.max(2, v * (a.h - 4));
+          ctx.fillStyle = i / n < entry.progress ? '#d8bb73' : 'rgba(132,199,162,.42)';
+          ctx.fillRect(i * bw, (a.h - h) / 2, Math.max(1, bw - 1), h);
+        });
+      };
+      entry.draw = draw;
+      draw();
+      measureTasks.push(draw);
+      const ensureAudio = () => {
+        if (entry.audio) return entry.audio;
+        const audio = new Audio(`assets/showcase/${id}.mp3`);
+        audio.preload = 'auto';
+        audio.addEventListener('timeupdate', () => {
+          entry.progress = audio.duration ? audio.currentTime / audio.duration : 0;
+          time.textContent = fmt(audio.currentTime);
+          draw();
+        });
+        audio.addEventListener('ended', () => { track.classList.remove('playing'); entry.progress = 0; draw(); time.textContent = fmt(data.duration); if (scene) scene.setAudio(0); playingEntry = null; });
+        audio.addEventListener('pause', () => { track.classList.remove('playing'); if (playingEntry === entry) { playingEntry = null; if (scene) scene.setAudio(0); } });
+        audio.addEventListener('play', () => { track.classList.add('playing'); playingEntry = entry; });
+        entry.audio = audio;
+        return audio;
+      };
+      button.addEventListener('click', () => {
+        const audio = ensureAudio();
+        if (audio.paused) {
+          entries.forEach(other => { if (other !== entry && other.audio) other.audio.pause(); });
+          document.querySelectorAll('video').forEach(v => v.pause());
+          connect(entry);
+          audio.play().catch(() => {});
+        } else {
+          audio.pause();
+        }
+      });
+      canvas.addEventListener('pointerdown', event => {
+        const box = canvas.getBoundingClientRect();
+        const audio = ensureAudio();
+        const seek = clamp((event.clientX - box.left) / box.width);
+        const target = seek * (audio.duration || data.duration);
+        try { audio.currentTime = target; } catch (e) { /* not seekable yet */ }
+        entry.progress = seek;
+        draw();
+      });
+      return entry;
+    });
+    // Only desktops route audio through Web Audio: some in-app phone browsers would stay silent.
+    function connect(entry) {
+      if (!FINE || !FX || !scene) return;
+      try {
+        if (!audioCtx) {
+          const AC = window.AudioContext || window.webkitAudioContext;
+          audioCtx = new AC();
+          analyser = audioCtx.createAnalyser();
+          analyser.fftSize = 256;
+          analyser.smoothingTimeConstant = 0.72;
+          analyser.connect(audioCtx.destination);
+          bins = new Uint8Array(analyser.frequencyBinCount);
+          // A longer window for the waveform strip, so the shape of the voice is visible.
+          scopeAnalyser = audioCtx.createAnalyser();
+          scopeAnalyser.fftSize = 2048;
+          wave = new Uint8Array(scopeAnalyser.fftSize);
+        }
+        if (!entry.source) {
+          entry.source = audioCtx.createMediaElementSource(entry.audio);
+          entry.source.connect(analyser);
+          entry.source.connect(scopeAnalyser);
+        }
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+      } catch (e) { /* The page simply will not react to this track. */ }
+    }
+    frameTasks.push(() => {
+      if (!analyser || !playingEntry || !scene) return;
+      analyser.getByteFrequencyData(bins);
+      let low = 0;
+      for (let i = 1; i < 12; i++) low += bins[i];
+      scene.setAudio(Math.pow(clamp(low / (11 * 255)), 2.2));
+    });
+    // The waveform strip: a calm idle line, then the real voice while a song plays (on a desktop).
+    $$('.music-scope').forEach(canvas => {
+      const ctx = canvas.getContext('2d');
+      const wrap = canvas.closest('.music-scope-wrap'), label = $('.scope-label', wrap);
+      let visible = false, W = 0, H = 0, dpr = 1, lastTitle = '';
+      const size = () => { const a = fitCanvas(canvas); W = a.w; H = a.h; dpr = a.dpr; };
+      measureTasks.push(size);
+      new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; if (visible) size(); }).observe(canvas);
+      const setLabel = () => {
+        const zh = currentLang() === 'zh';
+        const title = playingEntry ? $('h3', playingEntry.track).firstChild.textContent.trim() : '';
+        if (title === lastTitle && label.dataset.state === (zh ? 'zh' : 'en')) return;
+        lastTitle = title; label.dataset.state = zh ? 'zh' : 'en';
+        wrap.classList.toggle('live', !!playingEntry);
+        label.textContent = playingEntry
+          ? (zh ? `正在播放：${title} · 你看到的是一个 AI 声音的实时波形。` : `Now playing: ${title} · the live waveform of an AI voice.`)
+          : label.dataset[zh ? 'zh' : 'en'];
+      };
+      refreshTasks.push(() => { lastTitle = '-'; setLabel(); });
+      frameTasks.push((dt, now) => {
+        if (!visible || !W) return;
+        setLabel();
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.clearRect(0, 0, W, H);
+        const mid = H / 2;
+        ctx.strokeStyle = 'rgba(243,239,220,.08)'; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(0, mid); ctx.lineTo(W, mid); ctx.stroke();
+        const live = scopeAnalyser && playingEntry && !playingEntry.audio.paused;
+        if (live) scopeAnalyser.getByteTimeDomainData(wave);
+        const progress = playingEntry ? playingEntry.progress : 0;
+        const points = Math.min(260, Math.floor(W / 3));
+        for (let pass = 0; pass < 2; pass++) {
+          ctx.strokeStyle = pass ? '#d8bb73' : 'rgba(216,187,115,.22)';
+          ctx.lineWidth = pass ? 1.8 : 5;
+          ctx.beginPath();
+          for (let i = 0; i <= points; i++) {
+            const u = i / points;
+            let v;
+            if (live) v = (wave[Math.floor(u * (wave.length - 1))] - 128) / 128 * 2.4 * Math.sin(Math.PI * Math.min(1, u * 1.15 + .02));
+            else {
+              const env = Math.sin(u * Math.PI);
+              v = env * (Math.sin(u * 18 + now * 1.6) * .22 + Math.sin(u * 47 - now * 2.3) * .08) * (playingEntry ? .8 : .45);
+            }
+            const y = mid - Math.max(-1, Math.min(1, v)) * (H / 2 - 6);
+            if (i) ctx.lineTo(u * W, y); else ctx.moveTo(u * W, y);
+          }
+          ctx.stroke();
+        }
+        if (progress > 0) { ctx.fillStyle = 'rgba(216,187,115,.75)'; ctx.fillRect(0, H - 2, W * progress, 2); }
       });
     });
   }
@@ -870,60 +1117,224 @@
     if (dialog.showModal) dialog.showModal(); else dialog.setAttribute('open', '');
     if (lenis) lenis.stop();
   }
+  function wireEnlarge(scope) {
+    const imageDialog = $('#image-dialog');
+    if (!imageDialog) return;
+    $$('.gallery-frame img,[data-enlarge]', scope).forEach(img => {
+      if (img._wired) return;
+      img._wired = true;
+      img.tabIndex = 0;
+      img.setAttribute('role', 'button');
+      const open = () => {
+        const big = $('img', imageDialog);
+        big.src = img.src;
+        big.alt = img.alt;
+        openDialog(imageDialog);
+      };
+      img.addEventListener('click', open);
+      img.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); open(); } });
+    });
+  }
   function initDialogs() {
     $$('[data-copy]').forEach(button => button.addEventListener('click', () => copyText(button.dataset.copy)));
     $$('dialog').forEach(dialog => {
       const close = $('.dialog-close', dialog);
       if (close) close.addEventListener('click', () => (dialog.close ? dialog.close() : dialog.removeAttribute('open')));
       dialog.addEventListener('click', event => { if (event.target === dialog && dialog.close) dialog.close(); });
-      dialog.addEventListener('close', () => { if (lenis) lenis.start(); });
+      dialog.addEventListener('close', () => { if (lenis && !caseOpen) lenis.start(); });
     });
-    const wechat = $('#wechat-dialog'), opener = $('#wechat-open');
-    if (wechat && opener) opener.addEventListener('click', () => openDialog(wechat));
-    const imageDialog = $('#image-dialog');
-    if (imageDialog) {
-      $$('.gallery-frame img,[data-enlarge]').forEach(img => {
-        img.tabIndex = 0;
-        img.setAttribute('role', 'button');
-        const open = () => {
-          const big = $('img', imageDialog);
-          big.src = img.src;
-          big.alt = img.alt;
-          openDialog(imageDialog);
-        };
-        img.addEventListener('click', open);
-        img.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); open(); } });
-      });
-    }
+    const wechat = $('#wechat-dialog');
+    [$('#wechat-open'), $('#qr-card')].forEach(opener => {
+      if (wechat && opener) opener.addEventListener('click', () => openDialog(wechat));
+    });
+    wireEnlarge(document);
   }
 
-  /* ---------- AutoDeploy gallery ---------- */
-  const SLIDES = [
-    ['autodeploy-cli.webp', 'AutoDeploy command-line interface', 'A practical interface for deployment, validation and diagnostics.', '通过实用的命令行界面完成部署、验证与诊断。'],
-    ['autodeploy-graph.webp', 'AutoDeploy knowledge graph', 'Reusable knowledge connects models, tools, hardware and previous deployment runs.', '知识图谱连接模型、工具、硬件与历史部署记录，让经验可以复用。'],
-    ['parser_workflow.webp', 'AutoDeploy model analysis workflow', 'Model analysis turns an input model into structured information for planning.', '模型分析将输入模型转换为结构化信息，为部署规划提供依据。'],
-    ['orchestrator_overview.webp', 'AutoDeploy execution workflow', 'The orchestrator coordinates execution, validation and recovery, with traceable records.', '编排器协调执行、验证与恢复，并保留可追溯的过程记录。']
-  ];
-  function initGallery() {
-    const img = $('#autodeploy-slide');
-    if (!img) return;
-    let index = 0;
-    const change = direction => {
-      index = (index + direction + SLIDES.length) % SLIDES.length;
-      const [src, alt, en, zh] = SLIDES[index];
-      const caption = $('.gallery-caption');
-      img.src = `assets/showcase/${src}`;
-      img.alt = alt;
-      caption.dataset.en = en;
-      caption.dataset.zh = zh;
-      caption.textContent = currentLang() === 'zh' ? zh : en;
-      $('#gallery-count').textContent = `${index + 1} / ${SLIDES.length}`;
-      img.classList.remove('swap');
-      void img.offsetWidth;
-      img.classList.add('swap');
+  /* ---------- Case studies: full-screen stories that open from where you clicked ---------- */
+  const CASES = ['autodeploy', 'decoding', 'lhaaso', 'fpga', 'curiosity'];
+  const CASE_TITLES = {
+    autodeploy: ['AutoDeploy', 'AutoDeploy'],
+    decoding: ['Speculative decoding', '投机解码加速'],
+    lhaaso: ['Finding gamma-ray bursts in noise', '从噪声中寻找伽马射线暴'],
+    fpga: ['Transformers on FPGAs', 'FPGA 上的 Transformer'],
+    curiosity: ['Curiosity', 'Curiosity']
+  };
+  let caseOpen = null, caseReturn = null;
+  function initCases() {
+    const host = $('#case');
+    if (!host) return;
+    const scroll = $('#case-scroll');
+    const fill = id => {
+      const lang = currentLang();
+      scroll.innerHTML = '';
+      const frag = $(`#case-${id}`).content.cloneNode(true);
+      translate(frag, lang);
+      scroll.append(frag);
+      const nextId = CASES[(CASES.indexOf(id) + 1) % CASES.length];
+      const next = document.createElement('button');
+      next.type = 'button';
+      next.className = 'case-next';
+      next.dataset.cursor = 'NEXT';
+      next.innerHTML = `<small>${lang === 'zh' ? '下一个案例' : 'Next case study'}</small><b>${CASE_TITLES[nextId][lang === 'zh' ? 1 : 0]} →</b>`;
+      next.addEventListener('click', () => show(nextId, true));
+      scroll.append(next);
+      scroll.scrollTop = 0;
+      wireEnlarge(scroll);
+      wireHover(scroll);
+      if (id === 'lhaaso') safe('bayes', () => initBayes(scroll));
+      if (id === 'curiosity' && window.LABS && window.LABS.curiosity) safe('curiosity', () => window.LABS.curiosity(labContext, scroll));
     };
-    $('#gallery-prev').addEventListener('click', () => change(-1));
-    $('#gallery-next').addEventListener('click', () => change(1));
+    const show = (id, replace) => {
+      fill(id);
+      caseOpen = id;
+      const url = `#case/${id}`;
+      if (replace) history.replaceState({ case: id }, '', url);
+      else if (location.hash !== url) history.pushState({ case: id }, '', url);
+    };
+    const open = (id, event) => {
+      if (!CASES.includes(id)) return;
+      caseReturn = event ? event.currentTarget : null;
+      if (event) {
+        host.style.setProperty('--cx', `${event.clientX || innerWidth / 2}px`);
+        host.style.setProperty('--cy', `${event.clientY || innerHeight / 2}px`);
+      }
+      show(id, false);
+      host.hidden = false;
+      root.classList.add('case-locked');
+      if (lenis) lenis.stop();
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        host.classList.add('open');
+        $('.case-close', host).focus({ preventScroll: true });
+      }));
+    };
+    const close = fromHistory => {
+      if (!caseOpen) return;
+      caseOpen = null;
+      host.classList.remove('open');
+      root.classList.remove('case-locked');
+      if (lenis) lenis.start();
+      if (!fromHistory && location.hash.startsWith('#case/')) history.pushState({}, '', location.pathname + location.search);
+      setTimeout(() => { if (!caseOpen) { host.hidden = true; scroll.innerHTML = ''; } }, FX ? 760 : 0);
+      if (caseReturn) caseReturn.focus({ preventScroll: true });
+    };
+    $$('.case-open').forEach(button => button.addEventListener('click', event => open(button.dataset.case, event)));
+    $('.case-close', host).addEventListener('click', () => close(false));
+    document.addEventListener('keydown', event => { if (event.key === 'Escape' && caseOpen && !document.querySelector('dialog[open]')) close(false); });
+    window.addEventListener('popstate', () => {
+      const match = location.hash.match(/^#case\/([a-z]+)/);
+      if (match && CASES.includes(match[1])) { if (caseOpen) fill(match[1]); else open(match[1]); caseOpen = match[1]; }
+      else close(true);
+    });
+    refreshTasks.push(() => { if (caseOpen) fill(caseOpen); });
+    window.__openCase = open;
+    const initial = location.hash.match(/^#case\/([a-z]+)/);
+    if (initial) setTimeout(() => open(initial[1]), 150);
+  }
+
+  /* ---------- Bayesian optimization: a real Gaussian process running in the browser ---------- */
+  function initBayes(scope) {
+    const canvas = $('#bo-canvas', scope);
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const GRID = 140;
+    const xs = Array.from({ length: GRID }, (_, i) => i / (GRID - 1));
+    const objective = x => 0.55 * Math.exp(-Math.pow((x - 0.72) / 0.09, 2)) + 0.32 * Math.exp(-Math.pow((x - 0.28) / 0.13, 2)) + 0.14 * Math.sin(x * 16) * 0.5 + 0.2;
+    const kernel = (a, b) => Math.exp(-Math.pow(a - b, 2) / (2 * 0.085 * 0.085));
+    const NOISE = 1e-5;
+    let X = [], Y = [], mean = [], sd = [], ei = [];
+    const cholesky = A => {
+      const n = A.length, L = A.map(() => new Float64Array(n));
+      for (let i = 0; i < n; i++) {
+        for (let j = 0; j <= i; j++) {
+          let s = A[i][j];
+          for (let k = 0; k < j; k++) s -= L[i][k] * L[j][k];
+          L[i][j] = i === j ? Math.sqrt(Math.max(s, 1e-10)) : s / L[j][j];
+        }
+      }
+      return L;
+    };
+    const solveL = (L, b) => { const n = b.length, y = new Float64Array(n); for (let i = 0; i < n; i++) { let s = b[i]; for (let k = 0; k < i; k++) s -= L[i][k] * y[k]; y[i] = s / L[i][i]; } return y; };
+    const solveLT = (L, b) => { const n = b.length, x = new Float64Array(n); for (let i = n - 1; i >= 0; i--) { let s = b[i]; for (let k = i + 1; k < n; k++) s -= L[k][i] * x[k]; x[i] = s / L[i][i]; } return x; };
+    const phi = z => Math.exp(-0.5 * z * z) / Math.sqrt(2 * Math.PI);
+    const Phi = z => { // Abramowitz and Stegun approximation of the normal CDF
+      const t = 1 / (1 + 0.2316419 * Math.abs(z));
+      const d = 0.3989423 * Math.exp(-z * z / 2);
+      const p = d * t * (0.3193815 + t * (-0.3565638 + t * (1.781478 + t * (-1.821256 + t * 1.330274))));
+      return z > 0 ? 1 - p : p;
+    };
+    const fit = () => {
+      if (!X.length) { mean = xs.map(() => 0.4); sd = xs.map(() => 0.34); ei = xs.map(() => 0); return; }
+      const avg = Y.reduce((a, b) => a + b, 0) / Y.length;
+      const K = X.map((a, i) => X.map((b, j) => kernel(a, b) + (i === j ? NOISE : 0)));
+      const L = cholesky(K);
+      const alpha = solveLT(L, solveL(L, Y.map(v => v - avg)));
+      const best = Math.max(...Y);
+      mean = []; sd = []; ei = [];
+      xs.forEach(x => {
+        const k = X.map(a => kernel(a, x));
+        const m = avg + k.reduce((s, v, i) => s + v * alpha[i], 0);
+        const v = solveL(L, k);
+        const variance = Math.max(1e-9, 1 - v.reduce((s, w) => s + w * w, 0));
+        const s = Math.sqrt(variance) * 0.34;
+        mean.push(m); sd.push(s);
+        const z = (m - best - 0.005) / s;
+        ei.push(Math.max(0, (m - best - 0.005) * Phi(z) + s * phi(z)));
+      });
+    };
+    const draw = () => {
+      const a = fitCanvas(canvas);
+      ctx.setTransform(a.dpr, 0, 0, a.dpr, 0, 0);
+      ctx.clearRect(0, 0, a.w, a.h);
+      const topH = a.h * 0.72, botY = a.h * 0.78, botH = a.h * 0.2;
+      const px = x => 8 + x * (a.w - 16);
+      const py = y => topH - clamp(y, -0.05, 1.1) / 1.1 * (topH - 10);
+      ctx.fillStyle = 'rgba(132,199,162,.2)';
+      ctx.beginPath();
+      xs.forEach((x, i) => { const y = py(mean[i] + 2 * sd[i]); if (i) ctx.lineTo(px(x), y); else ctx.moveTo(px(x), y); });
+      for (let i = GRID - 1; i >= 0; i--) ctx.lineTo(px(xs[i]), py(mean[i] - 2 * sd[i]));
+      ctx.closePath(); ctx.fill();
+      ctx.strokeStyle = 'rgba(243,239,220,.26)'; ctx.setLineDash([4, 5]); ctx.lineWidth = 1;
+      ctx.beginPath();
+      xs.forEach((x, i) => { const y = py(objective(x)); if (i) ctx.lineTo(px(x), y); else ctx.moveTo(px(x), y); });
+      ctx.stroke(); ctx.setLineDash([]);
+      ctx.strokeStyle = '#84c7a2'; ctx.lineWidth = 2;
+      ctx.beginPath();
+      xs.forEach((x, i) => { const y = py(mean[i]); if (i) ctx.lineTo(px(x), y); else ctx.moveTo(px(x), y); });
+      ctx.stroke();
+      X.forEach((x, i) => {
+        ctx.fillStyle = '#d8bb73';
+        ctx.beginPath(); ctx.arc(px(x), py(Y[i]), i === X.length - 1 ? 7 : 4.5, 0, 6.283); ctx.fill();
+      });
+      const peak = Math.max(1e-6, ...ei);
+      ctx.fillStyle = 'rgba(216,187,115,.32)'; ctx.strokeStyle = '#d8bb73'; ctx.lineWidth = 1.4;
+      ctx.beginPath(); ctx.moveTo(px(0), botY + botH);
+      xs.forEach((x, i) => ctx.lineTo(px(x), botY + botH - ei[i] / peak * botH * 0.92));
+      ctx.lineTo(px(1), botY + botH); ctx.closePath(); ctx.fill(); ctx.stroke();
+      ctx.font = '11px "DM Mono", monospace'; ctx.fillStyle = 'rgba(183,197,184,.9)';
+      ctx.fillText(currentLang() === 'zh' ? '期望提升' : 'expected improvement', 10, botY + 10);
+      ctx.fillText(currentLang() === 'zh' ? '代理模型' : 'surrogate model', 10, 14);
+    };
+    const count = $('#bo-count', scope), bestOut = $('#bo-best', scope);
+    const report = () => {
+      count.textContent = X.length;
+      bestOut.textContent = Y.length ? Math.max(...Y).toFixed(3) : '–';
+    };
+    const addPoint = x => { X.push(x); Y.push(objective(x)); fit(); draw(); report(); };
+    const next = () => {
+      if (!X.length) { addPoint(0.1); return; }
+      if (X.length >= 16) return;
+      let index = 0;
+      ei.forEach((v, i) => { if (v > ei[index]) index = i; });
+      addPoint(xs[index]);
+    };
+    const reset = () => { X = []; Y = []; fit(); draw(); report(); [0.1, 0.5].forEach(addPoint); };
+    $('#bo-next', scope).addEventListener('click', next);
+    $('#bo-reset', scope).addEventListener('click', reset);
+    canvas.addEventListener('pointerdown', event => {
+      const box = canvas.getBoundingClientRect();
+      if (X.length < 20) addPoint(clamp((event.clientX - box.left - 8) / (box.width - 16)));
+    });
+    requestAnimationFrame(reset);
   }
 
   /* ---------- Command palette (Ctrl/Cmd + K) ---------- */
@@ -932,17 +1343,29 @@
     if (!dialog) return;
     const input = $('#palette-input'), list = $('#palette-list');
     const jump = id => () => { dialog.close(); goTo(document.getElementById(id)); };
+    const study = id => () => { dialog.close(); if (window.__openCase) window.__openCase(id); };
     const COMMANDS = [
       ['Open resume (English)', '查看英文简历', 'PDF', () => { dialog.close(); window.open('assets/Mustofa-Ahmed-Resume-EN.pdf', '_blank', 'noopener'); }],
       ['Open resume (Chinese)', '查看中文简历', 'PDF', () => { dialog.close(); window.open('assets/Mustofa-Ahmed-Resume-ZH.pdf', '_blank', 'noopener'); }],
       ['Copy email', '复制邮箱', 'COPY', () => { dialog.close(); copyText('hafizabc77@gmail.com'); }],
       ['Copy WeChat ID', '复制微信号', 'COPY', () => { dialog.close(); copyText('hafizabc77'); }],
+      ['Go to AutoDeploy, my flagship project', '前往旗舰项目 AutoDeploy', 'GO', jump('autodeploy')],
+      ['Try the AutoDeploy lab', '体验 AutoDeploy 实验台', 'TRY', jump('ad-lab')],
+      ['Case study: AutoDeploy', '案例：AutoDeploy', 'READ', study('autodeploy')],
+      ['Case study: speculative decoding', '案例：投机解码', 'READ', study('decoding')],
+      ['Case study: LHAASO gamma-ray bursts', '案例：LHAASO 伽马射线暴', 'READ', study('lhaaso')],
+      ['Case study: transformers on FPGAs', '案例：FPGA 上的 Transformer', 'READ', study('fpga')],
+      ['Case study: Curiosity, my personal AI', '案例：个人 AI 项目 Curiosity', 'READ', study('curiosity')],
       ['Go to results', '前往成果', 'GO', jump('numbers')],
       ['Go to experience', '前往经历', 'GO', jump('experience')],
-      ['Go to the speculative decoding playground', '前往投机解码演练场', 'GO', jump('p-spec')],
+      ['Go to the decoding playground', '前往投机解码演练场', 'GO', jump('p-spec')],
+      ['Go to the LHAASO detector', '前往 LHAASO 探测器', 'GO', jump('p-lhaaso')],
       ['Go to the knowledge graph', '前往知识图谱', 'GO', jump('p-graph')],
       ['Go to skills', '前往技能', 'GO', jump('skills')],
       ['Go to publications', '前往论文', 'GO', jump('publications')],
+      ['Go to Curiosity, my personal AI', '前往个人 AI 项目 Curiosity', 'GO', jump('p-agent')],
+      ['Go to the MetaHuman film', '前往 MetaHuman 影片', 'GO', jump('meta')],
+      ['Go to music videos and AI songs', '前往音乐视频与 AI 歌曲', 'GO', jump('music')],
       ['Go to contact', '前往联系方式', 'GO', jump('contact')],
       ['Switch language', '切换语言', 'EN/中', () => { dialog.close(); $('#language').click(); }],
       ['Open GitHub', '打开 GitHub', 'LINK', () => { dialog.close(); window.open('https://github.com/hafizabc77', '_blank', 'noopener'); }]
@@ -989,21 +1412,16 @@
     });
   }
 
-  /* ---------- Media: one player at a time, animated bars while audio plays ---------- */
+  /* ---------- Video: one player at a time ---------- */
   function initMedia() {
     document.addEventListener('play', event => {
-      if (!event.target.matches('audio,video')) return;
-      $$('audio,video').forEach(media => { if (media !== event.target) media.pause(); });
-      const card = event.target.closest('.audio-card');
-      if (card) card.classList.add('playing');
+      if (!event.target.matches('video')) return;
+      $$('video').forEach(media => { if (media !== event.target) media.pause(); });
+      $$('.song.playing .track-play').forEach(b => b.click());
     }, true);
-    ['pause', 'ended'].forEach(type => document.addEventListener(type, event => {
-      const card = event.target.closest && event.target.closest('.audio-card');
-      if (card) card.classList.remove('playing');
-    }, true));
   }
 
-  /* ---------- WebGL scene ---------- */
+  /* ---------- WebGL stage ---------- */
   let scene = null;
   function initScene() {
     const canvas = $('#scene');
@@ -1011,9 +1429,16 @@
     const connection = navigator.connection;
     if (connection && connection.saveData) return;
     const small = innerWidth < 760;
+    const rich = FINE && !small;
     const memory = navigator.deviceMemory || 4;
-    const count = small ? (memory <= 2 ? 6000 : 11000) : 26000;
-    scene = window.createScene(canvas, { count, maxDpr: small ? 1.5 : 1.75 });
+    const count = small ? (memory <= 2 ? 6000 : 11000) : 20000;
+    scene = window.createScene(canvas, {
+      count,
+      maxDpr: 1.5,
+      fluid: rich && params.get('fluid') !== '0',
+      planes: rich,
+      keepQuality: params.get('hq') === '1'
+    });
     if (!scene) return;
     root.classList.add('has-gl');
     const shapeAnchors = () => {
@@ -1022,15 +1447,14 @@
         if (el.classList.contains('step')) return;
         // On a phone text sits on top of the particles, so anything behind reading content is dimmer.
         const dim = parseFloat(el.dataset.dim || '0.3') * (small ? 0.55 : 1);
-        list.push({ y: Math.max(0, docTop(el) - state.vh * 0.25), shape: el.dataset.shape, dim });
+        const ink = el.dataset.ink ? parseFloat(el.dataset.ink) : 0.8;
+        list.push({ y: Math.max(0, docTop(el) - state.vh * 0.25), shape: el.dataset.shape, dim, ink });
       });
       const numbers = $('#numbers');
       if (numbers) {
         const steps = $$('.step', numbers), top = docTop(numbers);
         const range = Math.max(1, numbers.offsetHeight - state.vh);
-        steps.forEach((step, i) => {
-          list.push({ y: top + range * (i + 0.5) / steps.length, shape: step.dataset.shape, dim: i === 2 ? 1 : 1 });
-        });
+        steps.forEach((step, i) => list.push({ y: top + range * (i + 0.5) / steps.length, shape: step.dataset.shape, dim: 1, ink: 0.55 }));
       }
       list.sort((a, b) => a.y - b.y);
       if (list.length) list[0].y = 0;
@@ -1039,16 +1463,39 @@
     measureTasks.push(() => scene.setAnchors(shapeAnchors()));
     window.addEventListener('resize', () => scene.resize());
     if (document.fonts && document.fonts.load) {
-      Promise.all([
-        document.fonts.load('italic 600 200px "Cormorant Garamond"'),
-        document.fonts.load('700 200px "DM Sans"')
-      ]).then(() => scene.rebuild()).catch(() => { /* Shapes then use fallback fonts. */ });
+      document.fonts.load('700 200px "DM Sans"').then(() => scene.rebuild()).catch(() => { /* Shapes then use fallback fonts. */ });
     }
     document.addEventListener('pointerdown', event => {
-      if (event.target.closest('a,button,input,summary,video,audio,canvas,dialog')) return;
+      if (event.target.closest('a,button,input,summary,video,audio,canvas,dialog,.case')) return;
       scene.pulse(event.clientX, event.clientY, performance.now() / 1000);
     }, { passive: true });
-    frameTasks.push((dt, nowSec) => scene.render(nowSec, state.smoothY, dt));
+
+    // Image planes: drawn in the stage so the ink ripples through them.
+    if (scene.hasPlanes) {
+      const planes = $$('[data-plane]').map(img => {
+        const focus = (img.dataset.focus || '0.5,0.5').split(',').map(Number);
+        const plane = scene.addPlane(img, {
+          src: img.dataset.hq || img.currentSrc || img.src,
+          depth: img.dataset.depth,
+          shape: img.dataset.plane,
+          radius: 12,
+          focus
+        });
+        return { img, plane };
+      });
+      const hero = planes.find(p => p.img.id === 'hero-photo');
+      if (hero) {
+        frameTasks.push(() => { hero.plane.dissolve = clamp((state.smoothY - state.vh * 0.12) / (state.vh * 0.8)); });
+      }
+    }
+    // While an opaque section fills the screen the stage cannot be seen, so skip it and save the GPU.
+    let covers = [];
+    measureTasks.push(() => { covers = $$('[data-covers-scene]').map(el => { const t = docTop(el); return { top: t, bottom: t + el.offsetHeight }; }); });
+    frameTasks.push((dt, nowSec) => {
+      const y = state.y;
+      for (let i = 0; i < covers.length; i++) if (y >= covers[i].top && y + state.vh <= covers[i].bottom) return;
+      scene.render(nowSec, state.smoothY, dt);
+    });
     window.__scene = scene;
   }
 
@@ -1063,10 +1510,14 @@
       const previous = state.y;
       state.y = y;
       state.velocity = lerp(state.velocity, y - previous, 0.25);
-      state.smoothY = lerp(state.smoothY, y, FINE ? 0.5 : 0.35);
+      state.smoothY = lenis ? y : lerp(state.smoothY, y, 0.45);
       if (Math.abs(state.smoothY - y) < 0.05) state.smoothY = y;
       const nowSec = now / 1000;
-      for (let i = 0; i < frameTasks.length; i++) frameTasks[i](dt, nowSec);
+      for (let i = 0; i < frameTasks.length; i++) {
+        // If one effect ever fails, drop only that effect and keep everything else running.
+        try { frameTasks[i](dt, nowSec); }
+        catch (error) { console.error('[frame]', error); frameTasks.splice(i, 1); i -= 1; }
+      }
       requestAnimationFrame(loop);
     };
     requestAnimationFrame(loop);
@@ -1084,17 +1535,21 @@
   safe('horizontal', initHorizontal);
   safe('pointer', initPointer);
   safe('chrome', initChrome);
-  safe('ticker', initTicker);
   safe('effects', initScrollEffects);
   safe('numbers', initNumbers);
   safe('roles', initRoles);
   safe('playground', initPlayground);
   safe('graph', initGraph);
-  safe('terminal', initTerminal);
-  safe('hover-list', initHoverList);
+  const labContext = { $, $$, clamp, lerp, frameTasks, measureTasks, refreshTasks, state, fitCanvas, currentLang, docTop, FX, FINE, reducedMotion };
+  ['autoDeploy', 'autoDeployLab', 'wcda', 'fabric', 'assistant'].forEach(name => {
+    if (window.LABS && window.LABS[name]) safe(name, () => window.LABS[name](labContext));
+  });
+  safe('previews', initPreviews);
   safe('proximity', initProximityTitle);
+  safe('meta', initMeta);
+  safe('tracks', initTracks);
   safe('dialogs', initDialogs);
-  safe('gallery', initGallery);
+  safe('cases', initCases);
   safe('palette', initPalette);
   safe('media', initMedia);
   safe('transitions', initTransitions);
@@ -1103,7 +1558,6 @@
   window.addEventListener('resize', measureSoon);
   window.addEventListener('load', measureAll);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(measureAll);
-  $$('details').forEach(d => d.addEventListener('toggle', measureSoon));
   if (window.ResizeObserver) new ResizeObserver(measureSoon).observe(document.body);
   safe('loader', runLoader);
   if ($('.creative-hero')) {

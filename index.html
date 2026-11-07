@@ -13,7 +13,7 @@
 <meta property="og:type" content="profile">
 <meta property="og:url" content="https://hafizabc77.github.io/">
 <meta property="og:title" content="Mustofa A. Ahmed (Hafiz): Machine Learning Engineer">
-<meta property="og:description" content="I make large models run fast on real hardware. Up to 3.03× faster LLM decoding, 10.4× model speed-up, 5 published papers. Open to jobs and internships.">
+<meta property="og:description" content="I make AI models fast enough for the real world. Up to 3.03× faster LLM decoding, 10.4× faster GPU inference, a 63× faster deployment workflow and 6 papers (5 published). Open to jobs and internships.">
 <meta property="og:image" content="https://hafizabc77.github.io/assets/showcase/og-card.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -31,7 +31,7 @@ setTimeout(function(){if(!window.__fxReady){c.remove('fx','wipe-in');c.add('intr
 <link rel="preload" href="assets/fonts/dm-sans.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Person","name":"Mustofa A. Ahmed","alternateName":["Hafiz","Abdulhafiz Ahmed Mustofa"],"jobTitle":"Machine Learning Engineer","url":"https://hafizabc77.github.io/","image":"https://hafizabc77.github.io/assets/showcase/portrait-hero.webp","email":"hafizabc77@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Beijing","addressCountry":"CN"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"University of Chinese Academy of Sciences"},{"@type":"CollegeOrUniversity","name":"Yangzhou University"}],"knowsAbout":["LLM inference","Speculative decoding","Model deployment","Quantization","GPU acceleration","FPGA","Knowledge graphs"],"sameAs":["https://github.com/hafizabc77","https://orcid.org/0009-0009-4363-9342"]}
+{"@context":"https://schema.org","@type":"Person","name":"Mustofa A. Ahmed","alternateName":["Hafiz","Abdulhafiz Ahmed Mustofa","Mustofa Abdulhafiz Ahmed"],"jobTitle":"Machine Learning Engineer","url":"https://hafizabc77.github.io/","image":"https://hafizabc77.github.io/assets/showcase/portrait-wide.webp","email":"hafizabc77@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Beijing","addressCountry":"CN"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"University of Chinese Academy of Sciences"},{"@type":"CollegeOrUniversity","name":"Yangzhou University"}],"knowsAbout":["LLM inference","Speculative decoding","Model deployment","Quantization","GPU acceleration","FPGA","Knowledge graphs","Bayesian optimization"],"sameAs":["https://github.com/hafizabc77","https://orcid.org/0009-0009-4363-9342"]}
 </script>
 </head>
 <body>
@@ -40,6 +40,7 @@ setTimeout(function(){if(!window.__fxReady){c.remove('fx','wipe-in');c.add('intr
 <!-- Preloader: the page "loads weights" like a model. First visit in a session only. -->
 <div id="loader" aria-hidden="true">
   <img src="assets/showcase/logo.webp" width="92" height="51" alt="">
+  <p id="loader-stream"></p>
   <div class="loader-count"><span id="loader-num">0</span><i>%</i></div>
   <p id="loader-text">Loading weights</p>
   <div class="loader-tokens"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
@@ -56,9 +57,11 @@ setTimeout(function(){if(!window.__fxReady){c.remove('fx','wipe-in');c.add('intr
   <a class="brand" href="#home" data-cursor="TOP" aria-label="Mustofa A. Ahmed, back to top"><img src="assets/showcase/logo.webp" width="92" height="51" alt=""></a>
   <nav id="nav" aria-label="Main">
     <a href="#experience" data-magnetic><span data-scramble-hover data-en="Experience" data-zh="经历">Experience</span></a>
+    <a href="#autodeploy" data-magnetic><span data-scramble-hover>AutoDeploy</span></a>
     <a href="#projects" data-magnetic><span data-scramble-hover data-en="Projects" data-zh="项目">Projects</span></a>
     <a href="#skills" data-magnetic><span data-scramble-hover data-en="Skills" data-zh="技能">Skills</span></a>
     <a href="#publications" data-magnetic><span data-scramble-hover data-en="Publications" data-zh="论文">Publications</span></a>
+    <a href="#beyond" data-magnetic><span data-scramble-hover data-en="Beyond" data-zh="代码之外">Beyond</span></a>
     <a href="#contact" data-magnetic><span data-scramble-hover data-en="Contact" data-zh="联系">Contact</span></a>
     <a class="nav-resume-m" data-resume href="assets/Mustofa-Ahmed-Resume-EN.pdf" target="_blank" rel="noopener"><span data-en="Resume (PDF)" data-zh="简历（PDF）">Resume (PDF)</span></a>
   </nav>
@@ -75,39 +78,39 @@ setTimeout(function(){if(!window.__fxReady){c.remove('fx','wipe-in');c.add('intr
 </aside>
 
 <main id="main">
-<section class="hero" id="home" data-rail-en="Home" data-rail-zh="首页" data-shape="vortex" data-dim=".85">
+<section class="hero" id="home" data-rail-en="Home" data-rail-zh="首页" data-shape="vortex" data-dim=".7" data-ink="1">
+  <figure class="hero-media">
+    <img id="hero-photo" data-plane="hero" data-hq="assets/showcase/portrait-wide.webp" data-depth="assets/showcase/portrait-depth.webp" data-focus="0.49,0.34"
+         src="assets/showcase/portrait-wide.webp" srcset="assets/showcase/portrait-wide-m.webp 1100w, assets/showcase/portrait-wide.webp 2000w" sizes="(max-width: 760px) 100vw, 64vw"
+         width="2000" height="1333" alt="Mustofa A. Ahmed (Hafiz) listening at a technical conference, with other attendees and the hall behind him" fetchpriority="high">
+  </figure>
   <div class="hero-copy">
     <p class="hero-tags">
       <span class="eyebrow" data-scramble data-en="Machine Learning Engineer" data-zh="机器学习工程师">Machine Learning Engineer</span>
       <span class="opportunity" data-en="Open to jobs &amp; internships" data-zh="求职 · 实习均可">Open to jobs &amp; internships</span>
     </p>
     <h1 data-split>Mustofa<br><i>A. Ahmed<b>.</b></i></h1>
-    <p class="aka" data-rise data-en="Call me Hafiz. Published as Abdulhafiz Ahmed Mustofa." data-zh="叫我 Hafiz。论文署名：Abdulhafiz Ahmed Mustofa。">Call me Hafiz. Published as Abdulhafiz Ahmed Mustofa.</p>
-    <p class="hero-line" data-rise data-en="I make large models run fast on real hardware." data-zh="专注于让大模型在真实硬件上高效运行。">I make large models run fast on real hardware.</p>
-    <p class="hero-description" data-rise data-en="LLM inference, speculative decoding and model deployment across GPUs, FPGAs and NPUs. PhD student at UCAS / IHEP, Chinese Academy of Sciences, based in Beijing." data-zh="大语言模型推理、投机解码，以及面向 GPU、FPGA 和 NPU 的模型部署。现为中国科学院大学 / 中国科学院高能物理研究所博士研究生，常驻北京。">LLM inference, speculative decoding and model deployment across GPUs, FPGAs and NPUs. PhD student at UCAS / IHEP, Chinese Academy of Sciences, based in Beijing.</p>
+    <p class="aka" data-rise data-en="Hi, I’m Hafiz." data-zh="你好，我是 Hafiz。">Hi, I’m Hafiz.</p>
+    <p class="hero-line" data-rise data-en="I make AI models fast enough for the real world." data-zh="让 AI 模型快到能真正落地。">I make AI models fast enough for the real world.</p>
+    <p class="hero-description" data-rise data-en="I’m a PhD student at UCAS and the Institute of High Energy Physics in Beijing. Most days I’m speeding up LLM inference or getting models to run well on GPUs, FPGAs and NPUs." data-zh="我是中国科学院大学与中国科学院高能物理研究所的博士生。平时主要在加速大模型推理，让模型在 GPU、FPGA 和 NPU 上跑得又快又稳。">I’m a PhD student at UCAS and the Institute of High Energy Physics in Beijing. Most days I’m speeding up LLM inference or getting models to run well on GPUs, FPGAs and NPUs.</p>
     <div class="actions" data-rise>
       <a class="button primary" data-resume data-magnetic data-cursor="PDF" href="assets/Mustofa-Ahmed-Resume-EN.pdf" target="_blank" rel="noopener"><span data-en="Get my resume ↗" data-zh="查看简历 ↗">Get my resume ↗</span></a>
       <a class="button" href="#projects" data-magnetic><span data-en="Explore my work" data-zh="探索我的项目">Explore my work</span></a>
     </div>
   </div>
-  <figure class="hero-portrait" data-tilt data-cursor="HAFIZ">
-    <span class="orbit orbit-one"></span>
-    <span class="orbit orbit-two"></span>
-    <span class="portrait-mask"><img src="assets/showcase/portrait-hero.webp" width="660" height="660" alt="Mustofa A. Ahmed (Hafiz) at a technical conference" fetchpriority="high"></span>
-  </figure>
   <ul class="hero-stats" aria-label="Key results">
     <li data-rise><b data-count="3.03" data-decimals="2" data-suffix="×">3.03×</b><span data-en="up to, faster LLM decoding" data-zh="LLM 解码最高提速">up to, faster LLM decoding</span></li>
-    <li data-rise><b data-count="10.4" data-decimals="1" data-suffix="×">10.4×</b><span data-en="ParT speed-up, TensorRT" data-zh="ParT 推理加速">ParT speed-up, TensorRT</span></li>
-    <li data-rise><b data-count="5" data-decimals="0">5</b><span data-en="papers, 3 as first author" data-zh="篇论文，3 篇第一作者">papers, 3 as first author</span></li>
-    <li class="hero-trust" data-rise><span data-en="Zidong Taichu · IHEP, CAS · CMS (CERN) &amp; CEPC · CSC Scholar" data-zh="紫东太初 · 中科院高能所 · CMS（CERN）与 CEPC · CSC 奖学金">Zidong Taichu · IHEP, CAS · CMS (CERN) &amp; CEPC · CSC Scholar</span></li>
+    <li data-rise><b data-count="10.4" data-decimals="1" data-suffix="×">10.4×</b><span data-en="faster GPU inference" data-zh="GPU 推理加速">faster GPU inference</span></li>
+    <li data-rise><b data-count="63" data-decimals="0" data-suffix="×">63×</b><span data-en="faster deployment workflow" data-zh="部署流程提速">faster deployment workflow</span></li>
+    <li data-rise><b data-count="6" data-decimals="0">6</b><span data-en="papers (5 published), 25 citations" data-zh="篇论文（已发表 5 篇），引用 25 次">papers (5 published), 25 citations</span></li>
+    <li class="hero-trust" data-rise><span data-en="Zidong Taichu · IHEP, CAS · LHAASO · CMS (CERN) · CEPC" data-zh="紫东太初 · 中科院高能所 · LHAASO · CMS（CERN）· CEPC">Zidong Taichu · IHEP, CAS · LHAASO · CMS (CERN) · CEPC</span><span class="clock" id="clock"></span></li>
   </ul>
-  <a class="scroll-cue" href="#manifesto" aria-label="Scroll"><span data-en="Scroll" data-zh="向下滚动">Scroll</span><i></i></a>
 </section>
 
-<div class="ticker" aria-hidden="true"><div class="ticker-track"><span>PYTORCH <b>✦</b> vLLM <b>✦</b> TENSORRT <b>✦</b> CUDA <b>✦</b> ONNX <b>✦</b> llama.cpp <b>✦</b> hls4ml <b>✦</b> VITIS AI <b>✦</b> NEO4J <b>✦</b> DOCKER <b>✦</b> UNREAL ENGINE 5 <b>✦</b> </span><span>PYTORCH <b>✦</b> vLLM <b>✦</b> TENSORRT <b>✦</b> CUDA <b>✦</b> ONNX <b>✦</b> llama.cpp <b>✦</b> hls4ml <b>✦</b> VITIS AI <b>✦</b> NEO4J <b>✦</b> DOCKER <b>✦</b> UNREAL ENGINE 5 <b>✦</b> </span></div></div>
+<div class="wave-ticker" id="wave-ticker" aria-hidden="true"><div class="ticker-run"><span>PYTORCH ✦ vLLM ✦ TENSORRT ✦ CUDA ✦ ONNX ✦ llama.cpp ✦ hls4ml ✦ VITIS AI ✦ NEO4J ✦ BAYESIAN OPTIMIZATION ✦ UNREAL ENGINE 5 ✦ PYTORCH ✦ vLLM ✦ TENSORRT ✦ CUDA ✦ ONNX ✦ llama.cpp ✦ hls4ml ✦ VITIS AI ✦ NEO4J ✦ BAYESIAN OPTIMIZATION ✦ UNREAL ENGINE 5 ✦ </span><span>PYTORCH ✦ vLLM ✦ TENSORRT ✦ CUDA ✦ ONNX ✦ llama.cpp ✦ hls4ml ✦ VITIS AI ✦ NEO4J ✦ BAYESIAN OPTIMIZATION ✦ UNREAL ENGINE 5 ✦ PYTORCH ✦ vLLM ✦ TENSORRT ✦ CUDA ✦ ONNX ✦ llama.cpp ✦ hls4ml ✦ VITIS AI ✦ NEO4J ✦ BAYESIAN OPTIMIZATION ✦ UNREAL ENGINE 5 ✦ </span></div></div>
 
 <section class="manifesto" id="manifesto" data-shape="vortex" data-dim=".42">
-  <p data-words data-en="I turn complex ideas into working systems. I enjoy debugging difficult systems, understanding performance bottlenecks and turning technical work into something people can use." data-zh="我将复杂想法转化为可运行的系统。我喜欢调试复杂系统、理解性能瓶颈，并将技术成果转化为可用工具。">I turn complex ideas into working systems. I enjoy debugging difficult systems, understanding performance bottlenecks and turning technical work into something people can use.</p>
+  <p data-words data-en="Training a model is the part everyone talks about. I like the part after it: getting that model to run fast on a real chip without breaking it. It is fiddly work, and I enjoy it more than I probably should." data-zh="训练模型是大家都爱聊的部分，而我更喜欢之后的那一段：让模型在真实芯片上跑得飞快，又不出问题。这活儿很磨人，但我乐在其中。">Training a model is the part everyone talks about. I like the part after it: getting that model to run fast on a real chip without breaking it. It is fiddly work, and I enjoy it more than I probably should.</p>
 </section>
 
 <!-- Scroll story: particles form each result. The numbers are also real text for screen readers and non-WebGL browsers. -->
@@ -122,28 +125,33 @@ setTimeout(function(){if(!window.__fxReady){c.remove('fx','wipe-in');c.add('intr
       </li>
       <li class="step" data-shape="n104">
         <span class="big-num">10.4×</span>
-        <h2 data-en="Faster deployed models" data-zh="更快的部署模型">Faster deployed models</h2>
-        <p data-en="ParT inference with TensorRT FP16, down to 0.972 ms on an NVIDIA V100 at batch size 1. Built for particle-physics experiments CMS (CERN) and CEPC." data-zh="TensorRT FP16 优化后的 ParT 推理，在 NVIDIA V100（批量为 1）上低至 0.972 ms，面向 CMS（CERN）与 CEPC 粒子物理实验。">ParT inference with TensorRT FP16, down to 0.972 ms on an NVIDIA V100 at batch size 1. Built for particle-physics experiments CMS (CERN) and CEPC.</p>
+        <h2 data-en="Faster GPU inference" data-zh="更快的 GPU 推理">Faster GPU inference</h2>
+        <p data-en="Particle Transformer with TensorRT FP16 on an NVIDIA V100: 0.972 ms at batch size 1, about 10.4× the speed of the eager baseline. ParticleNet with TensorRT FP32 reached about 6.6× at 0.456 ms." data-zh="Particle Transformer 在 NVIDIA V100 上使用 TensorRT FP16：批量为 1 时 0.972 ms，约为 eager 基线速度的 10.4 倍。ParticleNet 使用 TensorRT FP32 约为 6.6 倍，0.456 ms。">Particle Transformer with TensorRT FP16 on an NVIDIA V100: 0.972 ms at batch size 1, about 10.4× the speed of the eager baseline. ParticleNet with TensorRT FP32 reached about 6.6× at 0.456 ms.</p>
+      </li>
+      <li class="step" data-shape="n63">
+        <span class="big-num">63×</span>
+        <h2 data-en="Faster deployment workflow" data-zh="更快的部署流程">Faster deployment workflow</h2>
+        <p data-en="One model across CPU, GPU and FPGA: about three weeks by hand, about eight hours with AutoDeploy, using roughly 40× less expert time." data-zh="同一模型部署到 CPU、GPU 和 FPGA：人工约需三周，AutoDeploy 约需八小时，专家投入时间减少约 40 倍。">One model across CPU, GPU and FPGA: about three weeks by hand, about eight hours with AutoDeploy, using roughly 40× less expert time.</p>
       </li>
       <li class="step" data-shape="chips">
         <span class="big-num">GPU · FPGA · NPU</span>
-        <h2 data-en="Three kinds of silicon" data-zh="三类硬件平台">Three kinds of silicon</h2>
-        <p data-en="Models deployed across NVIDIA GPUs, Xilinx FPGAs and Huawei Ascend NPUs, using TensorRT, ONNX, hls4ml, Vitis AI, quantization and pruning." data-zh="将模型部署到 NVIDIA GPU、Xilinx FPGA 和华为昇腾 NPU，涵盖 TensorRT、ONNX、hls4ml、Vitis AI、量化与剪枝。">Models deployed across NVIDIA GPUs, Xilinx FPGAs and Huawei Ascend NPUs, using TensorRT, ONNX, hls4ml, Vitis AI, quantization and pruning.</p>
+        <h2 data-en="One workflow, many chips" data-zh="一套流程，多种芯片">One workflow, many chips</h2>
+        <p data-en="Evaluated on Intel Xeon, NVIDIA V100 and Xilinx Alveo U200, with Huawei Ascend NPU work alongside." data-zh="在 Intel Xeon、NVIDIA V100 和 Xilinx Alveo U200 上完成评估，并开展华为昇腾 NPU 相关工作。">Evaluated on Intel Xeon, NVIDIA V100 and Xilinx Alveo U200, with Huawei Ascend NPU work alongside.</p>
       </li>
-      <li class="step" data-shape="n5">
-        <span class="big-num">5</span>
-        <h2 data-en="Published papers" data-zh="已发表论文">Published papers</h2>
-        <p data-en="Three as first author, with one more submitted to IEEE CSCWD 2027." data-zh="其中第一作者 3 篇，另有 1 篇已投稿 IEEE CSCWD 2027。">Three as first author, with one more submitted to IEEE CSCWD 2027.</p>
+      <li class="step" data-shape="n6">
+        <span class="big-num">6</span>
+        <h2 data-en="Research papers" data-zh="篇研究论文">Research papers</h2>
+        <p data-en="Five published, three of them as first author, with 25 citations so far. The sixth, also first author, is submitted to IEEE CSCWD 2027." data-zh="已发表 5 篇，其中第一作者 3 篇，目前累计引用 25 次；第 6 篇同样为第一作者，已投稿 IEEE CSCWD 2027。">Five published, three of them as first author, with 25 citations so far. The sixth, also first author, is submitted to IEEE CSCWD 2027.</p>
       </li>
     </ol>
-    <div class="step-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <div class="step-dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
   </div>
 </section>
 
-<section class="fit" id="fit" data-rail-en="Your role" data-rail-zh="岗位匹配" data-shape="network" data-dim=".3">
+<section class="fit" id="fit" data-rail-en="Your role" data-rail-zh="岗位匹配" data-shape="network" data-dim=".3" data-ink=".6">
   <p class="eyebrow" data-en="02 / Tailor this page" data-zh="02 / 定制此页面">02 / Tailor this page</p>
   <h2 data-split data-en="What are you <i>hiring for?</i>" data-zh="你在招聘<i>什么岗位？</i>">What are you <i>hiring for?</i></h2>
-  <p class="fit-note" data-reveal data-en="Pick a role. The evidence below, the matching projects and the matching skills all light up." data-zh="选择一个岗位，下方的相关证据、匹配项目和匹配技能都会高亮显示。">Pick a role. The evidence below, the matching projects and the matching skills all light up.</p>
+  <p class="fit-note" data-reveal data-en="Pick the role you’re hiring for and I’ll point you to the work that matters most for it." data-zh="选择你正在招聘的岗位，我会为你标出最相关的经历。">Pick the role you’re hiring for and I’ll point you to the work that matters most for it.</p>
   <div class="roles" role="tablist" aria-label="Role" data-reveal>
     <button type="button" role="tab" class="role-tab" data-role="inference" aria-selected="false" data-cursor="SELECT"><span>01</span><b data-en="LLM Inference Engineer" data-zh="大模型推理工程师">LLM Inference Engineer</b></button>
     <button type="button" role="tab" class="role-tab" data-role="optim" aria-selected="false" data-cursor="SELECT"><span>02</span><b data-en="Model Optimization Engineer" data-zh="模型优化工程师">Model Optimization Engineer</b></button>
@@ -152,9 +160,9 @@ setTimeout(function(){if(!window.__fxReady){c.remove('fx','wipe-in');c.add('intr
   </div>
   <div class="role-panels" data-reveal>
     <div class="role-panel" role="tabpanel" data-panel="inference" data-spot><p data-en="Built a DSpark-capable vLLM runtime and fixed model-loading, hybrid-attention and CUDA Graph issues at Zidong Taichu, then benchmarked on GSM8K, HumanEval and MT-Bench." data-zh="在紫东太初开发支持 DSpark 的 vLLM 推理运行时，解决模型加载、混合注意力与 CUDA Graph 兼容性问题，并在 GSM8K、HumanEval 和 MT-Bench 上完成基准测试。">Built a DSpark-capable vLLM runtime and fixed model-loading, hybrid-attention and CUDA Graph issues at Zidong Taichu, then benchmarked on GSM8K, HumanEval and MT-Bench.</p><a class="text-link" href="#p-spec" data-en="See the proof →" data-zh="查看证据 →">See the proof →</a></div>
-    <div class="role-panel" role="tabpanel" data-panel="optim" data-spot hidden><p data-en="Quantization (PTQ, QAT), pruning, TensorRT and ONNX, with 10.4× and 6.6× speed-ups on an NVIDIA V100. AutoDeploy picks the optimization path for a given model and hardware." data-zh="熟悉量化（PTQ、QAT）、剪枝、TensorRT 与 ONNX，在 NVIDIA V100 上实现 10.4 倍和 6.6 倍加速。AutoDeploy 可针对模型与硬件选择优化路径。">Quantization (PTQ, QAT), pruning, TensorRT and ONNX, with 10.4× and 6.6× speed-ups on an NVIDIA V100. AutoDeploy picks the optimization path for a given model and hardware.</p><a class="text-link" href="#p-auto" data-en="See the proof →" data-zh="查看证据 →">See the proof →</a></div>
-    <div class="role-panel" role="tabpanel" data-panel="infra" data-spot hidden><p data-en="Built AutoDeploy to take models onto NVIDIA GPUs, Xilinx FPGAs and Huawei Ascend NPUs through one workflow, with a Neo4j knowledge graph behind it. Comfortable with Linux, Docker, Git and CI/CD." data-zh="开发 AutoDeploy，用统一流程将模型部署到 NVIDIA GPU、Xilinx FPGA 和华为昇腾 NPU，并以 Neo4j 知识图谱为支撑。熟悉 Linux、Docker、Git 与 CI/CD。">Built AutoDeploy to take models onto NVIDIA GPUs, Xilinx FPGAs and Huawei Ascend NPUs through one workflow, with a Neo4j knowledge graph behind it. Comfortable with Linux, Docker, Git and CI/CD.</p><a class="text-link" href="#p-auto" data-en="See the proof →" data-zh="查看证据 →">See the proof →</a></div>
-    <div class="role-panel" role="tabpanel" data-panel="research" data-spot hidden><p data-en="Five published papers, three as first author, plus a draft-budget study of speculative decoding submitted to IEEE CSCWD 2027. Hands-on with GNNs (HGT, TGN), knowledge graphs and local AI agents." data-zh="已发表论文 5 篇，其中第一作者 3 篇；另有一篇投机解码草稿预算研究已投稿 IEEE CSCWD 2027。并有图神经网络（HGT、TGN）、知识图谱和本地智能体实践经验。">Five published papers, three as first author, plus a draft-budget study of speculative decoding submitted to IEEE CSCWD 2027. Hands-on with GNNs (HGT, TGN), knowledge graphs and local AI agents.</p><a class="text-link" href="#publications" data-en="See the papers →" data-zh="查看论文 →">See the papers →</a></div>
+    <div class="role-panel" role="tabpanel" data-panel="optim" data-spot hidden><p data-en="Quantization (PTQ, QAT), pruning, TensorRT, ONNX and hls4ml. On GPU, AutoDeploy reached about 10.4× for Particle Transformer and 6.6× for ParticleNet, and compression took ParT from 8.17 MB to 1.02 MB with under 0.7 points of accuracy lost." data-zh="熟悉量化（PTQ、QAT）、剪枝、TensorRT、ONNX 与 hls4ml。在 GPU 上，AutoDeploy 将 Particle Transformer 提速约 10.4 倍、ParticleNet 提速约 6.6 倍；模型压缩将 ParT 从 8.17 MB 降到 1.02 MB，精度损失不到 0.7 个百分点。">Quantization (PTQ, QAT), pruning, TensorRT, ONNX and hls4ml. On GPU, AutoDeploy reached about 10.4× for Particle Transformer and 6.6× for ParticleNet, and compression took ParT from 8.17 MB to 1.02 MB with under 0.7 points of accuracy lost.</p><a class="text-link" href="#p-fpga" data-en="See the proof →" data-zh="查看证据 →">See the proof →</a></div>
+    <div class="role-panel" role="tabpanel" data-panel="infra" data-spot hidden><p data-en="Built AutoDeploy, about 200k lines of Python: a parser, a Neo4j knowledge graph, a recommendation engine and a sandboxed orchestrator that take one model across CPUs, GPUs and FPGAs." data-zh="开发 AutoDeploy（约 20 万行 Python）：包含解析器、Neo4j 知识图谱、推荐引擎和沙箱化编排器，可将同一模型部署到 CPU、GPU 和 FPGA。">Built AutoDeploy, about 200k lines of Python: a parser, a Neo4j knowledge graph, a recommendation engine and a sandboxed orchestrator that take one model across CPUs, GPUs and FPGAs.</p><a class="text-link" href="#autodeploy" data-en="See the proof →" data-zh="查看证据 →">See the proof →</a></div>
+    <div class="role-panel" role="tabpanel" data-panel="research" data-spot hidden><p data-en="Six papers, five published and three of those as first author, including Bayesian optimization of triggerless GRB detection for LHAASO-WCDA, which reached 11.5σ on GRB 221009A. Also hands-on with GNNs (HGT, TGN) and reinforcement learning." data-zh="论文 6 篇，其中已发表 5 篇（第一作者 3 篇），包括 LHAASO-WCDA 无触发 GRB 探测的贝叶斯优化，在 GRB 221009A 上达到 11.5σ。并有图神经网络（HGT、TGN）与强化学习实践经验。">Six papers, five published and three of those as first author, including Bayesian optimization of triggerless GRB detection for LHAASO-WCDA, which reached 11.5σ on GRB 221009A. Also hands-on with GNNs (HGT, TGN) and reinforcement learning.</p><a class="text-link" href="#p-lhaaso" data-en="See the proof →" data-zh="查看证据 →">See the proof →</a></div>
   </div>
   <dl class="facts" data-reveal>
     <div><dt data-en="Looking for" data-zh="求职意向">Looking for</dt><dd data-en="AI / ML engineering jobs and internships" data-zh="AI / 机器学习工程方向的工作与实习">AI / ML engineering jobs and internships</dd></div>
@@ -163,12 +171,14 @@ setTimeout(function(){if(!window.__fxReady){c.remove('fx','wipe-in');c.add('intr
   </dl>
 </section>
 
-<section id="experience" class="experience" data-rail-en="Experience" data-rail-zh="经历" data-shape="network" data-dim=".2">
+<section id="experience" class="experience" data-rail-en="Experience" data-rail-zh="经历" data-shape="network" data-dim=".2" data-ink=".55">
+  <div class="ghost-wrap" aria-hidden="true"><span class="ghost" data-ghost>EXPERIENCE</span></div>
   <p class="eyebrow" data-en="03 / Experience" data-zh="03 / 工作经历">03 / Experience</p>
-  <h2 data-split data-en="Engineering experience.<br><i>A clear contribution.</i>" data-zh="工程实践。<br><i>贡献清晰可见。</i>">Engineering experience.<br><i>A clear contribution.</i></h2>
+  <h2 data-split data-en="Where I’ve<br><i>worked.</i>" data-zh="我的<i>工作经历。</i>">Where I’ve<br><i>worked.</i></h2>
   <div class="timeline">
     <div class="timeline-line" aria-hidden="true"><i></i></div>
-    <article class="job" data-spot data-reveal>
+    <article class="job has-photo" data-spot data-reveal data-year="2026">
+      <img class="job-photo" src="assets/showcase/place-taichu.webp" width="720" height="824" alt="" loading="lazy">
       <span class="job-logo"><img src="assets/showcase/taichu.webp" width="640" height="420" alt="Zidong Taichu logo" loading="lazy"></span>
       <div>
         <div class="job-head"><h3 data-en="Algorithm R&amp;D Intern" data-zh="算法研发实习生">Algorithm R&amp;D Intern</h3><span class="meta" data-en="JUL – OCT 2026 · BEIJING" data-zh="2026.07 – 2026.10 · 北京">JUL – OCT 2026 · BEIJING</span></div>
@@ -180,7 +190,8 @@ setTimeout(function(){if(!window.__fxReady){c.remove('fx','wipe-in');c.add('intr
         <p class="tags"><span>vLLM</span><span>PyTorch</span><span data-en="Runtime integration" data-zh="运行时集成">Runtime integration</span><span data-en="GPU benchmarking" data-zh="GPU 基准测试">GPU benchmarking</span></p>
       </div>
     </article>
-    <article class="job" data-spot data-reveal>
+    <article class="job has-photo" data-spot data-reveal data-year="2023">
+      <img class="job-photo" src="assets/showcase/place-ihep.webp" width="900" height="601" alt="" loading="lazy">
       <span class="job-logo"><img src="assets/showcase/ihep.webp" width="119" height="120" alt="IHEP logo" loading="lazy"></span>
       <div>
         <div class="job-head"><h3 data-en="Research Fellow" data-zh="科研人员">Research Fellow</h3><span class="meta" data-en="2023 – PRESENT · BEIJING" data-zh="2023 至今 · 北京">2023 – PRESENT · BEIJING</span></div>
@@ -188,11 +199,12 @@ setTimeout(function(){if(!window.__fxReady){c.remove('fx','wipe-in');c.add('intr
         <ul>
           <li data-en="ML deployment for the particle-physics experiments CEPC and CMS (CERN): ParticleNet and ParT on TensorRT and ONNX." data-zh="面向 CEPC 与 CMS（CERN）粒子物理实验开展机器学习部署：基于 TensorRT 和 ONNX 部署 ParticleNet / ParT。">ML deployment for the particle-physics experiments CEPC and CMS (CERN): ParticleNet and ParT on TensorRT and ONNX.</li>
           <li data-en="Built AutoDeploy and its deployment knowledge graph, and trained DFlash drafters for vLLM serving studies." data-zh="开发 AutoDeploy 及其部署知识图谱；训练 DFlash 草稿模型并开展 vLLM 推理服务研究。">Built AutoDeploy and its deployment knowledge graph, and trained DFlash drafters for vLLM serving studies.</li>
+          <li data-en="Worked with the LHAASO-WCDA team on triggerless gamma-ray burst detection using Bayesian optimization." data-zh="与 LHAASO-WCDA 团队合作，利用贝叶斯优化改进无触发伽马射线暴探测。">Worked with the LHAASO-WCDA team on triggerless gamma-ray burst detection using Bayesian optimization.</li>
         </ul>
-        <p class="tags"><span>TensorRT</span><span>ONNX</span><span>ParticleNet</span><span>ParT</span><span>Neo4j</span></p>
+        <p class="tags"><span>TensorRT</span><span>ONNX</span><span>ParticleNet</span><span>ParT</span><span>Neo4j</span><span>LHAASO</span></p>
       </div>
     </article>
-    <article class="job" data-spot data-reveal>
+    <article class="job" data-spot data-reveal data-year="2021" data-preview="assets/showcase/geepower-site.webp" data-cursor="WEBSITE">
       <span class="job-logo"><img src="assets/showcase/geepower.webp" width="119" height="120" alt="GeePower logo" loading="lazy"></span>
       <div>
         <div class="job-head"><h3 data-en="Web Developer" data-zh="网站开发工程师">Web Developer</h3><span class="meta" data-en="2021 – 2022 · YANGZHOU" data-zh="2021 – 2022 · 扬州">2021 – 2022 · YANGZHOU</span></div>
@@ -205,18 +217,147 @@ setTimeout(function(){if(!window.__fxReady){c.remove('fx','wipe-in');c.add('intr
   </div>
 </section>
 
+<!-- The flagship: one set of dots morphs through the whole system as you scroll. -->
+<section id="autodeploy" class="ad" data-covers-scene data-rail-en="AutoDeploy" data-rail-zh="AutoDeploy" data-shape="network" data-dim=".05" data-ink=".2">
+  <div class="ad-sticky">
+    <canvas id="ad-canvas" role="img" aria-label="Animation following one model through AutoDeploy: a three-week manual timeline, the parser, the knowledge graph, the search for a Pareto frontier, about 320 executed steps, results on three hardware platforms and the closed loop."></canvas>
+    <div class="ad-top">
+      <p class="eyebrow" data-en="04 / Flagship project · Master’s thesis" data-zh="04 / 旗舰项目 · 硕士论文">04 / Flagship project · Master’s thesis</p>
+      <ol class="ad-rail" aria-hidden="true"><li data-en="Read" data-zh="读取">Read</li><li data-en="Remember" data-zh="记忆">Remember</li><li data-en="Plan" data-zh="规划">Plan</li><li data-en="Run" data-zh="执行">Run</li><li data-en="Deploy" data-zh="部署">Deploy</li><li data-en="Learn" data-zh="学习">Learn</li></ol>
+    </div>
+    <div class="ad-steps">
+        <article class="ad-step ad-intro active">
+          <h2>AutoDeploy</h2>
+          <p class="ad-lead" data-en="My master’s thesis. You give it one model and one config file. It plans, runs and checks the deployment on CPU, GPU and FPGA, and remembers every attempt for next time." data-zh="我的硕士论文。只需提供一个模型和一个配置文件，它就会在 CPU、GPU 和 FPGA 上自动规划、执行并验证部署，并记住每一次尝试，供下次使用。">My master’s thesis. You give it one model and one config file. It plans, runs and checks the deployment on CPU, GPU and FPGA, and remembers every attempt for next time.</p>
+          <ul class="ad-chips"><li><b>~63×</b><span data-en="faster, start to finish" data-zh="全程提速">faster, start to finish</span></li><li><b>~40×</b><span data-en="less expert time" data-zh="专家时间减少">less expert time</span></li><li><b>~10×</b><span data-en="more setups tried" data-zh="尝试方案增加">more setups tried</span></li></ul>
+          <p class="ad-scroll" data-en="↓ Scroll to follow one model through the six steps." data-zh="↓ 继续滚动，跟随一个模型走完六个步骤。">↓ Scroll to follow one model through the six steps.</p>
+        </article>
+        <article class="ad-step">
+          <p class="ad-kicker">1 / 6</p>
+          <h3 data-en="Read the model" data-zh="读取模型">Read the model</h3>
+          <p data-en="Like a mechanic’s inspection: 13 automatic checks look at the model and the machine, then write one short report, the StateContract, that the planner can trust." data-zh="就像机械师检修：13 项自动检查会分析模型和机器，并生成一份简短报告（StateContract），供规划器可靠使用。">Like a mechanic’s inspection: 13 automatic checks look at the model and the machine, then write one short report, the StateContract, that the planner can trust.</p>
+          <ul class="ad-chips"><li><b>13</b><span data-en="automatic checks" data-zh="项自动检查">automatic checks</span></li><li><b>10.58 s</b><span data-en="once per model" data-zh="每个模型一次">once per model</span></li></ul>
+        </article>
+        <article class="ad-step">
+          <p class="ad-kicker">2 / 6</p>
+          <h3 data-en="Remember what worked" data-zh="记住有效的方案">Remember what worked</h3>
+          <p data-en="Every past attempt, good or bad, lives in a knowledge graph. A new model starts from similar past runs instead of from zero. Node names come from my real Neo4j database." data-zh="每一次历史尝试，无论成败，都保存在知识图谱中。新模型会先参考相似的历史运行，而不是从零开始。图中节点名称来自我真实的 Neo4j 数据库。">Every past attempt, good or bad, lives in a knowledge graph. A new model starts from similar past runs instead of from zero. Node names come from my real Neo4j database.</p>
+          <ul class="ad-chips"><li><b>0.58 → 0.76</b><span data-en="right picks in the top 5" data-zh="前 5 推荐的命中率">right picks in the top 5</span></li><li><b>14% → 8%</b><span data-en="bad suggestions" data-zh="无效建议">bad suggestions</span></li></ul>
+        </article>
+        <article class="ad-step">
+          <p class="ad-kicker">3 / 6</p>
+          <h3 data-en="Plan the best options" data-zh="规划最佳方案">Plan the best options</h3>
+          <p data-en="Four planners suggest complete deployment recipes. Each dot is one recipe: further left is faster, higher is more accurate. Recipes that break a hard rule are dropped before they cost anything." data-zh="四种规划器给出完整的部署方案。每个点代表一个方案：越靠左越快，越靠上越准。违反硬约束的方案在消耗算力之前就被剔除。">Four planners suggest complete deployment recipes. Each dot is one recipe: further left is faster, higher is more accurate. Recipes that break a hard rule are dropped before they cost anything.</p>
+          <ul class="ad-chips"><li><b>40 min</b><span data-en="vs 95 min, random search" data-zh="随机搜索需 95 分钟">vs 95 min, random search</span></li><li><b>0.45 ms</b><span data-en="vs 0.68 ms, random search" data-zh="随机搜索为 0.68 ms">vs 0.68 ms, random search</span></li></ul>
+        </article>
+        <article class="ad-step">
+          <p class="ad-kicker">4 / 6</p>
+          <h3 data-en="Run, check, repair" data-zh="执行、检查、修复">Run, check, repair</h3>
+          <p data-en="Each step runs in a sandbox and is checked before the next one starts. If a step fails, AutoDeploy repairs it, swaps the tool or rolls back. Each square is one real step from the evaluation." data-zh="每一步都在沙箱中运行，并在下一步开始前接受检查。若某步失败，AutoDeploy 会修复、替换工具或回滚。每个方块代表评估中真实执行的一步。">Each step runs in a sandbox and is checked before the next one starts. If a step fails, AutoDeploy repairs it, swaps the tool or rolls back. Each square is one real step from the evaluation.</p>
+          <ul class="ad-chips"><li><b>~320</b><span data-en="steps run" data-zh="个步骤">steps run</span></li><li><b>88%</b><span data-en="finished, some after a repair" data-zh="最终完成（部分经修复）">finished, some after a repair</span></li></ul>
+        </article>
+        <article class="ad-step">
+          <p class="ad-kicker">5 / 6</p>
+          <h3 data-en="One workflow, many chips" data-zh="一套流程，多种芯片">One workflow, many chips</h3>
+          <p data-en="The same config deploys to a CPU, a GPU and an FPGA with no hand-written code for each. On the V100 it picked tuned FP16 over INT8, because Volta’s Tensor Cores only speed up FP16." data-zh="同一份配置即可部署到 CPU、GPU 和 FPGA，无需为每种硬件手写代码。在 V100 上，它选择了调优后的 FP16 而非 INT8，因为 Volta 的 Tensor Core 只加速 FP16。">The same config deploys to a CPU, a GPU and an FPGA with no hand-written code for each. On the V100 it picked tuned FP16 over INT8, because Volta’s Tensor Cores only speed up FP16.</p>
+          <ul class="ad-chips"><li><b>0.45 ms</b><span data-en="GPU, measured" data-zh="GPU 实测">GPU, measured</span></li><li><b>72 µs</b><span data-en="FPGA, HLS estimate" data-zh="FPGA HLS 估算">FPGA, HLS estimate</span></li></ul>
+        </article>
+        <article class="ad-step">
+          <p class="ad-kicker">6 / 6</p>
+          <h3 data-en="Learn from every run" data-zh="从每次运行中学习">Learn from every run</h3>
+          <p data-en="Every result flows back into the graph, so the next deployment starts smarter: fewer tries and fewer dead ends." data-zh="每次结果都会回流到图谱，因此下一次部署起点更高：尝试更少，弯路更少。">Every result flows back into the graph, so the next deployment starts smarter: fewer tries and fewer dead ends.</p>
+          <ul class="ad-chips"><li><b>8 → 2</b><span data-en="tries before the first working setup" data-zh="首个可用方案前的尝试次数">tries before the first working setup</span></li><li><b>35% → 8%</b><span data-en="setups that fail" data-zh="失败方案占比">setups that fail</span></li></ul><p class="pg-note" data-en="Warm-start values are partially estimated in the thesis." data-zh="热启动数值在论文中为部分估算。">Warm-start values are partially estimated in the thesis.</p>
+        </article>
+    </div>
+    <div class="ad-progress" aria-hidden="true"><i></i></div>
+  </div>
+</section>
+
+<section id="ad-lab" class="ad-lab" data-shape="network" data-dim=".1" data-ink=".3">
+  <div class="ad-lab-head">
+    <div>
+      <p class="eyebrow" data-en="AutoDeploy lab · Real thesis numbers" data-zh="AutoDeploy 实验台 · 论文真实数据">AutoDeploy lab · Real thesis numbers</p>
+      <h2 data-split data-en="Try AutoDeploy <i>yourself.</i>" data-zh="亲手试试 <i>AutoDeploy。</i>">Try AutoDeploy <i>yourself.</i></h2>
+    </div>
+    <p data-reveal data-en="The problem it solves: one trained model, one chip, and many ways to run it. Some are fast, some keep more accuracy. Pick a chip and how much accuracy you can give up, then start the race. AutoDeploy picks the fastest setup that stays within your limit. The model is ParT, which classifies particle jets in collider data, and every number is a real measurement from my thesis." data-zh="它解决的问题：一个训练好的模型，一块芯片，却有很多种运行方式，有的快，有的更准。选择芯片和可接受的精度损失，然后开始比赛。AutoDeploy 会选出在你的限度内最快的方案。模型是 ParT，用于对撞机数据中的粒子喷注分类；所有数字均为我论文中的真实测量值。">The problem it solves: one trained model, one chip, and many ways to run it. Some are fast, some keep more accuracy. Pick a chip and how much accuracy you can give up, then start the race. AutoDeploy picks the fastest setup that stays within your limit. The model is ParT, which classifies particle jets in collider data, and every number is a real measurement from my thesis.</p>
+  </div>
+  <div class="ad-console race-lab">
+    <div class="lab-controls">
+      <div class="lab-step"><span class="lab-n">1</span><div class="lab-field">
+        <b data-en="Pick a chip" data-zh="选择芯片">Pick a chip</b>
+        <div class="chip-pick" id="ad-targets" role="radiogroup" aria-label="Target hardware">
+          <button type="button" role="radio" aria-checked="false" data-target="cpu"><svg class="chip-ico" viewBox="0 0 40 40" aria-hidden="true"><rect x="9" y="9" width="22" height="22" rx="2"/><rect x="14" y="14" width="12" height="12"/><path d="M14 9V5M20 9V5M26 9V5M14 35v-4M20 35v-4M26 35v-4M9 14H5M9 20H5M9 26H5M35 14h-4M35 20h-4M35 26h-4"/></svg><b>CPU</b><small>Intel Xeon Gold 6248</small></button>
+          <button type="button" role="radio" aria-checked="true" data-target="gpu"><img src="assets/showcase/v100.webp" alt="" width="420" height="466"><b>GPU</b><small>NVIDIA Tesla V100</small></button>
+          <button type="button" role="radio" aria-checked="false" data-target="fpga"><svg class="chip-ico" viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="7" width="26" height="26" rx="2"/><path d="M7 15h26M7 22h26M7 29h26M15 7v26M22 7v26M29 7v26"/></svg><b>FPGA</b><small>Xilinx Alveo U200</small></button>
+        </div>
+      </div></div>
+      <div class="lab-step"><span class="lab-n">2</span><div class="lab-field">
+        <b data-en="How much accuracy can you give up?" data-zh="能接受多少精度损失？">How much accuracy can you give up?</b>
+        <div class="seg loss-pick" id="ad-floor-pick" role="radiogroup" aria-label="Accuracy you can give up">
+          <button type="button" role="radio" aria-checked="false" data-floor="94"><span data-en="None" data-zh="不能损失">None</span></button>
+          <button type="button" role="radio" aria-checked="false" data-floor="93.5"><span data-en="0.5 pt" data-zh="0.5 个点">0.5 pt</span></button>
+          <button type="button" role="radio" aria-checked="true" data-floor="93"><span data-en="1 pt" data-zh="1 个点">1 pt</span></button>
+          <button type="button" role="radio" aria-checked="false" data-floor="91.5"><span data-en="2.5 pt" data-zh="2.5 个点">2.5 pt</span></button>
+        </div>
+        <small data-en="The model starts at 94.0% accuracy." data-zh="模型原始精度为 94.0%。">The model starts at 94.0% accuracy.</small>
+      </div></div>
+      <div class="lab-step"><span class="lab-n">3</span><div class="lab-field">
+        <button type="button" class="button primary" id="ad-run"><span data-en="▶ Start the race" data-zh="▶ 开始比赛">▶ Start the race</span></button>
+        <small data-en="Replays a real run, failure and all." data-zh="重放一次真实运行，包括其中的失败与修复。">Replays a real run, failure and all.</small>
+      </div></div>
+    </div>
+    <div class="race" id="ad-race">
+      <div class="race-legend"><span data-en="Setup" data-zh="运行方式">Setup</span><span data-en="Speed per inference · longer bar is faster" data-zh="单次推理速度 · 条越长越快">Speed per inference · longer bar is faster</span><span data-en="Accuracy" data-zh="精度">Accuracy</span></div>
+      <div class="race-rows" id="ad-race-rows" aria-live="polite"></div>
+    </div>
+    <div class="ad-side">
+      <div class="ad-pick" id="ad-pick" aria-live="polite"></div>
+      <ol class="ad-run-steps" id="ad-run-steps">
+        <li data-step="parse" data-en="Read the model (13 checks)" data-zh="读取模型（13 项检查）">Read the model (13 checks)</li>
+        <li data-step="kg" data-en="Look up similar past runs" data-zh="检索相似的历史运行">Look up similar past runs</li>
+        <li data-step="plan" data-en="Plan candidate setups" data-zh="规划候选方案">Plan candidate setups</li>
+        <li data-step="run" data-en="Run each step in a sandbox" data-zh="在沙箱中逐步执行">Run each step in a sandbox</li>
+        <li data-step="bench" data-en="Race them on the chip" data-zh="在芯片上实测比赛">Race them on the chip</li>
+        <li data-step="save" data-en="Save the result to the graph" data-zh="将结果写回图谱">Save the result to the graph</li>
+      </ol>
+    </div>
+    <details class="ad-dev">
+      <summary data-en="For engineers: the raw log and the JSON contracts" data-zh="工程师视角：原始日志与 JSON 契约">For engineers: the raw log and the JSON contracts</summary>
+      <div class="ad-dev-grid">
+        <pre class="ad-log" id="ad-log" aria-label="Replay of a deployment run"></pre>
+        <div class="ad-contract">
+          <div class="ad-tabs" id="ad-contracts">
+            <button type="button" data-contract="StateContract" aria-selected="true">StateContract</button>
+            <button type="button" data-contract="PlanBundle" aria-selected="false">PlanBundle</button>
+            <button type="button" data-contract="StepEvent" aria-selected="false">StepEvent</button>
+            <button type="button" data-contract="ControlAction" aria-selected="false">ControlAction</button>
+          </div>
+          <pre class="ad-json" id="ad-json" tabindex="0"></pre>
+          <p class="pg-note" data-en="Subsystems only talk through versioned JSON contracts like these, so every run can be replayed from its logs. Excerpts from Appendix A of the thesis." data-zh="各子系统只通过这样带版本的 JSON 契约通信，因此每次运行都可以根据日志重放。摘自论文附录 A。">Subsystems only talk through versioned JSON contracts like these, so every run can be replayed from its logs. Excerpts from Appendix A of the thesis.</p>
+        </div>
+      </div>
+    </details>
+  </div>
+  <div class="ad-foot">
+    <button type="button" class="case-open button primary" data-case="autodeploy" data-magnetic data-cursor="OPEN"><span data-en="Read the full case study" data-zh="阅读完整案例">Read the full case study</span></button>
+    <a class="text-link" href="https://doi.org/10.1007/s41605-026-00734-w" target="_blank" rel="noopener" data-en="Read the paper ↗" data-zh="阅读论文 ↗">Read the paper ↗</a>
+    <a class="text-link" href="assets/Thesis-Defense-Mustofa-Ahmed.pdf" target="_blank" rel="noopener" data-en="Defense slides (PDF, 36 MB) ↗" data-zh="答辩幻灯片（PDF，36 MB）↗">Defense slides (PDF, 36 MB) ↗</a>
+    <p class="ad-bench-note" data-en="The 10.4× headline on this page is a separate benchmark: TensorRT FP16 at 0.972 ms against the eager baseline. This lab uses the thesis evaluation tables." data-zh="本页 10.4 倍的标题数据来自另一组基准测试：TensorRT FP16（0.972 ms）对比 eager 基线。本实验台使用论文评估表中的数据。">The 10.4× headline on this page is a separate benchmark: TensorRT FP16 at 0.972 ms against the eager baseline. This lab uses the thesis evaluation tables.</p>
+  </div>
+</section>
+
 <!-- On a wide screen this section pins and scrolls sideways. Elsewhere the panels simply stack. -->
-<section id="projects" class="projects" data-rail-en="Projects" data-rail-zh="项目" data-shape="chips" data-dim=".16">
+<section id="projects" class="projects" data-rail-en="Projects" data-rail-zh="项目" data-shape="chips" data-dim=".12" data-ink=".7">
   <div class="projects-sticky">
     <div class="track">
       <article class="panel panel-intro">
-        <p class="eyebrow" data-en="04 / Selected work" data-zh="04 / 精选项目">04 / Selected work</p>
-        <h2 data-split data-en="Technical depth.<br><i>Practical impact.</i>" data-zh="技术深度。<br><i>实际价值。</i>">Technical depth.<br><i>Practical impact.</i></h2>
-        <p class="panel-hint" data-en="Keep scrolling. Two of these are live: try them." data-zh="继续滚动。其中两个项目可以直接上手体验。">Keep scrolling. Two of these are live: try them.</p>
+        <p class="eyebrow" data-en="05 / More selected work" data-zh="05 / 更多精选项目">05 / More selected work</p>
+        <h2 data-split data-en="More things<br><i>I’ve built.</i>" data-zh="更多<i>我做过的项目。</i>">More things<br><i>I’ve built.</i></h2>
+        <p class="panel-hint" data-en="Keep scrolling. Most of these are live, so click around and try them." data-zh="继续滚动。大部分都能直接上手，点一点试试。">Keep scrolling. Most of these are live, so click around and try them.</p>
         <span class="hint-arrow" aria-hidden="true">→</span>
       </article>
 
-      <article class="panel" id="p-spec" data-roles="inference optim research">
+      <article class="panel" id="p-spec" data-roles="inference optim research" data-index="01">
         <div class="panel-visual">
           <div class="playground" id="playground">
             <div class="pg-head"><b data-en="Speculative decoding playground" data-zh="投机解码演练场">Speculative decoding playground</b><span class="pg-live" data-en="LIVE" data-zh="实时">LIVE</span></div>
@@ -233,45 +374,78 @@ setTimeout(function(){if(!window.__fxReady){c.remove('fx','wipe-in');c.add('intr
             <p class="pg-note" data-en="Toy model for intuition, not measured data: draft too little and you waste the drafter, draft too much and rejected tokens cost you." data-zh="仅为帮助理解的示意模型，并非实测数据：草稿太短浪费草稿模型，太长则被拒绝的 token 带来额外开销。">Toy model for intuition, not measured data: draft too little and you waste the drafter, draft too much and rejected tokens cost you.</p>
           </div>
         </div>
-        <div class="panel-copy" data-lenis-prevent>
-          <p class="match-tag" data-en="★ Matches your role" data-zh="★ 匹配你的岗位">★ Matches your role</p>
+        <div class="panel-copy">
           <p class="eyebrow" data-en="LLM inference" data-zh="大模型推理">LLM inference</p>
           <h3 data-en="Speculative decoding" data-zh="投机解码加速">Speculative decoding</h3>
           <p class="result" data-en="Up to 3.03× faster decoding" data-zh="解码速度最高提升 3.03 倍">Up to 3.03× faster decoding</p>
           <p data-en="DFlash, DSpark and MTP in vLLM. I trained a 3-layer DFlash drafter and studied how the proposal budget trades speed against wasted work." data-zh="在 vLLM 中实践 DFlash、DSpark 与 MTP，训练三层 DFlash 草稿模型，并研究提议长度在速度与无效计算之间的权衡。">DFlash, DSpark and MTP in vLLM. I trained a 3-layer DFlash drafter and studied how the proposal budget trades speed against wasted work.</p>
-          <details>
-            <summary data-en="Engineering details +" data-zh="工程细节 +">Engineering details +</summary>
-            <p data-en="Measured draft acceptance, scheduler behavior, latency, throughput and answer correctness. Internship benchmarks used GSM8K, HumanEval and MT-Bench on RTX 4090; later IHEP experiments use RTX 5090. Paper submitted to IEEE CSCWD 2027." data-zh="研究草稿接受率、调度行为、延迟、吞吐量和回答正确性。实习期间在 RTX 4090 上基于 GSM8K、HumanEval 和 MT-Bench 测试；后续高能所实验使用 RTX 5090。论文已投稿 IEEE CSCWD 2027。">Measured draft acceptance, scheduler behavior, latency, throughput and answer correctness. Internship benchmarks used GSM8K, HumanEval and MT-Bench on RTX 4090; later IHEP experiments use RTX 5090. Paper submitted to IEEE CSCWD 2027.</p>
-          </details>
+          <button type="button" class="case-open button" data-case="decoding" data-magnetic data-cursor="OPEN"><span data-en="Read the case study" data-zh="阅读案例详情">Read the case study</span></button>
         </div>
       </article>
 
-      <article class="panel" id="p-auto" data-roles="optim infra">
+      <article class="panel" id="p-lhaaso" data-roles="research" data-index="02">
         <div class="panel-visual">
-          <div class="gallery" aria-roledescription="carousel" aria-label="AutoDeploy gallery" data-tilt>
-            <div class="gallery-frame"><img id="autodeploy-slide" src="assets/showcase/autodeploy-cli.webp" loading="lazy" alt="AutoDeploy command-line interface" width="1400" height="893" data-cursor="VIEW"></div>
-            <div class="gallery-controls">
-              <button type="button" id="gallery-prev" aria-label="Previous AutoDeploy figure" data-magnetic>←</button>
-              <span id="gallery-count" aria-live="polite">1 / 4</span>
-              <button type="button" id="gallery-next" aria-label="Next AutoDeploy figure" data-magnetic>→</button>
+          <div class="wcda-box">
+            <div class="wcda-head">
+              <b data-en="WCDA event display" data-zh="WCDA 事例显示">WCDA event display</b>
+              <div class="seg small" id="wcda-mode" role="radiogroup" aria-label="Analysis mode">
+                <button type="button" role="radio" aria-checked="false" data-mode="trigger" data-en="With trigger" data-zh="触发模式">With trigger</button>
+                <button type="button" role="radio" aria-checked="true" data-mode="triggerless" data-en="Triggerless" data-zh="无触发">Triggerless</button>
+              </div>
+              <span class="wcda-kept"><span data-en="showers kept" data-zh="保留的簇射">showers kept</span> <b id="wcda-kept">0 / 0</b></span>
             </div>
-            <p class="gallery-caption" data-en="A practical interface for deployment, validation and diagnostics." data-zh="通过实用的命令行界面完成部署、验证与诊断。">A practical interface for deployment, validation and diagnostics.</p>
+            <canvas id="wcda" role="img" aria-label="Simulated event display on the real LHAASO-WCDA layout: one pool of 1,320 PMTs above two pools of 900 PMTs each, 3,120 in all. Noise flickers across the array, and showers light up a dense patch coloured by charge."></canvas>
+            <canvas id="wcda-plateau" aria-hidden="true"></canvas>
+            <p class="wcda-legend"><span id="wcda-status" data-en="Listening to noise" data-zh="正在监听噪声">Listening to noise</span><span class="pg-note" data-en="Simulated events on the real 3,120-PMT layout. Click to fire a shower, hover to read a PMT." data-zh="在真实 3120 PMT 布局上的模拟事例。点击可触发簇射，悬停可查看 PMT。">Simulated events on the real 3,120-PMT layout. Click to fire a shower, hover to read a PMT.</span></p>
           </div>
         </div>
-        <div class="panel-copy" data-lenis-prevent>
-          <p class="match-tag" data-en="★ Matches your role" data-zh="★ 匹配你的岗位">★ Matches your role</p>
-          <p class="eyebrow" data-en="Model deployment · Master’s thesis" data-zh="模型部署 · 硕士论文">Model deployment · Master’s thesis</p>
-          <h3>AutoDeploy</h3>
-          <p class="result" data-en="10.4× ParT · 6.6× ParticleNet" data-zh="ParT 加速 10.4 倍 · ParticleNet 加速 6.6 倍">10.4× ParT · 6.6× ParticleNet</p>
-          <p data-en="A model-to-deployment platform. It inspects a model, picks an optimization path (TensorRT, ONNX, quantization, pruning) and deploys to GPU, FPGA or NPU, keeping reusable knowledge from every run." data-zh="智能模型部署与优化平台：自动分析模型，选择优化路径（TensorRT、ONNX、量化、剪枝），部署到 GPU、FPGA 或 NPU，并沉淀每次运行的可复用知识。">A model-to-deployment platform. It inspects a model, picks an optimization path (TensorRT, ONNX, quantization, pruning) and deploys to GPU, FPGA or NPU, keeping reusable knowledge from every run.</p>
-          <details>
-            <summary data-en="Engineering details +" data-zh="工程细节 +">Engineering details +</summary>
-            <p data-en="ParT TensorRT FP16: 0.972 ms, approximately 10.4× eager baseline speed. ParticleNet TensorRT FP32: 0.456 ms, approximately 6.6×. NVIDIA V100, batch size 1, configuration-specific. ParticleNet FP16 showed an accuracy trade-off. CPU ParT reference: 15.7 ms." data-zh="ParT TensorRT FP16：0.972 ms，约为 eager 基线的 10.4 倍速度；ParticleNet TensorRT FP32：0.456 ms，约 6.6 倍。NVIDIA V100，批量为 1，仅对应特定配置。ParticleNet FP16 存在精度权衡。CPU ParT 参考延迟：15.7 ms。">ParT TensorRT FP16: 0.972 ms, approximately 10.4× eager baseline speed. ParticleNet TensorRT FP32: 0.456 ms, approximately 6.6×. NVIDIA V100, batch size 1, configuration-specific. ParticleNet FP16 showed an accuracy trade-off. CPU ParT reference: 15.7 ms.</p>
-          </details>
+        <div class="panel-copy">
+          <p class="eyebrow" data-en="Astroparticle physics · CHEP 2024" data-zh="天体粒子物理 · CHEP 2024">Astroparticle physics · CHEP 2024</p>
+          <h3 data-en="Finding gamma-ray bursts in noise" data-zh="从噪声中寻找伽马射线暴">Finding gamma-ray bursts in noise</h3>
+          <p class="result" data-en="11.5σ on GRB 221009A" data-zh="GRB 221009A 显著性 11.5σ">11.5σ on GRB 221009A</p>
+          <p data-en="LHAASO-WCDA has 3,120 PMTs in three water pools (1,320 + 900 + 900), each firing at about 35 kHz. A trigger throws away faint showers, so I used Bayesian optimization to tune a triggerless detection algorithm, revealing gamma rays below 100 GeV that trigger methods could not see. Switch between the two modes above." data-zh="LHAASO-WCDA 在三个水池中共有 3120 个 PMT（1320 + 900 + 900），单通道计数率约 35 kHz。触发会丢弃微弱簇射，因此我使用贝叶斯优化调优无触发探测算法，发现了触发方法无法探测的 100 GeV 以下伽马射线。可在上方切换两种模式。">LHAASO-WCDA has 3,120 PMTs in three water pools (1,320 + 900 + 900), each firing at about 35 kHz. A trigger throws away faint showers, so I used Bayesian optimization to tune a triggerless detection algorithm, revealing gamma rays below 100 GeV that trigger methods could not see. Switch between the two modes above.</p>
+          <button type="button" class="case-open button" data-case="lhaaso" data-magnetic data-cursor="OPEN"><span data-en="Read the case study" data-zh="阅读案例详情">Read the case study</span></button>
         </div>
       </article>
 
-      <article class="panel" id="p-graph" data-roles="infra research">
+      <article class="panel" id="p-fpga" data-roles="optim infra" data-index="03">
+        <div class="panel-visual">
+          <div class="fabric-box" data-tone="ok">
+            <canvas id="fabric" role="img" aria-label="A Particle Transformer attention block drawn as a hardware pipeline on an FPGA. Data packets flow through embedding, Q K V, matrix multiply, the pairwise bias, softmax, matrix multiply, layer normalization and feed-forward stages. Packets get thinner as the precision drops."></canvas>
+            <p class="fabric-info" id="fabric-info" aria-live="polite"></p>
+            <div class="bit-picker" role="radiogroup" aria-label="Weight precision">
+              <span class="bit-label" data-en="Precision" data-zh="精度">Precision</span>
+              <button type="button" role="radio" aria-checked="true" data-bits="32" data-cursor="32 BIT">32</button>
+              <button type="button" role="radio" aria-checked="false" data-bits="prune" data-cursor="PRUNE"><span data-en="32 pruned" data-zh="32 剪枝">32 pruned</span></button>
+              <button type="button" role="radio" aria-checked="false" data-bits="8" data-cursor="8 BIT">8</button>
+              <button type="button" role="radio" aria-checked="false" data-bits="4" data-cursor="4 BIT">4</button>
+              <button type="button" role="radio" aria-checked="false" data-bits="2" data-cursor="2 BIT">2</button>
+            </div>
+            <div class="fabric-lower">
+              <canvas id="fabric-stair" aria-hidden="true"></canvas>
+              <div class="fabric-read">
+                <div><b id="fabric-size">8.17 MB</b><span data-en="model size, measured" data-zh="模型大小（实测）">model size, measured</span><i class="size-bar"><i id="fabric-size-bar"></i></i></div>
+                <div><b id="fabric-acc">93.998%</b><span data-en="accuracy, measured" data-zh="精度（实测）">accuracy, measured</span></div>
+              </div>
+            </div>
+            <ul class="res-bars" aria-label="Post-synthesis resource use on the Alveo U200: LUT 74 percent, FF 46 percent, BRAM 65 percent, DSP 85 percent">
+              <li><span>LUT</span><i style="--v:74%"></i><b>74%</b></li>
+              <li><span>FF</span><i style="--v:46%"></i><b>46%</b></li>
+              <li><span>BRAM</span><i style="--v:65%"></i><b>65%</b></li>
+              <li><span>DSP</span><i style="--v:85%"></i><b>85%</b></li>
+            </ul>
+          </div>
+        </div>
+        <div class="panel-copy">
+          <p class="eyebrow" data-en="Hardware acceleration" data-zh="硬件加速">Hardware acceleration</p>
+          <h3 data-en="Transformers on FPGAs" data-zh="FPGA 上的 Transformer">Transformers on FPGAs</h3>
+          <p class="result" data-en="8× smaller, 0.65 points lost" data-zh="体积缩小 8 倍，精度仅降 0.65 个百分点">8× smaller, 0.65 points lost</p>
+          <p data-en="Compressed the Particle Transformer with pruning and quantization, then mapped its attention, softmax and normalization blocks onto Xilinx FPGAs with hls4ml. Pick a precision: sizes and accuracies are my measurements, and packets get thinner as bits drop. Hover a block to see what it does. The bars show post-synthesis use on an Alveo U200 for the AutoDeploy-selected design." data-zh="通过剪枝与量化压缩 Particle Transformer，并用 hls4ml 将注意力、Softmax 和归一化模块映射到 Xilinx FPGA。请选择精度：模型大小与精度均为我的实测结果，比特越少，数据包越细。悬停模块可查看其作用。进度条为 AutoDeploy 所选设计在 Alveo U200 上的综合后资源占用。">Compressed the Particle Transformer with pruning and quantization, then mapped its attention, softmax and normalization blocks onto Xilinx FPGAs with hls4ml. Pick a precision: sizes and accuracies are my measurements, and packets get thinner as bits drop. Hover a block to see what it does. The bars show post-synthesis use on an Alveo U200 for the AutoDeploy-selected design.</p>
+          <button type="button" class="case-open button" data-case="fpga" data-magnetic data-cursor="OPEN"><span data-en="Read the case study" data-zh="阅读案例详情">Read the case study</span></button>
+        </div>
+      </article>
+
+      <article class="panel" id="p-graph" data-roles="infra research" data-index="04">
         <div class="panel-visual">
           <div class="graph-box">
             <canvas id="graph" data-cursor="DRAG" role="img" aria-label="Interactive knowledge graph linking models, techniques, tools and hardware"></canvas>
@@ -279,87 +453,139 @@ setTimeout(function(){if(!window.__fxReady){c.remove('fx','wipe-in');c.add('intr
             <p class="pg-note" data-en="Drag a node. A simplified view of the AutoDeploy graph." data-zh="拖动节点试试。这是 AutoDeploy 知识图谱的简化视图。">Drag a node. A simplified view of the AutoDeploy graph.</p>
           </div>
         </div>
-        <div class="panel-copy" data-lenis-prevent>
-          <p class="match-tag" data-en="★ Matches your role" data-zh="★ 匹配你的岗位">★ Matches your role</p>
+        <div class="panel-copy">
           <p class="eyebrow" data-en="Graph learning" data-zh="图学习">Graph learning</p>
           <h3 data-en="Knowledge graphs &amp; GNNs" data-zh="知识图谱与图神经网络">Knowledge graphs &amp; GNNs</h3>
-          <p class="result">Neo4j · HGT · TGN</p>
-          <p data-en="A Neo4j knowledge graph linking the models, techniques, tools and hardware behind AutoDeploy, with graph learning using HGT and TGN." data-zh="构建 AutoDeploy 背后的 Neo4j 知识图谱，关联模型、优化技术、工具与硬件；使用 HGT 和 TGN 开展图学习。">A Neo4j knowledge graph linking the models, techniques, tools and hardware behind AutoDeploy, with graph learning using HGT and TGN.</p>
+          <p class="result" data-en="8 → 2 configs to first viable" data-zh="首个可行方案所需配置：8 → 2">8 → 2 configs to first viable</p>
+          <p data-en="AutoDeploy’s memory: a Neo4j graph of models, techniques, tools and hardware, with HGT and TGN graph learning. As evidence accumulates, invalid configurations fall from 35% to 8%." data-zh="AutoDeploy 的记忆：由模型、技术、工具和硬件构成的 Neo4j 图谱，并使用 HGT 和 TGN 进行图学习。随着证据积累，无效配置从 35% 降至 8%。">AutoDeploy’s memory: a Neo4j graph of models, techniques, tools and hardware, with HGT and TGN graph learning. As evidence accumulates, invalid configurations fall from 35% to 8%.</p>
         </div>
       </article>
 
-      <article class="panel" id="p-fpga" data-roles="optim infra">
+      <article class="panel" id="p-agent" data-roles="inference research infra" data-index="05">
         <div class="panel-visual">
-          <div class="chip-card" data-tilt data-cursor="FPGA"><img src="assets/showcase/fpga.webp" width="288" height="192" alt="FPGA development board" loading="lazy"></div>
+          <div class="agent-box" id="agent">
+            <div class="agent-phone">
+              <div class="agent-bar"><img class="agent-avatar" src="assets/showcase/logo-hermes.png" width="240" height="240" alt=""><div><b>Curiosity</b><small id="agent-status" data-en="Hermes Agent · running locally" data-zh="Hermes Agent · 本地运行">Hermes Agent · running locally</small></div><span class="agent-time" id="agent-time"></span></div>
+              <div class="agent-chat" id="agent-chat" aria-live="polite"></div>
+              <div class="agent-prompts" aria-label="Example requests"><button type="button"></button><button type="button"></button><button type="button"></button></div>
+            </div>
+            <div class="agent-stage">
+              <canvas id="agent-canvas" role="img" aria-label="How a request moves: from the phone to Hermes Agent, out to a tool such as search or memory, down to llama.cpp or Ollama running Qwen3.8-27B, and back to the phone as streamed text. A 24-hour dial around it marks the current Beijing hour."></canvas>
+              <p class="agent-step" id="agent-step" aria-live="polite"></p>
+            </div>
+            <ul class="agent-logos" aria-label="Built with">
+              <li><img src="assets/showcase/logo-hermes.png" class="round" width="240" height="240" alt=""><span><b>Hermes Agent</b><small data-en="agent" data-zh="智能体">agent</small></span></li>
+              <li><img src="assets/showcase/logo-qwen.png" width="420" height="123" alt="Qwen"><span><small data-en="model" data-zh="模型">model</small></span></li>
+              <li><img src="assets/showcase/logo-llamacpp.png" width="420" height="136" alt="llama.cpp"><span><small data-en="runtime" data-zh="推理运行时">runtime</small></span></li>
+              <li><img src="assets/showcase/logo-ollama.png" width="160" height="234" alt=""><span><b>Ollama</b><small data-en="runtime" data-zh="推理运行时">runtime</small></span></li>
+              <li><img src="assets/showcase/v100.webp" width="420" height="466" alt=""><span><b>NVIDIA V100</b><small data-en="GPU" data-zh="GPU">GPU</small></span></li>
+            </ul>
+            <p class="pg-note agent-note" data-en="A scripted replay of how a request flows, not a live connection to my assistant. Tap a request to send it." data-zh="以脚本重放请求的流转过程，并未连接我正在运行的助手。点击一个请求即可发送。">A scripted replay of how a request flows, not a live connection to my assistant. Tap a request to send it.</p>
+          </div>
         </div>
-        <div class="panel-copy" data-lenis-prevent>
-          <p class="match-tag" data-en="★ Matches your role" data-zh="★ 匹配你的岗位">★ Matches your role</p>
-          <p class="eyebrow" data-en="Hardware acceleration" data-zh="硬件加速">Hardware acceleration</p>
-          <h3 data-en="FPGA &amp; GPU acceleration" data-zh="FPGA 与 GPU 加速">FPGA &amp; GPU acceleration</h3>
-          <p class="result">GPU · FPGA · NPU</p>
-          <p data-en="Deployed networks on Xilinx FPGAs (including Alveo) via HLS, hls4ml and Vitis AI, and tuned for NVIDIA GPUs and Ascend NPUs." data-zh="基于 HLS、hls4ml 与 Vitis AI 将神经网络部署到 Xilinx FPGA（含 Alveo），并针对 NVIDIA GPU 与昇腾 NPU 优化。">Deployed networks on Xilinx FPGAs (including Alveo) via HLS, hls4ml and Vitis AI, and tuned for NVIDIA GPUs and Ascend NPUs.</p>
-        </div>
-      </article>
-
-      <article class="panel" id="p-agent" data-roles="inference research">
-        <div class="panel-visual">
-          <div class="terminal" id="terminal" data-tilt><div class="terminal-bar"><i></i><i></i><i></i><span>hafiz@local</span></div><pre id="terminal-text" aria-label="Assistant status: Qwen3.8-27B, served locally with llama.cpp, driven by Hermes Agent, always on."></pre></div>
-        </div>
-        <div class="panel-copy" data-lenis-prevent>
-          <p class="match-tag" data-en="★ Matches your role" data-zh="★ 匹配你的岗位">★ Matches your role</p>
-          <p class="eyebrow" data-en="Personal project · Ongoing" data-zh="个人项目 · 进行中">Personal project · Ongoing</p>
-          <h3 data-en="24/7 AI assistant" data-zh="个人 24/7 智能助手">24/7 AI assistant</h3>
-          <p class="result" data-en="Always on, served locally" data-zh="全天候，本地部署">Always on, served locally</p>
-          <p data-en="An always-on assistant built on Qwen3.8-27B, served locally with llama.cpp and driven by Hermes Agent for tool use." data-zh="基于 Qwen3.8-27B 的全天候个人助手：使用 llama.cpp 本地部署，由 Hermes Agent 负责工具调用。">An always-on assistant built on Qwen3.8-27B, served locally with llama.cpp and driven by Hermes Agent for tool use.</p>
+        <div class="panel-copy">
+          <p class="eyebrow" data-en="Personal research project · In progress" data-zh="个人研究项目 · 进行中">Personal research project · In progress</p>
+          <h3>Curiosity</h3>
+          <p class="result">Hermes + llama.cpp / Ollama + Qwen</p>
+          <p data-en="A personal AI I’m building to remember what I’m working on, notice what needs attention and help without being asked, within limits I set. Phase one runs locally: Hermes Agent orchestrates, and llama.cpp or Ollama serves Qwen3.8-27B. It is also my testbed for a bigger question: can a small model get much smarter through better memory and design, instead of more parameters?" data-zh="我正在打造的个人 AI：记住我在做什么，留意需要关注的事，并在我设定的边界内主动帮忙。第一阶段在本地运行：Hermes Agent 负责编排，llama.cpp 或 Ollama 运行 Qwen3.8-27B。它也是我验证一个更大问题的试验场：小模型能否靠更好的记忆和架构，而不是更多参数，变得聪明得多？">A personal AI I’m building to remember what I’m working on, notice what needs attention and help without being asked, within limits I set. Phase one runs locally: Hermes Agent orchestrates, and llama.cpp or Ollama serves Qwen3.8-27B. It is also my testbed for a bigger question: can a small model get much smarter through better memory and design, instead of more parameters?</p>
+          <button type="button" class="case-open button" data-case="curiosity" data-magnetic data-cursor="OPEN"><span data-en="Read the case study" data-zh="阅读案例详情">Read the case study</span></button>
         </div>
       </article>
 
       <article class="panel panel-end">
-        <p class="also" data-en="Also in my toolkit: model scaling and foundation-model learning curves, including how model size, training data and training duration shape learning, generalization and bottlenecks." data-zh="另有实践：模型扩展与基础模型学习曲线，研究模型规模、训练数据和训练时长如何影响学习、泛化能力与性能瓶颈。">Also in my toolkit: model scaling and foundation-model learning curves, including how model size, training data and training duration shape learning, generalization and bottlenecks.</p>
+        <div>
+          <p class="eyebrow" data-en="Also shipped" data-zh="其他成果">Also shipped</p>
+          <ul class="also-list">
+            <li><b>SECHA</b><span data-en="ESP32 home automation for developing countries, my published bachelor’s thesis." data-zh="面向发展中国家的 ESP32 家庭自动化系统，已发表的本科毕业设计。">ESP32 home automation for developing countries, my published bachelor’s thesis.</span></li>
+            <li><b>MCG</b><span data-en="Multi-data-center storage gateway, IEEE CSCWD 2026." data-zh="多数据中心存储网关，IEEE CSCWD 2026。">Multi-data-center storage gateway, IEEE CSCWD 2026.</span></li>
+            <li><b data-en="Synchrotron compression" data-zh="同步辐射图像压缩">Synchrotron compression</b><span data-en="Fast lossless image compression with deep learning." data-zh="基于深度学习的快速无损图像压缩。">Fast lossless image compression with deep learning.</span></li>
+          </ul>
+          <p class="also" data-en="Also in my toolkit: model scaling and foundation-model learning curves, including how model size, training data and training duration shape learning, generalization and bottlenecks." data-zh="另有实践：模型扩展与基础模型学习曲线，研究模型规模、训练数据和训练时长如何影响学习、泛化能力与性能瓶颈。">Also in my toolkit: model scaling and foundation-model learning curves, including how model size, training data and training duration shape learning, generalization and bottlenecks.</p>
+        </div>
       </article>
     </div>
     <div class="projects-progress" aria-hidden="true"><i></i></div>
   </div>
 </section>
 
-<section id="skills" class="skills" data-rail-en="Skills" data-rail-zh="技能" data-shape="network" data-dim=".2">
-  <p class="eyebrow" data-en="05 / Skills" data-zh="05 / 专业技能">05 / Skills</p>
+<section id="skills" class="skills" data-rail-en="Skills" data-rail-zh="技能" data-shape="network" data-dim=".2" data-ink=".55">
+  <div class="ghost-wrap" aria-hidden="true"><span class="ghost" data-ghost>TOOLBOX</span></div>
+  <p class="eyebrow" data-en="06 / Skills" data-zh="06 / 专业技能">06 / Skills</p>
   <h2 data-split data-en="The <i>toolbox.</i>" data-zh="我的<i>工具箱。</i>">The <i>toolbox.</i></h2>
   <div class="skill-list">
     <div class="skill-row" data-reveal><h3 data-en="LLM inference &amp; serving" data-zh="大模型推理与服务">LLM inference &amp; serving</h3><p class="chips"><span data-roles="inference">vLLM</span><span data-roles="inference">llama.cpp</span><span data-roles="inference optim">DFlash</span><span data-roles="inference optim">DSpark</span><span data-roles="inference">MTP</span><span data-roles="inference">CUDA Graphs</span></p></div>
     <div class="skill-row" data-reveal><h3 data-en="Model optimization" data-zh="模型优化">Model optimization</h3><p class="chips"><span data-roles="optim infra">TensorRT</span><span data-roles="optim infra">ONNX</span><span data-roles="optim">PTQ</span><span data-roles="optim">QAT</span><span data-roles="optim" data-en="Pruning" data-zh="剪枝">Pruning</span><span data-roles="optim infra">hls4ml</span><span data-roles="optim infra">Vitis AI</span></p></div>
-    <div class="skill-row" data-reveal><h3 data-en="Deep learning" data-zh="深度学习">Deep learning</h3><p class="chips"><span data-roles="inference research">PyTorch</span><span data-roles="inference research">Hugging Face</span><span data-roles="research">GNNs (HGT, TGN)</span><span data-roles="research">RL</span></p></div>
+    <div class="skill-row" data-reveal><h3 data-en="Deep learning" data-zh="深度学习">Deep learning</h3><p class="chips"><span data-roles="inference research">PyTorch</span><span data-roles="inference research">Hugging Face</span><span data-roles="research">GNNs (HGT, TGN)</span><span data-roles="research">RL</span><span data-roles="research optim" data-en="Bayesian optimization" data-zh="贝叶斯优化">Bayesian optimization</span></p></div>
     <div class="skill-row" data-reveal><h3 data-en="Programming &amp; infra" data-zh="编程与基础设施">Programming &amp; infra</h3><p class="chips"><span data-roles="inference optim infra research">Python</span><span data-roles="infra optim">C++</span><span data-roles="inference infra optim">CUDA</span><span data-roles="infra">Linux</span><span data-roles="infra">Docker</span><span data-roles="infra">Git</span><span data-roles="infra">CI/CD</span><span data-roles="infra research">Neo4j</span></p></div>
     <div class="skill-row" data-reveal><h3 data-en="Hardware" data-zh="硬件平台">Hardware</h3><p class="chips"><span data-roles="inference optim infra">NVIDIA GPUs</span><span data-roles="optim infra">Xilinx FPGAs</span><span data-roles="infra optim" data-en="Huawei Ascend NPUs" data-zh="华为昇腾 NPU">Huawei Ascend NPUs</span></p></div>
     <div class="skill-row" data-reveal><h3 data-en="Research interests" data-zh="研究兴趣">Research interests</h3><p class="chips"><span data-roles="optim infra" data-en="ML acceleration" data-zh="模型部署与加速">ML acceleration</span><span data-roles="inference" data-en="Efficient LLM inference" data-zh="高效大模型推理">Efficient LLM inference</span><span data-roles="research" data-en="World models" data-zh="世界模型">World models</span><span data-roles="research inference" data-en="Autonomous agents" data-zh="自主智能体">Autonomous agents</span></p></div>
   </div>
 </section>
 
-<section id="publications" class="publications" data-rail-en="Publications" data-rail-zh="论文" data-shape="network" data-dim=".14">
-  <p class="eyebrow" data-en="06 / Publications" data-zh="06 / 发表论文">06 / Publications</p>
-  <h2 data-split data-en="Evidence behind<br><i>the engineering.</i>" data-zh="工程实践背后的<br><i>成果积累。</i>">Evidence behind<br><i>the engineering.</i></h2>
-  <p class="orcid"><a class="text-link" href="https://orcid.org/0009-0009-4363-9342" target="_blank" rel="noopener">ORCID 0009-0009-4363-9342 ↗</a></p>
+<section id="publications" class="publications" data-rail-en="Publications" data-rail-zh="论文" data-shape="network" data-dim=".14" data-ink=".45">
+  <div class="ghost-wrap" aria-hidden="true"><span class="ghost" data-ghost>PAPERS</span></div>
+  <p class="eyebrow" data-en="07 / Publications" data-zh="07 / 发表论文">07 / Publications</p>
+  <h2 data-split data-en="Papers and<br><i>talks.</i>" data-zh="论文与<i>报告。</i>">Papers and<br><i>talks.</i></h2>
+  <p class="pub-name" data-reveal data-en="On papers my name is Abdulhafiz Ahmed Mustofa." data-zh="论文署名为 Abdulhafiz Ahmed Mustofa。">On papers my name is Abdulhafiz Ahmed Mustofa.</p>
+  <ul class="scholar" data-reveal>
+    <li><b>6</b><span data-en="papers (5 published, 1 submitted)" data-zh="篇论文（已发表 5 篇，已投稿 1 篇）">papers (5 published, 1 submitted)</span></li>
+    <li><b>25</b><span data-en="citations" data-zh="引用">citations</span></li>
+    <li><b>2</b><span data-en="h-index" data-zh="h 指数">h-index</span></li>
+    <li><b>3</b><span data-en="first-author papers" data-zh="第一作者论文">first-author papers</span></li>
+    <li class="scholar-link"><a class="text-link" href="https://orcid.org/0009-0009-4363-9342" target="_blank" rel="noopener">ORCID 0009-0009-4363-9342 ↗</a><span class="pg-note" data-en="Source: Google Scholar, 2026" data-zh="来源：Google Scholar，2026 年">Source: Google Scholar, 2026</span></li>
+  </ul>
   <ol class="papers">
-    <li class="paper" data-reveal><span class="year">2026</span><div><h3>Draft-budget trade-offs in block-parallel speculative decoding: an empirical study</h3><p><b>Mustofa</b>, Cheng.</p></div><p class="paper-side"><span class="badge" data-en="First author" data-zh="第一作者">First author</span><span class="badge alt" data-en="Submitted, IEEE CSCWD 2027" data-zh="已投稿 IEEE CSCWD 2027">Submitted, IEEE CSCWD 2027</span></p></li>
-    <li class="paper" data-reveal><a class="paper-link" href="https://doi.org/10.1007/s41605-026-00734-w" target="_blank" rel="noopener" data-cursor="READ" aria-label="Read: A knowledge-driven framework for HEP model deployment"></a><span class="year">2026</span><div><h3>A knowledge-driven framework for HEP model deployment on heterogeneous hardware</h3><p><b>Mustofa</b>, Cheng. <i>Radiation Detection Technology and Methods.</i></p></div><p class="paper-side"><span class="badge" data-en="First author" data-zh="第一作者">First author</span><span class="doi">DOI ↗</span></p></li>
-    <li class="paper" data-reveal><a class="paper-link" href="https://doi.org/10.1109/cscwd68734.2026.11582304" target="_blank" rel="noopener" data-cursor="READ" aria-label="Read: MCG"></a><span class="year">2026</span><div><h3>MCG: A Multi-Data-Center Content Gateway for Topology-Hiding and Secure WAN Storage Access</h3><p>Wei, Meng, Li, <b>Mustofa</b>, Cheng, Li, Bi. <i>29th IEEE CSCWD 2026</i>, 2738–2743.</p></div><p class="paper-side"><span class="doi">DOI ↗</span></p></li>
-    <li class="paper" data-reveal><a class="paper-link" href="https://doi.org/10.1051/epjconf/202533701330" target="_blank" rel="noopener" data-cursor="READ" aria-label="Read: Enhancing GRB Detection"></a><span class="year">2025</span><div><h3>Enhancing GRB Detection: Bayesian Optimization of Triggerless Data Analysis for LHAASO-WCDA</h3><p><b>Mustofa</b>, Cheng, Yao. <i>EPJ Web of Conferences</i> 337.</p></div><p class="paper-side"><span class="badge" data-en="First author" data-zh="第一作者">First author</span><span class="doi">DOI ↗</span></p></li>
-    <li class="paper" data-reveal><a class="paper-link" href="https://doi.org/10.1007/s41605-024-00490-9" target="_blank" rel="noopener" data-cursor="READ" aria-label="Read: Fast lossless images compression"></a><span class="year">2024</span><div><h3>Fast lossless images compression for synchrotron radiation facility using deep learning and hybrid architecture</h3><p>Zhang, Fu, Gao, Cheng, <b>Mustofa</b>, Chen. <i>Radiation Detection Technology and Methods</i> 8(4).</p></div><p class="paper-side"><span class="doi">DOI ↗</span></p></li>
-    <li class="paper" data-reveal><a class="paper-link" href="https://doi.org/10.1155/2023/8571506" target="_blank" rel="noopener" data-cursor="READ" aria-label="Read: SECHA"></a><span class="year">2023</span><div><h3>SECHA: A Smart Energy-Efficient and Cost-Effective Home Automation System for Developing Countries</h3><p><b>Mustofa</b>, Dagnew, Gantela, Idrisi. <i>Journal of Computer Networks and Communications.</i></p></div><p class="paper-side"><span class="badge" data-en="First author" data-zh="第一作者">First author</span><span class="doi">DOI ↗</span></p></li>
+    <li class="paper" data-reveal><img class="paper-ghost" src="assets/showcase/paper-draft.webp" alt="" loading="lazy"><span class="year">2026</span><div><h3>Draft-budget trade-offs in block-parallel speculative decoding: an empirical study</h3><p><b>Mustofa</b>, Cheng.</p></div><p class="paper-side"><span class="badge" data-en="First author" data-zh="第一作者">First author</span><span class="badge alt" data-en="Submitted, IEEE CSCWD 2027" data-zh="已投稿 IEEE CSCWD 2027">Submitted, IEEE CSCWD 2027</span></p></li>
+    <li class="paper" data-reveal><img class="paper-ghost" src="assets/showcase/paper-autodeploy.webp" alt="" loading="lazy"><a class="paper-link" href="https://doi.org/10.1007/s41605-026-00734-w" target="_blank" rel="noopener" data-cursor="READ" aria-label="Read: A knowledge-driven framework for HEP model deployment"></a><span class="year">2026</span><div><h3>A knowledge-driven framework for HEP model deployment on heterogeneous hardware</h3><p><b>Mustofa</b>, Cheng. <i>Radiation Detection Technology and Methods</i>, published 21 September 2026.</p></div><p class="paper-side"><span class="badge" data-en="First author" data-zh="第一作者">First author</span><span class="doi">DOI ↗</span></p></li>
+    <li class="paper" data-reveal><img class="paper-ghost" src="assets/showcase/paper-mcg.webp" alt="" loading="lazy"><a class="paper-link" href="https://doi.org/10.1109/cscwd68734.2026.11582304" target="_blank" rel="noopener" data-cursor="READ" aria-label="Read: MCG"></a><span class="year">2026</span><div><h3>MCG: A Multi-Data-Center Content Gateway for Topology-Hiding and Secure WAN Storage Access</h3><p>Wei, Meng, Li, <b>Mustofa</b>, Cheng, Li, Bi. <i>29th IEEE CSCWD 2026</i>, 2738–2743.</p></div><p class="paper-side"><span class="doi">DOI ↗</span></p></li>
+    <li class="paper" data-reveal><img class="paper-ghost" src="assets/showcase/paper-grb.webp" alt="" loading="lazy"><a class="paper-link" href="https://doi.org/10.1051/epjconf/202533701330" target="_blank" rel="noopener" data-cursor="READ" aria-label="Read: Enhancing GRB Detection"></a><span class="year">2025</span><div><h3>Enhancing GRB Detection: Bayesian Optimization of Triggerless Data Analysis for LHAASO-WCDA</h3><p><b>Mustofa</b>, Cheng, Yao. <i>EPJ Web of Conferences</i> 337, 01330 (CHEP 2024).</p></div><p class="paper-side"><span class="badge" data-en="First author" data-zh="第一作者">First author</span><span class="doi">DOI ↗</span></p></li>
+    <li class="paper" data-reveal><img class="paper-ghost" src="assets/showcase/paper-compression.webp" alt="" loading="lazy"><a class="paper-link" href="https://doi.org/10.1007/s41605-024-00490-9" target="_blank" rel="noopener" data-cursor="READ" aria-label="Read: Fast lossless images compression"></a><span class="year">2024</span><div><h3>Fast lossless images compression for synchrotron radiation facility using deep learning and hybrid architecture</h3><p>Zhang, Fu, Gao, Cheng, <b>Mustofa</b>, Chen. <i>Radiation Detection Technology and Methods</i> 8, 1693–1703.</p></div><p class="paper-side"><span class="doi">DOI ↗</span></p></li>
+    <li class="paper" data-reveal><img class="paper-ghost" src="assets/showcase/paper-secha.webp" alt="" loading="lazy"><a class="paper-link" href="https://doi.org/10.1155/2023/8571506" target="_blank" rel="noopener" data-cursor="READ" aria-label="Read: SECHA"></a><span class="year">2023</span><div><h3>SECHA: A Smart Energy-Efficient and Cost-Effective Home Automation System for Developing Countries</h3><p><b>Mustofa</b>, Dagnew, Gantela, Idrisi. <i>Journal of Computer Networks and Communications.</i></p></div><p class="paper-side"><span class="badge" data-en="First author" data-zh="第一作者">First author</span><span class="doi">DOI ↗</span></p></li>
   </ol>
+  <div class="talks">
+    <h3 class="talks-title" data-en="Talks and workshops" data-zh="学术报告与研讨会">Talks and workshops</h3>
+    <ol class="talk-list">
+    <li class="talk" data-reveal><a class="paper-link" href="https://indico.in2p3.fr/event/38713/" target="_blank" rel="noopener" data-cursor="OPEN" aria-label="17th FCPPN/L Workshop, Lyon, France"></a><span class="year">2026</span><div><h3 data-en="17th FCPPN/L Workshop" data-zh="第 17 届 FCPPN/L 研讨会">17th FCPPN/L Workshop</h3><p data-en="Talk: AutoDeploy, a toolkit for HEP ML deployment" data-zh="报告：AutoDeploy，面向高能物理的机器学习部署工具">Talk: AutoDeploy, a toolkit for HEP ML deployment</p></div><p class="talk-side"><span data-en="Lyon, France" data-zh="法国里昂">Lyon, France</span><span class="doi">↗</span></p></li>
+    <li class="talk" data-reveal><a class="paper-link" href="https://indico.ihep.ac.cn/event/29575/" target="_blank" rel="noopener" data-cursor="OPEN" aria-label="Quantum Computing and Machine Learning Workshop, Sun Yat-sen University, Shenzhen"></a><span class="year">2026</span><div><h3 data-en="Quantum Computing and Machine Learning Workshop" data-zh="量子计算与机器学习研讨会">Quantum Computing and Machine Learning Workshop</h3><p data-en="Participant" data-zh="参会">Participant</p></div><p class="talk-side"><span data-en="Sun Yat-sen University, Shenzhen" data-zh="中山大学（深圳）">Sun Yat-sen University, Shenzhen</span><span class="doi">↗</span></p></li>
+    <li class="talk" data-reveal><a class="paper-link" href="https://doi.org/10.1051/epjconf/202533701330" target="_blank" rel="noopener" data-cursor="OPEN" aria-label="CHEP 2024, Kraków, Poland"></a><span class="year">2024</span><div><h3 data-en="CHEP 2024" data-zh="CHEP 2024">CHEP 2024</h3><p data-en="Talk: optimizing triggerless GRB analysis for LHAASO-WCDA" data-zh="报告：LHAASO-WCDA 无触发 GRB 分析优化">Talk: optimizing triggerless GRB analysis for LHAASO-WCDA</p></div><p class="talk-side"><span data-en="Kraków, Poland" data-zh="波兰克拉科夫">Kraków, Poland</span><span class="doi">↗</span></p></li>
+    <li class="talk" data-reveal><a class="paper-link" href="https://indico.ihep.ac.cn/event/22089/" target="_blank" rel="noopener" data-cursor="OPEN" aria-label="International Workshop on the High Energy CEPC, Hangzhou, China"></a><span class="year">2024</span><div><h3 data-en="International Workshop on the High Energy CEPC" data-zh="高能环形正负电子对撞机国际研讨会">International Workshop on the High Energy CEPC</h3><p data-en="Participant" data-zh="参会">Participant</p></div><p class="talk-side"><span data-en="Hangzhou, China" data-zh="中国杭州">Hangzhou, China</span><span class="doi">↗</span></p></li>
+    <li class="talk" data-reveal><a class="paper-link" href="https://indico.ihep.ac.cn/event/22572/" target="_blank" rel="noopener" data-cursor="OPEN" aria-label="Quantum Computing and Machine Learning Workshop, Jilin University, Changchun"></a><span class="year">2024</span><div><h3 data-en="Quantum Computing and Machine Learning Workshop" data-zh="量子计算与机器学习研讨会">Quantum Computing and Machine Learning Workshop</h3><p data-en="Talk: enhancing GRB detection for LHAASO-WCDA" data-zh="报告：增强 LHAASO-WCDA 的 GRB 探测">Talk: enhancing GRB detection for LHAASO-WCDA</p></div><p class="talk-side"><span data-en="Jilin University, Changchun" data-zh="吉林大学（长春）">Jilin University, Changchun</span><span class="doi">↗</span></p></li>
+    </ol>
+  </div>
 </section>
 
-<section id="background" class="background" data-rail-en="Background" data-rail-zh="背景" data-shape="network" data-dim=".2">
+<section id="background" class="background" data-rail-en="Background" data-rail-zh="背景" data-shape="network" data-dim=".2" data-ink=".55">
   <div>
-    <p class="eyebrow" data-en="07 / Education" data-zh="07 / 教育背景">07 / Education</p>
+    <p class="eyebrow" data-en="08 / Education" data-zh="08 / 教育背景">08 / Education</p>
     <ul class="edu">
-      <li data-spot data-reveal><img src="assets/showcase/cas.webp" width="42" height="42" alt="" loading="lazy"><div><h3 data-en="PhD, Computer Application Technology" data-zh="博士 · 计算机应用技术">PhD, Computer Application Technology</h3><p data-en="UCAS / IHEP, Chinese Academy of Sciences · 2026 – present" data-zh="中国科学院大学 / 高能物理研究所 · 2026 至今">UCAS / IHEP, Chinese Academy of Sciences · 2026 – present</p></div></li>
-      <li data-spot data-reveal><img src="assets/showcase/cas.webp" width="42" height="42" alt="" loading="lazy"><div><h3 data-en="M.Eng., Computer Application Technology" data-zh="工学硕士 · 计算机应用技术">M.Eng., Computer Application Technology</h3><p data-en="UCAS / IHEP, Chinese Academy of Sciences · 2023 – 2026" data-zh="中国科学院大学 / 高能物理研究所 · 2023 – 2026">UCAS / IHEP, Chinese Academy of Sciences · 2023 – 2026</p></div></li>
-      <li data-spot data-reveal><img src="assets/showcase/yangzhou.webp" width="42" height="42" alt="" loading="lazy"><div><h3 data-en="B.Sc., Microelectronics Engineering" data-zh="学士 · 微电子科学与工程">B.Sc., Microelectronics Engineering</h3><p data-en="Yangzhou University · 2019 – 2023" data-zh="扬州大学 · 2019 – 2023">Yangzhou University · 2019 – 2023</p></div></li>
+      <li class="edu-card" data-spot data-reveal>
+        <figure><img src="assets/showcase/edu-ucas-yanqi.webp" width="800" height="654" alt="University of Chinese Academy of Sciences, Yanqi Lake campus" loading="lazy"></figure>
+        <div class="edu-body">
+          <p class="edu-school"><img class="edu-logo" src="assets/showcase/cas.webp" width="160" height="160" alt="" loading="lazy"><span data-en="University of Chinese Academy of Sciences · IHEP" data-zh="中国科学院大学 · 高能物理研究所">University of Chinese Academy of Sciences · IHEP</span></p>
+          <h3 data-en="PhD, Computer Application Technology" data-zh="博士 · 计算机应用技术">PhD, Computer Application Technology</h3>
+          <p class="edu-years">2026 – present</p>
+        </div>
+      </li>
+      <li class="edu-card" data-spot data-reveal>
+        <figure><img src="assets/showcase/ucas.webp" width="1200" height="800" alt="The UCAS sign on the University of Chinese Academy of Sciences campus" loading="lazy"></figure>
+        <div class="edu-body">
+          <p class="edu-school"><img class="edu-logo" src="assets/showcase/cas.webp" width="160" height="160" alt="" loading="lazy"><span data-en="University of Chinese Academy of Sciences · IHEP" data-zh="中国科学院大学 · 高能物理研究所">University of Chinese Academy of Sciences · IHEP</span></p>
+          <h3 data-en="M.Eng., Computer Application Technology" data-zh="工学硕士 · 计算机应用技术">M.Eng., Computer Application Technology</h3>
+          <p class="edu-years">2023 – 2026</p>
+        </div>
+      </li>
+      <li class="edu-card" data-spot data-reveal>
+        <figure><img src="assets/showcase/edu-yangzhou.webp" width="1024" height="675" alt="Main building of Yangzhou University" loading="lazy"></figure>
+        <div class="edu-body">
+          <p class="edu-school"><img class="edu-logo" src="assets/showcase/yangzhou.webp" width="160" height="160" alt="" loading="lazy"><span data-en="Yangzhou University" data-zh="扬州大学">Yangzhou University</span></p>
+          <h3 data-en="B.Sc., Microelectronics Engineering" data-zh="学士 · 微电子科学与工程">B.Sc., Microelectronics Engineering</h3>
+          <p class="edu-years">2019 – 2023</p>
+        </div>
+      </li>
     </ul>
   </div>
   <div>
-    <p class="eyebrow" data-en="08 / Awards" data-zh="08 / 荣誉奖项">08 / Awards</p>
+    <p class="eyebrow" data-en="09 / Awards" data-zh="09 / 荣誉奖项">09 / Awards</p>
     <ul class="awards">
       <li data-spot data-reveal><span class="year">2026</span><span data-en="CSC Chinese Government Scholarship" data-zh="中国政府奖学金（CSC）">CSC Chinese Government Scholarship</span></li>
       <li data-spot data-reveal><span class="year">2026</span><span data-en="IHEP Director’s Award, Best Graduation Project" data-zh="高能物理研究所第 25 届所长奖 · 优秀毕业设计">IHEP Director’s Award, Best Graduation Project</span></li>
@@ -369,23 +595,99 @@ setTimeout(function(){if(!window.__fxReady){c.remove('fx','wipe-in');c.add('intr
   </div>
 </section>
 
-<section id="beyond" class="beyond" data-rail-en="Beyond code" data-rail-zh="代码之外" data-shape="network" data-dim=".2">
-  <p class="eyebrow" data-en="09 / Beyond the code" data-zh="09 / 代码之外">09 / Beyond the code</p>
-  <h2 data-split data-en="Curiosity has<br><i>more than one outlet.</i>" data-zh="好奇心，<br><i>不止一种表达。</i>">Curiosity has<br><i>more than one outlet.</i></h2>
-  <ul class="hover-list" id="hover-list">
-    <li data-image="assets/showcase/environment.webp"><a href="creative.html" data-cursor="OPEN"><span data-en="Unreal Engine 5 worlds" data-zh="虚幻引擎 5 世界">Unreal Engine 5 worlds</span><i>→</i></a></li>
-    <li data-image="assets/showcase/metahuman.webp"><a href="creative.html" data-cursor="OPEN"><span data-en="MetaHuman digital humans" data-zh="MetaHuman 数字人">MetaHuman digital humans</span><i>→</i></a></li>
-    <li data-image="assets/showcase/xiao-mi.webp"><a href="creative.html" data-cursor="OPEN"><span data-en="AI-generated music" data-zh="AI 生成音乐">AI-generated music</span><i>→</i></a></li>
-  </ul>
-  <p class="beyond-note" data-en="Away from the screen: volleyball, badminton, swimming and Spurs." data-zh="屏幕之外：排球、羽毛球、游泳，还有热刺。">Away from the screen: volleyball, badminton, swimming and Spurs.</p>
+<section id="beyond" class="beyond-intro" data-rail-en="Beyond code" data-rail-zh="代码之外" data-shape="network" data-dim=".16" data-ink=".9">
+  <p class="eyebrow" data-en="10 / Beyond the code" data-zh="10 / 代码之外">10 / Beyond the code</p>
+  <h2 data-split data-en="What I make<br><i>for fun.</i>" data-zh="我业余时间<br><i>做的东西。</i>">What I make<br><i>for fun.</i></h2>
+  <p class="beyond-lead" data-reveal data-en="When nobody is asking, this is what I build: digital humans, Unreal Engine worlds and songs with AI voices." data-zh="没人要求的时候，我会做这些：数字人、虚幻引擎世界，以及用 AI 人声创作的歌曲。">When nobody is asking, this is what I build: digital humans, Unreal Engine worlds and songs with AI voices.</p>
 </section>
 
-<section id="contact" class="contact" data-rail-en="Contact" data-rail-zh="联系" data-shape="ring" data-dim=".5">
-  <p class="eyebrow" data-en="10 / Let’s build something" data-zh="10 / 期待一起创造">10 / Let’s build something</p>
+<!-- Scroll drives the film: portrait to macro, frame by frame. -->
+<section id="meta" data-covers-scene data-shape="network" data-dim=".04" data-ink=".2">
+  <div class="meta-sticky">
+    <canvas id="meta-canvas" role="img" aria-label="MetaHuman digital character by Hafiz: as you scroll, the camera moves from a portrait to a close-up of the eye."></canvas>
+    <img class="meta-poster" src="assets/showcase/metahuman-portrait.webp" width="1400" height="786" alt="" loading="lazy">
+    <div class="meta-shade" aria-hidden="true"></div>
+    <div class="meta-captions">
+      <p class="eyebrow" data-en="MetaHuman design · Unreal Engine 5" data-zh="MetaHuman 设计 · 虚幻引擎 5">MetaHuman design · Unreal Engine 5</p>
+      <p class="meta-line active" data-en="A digital human I designed." data-zh="我设计的数字人。">A digital human I designed.</p>
+      <p class="meta-line" data-en="Keep scrolling. The camera moves in." data-zh="继续滚动，镜头慢慢推近。">Keep scrolling. The camera moves in.</p>
+      <p class="meta-line" data-en="Skin, brows and lashes hold up, all the way to the eye." data-zh="皮肤、眉毛与睫毛的细节，一直经得起特写。">Skin, brows and lashes hold up, all the way to the eye.</p>
+    </div>
+    <div class="meta-progress" aria-hidden="true"><i></i></div>
+  </div>
+</section>
+
+<section class="world" id="world" data-shape="network" data-dim=".12" data-ink=".9">
+  <div class="world-media world-grid">
+    <figure class="wg-main"><img src="assets/showcase/environment.webp" width="1600" height="900" alt="Canyon environment with a glowing white tree and a character, built in Unreal Engine 5" loading="lazy" data-enlarge data-cursor="VIEW"></figure>
+    <figure><img src="assets/showcase/unreal-canyon.webp" width="1280" height="720" alt="A character overlooking a rocky landscape with ancient ruins under a stormy sunset, in Unreal Engine 5" loading="lazy" data-enlarge data-cursor="VIEW"></figure>
+    <figure><img src="assets/showcase/unreal-arena.webp" width="1280" height="720" alt="Two blue Unreal Engine mannequins in a firefight in a white arena" loading="lazy" data-enlarge data-cursor="VIEW"></figure>
+  </div>
+  <div class="world-copy">
+    <p class="eyebrow" data-en="Unreal Engine 5 · Game project" data-zh="虚幻引擎 5 · 游戏项目">Unreal Engine 5 · Game project</p>
+    <h3 data-en="Worlds you can walk through." data-zh="可以走进去的世界。">Worlds you can walk through.</h3>
+    <p data-en="My Unreal Engine game: environment design, interactive scenes and digital characters. Click a scene to enlarge it." data-zh="我的虚幻引擎游戏项目：场景设计、交互场景与数字角色。点击场景可放大查看。">My Unreal Engine game: environment design, interactive scenes and digital characters. Click a scene to enlarge it.</p>
+  </div>
+</section>
+
+<section class="music" id="music" data-shape="network" data-dim=".16" data-ink="1">
+  <p class="eyebrow" data-en="Music videos and AI songs · Personal hobby" data-zh="音乐视频与 AI 歌曲 · 个人爱好">Music videos and AI songs · Personal hobby</p>
+  <h2 data-split data-en="Songs I make<br><i>with AI voices.</i>" data-zh="我用 AI 人声<br><i>创作的歌曲。</i>">Songs I make<br><i>with AI voices.</i></h2>
+  <div class="music-intro" data-reveal>
+    <p class="music-lead" data-en="A hobby of mine: when a topic is close to my heart, I turn it into a song. The idea, the story and the final cut are mine. <b>Every voice and instrument you hear is AI-generated. No human singers, no microphone.</b> These are a few samples." data-zh="这是我的一个爱好：当某个主题触动我时，我会把它写成一首歌。创意、故事和最终剪辑都由我完成。<b>你听到的每一个人声和乐器都由 AI 生成，没有真人歌手，也没有用过麦克风。</b>以下是几首作品。">A hobby of mine: when a topic is close to my heart, I turn it into a song. The idea, the story and the final cut are mine. <b>Every voice and instrument you hear is AI-generated. No human singers, no microphone.</b> These are a few samples.</p>
+    <ul class="music-credits">
+      <li><b data-en="Idea, story, direction" data-zh="创意、故事、方向">Idea, story, direction</b><span data-en="Me" data-zh="我">Me</span></li>
+      <li><b data-en="Lyrics" data-zh="歌词">Lyrics</b><span>ReMi · AI</span></li>
+      <li><b data-en="Voices and music" data-zh="人声与音乐">Voices and music</b><span data-en="Chirp · AI, no human singers" data-zh="Chirp · AI，无真人歌手">Chirp · AI, no human singers</span></li>
+      <li><b data-en="Timed lyrics" data-zh="歌词时间轴">Timed lyrics</b><span>Gladia · AI</span></li>
+      <li><b data-en="Video edit" data-zh="视频剪辑">Video edit</b><span data-en="Me" data-zh="我">Me</span></li>
+    </ul>
+  </div>
+  <div class="music-scope-wrap" data-reveal>
+    <canvas class="music-scope" aria-hidden="true"></canvas>
+    <p class="scope-caption"><span class="scope-dot" aria-hidden="true"></span><span class="scope-label" data-en="Press play below: this line becomes the live waveform of a voice that never existed." data-zh="点击下方播放：这条线会变成一个从未存在过的声音的实时波形。">Press play below: this line becomes the live waveform of a voice that never existed.</span></p>
+    <ul class="music-stats">
+      <li><b>3</b><span data-en="songs to play here" data-zh="首歌曲可在此播放">songs to play here</span></li>
+      <li><b>2</b><span data-en="music videos" data-zh="支音乐视频">music videos</span></li>
+      <li><b>3</b><span data-en="AI models in the chain" data-zh="个 AI 模型串联">AI models in the chain</span></li>
+      <li><b>0</b><span data-en="human singers" data-zh="位真人歌手">human singers</span></li>
+    </ul>
+  </div>
+  <ol class="pipeline" id="pipeline">
+    <li class="pipe"><span class="pipe-num">01</span><h3>ReMi</h3><p data-en="Generates the lyrics." data-zh="生成歌词。">Generates the lyrics.</p><div class="pipe-visual pipe-lyrics"><span>你的故事有人在听</span><span>When the silence</span></div></li>
+    <li class="pipe"><span class="pipe-num">02</span><h3>Chirp</h3><p data-en="Turns lyrics into audio." data-zh="将歌词转为音频。">Turns lyrics into audio.</p><div class="pipe-visual pipe-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></li>
+    <li class="pipe"><span class="pipe-num">03</span><h3>Gladia</h3><p data-en="Turns the MP3 into timed lyrics." data-zh="将 MP3 转为带时间轴的歌词。">Turns the MP3 into timed lyrics.</p><div class="pipe-visual pipe-times"><span>04:11 When the silence</span><span>04:37 你的故事有人在听</span></div></li>
+    <li class="pipe"><span class="pipe-num">04</span><h3 data-en="Lyric video" data-zh="歌词视频">Lyric video</h3><p data-en="I cut the final video." data-zh="我来剪辑成片。">I cut the final video.</p><div class="pipe-visual pipe-final"><img src="assets/showcase/xiao-mi.webp" alt="" loading="lazy" width="640" height="360"></div></li>
+  </ol>
+  <div class="music-videos">
+    <article class="media-card" data-spot data-reveal>
+      <video controls playsinline preload="none" poster="assets/showcase/xiao-mi.webp" aria-label="A song for Xiao Mi" data-cursor="PLAY"><source src="assets/showcase/xiao-mi.mp4" type="video/mp4"></video>
+      <div><p class="eyebrow" data-en="Music video · AI vocals · my story" data-zh="音乐视频 · AI 人声 · 我的故事">Music video · AI vocals · my story</p><h3 data-en="A song for Xiao Mi" data-zh="送给小米的一首歌">A song for Xiao Mi</h3><p data-en="A Chinese AI-generated music video made to comfort a close friend." data-zh="为安慰好朋友而创作的中文 AI 生成音乐视频。">A Chinese AI-generated music video made to comfort a close friend.</p></div>
+    </article>
+    <article class="media-card" data-spot data-reveal>
+      <video controls playsinline preload="none" poster="assets/showcase/palestine.webp" aria-label="For Palestine" data-cursor="PLAY"><source src="assets/showcase/palestine.mp4" type="video/mp4"></video>
+      <div><p class="eyebrow" data-en="Music video · AI vocals · my story" data-zh="音乐视频 · AI 人声 · 我的故事">Music video · AI vocals · my story</p><h3 data-en="For Palestine" data-zh="献给巴勒斯坦">For Palestine</h3><p data-en="An AI-generated music video I created for Palestine." data-zh="我为巴勒斯坦创作的 AI 生成音乐视频。">An AI-generated music video I created for Palestine.</p></div>
+    </article>
+  </div>
+  <h3 class="songs-title" data-en="The songs, all sung by AI" data-zh="歌曲（全部由 AI 演唱）">The songs, all sung by AI</h3>
+  <div class="tracks">
+    <article class="song" data-track="lion-of-my-chest"><button type="button" class="track-play" aria-label="Play Lion of My Chest" data-cursor="PLAY"><i></i></button><div class="track-body"><h3>Lion of My Chest <span class="ai-tag" data-en="AI vocals" data-zh="AI 人声">AI vocals</span></h3><canvas class="wave" data-cursor="SEEK"></canvas></div><span class="track-time">0:00</span></article>
+    <article class="song" data-track="fire-in-the-rubble"><button type="button" class="track-play" aria-label="Play Fire in the Rubble" data-cursor="PLAY"><i></i></button><div class="track-body"><h3>Fire in the Rubble <span class="ai-tag" data-en="AI vocals" data-zh="AI 人声">AI vocals</span></h3><canvas class="wave" data-cursor="SEEK"></canvas></div><span class="track-time">0:00</span></article>
+    <article class="song" data-track="river-to-sea"><button type="button" class="track-play" aria-label="Play River to Sea" data-cursor="PLAY"><i></i></button><div class="track-body"><h3>River to Sea <span class="ai-tag" data-en="AI vocals" data-zh="AI 人声">AI vocals</span></h3><canvas class="wave" data-cursor="SEEK"></canvas></div><span class="track-time">0:00</span></article>
+  </div>
+  <p class="music-note" data-en="On a desktop, the particles behind the page breathe with the music." data-zh="在电脑上播放时，页面背后的粒子会随音乐律动。">On a desktop, the particles behind the page breathe with the music.</p>
+  <div class="hobby-row">
+    <a class="button primary" href="creative.html" data-magnetic data-cursor="OPEN"><span data-en="Open the creative lab →" data-zh="进入创意实验室 →">Open the creative lab →</span></a>
+    <p data-en="Away from the screen: volleyball, badminton, swimming and Spurs." data-zh="屏幕之外：排球、羽毛球、游泳，还有热刺。">Away from the screen: volleyball, badminton, swimming and Spurs.</p>
+  </div>
+</section>
+
+<section id="contact" class="contact" data-rail-en="Contact" data-rail-zh="联系" data-shape="ring" data-dim=".5" data-ink="1">
+  <p class="eyebrow" data-en="11 / Let’s build something" data-zh="11 / 期待一起创造">11 / Let’s build something</p>
   <h2 class="contact-title" id="contact-title" data-en="Your next teammate?" data-zh="期待成为你的新队友。">Your next teammate?</h2>
   <div class="contact-grid">
     <div>
-      <p class="contact-lead" data-en="Hiring for LLM inference, ML systems or AI infrastructure? I would be glad to hear about the role." data-zh="如果你正在招聘大模型推理、机器学习系统或 AI 基础设施方向的人才，欢迎联系我。">Hiring for LLM inference, ML systems or AI infrastructure? I would be glad to hear about the role.</p>
+      <p class="contact-lead" data-en="Hiring for LLM inference, ML systems or AI infrastructure? I’d love to hear about it." data-zh="如果你在招聘大模型推理、机器学习系统或 AI 基础设施方向的人才，欢迎来聊聊。">Hiring for LLM inference, ML systems or AI infrastructure? I’d love to hear about it.</p>
       <ul class="contact-list">
         <li><span class="contact-label" data-en="Email" data-zh="邮箱">Email</span><a href="mailto:hafizabc77@gmail.com" data-cursor="MAIL">hafizabc77@gmail.com</a><button type="button" class="copy" data-copy="hafizabc77@gmail.com" data-cursor="COPY" data-en="Copy" data-zh="复制">Copy</button></li>
         <li><span class="contact-label" data-en="Work email" data-zh="单位邮箱">Work email</span><a href="mailto:mustofa@ihep.ac.cn" data-cursor="MAIL">mustofa@ihep.ac.cn</a><button type="button" class="copy" data-copy="mustofa@ihep.ac.cn" data-cursor="COPY" data-en="Copy" data-zh="复制">Copy</button></li>
@@ -397,18 +699,19 @@ setTimeout(function(){if(!window.__fxReady){c.remove('fx','wipe-in');c.add('intr
         <a class="button" href="assets/Mustofa-Ahmed-Resume-ZH.pdf" target="_blank" rel="noopener" data-magnetic data-cursor="PDF"><span data-en="Resume, Chinese ↗" data-zh="中文简历 ↗">Resume, Chinese ↗</span></a>
       </div>
     </div>
-    <div class="wechat-card" data-tilt>
-      <img data-enlarge src="assets/showcase/wechat.webp" loading="lazy" alt="WeChat QR code for hafizabc77" width="194" height="288" data-cursor="VIEW">
-      <p data-en="Scan to add me on WeChat, or long-press the code in WeChat." data-zh="扫码添加微信，或在微信中长按二维码。">Scan to add me on WeChat, or long-press the code in WeChat.</p>
-    </div>
+    <button type="button" class="qr-card" id="qr-card" data-tilt data-cursor="ENLARGE" aria-label="Enlarge WeChat QR code">
+      <span class="qr-frame"><img src="assets/showcase/wechat-qr.webp" loading="lazy" alt="WeChat QR code for hafizabc77" width="543" height="544"><i class="qr-scan" aria-hidden="true"></i></span>
+      <span class="qr-text" data-en="Scan on WeChat" data-zh="微信扫一扫">Scan on WeChat</span>
+    </button>
   </div>
 </section>
 </main>
 
 <footer class="site-footer">
   <span>© 2026 Mustofa A. Ahmed</span>
-  <span class="built" data-en="Hand-built: raw WebGL, a custom motion engine and no framework." data-zh="全手工打造：原生 WebGL、自研动效引擎、不依赖框架。">Hand-built: raw WebGL, a custom motion engine and no framework.</span>
+  <span class="solidarity"><span class="flag-wave" id="flag-wave" role="img" aria-label="Palestinian flag"></span><span data-en="For dignity. For peace." data-zh="尊严与和平。">For dignity. For peace.</span></span>
   <a href="#home" data-en="↑ BACK TO TOP" data-zh="↑ 回到顶部">↑ BACK TO TOP</a>
+  <span class="built" data-en="Hand-built: raw WebGL fluid simulation, a custom motion engine and no framework." data-zh="全手工打造：原生 WebGL 流体模拟、自研动效引擎、不依赖框架。">Hand-built: raw WebGL fluid simulation, a custom motion engine and no framework.</span>
 </footer>
 
 <div class="actionbar" aria-label="Quick actions">
@@ -417,10 +720,344 @@ setTimeout(function(){if(!window.__fxReady){c.remove('fx','wipe-in');c.add('intr
   <a href="#contact"><span data-en="Contact" data-zh="联系">Contact</span></a>
 </div>
 
+<!-- Case studies open as full-screen stories. Their content lives in the templates below until needed. -->
+<div id="case" class="case" role="dialog" aria-modal="true" aria-label="Case study" hidden>
+  <button type="button" class="case-close" data-cursor="CLOSE" aria-label="Close case study"><i></i><i></i></button>
+  <div class="case-scroll" id="case-scroll"></div>
+</div>
+
+<template id="case-autodeploy">
+  <article class="case-body">
+    <header class="case-head">
+      <p class="eyebrow" data-en="Master’s thesis · UCAS / IHEP, June 2026" data-zh="硕士论文 · 中国科学院大学 / 高能所，2026 年 6 月">Master’s thesis · UCAS / IHEP, June 2026</p>
+      <h2>AutoDeploy</h2>
+      <p class="case-lead" data-en="A tool that takes one trained model, finds the fastest safe way to run it on CPUs, GPUs and FPGAs, and remembers what it learned for next time." data-zh="一个工具：拿到一个训练好的模型，找到它在 CPU、GPU 和 FPGA 上最快且稳妥的运行方式，并记住这次的经验供下次使用。">A tool that takes one trained model, finds the fastest safe way to run it on CPUs, GPUs and FPGAs, and remembers what it learned for next time.</p>
+      <ul class="case-metrics">
+        <li><b>10.4×</b><span data-en="faster on GPU (TensorRT FP16, 0.972 ms, vs eager baseline)" data-zh="GPU 提速（TensorRT FP16，0.972 ms，对比 eager 基线）">faster on GPU (TensorRT FP16, 0.972 ms, vs eager baseline)</span></li>
+        <li><b>~63×</b><span data-en="faster end-to-end workflow" data-zh="端到端流程提速">faster end-to-end workflow</span></li>
+        <li><b>~40×</b><span data-en="less expert engineering time" data-zh="专家工程时间减少">less expert engineering time</span></li>
+        <li><b>~200k</b><span data-en="lines of Python" data-zh="行 Python 代码">lines of Python</span></li>
+      </ul>
+    </header>
+    <div class="case-sec">
+      <h3 data-en="The problem" data-zh="问题">The problem</h3>
+      <p data-en="Training gets the attention, but deployment takes the calendar. Toolchains are fragmented across CPUs, GPUs, FPGAs and NPUs, knowledge stays with individuals, and each attempt repeats the last one’s mistakes. In high-energy physics the bar is even higher: CMS Phase-2 targets a 12.5 µs hardware-trigger latency at 750 kHz." data-zh="训练备受关注，但部署才真正耗时。工具链在 CPU、GPU、FPGA 和 NPU 之间高度碎片化，经验停留在个人手中，每次尝试都在重复之前的错误。高能物理的要求更为严苛：CMS Phase-2 要求在 750 kHz 下实现 12.5 µs 的硬件触发延迟。">Training gets the attention, but deployment takes the calendar. Toolchains are fragmented across CPUs, GPUs, FPGAs and NPUs, knowledge stays with individuals, and each attempt repeats the last one’s mistakes. In high-energy physics the bar is even higher: CMS Phase-2 targets a 12.5 µs hardware-trigger latency at 750 kHz.</p>
+    </div>
+    <div class="case-sec">
+      <h3 data-en="The system" data-zh="系统">The system</h3>
+      <ol class="loop">
+        <li><b data-en="Parser" data-zh="解析器">Parser</b><span data-en="13 analyzers turn a model and its environment into a typed StateContract." data-zh="13 个分析器将模型及其环境转换为类型化的 StateContract。">13 analyzers turn a model and its environment into a typed StateContract.</span></li>
+        <li><b data-en="Knowledge graph" data-zh="知识图谱">Knowledge graph</b><span data-en="Neo4j memory of models, techniques, tools, hardware and outcomes, with HGT and TGN learning." data-zh="基于 Neo4j 记录模型、技术、工具、硬件与结果，并使用 HGT 和 TGN 学习。">Neo4j memory of models, techniques, tools, hardware and outcomes, with HGT and TGN learning.</span></li>
+        <li><b data-en="Recommendation engine" data-zh="推荐引擎">Recommendation engine</b><span data-en="Retrieval templates, Rainbow DQN, a GFlowNet sampler and multi-objective Bayesian optimization." data-zh="结合检索模板、Rainbow DQN、GFlowNet 采样器与多目标贝叶斯优化。">Retrieval templates, Rainbow DQN, a GFlowNet sampler and multi-objective Bayesian optimization.</span></li>
+        <li><b data-en="Orchestrator" data-zh="编排器">Orchestrator</b><span data-en="Runs plans in sandboxes with gates, checkpoints and rollback, then feeds evidence back to the graph." data-zh="在沙箱中执行方案，提供质量门禁、检查点与回滚，并将证据反馈给图谱。">Runs plans in sandboxes with gates, checkpoints and rollback, then feeds evidence back to the graph.</span></li>
+      </ol>
+      <figure class="case-fig"><img src="assets/showcase/fig-architecture.webp" alt="AutoDeploy architecture: parser, knowledge graph, recommendation engine and orchestrator connected in a closed loop" width="1700" height="680" loading="lazy" data-enlarge data-cursor="VIEW"></figure>
+    </div>
+    <div class="case-sec">
+      <h3 data-en="Thesis results: Particle Transformer, batch size 1" data-zh="论文结果：Particle Transformer，批量为 1">Thesis results: Particle Transformer, batch size 1</h3>
+      <p class="case-note" data-en="The 10.4× headline is TensorRT FP16 at 0.972 ms against the eager baseline. These tables are the thesis evaluation, a separate benchmark with its own baselines: on GPU, tuned FP16 reaches 0.45 ms against 3.80 ms for PyTorch FP32." data-zh="10.4 倍来自 TensorRT FP16（0.972 ms）与 eager 基线的对比。下表为论文评估结果，是另一组基准测试，基线也不同：在 GPU 上，调优后的 FP16 达到 0.45 ms，PyTorch FP32 为 3.80 ms。">The 10.4× headline is TensorRT FP16 at 0.972 ms against the eager baseline. These tables are the thesis evaluation, a separate benchmark with its own baselines: on GPU, tuned FP16 reaches 0.45 ms against 3.80 ms for PyTorch FP32.</p>
+      <div class="result-cards">
+        <div class="table-card"><h4>CPU <small>Intel Xeon Gold 6248</small></h4><table><thead><tr><th></th><th>ms</th><th>inf/s</th><th>Acc.</th></tr></thead><tbody><tr><td>PyTorch FP32 (1 thread)</td><td>45.2</td><td>22</td><td>94.0%</td></tr><tr><td>PyTorch FP32 (20 threads)</td><td>12.8</td><td>78</td><td>94.0%</td></tr><tr class="best"><td>AutoDeploy (ONNX Runtime)</td><td>8.6</td><td>116</td><td>94.0%</td></tr></tbody></table></div>
+        <div class="table-card"><h4>GPU <small>NVIDIA Tesla V100</small></h4><table><thead><tr><th></th><th>ms</th><th>inf/s</th><th>Acc.</th></tr></thead><tbody><tr><td>PyTorch FP32</td><td>3.80</td><td>263</td><td>94.0%</td></tr><tr><td>TensorRT FP16</td><td>0.82</td><td>1,219</td><td>93.7%</td></tr><tr><td>TensorRT INT8 (PTQ)</td><td>0.51</td><td>1,961</td><td>93.4%</td></tr><tr class="best"><td>AutoDeploy (tuned FP16)</td><td>0.45</td><td>2,222</td><td>93.5%</td></tr></tbody></table></div>
+        <div class="table-card"><h4>FPGA <small>Xilinx Alveo U200, estimated</small></h4><table><thead><tr><th></th><th>µs</th><th>inf/s</th><th>Acc.</th></tr></thead><tbody><tr><td>Manual best</td><td>78</td><td>12,500</td><td>92.1%</td></tr><tr><td>Vitis AI INT8</td><td>85</td><td>11,760</td><td>92.3%</td></tr><tr class="best"><td>AutoDeploy</td><td>72</td><td>13,890</td><td>93.0%</td></tr></tbody></table></div>
+      </div>
+      <p class="case-note" data-en="FPGA values are HLS C-synthesis estimates, not on-board measurements. CPU and GPU values were measured on the board." data-zh="FPGA 数据为 HLS C 综合估算值，并非板上实测；CPU 与 GPU 数据均为实测。">FPGA values are HLS C-synthesis estimates, not on-board measurements. CPU and GPU values were measured on the board.</p>
+      <p data-en="The result that surprised me: on the V100 the best choice was tuned FP16, not INT8, because the GPU’s Tensor Cores accelerate FP16. A fixed recipe would have missed it." data-zh="最让我意外的结果：在 V100 上，最佳方案是调优后的 FP16，而不是 INT8，因为 GPU 的 Tensor Core 专门加速 FP16。固定配方会错过这个答案。">The result that surprised me: on the V100 the best choice was tuned FP16, not INT8, because the GPU’s Tensor Cores accelerate FP16. A fixed recipe would have missed it.</p>
+    </div>
+    <div class="case-sec">
+      <h3 data-en="Three weeks to eight hours" data-zh="从三周到八小时">Three weeks to eight hours</h3>
+      <p data-en="The same deployment across all three platforms took about 80 hours of expert work over 21 days by hand. AutoDeploy took 8 hours of wall-clock time and about 2 hours of expert time, and explored about 10× more configurations." data-zh="同样的三平台部署，人工需要 21 天、约 80 小时的专家工作；AutoDeploy 仅需 8 小时运行时间和约 2 小时专家时间，并多探索约 10 倍的配置。">The same deployment across all three platforms took about 80 hours of expert work over 21 days by hand. AutoDeploy took 8 hours of wall-clock time and about 2 hours of expert time, and explored about 10× more configurations.</p>
+      <figure class="case-fig"><img src="assets/showcase/fig-timeline.webp" alt="Timeline comparing a 21-day manual workflow with an 8-hour AutoDeploy workflow" width="1700" height="954" loading="lazy" data-enlarge data-cursor="VIEW"></figure>
+    </div>
+    <div class="case-sec">
+      <h3 data-en="It gets better with use" data-zh="越用越好">It gets better with use</h3>
+      <ul class="case-metrics small">
+        <li><b>8 → 2</b><span data-en="configs to first viable" data-zh="首个可行方案所需配置">configs to first viable</span></li>
+        <li><b>35% → 8%</b><span data-en="invalid configurations" data-zh="无效配置比例">invalid configurations</span></li>
+        <li><b>0.52 → 0.45 ms</b><span data-en="best-discovered latency" data-zh="最佳延迟">best-discovered latency</span></li>
+      </ul>
+    </div>
+    <div class="case-sec">
+      <h3 data-en="Inside the system" data-zh="系统内部">Inside the system</h3>
+      <p data-en="Figures from the thesis, the real command line and the live knowledge graph. Click any figure to enlarge it." data-zh="论文中的图示、真实命令行与知识图谱。点击任意图片可放大查看。">Figures from the thesis, the real command line and the live knowledge graph. Click any figure to enlarge it.</p>
+      <div class="fig-grid">
+        <figure class="fig-card"><img src="assets/showcase/ad-cli.webp" alt="The real AutoDeploy command-line interface: run, chat, validate, recommend, doctor and admin commands" loading="lazy" data-enlarge data-cursor="VIEW"><figcaption data-en="The real CLI." data-zh="真实的命令行界面。">The real CLI.</figcaption></figure>
+        <figure class="fig-card"><img src="assets/showcase/ad-neo4j.webp" alt="The AutoDeploy knowledge graph in Neo4j, linking models, tools, techniques, hardware, runs and a failure" loading="lazy" data-enlarge data-cursor="VIEW"><figcaption data-en="The knowledge graph in Neo4j." data-zh="Neo4j 中的知识图谱。">The knowledge graph in Neo4j.</figcaption></figure>
+        <figure class="fig-card"><img src="assets/showcase/ad-parser.webp" alt="Parser subsystem: model artefact, adapters, ParserIR, 13 analysis stages and three outputs" loading="lazy" data-enlarge data-cursor="VIEW"><figcaption data-en="Parser: 13 stages to a StateContract." data-zh="解析器：13 个阶段生成 StateContract。">Parser: 13 stages to a StateContract.</figcaption></figure>
+        <figure class="fig-card"><img src="assets/showcase/ad-re.webp" alt="Recommendation engine architecture in seven stages, from state encoding to the PlanBundle" loading="lazy" data-enlarge data-cursor="VIEW"><figcaption data-en="Recommendation engine, end to end." data-zh="推荐引擎全流程。">Recommendation engine, end to end.</figcaption></figure>
+        <figure class="fig-card"><img src="assets/showcase/ad-orchestrator.webp" alt="Orchestrator: isolation tiers, pre and post gates, step events and checkpointed rollback" loading="lazy" data-enlarge data-cursor="VIEW"><figcaption data-en="Orchestrator: gates, sandboxes, rollback." data-zh="编排器：门禁、沙箱与回滚。">Orchestrator: gates, sandboxes, rollback.</figcaption></figure>
+        <figure class="fig-card"><img src="assets/showcase/ad-loop.webp" alt="Closed-loop control: step events go to the recommendation engine, which answers with control actions" loading="lazy" data-enlarge data-cursor="VIEW"><figcaption data-en="Closed-loop repair." data-zh="闭环修复。">Closed-loop repair.</figcaption></figure>
+        <figure class="fig-card"><img src="assets/showcase/ad-rap.webp" alt="Retrieval-augmented planning with exact, motif, embedding and temporal retrieval" loading="lazy" data-enlarge data-cursor="VIEW"><figcaption data-en="Retrieval-augmented planning." data-zh="检索增强规划。">Retrieval-augmented planning.</figcaption></figure>
+        <figure class="fig-card"><img src="assets/showcase/ad-mdp.webp" alt="AutoDeploy framed as a sequential decision process with state, action, reward and environment" loading="lazy" data-enlarge data-cursor="VIEW"><figcaption data-en="Deployment as a decision process." data-zh="将部署建模为序列决策过程。">Deployment as a decision process.</figcaption></figure>
+        <figure class="fig-card"><img src="assets/showcase/ad-rainbow.webp" alt="The Rainbow-style value-based agent used by the recommendation engine" loading="lazy" data-enlarge data-cursor="VIEW"><figcaption data-en="The Rainbow DQN planner." data-zh="Rainbow DQN 规划器。">The Rainbow DQN planner.</figcaption></figure>
+      </div>
+    </div>
+    <p class="case-links"><a class="text-link" href="https://doi.org/10.1007/s41605-026-00734-w" target="_blank" rel="noopener" data-en="Read the paper ↗" data-zh="阅读论文 ↗">Read the paper ↗</a><a class="text-link" href="assets/Thesis-Defense-Mustofa-Ahmed.pdf" target="_blank" rel="noopener" data-en="Defense slides (PDF, 36 MB) ↗" data-zh="答辩幻灯片（PDF，36 MB）↗">Defense slides (PDF, 36 MB) ↗</a></p>
+  </article>
+</template>
+
+<template id="case-decoding">
+  <article class="case-body">
+    <header class="case-head">
+      <p class="eyebrow" data-en="Zidong Taichu internship and IHEP research · 2026" data-zh="紫东太初实习与高能所研究 · 2026">Zidong Taichu internship and IHEP research · 2026</p>
+      <h2 data-en="Speculative decoding" data-zh="投机解码加速">Speculative decoding</h2>
+      <p class="case-lead" data-en="Make a large model generate faster by letting a small one guess ahead, then measure honestly when that actually helps." data-zh="让小模型提前预测，从而加快大模型生成；再通过严谨实验，弄清这种方法何时真正有效。">Make a large model generate faster by letting a small one guess ahead, then measure honestly when that actually helps.</p>
+      <ul class="case-metrics">
+        <li><b>3.03×</b><span data-en="faster decoding, at best" data-zh="最高解码提速">faster decoding, at best</span></li>
+        <li><b>3</b><span data-en="methods: DFlash, DSpark, MTP" data-zh="种方法：DFlash、DSpark、MTP">methods: DFlash, DSpark, MTP</span></li>
+        <li><b>3</b><span data-en="benchmarks: GSM8K, HumanEval, MT-Bench" data-zh="个基准：GSM8K、HumanEval、MT-Bench">benchmarks: GSM8K, HumanEval, MT-Bench</span></li>
+      </ul>
+    </header>
+    <div class="case-sec">
+      <h3 data-en="What I did" data-zh="我的工作">What I did</h3>
+      <ul class="case-list">
+        <li data-en="Reproduced DFlash and DSpark for Qwen3.5-4B and built a DSpark-capable vLLM runtime." data-zh="在 Qwen3.5-4B 上复现 DFlash 与 DSpark，并开发支持 DSpark 的 vLLM 运行时。">Reproduced DFlash and DSpark for Qwen3.5-4B and built a DSpark-capable vLLM runtime.</li>
+        <li data-en="Fixed the integration problems that block real use: model loading, hybrid attention and CUDA Graph compatibility." data-zh="解决阻碍实际使用的集成问题：模型加载、混合注意力与 CUDA Graph 兼容性。">Fixed the integration problems that block real use: model loading, hybrid attention and CUDA Graph compatibility.</li>
+        <li data-en="Trained a 3-layer DFlash drafter for serving studies at IHEP." data-zh="在高能所训练三层 DFlash 草稿模型，用于推理服务研究。">Trained a 3-layer DFlash drafter for serving studies at IHEP.</li>
+      </ul>
+    </div>
+    <div class="case-sec">
+      <h3 data-en="The question that matters: how far to draft?" data-zh="关键问题：草稿应该多长？">The question that matters: how far to draft?</h3>
+      <p data-en="Longer drafts can skip more steps, but rejected tokens are wasted work. So I measured draft acceptance, scheduler behavior, latency, throughput and answer correctness across draft budgets. Internship benchmarks ran on an RTX 4090, and later IHEP experiments use an RTX 5090." data-zh="草稿越长，可跳过的步骤越多，但被拒绝的 token 就是无效计算。因此我在不同草稿预算下测量了草稿接受率、调度行为、延迟、吞吐量和回答正确性。实习期间的基准测试在 RTX 4090 上完成，后续高能所实验使用 RTX 5090。">Longer drafts can skip more steps, but rejected tokens are wasted work. So I measured draft acceptance, scheduler behavior, latency, throughput and answer correctness across draft budgets. Internship benchmarks ran on an RTX 4090, and later IHEP experiments use an RTX 5090.</p>
+      <p data-en="That study became a paper submitted to IEEE CSCWD 2027: “Draft-budget trade-offs in block-parallel speculative decoding”." data-zh="这项研究已整理成论文并投稿 IEEE CSCWD 2027：《Draft-budget trade-offs in block-parallel speculative decoding》。">That study became a paper submitted to IEEE CSCWD 2027: “Draft-budget trade-offs in block-parallel speculative decoding”.</p>
+    </div>
+  </article>
+</template>
+
+<template id="case-lhaaso">
+  <article class="case-body">
+    <header class="case-head">
+      <p class="eyebrow" data-en="LHAASO-WCDA · EPJ Web of Conferences, CHEP 2024" data-zh="LHAASO-WCDA · EPJ Web of Conferences，CHEP 2024">LHAASO-WCDA · EPJ Web of Conferences, CHEP 2024</p>
+      <h2 data-en="Finding gamma-ray bursts in noise" data-zh="从噪声中寻找伽马射线暴">Finding gamma-ray bursts in noise</h2>
+      <p class="case-lead" data-en="Bayesian optimization of a triggerless detection algorithm, tested on GRB 221009A, one of the brightest gamma-ray bursts ever recorded." data-zh="对无触发探测算法进行贝叶斯优化，并在有记录以来最亮的伽马射线暴之一 GRB 221009A 上验证。">Bayesian optimization of a triggerless detection algorithm, tested on GRB 221009A, one of the brightest gamma-ray bursts ever recorded.</p>
+      <ul class="case-metrics">
+        <li><b>11.5σ</b><span data-en="significance in triggerless data" data-zh="无触发数据显著性">significance in triggerless data</span></li>
+        <li><b>&lt;100 GeV</b><span data-en="gamma rays revealed, previously undetectable by trigger methods" data-zh="发现此前触发方法无法探测的伽马射线">gamma rays revealed, previously undetectable by trigger methods</span></li>
+        <li><b>3,120</b><span data-en="PMTs in 3 pools: 1,320 + 900 + 900" data-zh="个 PMT，分布于 3 个水池：1320 + 900 + 900">PMTs in 3 pools: 1,320 + 900 + 900</span></li>
+        <li><b>330M+</b><span data-en="hits in a file of about 10 s" data-zh="约 10 秒数据文件中的击中数">hits in a file of about 10 s</span></li>
+      </ul>
+    </header>
+    <figure class="case-photos">
+      <img src="assets/showcase/lhaaso-aerial.webp" width="900" height="540" alt="Aerial view of the LHAASO observatory" loading="lazy" data-enlarge data-cursor="VIEW">
+      <img src="assets/showcase/lhaaso-shower.webp" width="620" height="791" alt="Illustration of an air shower arriving at the LHAASO water pools" loading="lazy" data-enlarge data-cursor="VIEW">
+      <figcaption data-en="The LHAASO observatory, and an illustration of an air shower reaching the water pools." data-zh="LHAASO 观测站，以及空气簇射抵达水池的示意图。">The LHAASO observatory, and an illustration of an air shower reaching the water pools.</figcaption>
+    </figure>
+    <div class="case-sec">
+      <h3 data-en="The problem" data-zh="问题">The problem</h3>
+      <p data-en="Each WCDA channel fires at about 35 kHz, mostly from low-energy cosmic-ray background. Normal triggers throw away the faint low-energy showers that a gamma-ray burst can produce. In triggerless mode, every hit around a burst alert is kept, and the signal then has to be found offline in hundreds of millions of hits." data-zh="WCDA 每个通道的计数率约 35 kHz，主要来自低能宇宙线本底。常规触发会丢弃伽马射线暴可能产生的微弱低能簇射。无触发模式会保留暴发警报前后的全部击中，但信号必须在数亿次击中中离线寻找。">Each WCDA channel fires at about 35 kHz, mostly from low-energy cosmic-ray background. Normal triggers throw away the faint low-energy showers that a gamma-ray burst can produce. In triggerless mode, every hit around a burst alert is kept, and the signal then has to be found offline in hundreds of millions of hits.</p>
+    </div>
+    <div class="case-sec">
+      <h3 data-en="The method" data-zh="方法">The method</h3>
+      <ol class="loop">
+        <li><b data-en="Find the plateau" data-zh="寻找平台">Find the plateau</b><span data-en="A gamma-ray shower front is close to a plane, so hit times projected along it pile up into a plateau that noise does not form." data-zh="伽马射线簇射前沿接近平面，沿其投影的击中时间会形成噪声无法形成的平台。">A gamma-ray shower front is close to a plane, so hit times projected along it pile up into a plateau that noise does not form.</span></li>
+        <li><b data-en="Measure significance" data-zh="计算显著性">Measure significance</b><span data-en="Compare ON and OFF sky regions with the Li-Ma formula, using guard rings to reject false positives." data-zh="使用 Li-Ma 公式比较 ON 与 OFF 天区，并通过保护环排除误报。">Compare ON and OFF sky regions with the Li-Ma formula, using guard rings to reject false positives.</span></li>
+        <li><b data-en="Optimize" data-zh="优化">Optimize</b><span data-en="Each evaluation is expensive and noisy, so Bayesian optimization tunes window size, plateau width and minimum hits, with caching to avoid repeated runs." data-zh="每次评估都昂贵且带噪声，因此用贝叶斯优化调节窗口大小、平台宽度和最小击中数，并通过缓存避免重复计算。">Each evaluation is expensive and noisy, so Bayesian optimization tunes window size, plateau width and minimum hits, with caching to avoid repeated runs.</span></li>
+        <li><b data-en="Cluster" data-zh="聚类">Cluster</b><span data-en="Density-based clustering with DBSCAN and OPTICS helps separate signal from background." data-zh="使用 DBSCAN 和 OPTICS 等密度聚类方法帮助分离信号与本底。">Density-based clustering with DBSCAN and OPTICS helps separate signal from background.</span></li>
+      </ol>
+    </div>
+    <div class="case-sec">
+      <h3 data-en="Try Bayesian optimization yourself" data-zh="亲手试试贝叶斯优化">Try Bayesian optimization yourself</h3>
+      <p data-en="A real Gaussian process runs in your browser. Each click spends one expensive evaluation where expected improvement is highest. Watch how few it needs to find the peak." data-zh="浏览器中运行着一个真实的高斯过程。每次点击，都会在期望提升最高的位置进行一次昂贵评估。看看它只需几次就能找到峰值。">A real Gaussian process runs in your browser. Each click spends one expensive evaluation where expected improvement is highest. Watch how few it needs to find the peak.</p>
+      <div class="bo-box">
+        <canvas id="bo-canvas" role="img" aria-label="Gaussian process surrogate with uncertainty band, sampled points and expected improvement curve"></canvas>
+        <div class="bo-controls">
+          <button type="button" class="button primary small" id="bo-next" data-en="Run next evaluation" data-zh="运行下一次评估">Run next evaluation</button>
+          <button type="button" class="button small" id="bo-reset" data-en="Reset" data-zh="重置">Reset</button>
+          <span class="bo-read"><span id="bo-count">0</span> <span data-en="evaluations · best" data-zh="次评估 · 最佳值">evaluations · best</span> <b id="bo-best">–</b></span>
+        </div>
+        <p class="pg-note" data-en="Illustrative objective, not LHAASO data. Gold dots are evaluations, the band is uncertainty, and the lower curve is expected improvement." data-zh="示意目标函数，并非 LHAASO 数据。金色点为评估结果，色带为不确定性，下方曲线为期望提升。">Illustrative objective, not LHAASO data. Gold dots are evaluations, the band is uncertainty, and the lower curve is expected improvement.</p>
+      </div>
+    </div>
+    <p class="case-links"><a class="text-link" href="https://doi.org/10.1051/epjconf/202533701330" target="_blank" rel="noopener" data-en="Read the open-access paper ↗" data-zh="阅读开放获取论文 ↗">Read the open-access paper ↗</a></p>
+  </article>
+</template>
+
+<template id="case-fpga">
+  <article class="case-body">
+    <header class="case-head">
+      <p class="eyebrow" data-en="ML on heterogeneous hardware · IHEP" data-zh="异构硬件上的机器学习 · 高能所">ML on heterogeneous hardware · IHEP</p>
+      <h2 data-en="Transformers on FPGAs" data-zh="FPGA 上的 Transformer">Transformers on FPGAs</h2>
+      <p class="case-lead" data-en="Getting attention-based physics models into microsecond-scale, low-power hardware takes three things: simplifying the architecture, compressing the model and building the blocks in hardware." data-zh="要让基于注意力的物理模型运行在微秒级、低功耗硬件上，需要三步：简化架构、压缩模型、用硬件实现各模块。">Getting attention-based physics models into microsecond-scale, low-power hardware takes three things: simplifying the architecture, compressing the model and building the blocks in hardware.</p>
+      <ul class="case-metrics">
+        <li><b>8×</b><span data-en="smaller at 4-bit (8.17 → 1.02 MB)" data-zh="4 位量化后体积缩小（8.17 → 1.02 MB）">smaller at 4-bit (8.17 → 1.02 MB)</span></li>
+        <li><b>51.47%</b><span data-en="weights pruned, with 93.936% accuracy after fine-tuning" data-zh="权重被剪枝，微调后精度 93.936%">weights pruned, with 93.936% accuracy after fine-tuning</span></li>
+        <li><b>72 µs</b><span data-en="estimated ParT latency on Alveo U200" data-zh="ParT 在 Alveo U200 上的估算延迟">estimated ParT latency on Alveo U200</span></li>
+      </ul>
+    </header>
+    <div class="case-sec">
+      <h3 data-en="Compression, measured" data-zh="压缩实测">Compression, measured</h3>
+      <div class="table-card wide"><table><thead><tr><th data-en="Weights" data-zh="权重">Weights</th><th data-en="Model size" data-zh="模型大小">Model size</th><th data-en="Accuracy" data-zh="精度">Accuracy</th></tr></thead><tbody><tr><td>32-bit</td><td>8.17 MB</td><td>93.998%</td></tr><tr><td>8-bit</td><td>2.04 MB</td><td>93.986%</td></tr><tr class="best"><td>4-bit</td><td>1.02 MB</td><td>93.352%</td></tr><tr class="bad"><td>2-bit</td><td>0.51 MB</td><td>64.687%</td></tr></tbody></table></div>
+      <p data-en="8-bit costs almost nothing. 4-bit is the sweet spot. At 2-bit the model falls apart. Pruning was done layer by layer, guided by parameter distributions, weight distributions and sensitivity scans, because pruning every layer equally hurts accuracy." data-zh="8 位几乎没有损失，4 位是最佳平衡点，2 位时模型则完全失效。剪枝按层进行，依据参数分布、权重分布和敏感度扫描，因为对所有层统一剪枝会明显损害精度。">8-bit costs almost nothing. 4-bit is the sweet spot. At 2-bit the model falls apart. Pruning was done layer by layer, guided by parameter distributions, weight distributions and sensitivity scans, because pruning every layer equally hurts accuracy.</p>
+    </div>
+    <div class="case-sec">
+      <h3 data-en="Attention in hardware" data-zh="硬件中的注意力机制">Attention in hardware</h3>
+      <p data-en="ParT adds pairwise particle interactions to multi-head attention as a bias before the softmax. With hls4ml I implemented that block as a multi-stage pipeline of linear layers, matrix multiplies and a softmax built from exponential lookup tables, along with layer normalization." data-zh="ParT 在 Softmax 之前将粒子两两相互作用作为偏置加入多头注意力。我使用 hls4ml 将该模块实现为多级流水线，包括线性层、矩阵乘法和基于指数查找表的 Softmax，以及层归一化。">ParT adds pairwise particle interactions to multi-head attention as a bias before the softmax. With hls4ml I implemented that block as a multi-stage pipeline of linear layers, matrix multiplies and a softmax built from exponential lookup tables, along with layer normalization.</p>
+    </div>
+    <div class="case-sec">
+      <h3 data-en="From the thesis" data-zh="论文图示">From the thesis</h3>
+      <div class="fig-grid two">
+        <figure class="fig-card"><img src="assets/showcase/fpga-sensitivity.webp" alt="Layer-wise pruning sensitivity for ParT: embedding and attention projections are the most fragile" loading="lazy" data-enlarge data-cursor="VIEW"><figcaption data-en="Which layers can be pruned, and how far." data-zh="哪些层可以剪枝，可以剪多少。">Which layers can be pruned, and how far.</figcaption></figure>
+        <figure class="fig-card"><img src="assets/showcase/fpga-ptq.webp" alt="Post-training quantization sweep for ParT: INT8 is viable, INT4 marginal, INT2 high-risk" loading="lazy" data-enlarge data-cursor="VIEW"><figcaption data-en="Quantization: where accuracy holds and where it breaks." data-zh="量化：精度在哪里保持，在哪里崩溃。">Quantization: where accuracy holds and where it breaks.</figcaption></figure>
+      </div>
+    </div>
+    <div class="case-sec">
+      <h3 data-en="ParticleNet on a Xilinx U200" data-zh="Xilinx U200 上的 ParticleNet">ParticleNet on a Xilinx U200</h3>
+      <div class="table-card wide"><table><thead><tr><th></th><th data-en="Latency" data-zh="延迟">Latency</th><th data-en="Power" data-zh="功耗">Power</th><th data-en="Speed-up" data-zh="加速">Speed-up</th><th data-en="Accuracy" data-zh="精度">Accuracy</th></tr></thead><tbody><tr><td>ParticleNet</td><td>15 ms</td><td>35 W</td><td>2.22×</td><td>~93.3%</td></tr><tr class="best"><td>Static ParticleNet</td><td>3.13 ms</td><td>9 W</td><td>5×</td><td>~93%</td></tr></tbody></table></div>
+      <p data-en="About 70% of the runtime was in convolution-like operations, so those moved into the FPGA kernel, and Static ParticleNet keeps KNN and edge features only in the first EdgeConv block." data-zh="约 70% 的运行时间花在类卷积操作上，因此将其移入 FPGA 内核；Static ParticleNet 仅在第一个 EdgeConv 模块中保留 KNN 和边特征。">About 70% of the runtime was in convolution-like operations, so those moved into the FPGA kernel, and Static ParticleNet keeps KNN and edge features only in the first EdgeConv block.</p>
+    </div>
+  </article>
+</template>
+
+<template id="case-curiosity">
+  <article class="case-body cu">
+    <header class="case-head">
+      <div class="cu-banner" aria-hidden="true">
+        <span class="cu-ring r1"></span><span class="cu-ring r2"></span><span class="cu-ring r3"></span>
+        <img class="cu-banner-core" src="assets/showcase/logo-hermes.png" alt="" width="240" height="240">
+        <span class="cu-orbit o1"><img src="assets/showcase/logo-qwen-mark.png" alt="" width="160" height="160"></span>
+        <span class="cu-orbit o2"><img src="assets/showcase/logo-ollama.png" alt="" width="160" height="234"></span>
+        <span class="cu-orbit o3"><img src="assets/showcase/v100.webp" alt="" width="420" height="466"></span>
+        <span class="cu-orbit o4"><b>llama.cpp</b></span>
+      </div>
+      <p class="eyebrow" data-en="Personal research project · In progress" data-zh="个人研究项目 · 进行中">Personal research project · In progress</p>
+      <h2>Curiosity</h2>
+      <p class="case-lead" data-en="A personal AI that remembers, notices what matters and learns over time. And my testbed for one question: can a small model get much smarter through better memory and design, instead of more parameters?" data-zh="一个会记忆、会留意重要事情、并随时间学习的个人 AI。它也是我验证一个问题的试验场：小模型能否靠更好的记忆和架构，而不是更多参数，变得聪明得多？">A personal AI that remembers, notices what matters and learns over time. And my testbed for one question: can a small model get much smarter through better memory and design, instead of more parameters?</p>
+      <ul class="case-metrics">
+        <li><b><span data-en="Local" data-zh="本地">Local</span></b><span data-en="runs on my own GPUs" data-zh="运行在我自己的 GPU 上">runs on my own GPUs</span></li>
+        <li><b>27B</b><span data-en="Qwen3.8, open weights, today" data-zh="Qwen3.8，开放权重，当前方案">Qwen3.8, open weights, today</span></li>
+        <li><b>32 GB</b><span data-en="a V100 and an RTX 4090 to share" data-zh="一块 V100 和一台 RTX 4090 轮流使用">a V100 and an RTX 4090 to share</span></li>
+        <li><b>1 / 7</b><span data-en="phases, the first in progress" data-zh="个阶段，第一阶段进行中">phases, the first in progress</span></li>
+      </ul>
+      <p class="case-note cu-status" data-en="Honest status: most of this page is the plan. Phase one, a local assistant on Qwen, Hermes Agent and llama.cpp or Ollama, is what I’m building now." data-zh="如实说明：本页大部分内容是规划。第一阶段，即基于 Qwen、Hermes Agent 与 llama.cpp 或 Ollama 的本地助手，是我目前正在搭建的部分。">Honest status: most of this page is the plan. Phase one, a local assistant on Qwen, Hermes Agent and llama.cpp or Ollama, is what I’m building now.</p>
+    </header>
+
+    <div class="case-sec">
+      <h3 data-en="Why not just another chatbot?" data-zh="为什么不只是又一个聊天机器人？">Why not just another chatbot?</h3>
+      <div class="cu-compare">
+        <div class="cu-compare-head"><span></span><b data-en="A typical assistant" data-zh="常见的助手">A typical assistant</b><b>Curiosity</b></div>
+        <div class="cu-compare-row"><span data-en="Memory" data-zh="记忆">Memory</span><span class="no" data-en="Forgets when the chat ends" data-zh="对话结束就忘">Forgets when the chat ends</span><span class="yes" data-en="Keeps what matters for weeks and months" data-zh="记住重要的事，数周乃至数月">Keeps what matters for weeks and months</span></div>
+        <div class="cu-compare-row"><span data-en="Initiative" data-zh="主动性">Initiative</span><span class="no" data-en="Waits to be asked" data-zh="等你开口">Waits to be asked</span><span class="yes" data-en="Speaks up when something needs attention, otherwise stays quiet" data-zh="有事主动提醒，没事保持安静">Speaks up when something needs attention, otherwise stays quiet</span></div>
+        <div class="cu-compare-row"><span data-en="Context" data-zh="上下文">Context</span><span class="no" data-en="Sees one message" data-zh="只看到一条消息">Sees one message</span><span class="yes" data-en="Knows the projects, deadlines and people behind it" data-zh="了解背后的项目、截止日期和相关的人">Knows the projects, deadlines and people behind it</span></div>
+        <div class="cu-compare-row"><span data-en="Learning" data-zh="学习">Learning</span><span class="no" data-en="The same tomorrow as today" data-zh="明天和今天一样">The same tomorrow as today</span><span class="yes" data-en="Gets better from what worked and what didn’t" data-zh="从成功与失败中不断改进">Gets better from what worked and what didn’t</span></div>
+      </div>
+    </div>
+
+    <div class="case-sec">
+      <h3 data-en="Its picture of my world" data-zh="它眼中的我的世界">Its picture of my world</h3>
+      <p data-en="Not a pile of chat logs: a graph of people, projects, deadlines and events that grows over time. Click a node to see why it believes what it believes." data-zh="不是一堆聊天记录，而是一张随时间生长的图：人、项目、截止日期和事件。点击节点，看看它为什么这么认为。">Not a pile of chat logs: a graph of people, projects, deadlines and events that grows over time. Click a node to see why it believes what it believes.</p>
+      <div class="cu-world-box">
+        <canvas id="cu-world" role="img" aria-label="An illustration of Curiosity's world model: nodes for me, my projects, a deadline, a talk, a paper, a failed experiment and the GPU server appear one by one and link up."></canvas>
+        <div class="cu-world-info" id="cu-world-info" aria-live="polite"></div>
+      </div>
+      <p class="pg-note" data-en="Illustration of the planned world model. Each fact keeps its source, time and confidence." data-zh="规划中世界模型的示意。每条事实都保留来源、时间与可信度。">Illustration of the planned world model. Each fact keeps its source, time and confidence.</p>
+    </div>
+
+    <div class="case-sec">
+      <h3 data-en="The parts, around one model" data-zh="围绕一个模型的各个部分">The parts, around one model</h3>
+      <div class="cu-arch">
+        <div class="cu-core"><img src="assets/showcase/logo-qwen-mark.png" alt="" width="160" height="160"><b data-en="Open-weight model" data-zh="开放权重模型">Open-weight model</b><small data-en="the fixed engine" data-zh="固定的引擎">the fixed engine</small></div>
+        <button type="button" class="cu-node" data-node="world"><b data-en="Personal world model" data-zh="个人世界模型">Personal world model</b><span class="cu-info" hidden><span data-en="A living map of people, projects, deadlines and decisions, and how they connect. Every fact keeps its source, a timestamp and how sure it is." data-zh="一张不断更新的地图，记录人、项目、截止日期和决策之间的关系。每条事实都保留来源、时间和可信度。">A living map of people, projects, deadlines and decisions, and how they connect. Every fact keeps its source, a timestamp and how sure it is.</span></span></button>
+        <button type="button" class="cu-node" data-node="memory"><b data-en="Memory" data-zh="记忆">Memory</b><span class="cu-info" hidden><span data-en="Five kinds, from the task at hand to long-term goals. Old history stays recoverable while the current picture keeps evolving." data-zh="从眼前任务到长期目标，共五类记忆。历史始终可追溯，而当前认知持续更新。">Five kinds, from the task at hand to long-term goals. Old history stays recoverable while the current picture keeps evolving.</span></span></button>
+        <button type="button" class="cu-node" data-node="goals"><b data-en="Goals" data-zh="目标">Goals</b><span class="cu-info" hidden><span data-en="Ambitions, projects, subgoals, tasks and commitments, with dependencies. It should know why a task matters, not just that it exists." data-zh="从长期志向、项目、子目标到任务与承诺，并记录依赖关系。它要知道一项任务为什么重要，而不只是知道它存在。">Ambitions, projects, subgoals, tasks and commitments, with dependencies. It should know why a task matters, not just that it exists.</span></span></button>
+        <button type="button" class="cu-node" data-node="plan"><b data-en="Planning" data-zh="规划">Planning</b><span class="cu-info" hidden><span data-en="Before acting it compares options and predicts what each would change, instead of learning only by trial and error." data-zh="行动前比较多个方案并预测其后果，而不只是靠反复试错。">Before acting it compares options and predicts what each would change, instead of learning only by trial and error.</span></span></button>
+        <button type="button" class="cu-node" data-node="meta"><b data-en="Self-check" data-zh="自我评估">Self-check</b><span class="cu-info" hidden><span data-en="It tracks what it knows, what it is guessing and where it failed before, and is judged on measured results, not on what it says about itself." data-zh="它清楚自己知道什么、在猜什么、以前在哪里失败过，并以实测结果而非自我评价来衡量。">It tracks what it knows, what it is guessing and where it failed before, and is judged on measured results, not on what it says about itself.</span></span></button>
+        <button type="button" class="cu-node" data-node="view"><b data-en="Its own view" data-zh="独立观点">Its own view</b><span class="cu-info" hidden><span data-en="It should push back with evidence, question weak assumptions and suggest other routes, not just agree with me." data-zh="它应能用证据提出异议、质疑站不住的假设、给出其他思路，而不是一味附和我。">It should push back with evidence, question weak assumptions and suggest other routes, not just agree with me.</span></span></button>
+        <div class="cu-detail" id="cu-detail" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div class="case-sec cu-two">
+      <div>
+        <h3 data-en="Five kinds of memory" data-zh="五种记忆">Five kinds of memory</h3>
+        <ol class="cu-memory">
+          <li style="--i:0"><b data-en="Working" data-zh="工作记忆">Working</b><em data-en="seconds to minutes" data-zh="秒到分钟">seconds to minutes</em><span data-en="the task in front of it" data-zh="眼前的任务">the task in front of it</span></li>
+          <li style="--i:1"><b data-en="Episodic" data-zh="情景记忆">Episodic</b><em data-en="days to months" data-zh="天到月">days to months</em><span data-en="what happened, what was decided, what came of it" data-zh="发生了什么、做了什么决定、结果如何">what happened, what was decided, what came of it</span></li>
+          <li style="--i:2"><b data-en="Semantic" data-zh="语义记忆">Semantic</b><em data-en="months to years" data-zh="月到年">months to years</em><span data-en="people, projects, preferences, facts" data-zh="人、项目、偏好与事实">people, projects, preferences, facts</span></li>
+          <li style="--i:3"><b data-en="Procedural" data-zh="程序记忆">Procedural</b><em data-en="reusable" data-zh="可复用">reusable</em><span data-en="skills and workflows that worked" data-zh="行之有效的技能与流程">skills and workflows that worked</span></li>
+          <li style="--i:4"><b data-en="Identity and goals" data-zh="身份与目标">Identity and goals</b><em data-en="years" data-zh="年">years</em><span data-en="principles, interests, long-term aims" data-zh="原则、兴趣与长期目标">principles, interests, long-term aims</span></li>
+        </ol>
+      </div>
+      <div>
+        <h3 data-en="The loop it runs" data-zh="它运行的循环">The loop it runs</h3>
+        <div class="cu-loop" id="cu-loop">
+          <span class="cu-loop-step" style="--k:0"><b data-en="Observe" data-zh="观察">Observe</b></span>
+          <span class="cu-loop-step" style="--k:1"><b data-en="Understand" data-zh="理解">Understand</b></span>
+          <span class="cu-loop-step" style="--k:2"><b data-en="Plan" data-zh="规划">Plan</b></span>
+          <span class="cu-loop-step" style="--k:3"><b data-en="Act" data-zh="行动">Act</b></span>
+          <span class="cu-loop-step" style="--k:4"><b data-en="Evaluate" data-zh="评估">Evaluate</b></span>
+          <span class="cu-loop-step" style="--k:5"><b data-en="Learn" data-zh="学习">Learn</b></span>
+          <div class="cu-loop-centre"><p data-en="Before acting, it should predict what the action will change." data-zh="行动之前，先预测这一步会带来什么变化。">Before acting, it should predict what the action will change.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-sec">
+      <h3 data-en="A day, eventually" data-zh="将来的某一天">A day, eventually</h3>
+      <div class="cu-day" id="cu-day">
+        <div class="cu-day-times">
+          <button type="button" data-k="0">08:10<span data-en="Morning brief" data-zh="早间简报">Morning brief</span></button>
+          <button type="button" data-k="1">10:40<span data-en="Spots a pattern" data-zh="发现规律">Spots a pattern</span></button>
+          <button type="button" data-k="2">14:05<span data-en="Connects the dots" data-zh="建立联系">Connects the dots</span></button>
+          <button type="button" data-k="3">18:30<span data-en="Watches the deadline" data-zh="盯住截止日期">Watches the deadline</span></button>
+          <button type="button" data-k="4">22:50<span data-en="Stays quiet" data-zh="保持安静">Stays quiet</span></button>
+        </div>
+        <div class="cu-day-cards">
+          <div class="cu-day-card" data-k="0"><img src="assets/showcase/logo-hermes.png" alt="" width="240" height="240"><p data-en="Your CEPC talk is Friday. Here are last week’s slides and the two comments you never answered." data-zh="你周五要做 CEPC 报告。这是上周的幻灯片，还有两条你没回复的意见。">Your CEPC talk is Friday. Here are last week’s slides and the two comments you never answered.</p></div>
+          <div class="cu-day-card" data-k="1"><img src="assets/showcase/logo-hermes.png" alt="" width="240" height="240"><p data-en="The training run failed twice with the same CUDA error. Last month the fix was a smaller batch. Try that?" data-zh="训练任务两次因同一个 CUDA 错误失败。上个月的解决办法是减小批量，要试试吗？">The training run failed twice with the same CUDA error. Last month the fix was a smaller batch. Try that?</p></div>
+          <div class="cu-day-card" data-k="2"><img src="assets/showcase/logo-hermes.png" alt="" width="240" height="240"><p data-en="A new paper on draft budgets came out today. It tests the setting your study left open." data-zh="今天有一篇关于草稿预算的新论文，正好测试了你的研究中留下的那个设定。">A new paper on draft budgets came out today. It tests the setting your study left open.</p></div>
+          <div class="cu-day-card" data-k="3"><img src="assets/showcase/logo-hermes.png" alt="" width="240" height="240"><p data-en="Paper due in three days. Two experiments are unfinished, and one is waiting on the V100." data-zh="论文三天后截止。还有两个实验没完成，其中一个在等 V100。">Paper due in three days. Two experiments are unfinished, and one is waiting on the V100.</p></div>
+          <div class="cu-day-card" data-k="4"><img src="assets/showcase/logo-hermes.png" alt="" width="240" height="240"><p data-en="Nothing urgent. It writes today into memory and lets you sleep." data-zh="没有紧急事项。它把今天写入记忆，然后让你休息。">Nothing urgent. It writes today into memory and lets you sleep.</p></div>
+        </div>
+      </div>
+      <p class="pg-note" data-en="Where it is heading, not what it does today. It only acts within permissions I give it." data-zh="这是发展方向，而非当前能力。它只会在我授予的权限内行动。">Where it is heading, not what it does today. It only acts within permissions I give it.</p>
+    </div>
+
+    <div class="case-sec">
+      <h3 data-en="The question underneath" data-zh="背后的问题">The question underneath</h3>
+      <blockquote class="cu-quote"><span data-en="Can a constrained model become much more capable through better memory, representations and planning, without growing in proportion?" data-zh="受限的模型，能否靠更好的记忆、表征与规划，在规模不成比例增长的情况下变得强大得多？">Can a constrained model become much more capable through better memory, representations and planning, without growing in proportion?</span></blockquote>
+      <div class="cu-paths">
+        <div><b data-en="Outside the model" data-zh="模型之外">Outside the model</b><p data-en="Memory, tools, planning and checking around a fixed model. Achievable now, and measurable." data-zh="在固定模型外加入记忆、工具、规划与校验。现在就能做，也能测量。">Memory, tools, planning and checking around a fixed model. Achievable now, and measurable.</p></div>
+        <div><b data-en="Inside the model" data-zh="模型之内">Inside the model</b><p data-en="Better ways for the model itself to learn, consolidate and adapt. The deeper research direction." data-zh="让模型自身更好地学习、巩固与适应。这是更深层的研究方向。">Better ways for the model itself to learn, consolidate and adapt. The deeper research direction.</p></div>
+      </div>
+      <p class="cu-honest" data-en="I test each component against a baseline, so a system that only remembers more is never counted as one that learned more." data-zh="每个组件都与基线对比测试，绝不把“记得更多”当成“学得更好”。">I test each component against a baseline, so a system that only remembers more is never counted as one that learned more.</p>
+    </div>
+
+    <div class="case-sec">
+      <h3 data-en="What it runs on" data-zh="运行基础">What it runs on</h3>
+      <ul class="agent-logos cu-logos">
+          <li><img src="assets/showcase/logo-hermes.png" class="round" width="240" height="240" alt=""><span><b>Hermes Agent</b><small data-en="orchestration" data-zh="编排">orchestration</small></span></li>
+          <li><img src="assets/showcase/logo-qwen.png" width="420" height="123" alt="Qwen"><span><small data-en="open-weight model" data-zh="开放权重模型">open-weight model</small></span></li>
+          <li><img src="assets/showcase/logo-llamacpp.png" width="420" height="136" alt="llama.cpp"><span><small data-en="local serving" data-zh="本地推理">local serving</small></span></li>
+          <li><img src="assets/showcase/logo-ollama.png" width="160" height="234" alt=""><span><b>Ollama</b><small data-en="local serving" data-zh="本地推理">local serving</small></span></li>
+          <li><img src="assets/showcase/v100.webp" width="420" height="466" alt=""><span><b>V100 32 GB · RTX 4090</b><small data-en="the GPU budget" data-zh="GPU 预算">the GPU budget</small></span></li>
+        </ul>
+    </div>
+
+    <div class="case-sec">
+      <h3 data-en="Roadmap" data-zh="路线图">Roadmap</h3>
+      <ol class="cu-road">
+        <li class="now"><span class="cu-road-n">1</span><b data-en="Local AI foundation" data-zh="本地 AI 基础">Local AI foundation</b><em data-en="now" data-zh="进行中">now</em></li>
+        <li class=""><span class="cu-road-n">2</span><b data-en="Persistent memory" data-zh="持久记忆">Persistent memory</b><em data-en="next" data-zh="下一步">next</em></li>
+        <li class=""><span class="cu-road-n">3</span><b data-en="World model and goals" data-zh="世界模型与目标">World model and goals</b><em data-en="planned" data-zh="计划中">planned</em></li>
+        <li class=""><span class="cu-road-n">4</span><b data-en="Tools and proactive help" data-zh="工具与主动协助">Tools and proactive help</b><em data-en="planned" data-zh="计划中">planned</em></li>
+        <li class=""><span class="cu-road-n">5</span><b data-en="Architecture experiments" data-zh="架构实验">Architecture experiments</b><em data-en="planned" data-zh="计划中">planned</em></li>
+        <li class=""><span class="cu-road-n">6</span><b data-en="Continual learning" data-zh="持续学习">Continual learning</b><em data-en="planned" data-zh="计划中">planned</em></li>
+        <li class=""><span class="cu-road-n">7</span><b data-en="Toward adaptive intelligence" data-zh="迈向自适应智能">Toward adaptive intelligence</b><em data-en="long term" data-zh="长期">long term</em></li>
+      </ol>
+    </div>
+
+    <div class="case-sec">
+      <h3 data-en="Rules it is built on" data-zh="设计原则">Rules it is built on</h3>
+      <p class="chips cu-rules"><span data-en="Local first" data-zh="本地优先">Local first</span><span data-en="Evidence for every fact" data-zh="每条事实都有证据">Evidence for every fact</span><span data-en="Helpful, not noisy" data-zh="有用而不打扰">Helpful, not noisy</span><span data-en="Measured, not assumed" data-zh="测量而非假设">Measured, not assumed</span><span data-en="Explains its decisions" data-zh="能解释自己的决定">Explains its decisions</span><span data-en="Within my permissions" data-zh="只在授权范围内行动">Within my permissions</span></p>
+    </div>
+  </article>
+</template>
+
 <dialog id="wechat-dialog" aria-label="WeChat">
   <button type="button" class="dialog-close" aria-label="Close">×</button>
-  <img src="assets/showcase/wechat.webp" width="194" height="288" alt="WeChat QR code for hafizabc77" loading="lazy">
+  <span class="qr-frame"><img src="assets/showcase/wechat-qr.webp" width="543" height="544" alt="WeChat QR code for hafizabc77" loading="lazy"><i class="qr-scan" aria-hidden="true"></i></span>
   <p class="dialog-id">hafizabc77</p>
+  <p class="dialog-hint" data-en="Scan with WeChat, or long-press the code if you are already in WeChat." data-zh="用微信扫一扫；如果已在微信中，请长按二维码。">Scan with WeChat, or long-press the code if you are already in WeChat.</p>
   <button type="button" class="button primary copy" data-copy="hafizabc77" data-en="Copy WeChat ID" data-zh="复制微信号">Copy WeChat ID</button>
 </dialog>
 <dialog id="image-dialog" aria-label="Expanded image">
@@ -435,7 +1072,9 @@ setTimeout(function(){if(!window.__fxReady){c.remove('fx','wipe-in');c.add('intr
 <p id="toast" role="status" aria-live="polite"></p>
 
 <script src="assets/vendor/lenis.min.js"></script>
+<script src="assets/data/waves.js"></script>
 <script src="scene.js"></script>
+<script src="labs.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
