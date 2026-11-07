@@ -135,6 +135,7 @@ h3{font-size:clamp(20px,1.6vw,25px);font-weight:500;line-height:1.3}
 .fx [data-split] .c{display:inline-block;transform:translateY(112%) rotate(5deg);transform-origin:0 100%}
 .fx [data-split].in .c{transform:none;transition:transform 1s var(--ease);transition-delay:calc(var(--i) * 22ms)}
 .fx [data-rise],.fx [data-reveal]{opacity:0;transform:translateY(26px)}
+.fx-slow [data-rise],.fx-slow [data-reveal]{opacity:1;transform:none} /* scripts still loading after 4 s: show content now */
 .fx [data-rise].in,.fx [data-reveal].in{opacity:1;transform:none;transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0ms)}
 [data-words] .sw{opacity:var(--o,.16);transition:opacity .25s linear}
 .no-js [data-words] .sw,.fx-failed [data-words] .sw{opacity:1}
@@ -180,10 +181,25 @@ h1 b{color:var(--mint);font-weight:500}
 .ticker-run span{font:400 clamp(13px,1.2vw,19px)/1 var(--mono);letter-spacing:.18em;color:var(--gold);white-space:nowrap;opacity:.8}
 @keyframes tickerRun{to{transform:translate3d(-50%,0,0)}}
 
-/* Manifesto */
-.manifesto{padding-block:clamp(70px,13vw,190px)}
-.manifesto p{font:500 clamp(32px,5.1vw,84px)/1.12 var(--serif);letter-spacing:-.02em;color:var(--ink);max-width:21em}
-[lang=zh-CN] .manifesto p{font-family:var(--sans);font-size:clamp(26px,3.8vw,60px);line-height:1.45;font-weight:500;letter-spacing:.01em}
+/* Manifesto: the whole life of a model, from the first gradient to the last millisecond */
+.manifesto{--p:1;padding-block:clamp(70px,12vw,170px)}
+.fx .manifesto{--p:0}
+.mf-kicker{margin-bottom:clamp(14px,2vw,26px)}
+.manifesto .mf-lead{font:400 clamp(46px,7.6vw,132px)/.98 var(--serif);letter-spacing:-.035em;color:var(--ink);max-width:12em}
+.mf-lead i{font-style:italic;color:var(--gold)}
+.mf-track{position:relative;margin:clamp(34px,5vw,72px) 0 clamp(30px,4.4vw,60px);padding-top:30px}
+.mf-track:before{content:'';position:absolute;left:0;right:0;top:5px;border-top:1px solid var(--line)}
+.mf-fill{position:absolute;left:0;right:0;top:4px;height:3px;border-radius:2px;background:linear-gradient(90deg,var(--mint),var(--gold));transform:scaleX(var(--p));transform-origin:left}
+.mf-stages{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.mf-stages li{--on:clamp(0,(var(--p) * 4 - var(--i)) * 2.2,1);position:relative;display:grid;gap:6px;opacity:calc(.32 + var(--on) * .68);font:400 clamp(15px,1.4vw,21px)/1.25 var(--sans);color:var(--ink)}
+.mf-stages li:before,.mf-stages li:after{content:'';position:absolute;left:0;top:-30px;width:11px;height:11px;border-radius:50%}
+.mf-stages li:before{border:1px solid var(--gold);background:var(--bg)}
+.mf-stages li:after{background:var(--gold);box-shadow:0 0 0 5px rgb(216 187 115 / .16);opacity:var(--on);transform:scale(calc(.4 + var(--on) * .6))}
+.mf-n{font:400 11px/1 var(--mono);letter-spacing:.14em;color:var(--gold)}
+.manifesto .mf-body{font:400 clamp(20px,2.1vw,34px)/1.45 var(--sans);letter-spacing:-.012em;color:var(--ink);max-width:33em}
+[lang=zh-CN] .manifesto .mf-lead{font-size:clamp(40px,6.2vw,104px);line-height:1.18;letter-spacing:.01em}
+[lang=zh-CN] .mf-lead i{font-style:normal}
+[lang=zh-CN] .manifesto .mf-body{font-size:clamp(18px,1.85vw,30px);line-height:1.75;letter-spacing:.02em}
 
 /* Results story */
 .numbers{padding:0;height:calc(100vh * 4.4)}
@@ -1141,6 +1157,15 @@ img.agent-avatar{width:34px;height:34px;border-radius:50%;background:#fff;object
 @media(max-width:380px){
   .cu-day-times button span{display:none}
   .chip-pick small,.lab-field .chip-pick small{display:none}
+}
+
+@media(max-width:760px){
+  .mf-track{padding:0 0 0 30px}
+  .mf-track:before{left:5px;right:auto;top:0;bottom:0;border-top:0;border-left:1px solid var(--line)}
+  .mf-fill{left:4px;right:auto;top:0;bottom:0;width:3px;height:auto;background:linear-gradient(180deg,var(--mint),var(--gold));transform:scaleY(var(--p));transform-origin:top}
+  .mf-stages{grid-template-columns:minmax(0,1fr);gap:16px}
+  .mf-stages li{grid-template-columns:30px minmax(0,1fr);align-items:baseline}
+  .mf-stages li:before,.mf-stages li:after{left:-30px;top:5px}
 }
 
 /* Motion turned off, or the script failed: everything is a plain, readable page. */

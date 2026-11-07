@@ -68,19 +68,29 @@
   }
 
   function splitWords(el) {
-    const words = el.textContent.split(/(\s+)/).filter(Boolean);
-    el.setAttribute('aria-label', el.textContent);
-    el.textContent = '';
-    words.forEach(word => {
-      if (/^\s+$/.test(word)) { el.append(' '); return; }
-      (CJK.test(word) ? [...word] : [word]).forEach(part => {
-        const span = document.createElement('span');
-        span.className = 'sw';
-        span.setAttribute('aria-hidden', 'true');
-        span.textContent = part;
-        el.append(span);
+    // Keeps inline markup such as <i> for emphasis; only the text inside is split into words.
+    el.setAttribute('aria-label', el.textContent.replace(/\s+/g, ' ').trim());
+    const walk = node => {
+      [...node.childNodes].forEach(child => {
+        if (child.nodeType === 3) {
+          const frag = document.createDocumentFragment();
+          child.textContent.split(/(\s+)/).filter(Boolean).forEach(word => {
+            if (/^\s+$/.test(word)) { frag.append(' '); return; }
+            (CJK.test(word) ? [...word] : [word]).forEach(part => {
+              const span = document.createElement('span');
+              span.className = 'sw';
+              span.setAttribute('aria-hidden', 'true');
+              span.textContent = part;
+              frag.append(span);
+            });
+          });
+          child.replaceWith(frag);
+        } else if (child.nodeType === 1 && child.tagName !== 'BR') {
+          walk(child);
+        }
       });
-    });
+    };
+    walk(el);
   }
 
   function applySplits() {
@@ -244,7 +254,7 @@
     const num = $('#loader-num'), label = $('#loader-text'), tokens = $$('.loader-tokens i', loader), stream = $('#loader-stream');
     const zh = currentLang() === 'zh';
     const phases = zh ? ['正在加载权重', '正在预热 GPU', '准备就绪'] : ['Loading weights', 'Warming up GPU', 'Ready'];
-    const words = zh ? ['让', '大模型', '在', '真实硬件上', '飞起来。'] : ['Large', 'models,', 'real', 'hardware,', 'fast.'];
+    const words = zh ? ['让', 'AI 模型', '快到', '能真正', '落地。'] : ['AI models,', 'fast', 'enough for', 'the real', 'world.'];
     let shown = 0;
     label.textContent = phases[0];
     const start = performance.now(), duration = 1250;
@@ -443,6 +453,18 @@
         });
       });
     });
+
+    // The manifesto's track fills from "first gradient" to "last millisecond" as you scroll.
+    const manifesto = $('.manifesto'), mLead = $('.mf-lead');
+    if (manifesto && mLead) {
+      let mTop = 0, mHeight = 1, mLast = -1;
+      measureTasks.push(() => { mTop = docTop(mLead); mHeight = mLead.offsetHeight; });
+      frameTasks.push(() => {
+        // Same pace as the headline's words, finishing just after "last millisecond" lights up.
+        const p = clamp((state.smoothY + state.vh * 0.84 - mTop) / (mHeight + state.vh * 0.46) * 0.94);
+        if (Math.abs(p - mLast) > 0.002) { mLast = p; manifesto.style.setProperty('--p', p.toFixed(3)); }
+      });
+    }
 
     const timeline = $('.timeline'), line = $('.timeline-line');
     if (timeline) {
@@ -1562,6 +1584,11 @@
   safe('loader', runLoader);
   if ($('.creative-hero')) {
     $$('.creative-hero [data-split]').forEach(el => setTimeout(() => el.classList.add('in'), 200));
+  }
+  // A slow connection showed the content early; keep what is on screen visible and let the rest reveal on scroll as usual.
+  if (root.classList.contains('fx-slow')) {
+    $$('[data-rise],[data-reveal]').forEach(el => { if (el.getBoundingClientRect().top < innerHeight) el.classList.add('in'); });
+    root.classList.remove('fx-slow');
   }
   startLoop();
   window.__fxReady = true;

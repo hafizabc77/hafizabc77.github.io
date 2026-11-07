@@ -19,12 +19,16 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <script>
-/* Runs before first paint. If the main script ever fails, the timer below restores a plain, fully readable page. */
+/* Runs before first paint. If a script fails to load or crashes, the page falls back to a plain, fully readable layout.
+   A slow connection alone never triggers it: the check waits for the page to finish loading. */
 (function(){var d=document.documentElement,c=d.classList;c.remove('no-js');c.add('js');
 var reduced=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
 if(!reduced)c.add('fx');
 try{if(sessionStorage.getItem('hafiz-intro-done'))c.add('intro-done');if(sessionStorage.getItem('hafiz-wipe')){c.add('wipe-in');sessionStorage.removeItem('hafiz-wipe')}}catch(e){}
-setTimeout(function(){if(!window.__fxReady){c.remove('fx','wipe-in');c.add('intro-done','fx-failed')}},4000)})();
+var fail=function(){if(!window.__fxReady){c.remove('fx','wipe-in');c.add('intro-done','fx-failed')}};
+addEventListener('error',function(e){if(e.target&&e.target.tagName==='SCRIPT')fail()},true);
+addEventListener('load',function(){setTimeout(fail,1500)});setTimeout(fail,15000);
+setTimeout(function(){if(!window.__fxReady)c.add('intro-done','fx-slow')},4000)})();
 </script>
 <link rel="preload" href="assets/fonts/cormorant.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/cormorant-italic.woff2" as="font" type="font/woff2" crossorigin>
@@ -110,7 +114,10 @@ setTimeout(function(){if(!window.__fxReady){c.remove('fx','wipe-in');c.add('intr
 <div class="wave-ticker" id="wave-ticker" aria-hidden="true"><div class="ticker-run"><span>PYTORCH ✦ vLLM ✦ TENSORRT ✦ CUDA ✦ ONNX ✦ llama.cpp ✦ hls4ml ✦ VITIS AI ✦ NEO4J ✦ BAYESIAN OPTIMIZATION ✦ UNREAL ENGINE 5 ✦ PYTORCH ✦ vLLM ✦ TENSORRT ✦ CUDA ✦ ONNX ✦ llama.cpp ✦ hls4ml ✦ VITIS AI ✦ NEO4J ✦ BAYESIAN OPTIMIZATION ✦ UNREAL ENGINE 5 ✦ </span><span>PYTORCH ✦ vLLM ✦ TENSORRT ✦ CUDA ✦ ONNX ✦ llama.cpp ✦ hls4ml ✦ VITIS AI ✦ NEO4J ✦ BAYESIAN OPTIMIZATION ✦ UNREAL ENGINE 5 ✦ PYTORCH ✦ vLLM ✦ TENSORRT ✦ CUDA ✦ ONNX ✦ llama.cpp ✦ hls4ml ✦ VITIS AI ✦ NEO4J ✦ BAYESIAN OPTIMIZATION ✦ UNREAL ENGINE 5 ✦ </span></div></div>
 
 <section class="manifesto" id="manifesto" data-shape="vortex" data-dim=".42">
-  <p data-words data-en="Training a model is the part everyone talks about. I like the part after it: getting that model to run fast on a real chip without breaking it. It is fiddly work, and I enjoy it more than I probably should." data-zh="训练模型是大家都爱聊的部分，而我更喜欢之后的那一段：让模型在真实芯片上跑得飞快，又不出问题。这活儿很磨人，但我乐在其中。">Training a model is the part everyone talks about. I like the part after it: getting that model to run fast on a real chip without breaking it. It is fiddly work, and I enjoy it more than I probably should.</p>
+  <p class="eyebrow mf-kicker" data-en="What keeps me curious" data-zh="让我着迷的事">What keeps me curious</p>
+  <p class="mf-lead" data-words data-en="From the <i>first gradient</i> to the <i>last millisecond.</i>" data-zh="从<i>第一个梯度</i>，到<i>最后一毫秒。</i>">From the <i>first gradient</i> to the <i>last millisecond.</i></p>
+  <div class="mf-track"><i class="mf-fill" aria-hidden="true"></i><ol class="mf-stages"><li style="--i:0"><span class="mf-n">01</span><span data-en="How models learn" data-zh="模型如何学习">How models learn</span></li><li style="--i:1"><span class="mf-n">02</span><span data-en="Why architectures work" data-zh="架构为何有效">Why architectures work</span></li><li style="--i:2"><span class="mf-n">03</span><span data-en="What scale changes" data-zh="规模改变什么">What scale changes</span></li><li style="--i:3"><span class="mf-n">04</span><span data-en="How fast they run" data-zh="能跑多快">How fast they run</span></li></ol></div>
+  <p class="mf-body" data-words data-en="I want to understand the whole life of a model: how it learns, why its architecture works, what changes as it scales, and how to make it fast on a real chip. Each end explains the other. How a model was trained tells me where it can be trimmed, and the chip it runs on tells me what is worth training." data-zh="我想弄懂一个模型的完整生命：它如何学习，架构为何有效，规模变大时会发生什么，以及怎样让它在真实芯片上跑得飞快。两端总在互相解释：模型怎么训练，决定了它能从哪里精简；它要跑在什么芯片上，又决定了什么值得训练。">I want to understand the whole life of a model: how it learns, why its architecture works, what changes as it scales, and how to make it fast on a real chip. Each end explains the other. How a model was trained tells me where it can be trimmed, and the chip it runs on tells me what is worth training.</p>
 </section>
 
 <!-- Scroll story: particles form each result. The numbers are also real text for screen readers and non-WebGL browsers. -->

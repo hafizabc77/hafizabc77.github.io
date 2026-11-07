@@ -14,7 +14,10 @@
 var reduced=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
 if(!reduced)c.add('fx');
 try{if(sessionStorage.getItem('hafiz-wipe')){c.add('wipe-in');sessionStorage.removeItem('hafiz-wipe')}}catch(e){}
-setTimeout(function(){if(!window.__fxReady){c.remove('fx','wipe-in');c.add('fx-failed')}},4000)})();
+var fail=function(){if(!window.__fxReady){c.remove('fx','wipe-in');c.add('fx-failed')}};
+addEventListener('error',function(e){if(e.target&&e.target.tagName==='SCRIPT')fail()},true);
+addEventListener('load',function(){setTimeout(fail,1500)});setTimeout(fail,15000);
+setTimeout(function(){if(!window.__fxReady)c.add('fx-slow')},4000)})();
 </script>
 <link rel="stylesheet" href="styles.css">
 </head>
