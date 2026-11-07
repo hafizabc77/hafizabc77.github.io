@@ -72,7 +72,7 @@
 
   LABS.autoDeploy = function (S) {
     const { $, $$, clamp, frameTasks, measureTasks, state, currentLang, FX, reducedMotion, docTop } = S;
-    const section = $('#autodeploy'), canvas = $('#ad-canvas');
+    const section = $('#autodeploy'), canvas = $('#dep-canvas');
     if (!section || !canvas) return;
     if (!FX || reducedMotion) { canvas.remove(); return; }
     const ctx = canvas.getContext('2d');
@@ -81,7 +81,7 @@
     const rnd = seeded(11);
     const r1 = Float32Array.from({ length: N }, rnd), r2 = Float32Array.from({ length: N }, rnd), r3 = Float32Array.from({ length: N }, rnd);
     const targets = Array.from({ length: STATES }, () => new Float32Array(N * 4));
-    const steps = $$('.ad-step', section), railItems = $$('.ad-rail li', section), bar = $('.ad-progress i', section);
+    const steps = $$('.dep-step', section), railItems = $$('.dep-rail li', section), bar = $('.dep-progress i', section);
     let W = 0, H = 0, dpr = 1, R = { x: 0, y: 0, w: 1, h: 1 }, top = 0, range = 1, visible = false, active = -1, ring = { x: 0, y: 0, r: 1 };
     let nodes = [];
     // Shared by the dots and the drawing, so both line up.
@@ -185,7 +185,12 @@
     }
 
     function label(text, x, y, color, size, align) {
-      ctx.font = `${size || (small ? 10 : 12)}px ${FONT}`;
+      let s = size || (small ? 10 : 12);
+      ctx.font = `${s}px ${FONT}`;
+      if (!align || align === 'left') { // Shrink a left-aligned label that would run off the right edge.
+        const room = W - x - 8, width = ctx.measureText(text).width;
+        if (width > room && room > 40) { s = Math.max(7, s * room / width); ctx.font = `${s}px ${FONT}`; }
+      }
       ctx.textAlign = align || 'left';
       ctx.fillStyle = color || '#c9d0cc';
       ctx.fillText(text, x, y);
@@ -523,9 +528,9 @@
 
   LABS.autoDeployLab = function (S) {
     const { $, $$, refreshTasks, currentLang, reducedMotion } = S;
-    if (!$('#ad-lab')) return;
-    const rowsEl = $('#ad-race-rows'), runBtn = $('#ad-run'), logEl = $('#ad-log'), pick = $('#ad-pick'), jsonEl = $('#ad-json');
-    const tabs = $$('#ad-targets button'), floors = $$('#ad-floor-pick button'), contractTabs = $$('#ad-contracts button'), runSteps = $$('#ad-run-steps li');
+    if (!$('#dep-lab')) return;
+    const rowsEl = $('#dep-race-rows'), runBtn = $('#dep-run'), logEl = $('#dep-log'), pick = $('#dep-pick'), jsonEl = $('#dep-json');
+    const tabs = $$('#dep-targets button'), floors = $$('#dep-floor-pick button'), contractTabs = $$('#dep-contracts button'), runSteps = $$('#dep-run-steps li');
     const zh = () => currentLang() === 'zh';
     const L = () => (zh() ? 1 : 0);
     const T = (key, vars) => { let out = LAB_TEXT[key][L()]; Object.keys(vars || {}).forEach(k => { out = out.split(`{${k}}`).join(vars[k]); }); return out; };

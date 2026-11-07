@@ -32,6 +32,8 @@ Assistant logos: Qwen, llama.cpp and Ollama logos were supplied by the owner and
 
 Unreal stills: the canyon and arena stills were supplied by the owner as captures from their Unreal Engine work. The arena uses Epic's standard UE5 mannequins. If any still is Epic's own demo footage rather than the owner's capture, it should be removed.
 
+Ad blockers: class names, ids and file names must not start with `ad-` or contain words such as banner, sponsor or promo. Ad-blocker extensions (uBlock Origin, AdBlock, AdGuard) hide elements named like that, which once left the AutoDeploy story and half of the lab blank in Chrome. AutoDeploy elements use the `dep-` prefix and its figures the `deploy-` prefix.
+
 Scrollbar: the page scrollbar is hidden at the owner's request. The top progress bar and the section rail still show position, and keyboard, wheel and touch scrolling are unchanged.
 
 Not linked: `assets/Mustofa-Ahmed-CV.pdf`, which contains older contact details.

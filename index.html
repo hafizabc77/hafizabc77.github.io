@@ -218,74 +218,74 @@ setTimeout(function(){if(!window.__fxReady){c.remove('fx','wipe-in');c.add('intr
 </section>
 
 <!-- The flagship: one set of dots morphs through the whole system as you scroll. -->
-<section id="autodeploy" class="ad" data-covers-scene data-rail-en="AutoDeploy" data-rail-zh="AutoDeploy" data-shape="network" data-dim=".05" data-ink=".2">
-  <div class="ad-sticky">
-    <canvas id="ad-canvas" role="img" aria-label="Animation following one model through AutoDeploy: a three-week manual timeline, the parser, the knowledge graph, the search for a Pareto frontier, about 320 executed steps, results on three hardware platforms and the closed loop."></canvas>
-    <div class="ad-top">
+<section id="autodeploy" class="deploy" data-covers-scene data-rail-en="AutoDeploy" data-rail-zh="AutoDeploy" data-shape="network" data-dim=".05" data-ink=".2">
+  <div class="dep-sticky">
+    <canvas id="dep-canvas" role="img" aria-label="Animation following one model through AutoDeploy: a three-week manual timeline, the parser, the knowledge graph, the search for a Pareto frontier, about 320 executed steps, results on three hardware platforms and the closed loop."></canvas>
+    <div class="dep-top">
       <p class="eyebrow" data-en="04 / Flagship project · Master’s thesis" data-zh="04 / 旗舰项目 · 硕士论文">04 / Flagship project · Master’s thesis</p>
-      <ol class="ad-rail" aria-hidden="true"><li data-en="Read" data-zh="读取">Read</li><li data-en="Remember" data-zh="记忆">Remember</li><li data-en="Plan" data-zh="规划">Plan</li><li data-en="Run" data-zh="执行">Run</li><li data-en="Deploy" data-zh="部署">Deploy</li><li data-en="Learn" data-zh="学习">Learn</li></ol>
+      <ol class="dep-rail" aria-hidden="true"><li data-en="Read" data-zh="读取">Read</li><li data-en="Remember" data-zh="记忆">Remember</li><li data-en="Plan" data-zh="规划">Plan</li><li data-en="Run" data-zh="执行">Run</li><li data-en="Deploy" data-zh="部署">Deploy</li><li data-en="Learn" data-zh="学习">Learn</li></ol>
     </div>
-    <div class="ad-steps">
-        <article class="ad-step ad-intro active">
+    <div class="dep-steps">
+        <article class="dep-step dep-intro active">
           <h2>AutoDeploy</h2>
-          <p class="ad-lead" data-en="My master’s thesis. You give it one model and one config file. It plans, runs and checks the deployment on CPU, GPU and FPGA, and remembers every attempt for next time." data-zh="我的硕士论文。只需提供一个模型和一个配置文件，它就会在 CPU、GPU 和 FPGA 上自动规划、执行并验证部署，并记住每一次尝试，供下次使用。">My master’s thesis. You give it one model and one config file. It plans, runs and checks the deployment on CPU, GPU and FPGA, and remembers every attempt for next time.</p>
-          <ul class="ad-chips"><li><b>~63×</b><span data-en="faster, start to finish" data-zh="全程提速">faster, start to finish</span></li><li><b>~40×</b><span data-en="less expert time" data-zh="专家时间减少">less expert time</span></li><li><b>~10×</b><span data-en="more setups tried" data-zh="尝试方案增加">more setups tried</span></li></ul>
-          <p class="ad-scroll" data-en="↓ Scroll to follow one model through the six steps." data-zh="↓ 继续滚动，跟随一个模型走完六个步骤。">↓ Scroll to follow one model through the six steps.</p>
+          <p class="dep-lead" data-en="My master’s thesis. You give it one model and one config file. It plans, runs and checks the deployment on CPU, GPU and FPGA, and remembers every attempt for next time." data-zh="我的硕士论文。只需提供一个模型和一个配置文件，它就会在 CPU、GPU 和 FPGA 上自动规划、执行并验证部署，并记住每一次尝试，供下次使用。">My master’s thesis. You give it one model and one config file. It plans, runs and checks the deployment on CPU, GPU and FPGA, and remembers every attempt for next time.</p>
+          <ul class="dep-chips"><li><b>~63×</b><span data-en="faster, start to finish" data-zh="全程提速">faster, start to finish</span></li><li><b>~40×</b><span data-en="less expert time" data-zh="专家时间减少">less expert time</span></li><li><b>~10×</b><span data-en="more setups tried" data-zh="尝试方案增加">more setups tried</span></li></ul>
+          <p class="dep-scroll" data-en="↓ Scroll to follow one model through the six steps." data-zh="↓ 继续滚动，跟随一个模型走完六个步骤。">↓ Scroll to follow one model through the six steps.</p>
         </article>
-        <article class="ad-step">
-          <p class="ad-kicker">1 / 6</p>
+        <article class="dep-step">
+          <p class="dep-kicker">1 / 6</p>
           <h3 data-en="Read the model" data-zh="读取模型">Read the model</h3>
           <p data-en="Like a mechanic’s inspection: 13 automatic checks look at the model and the machine, then write one short report, the StateContract, that the planner can trust." data-zh="就像机械师检修：13 项自动检查会分析模型和机器，并生成一份简短报告（StateContract），供规划器可靠使用。">Like a mechanic’s inspection: 13 automatic checks look at the model and the machine, then write one short report, the StateContract, that the planner can trust.</p>
-          <ul class="ad-chips"><li><b>13</b><span data-en="automatic checks" data-zh="项自动检查">automatic checks</span></li><li><b>10.58 s</b><span data-en="once per model" data-zh="每个模型一次">once per model</span></li></ul>
+          <ul class="dep-chips"><li><b>13</b><span data-en="automatic checks" data-zh="项自动检查">automatic checks</span></li><li><b>10.58 s</b><span data-en="once per model" data-zh="每个模型一次">once per model</span></li></ul>
         </article>
-        <article class="ad-step">
-          <p class="ad-kicker">2 / 6</p>
+        <article class="dep-step">
+          <p class="dep-kicker">2 / 6</p>
           <h3 data-en="Remember what worked" data-zh="记住有效的方案">Remember what worked</h3>
           <p data-en="Every past attempt, good or bad, lives in a knowledge graph. A new model starts from similar past runs instead of from zero. Node names come from my real Neo4j database." data-zh="每一次历史尝试，无论成败，都保存在知识图谱中。新模型会先参考相似的历史运行，而不是从零开始。图中节点名称来自我真实的 Neo4j 数据库。">Every past attempt, good or bad, lives in a knowledge graph. A new model starts from similar past runs instead of from zero. Node names come from my real Neo4j database.</p>
-          <ul class="ad-chips"><li><b>0.58 → 0.76</b><span data-en="right picks in the top 5" data-zh="前 5 推荐的命中率">right picks in the top 5</span></li><li><b>14% → 8%</b><span data-en="bad suggestions" data-zh="无效建议">bad suggestions</span></li></ul>
+          <ul class="dep-chips"><li><b>0.58 → 0.76</b><span data-en="right picks in the top 5" data-zh="前 5 推荐的命中率">right picks in the top 5</span></li><li><b>14% → 8%</b><span data-en="bad suggestions" data-zh="无效建议">bad suggestions</span></li></ul>
         </article>
-        <article class="ad-step">
-          <p class="ad-kicker">3 / 6</p>
+        <article class="dep-step">
+          <p class="dep-kicker">3 / 6</p>
           <h3 data-en="Plan the best options" data-zh="规划最佳方案">Plan the best options</h3>
           <p data-en="Four planners suggest complete deployment recipes. Each dot is one recipe: further left is faster, higher is more accurate. Recipes that break a hard rule are dropped before they cost anything." data-zh="四种规划器给出完整的部署方案。每个点代表一个方案：越靠左越快，越靠上越准。违反硬约束的方案在消耗算力之前就被剔除。">Four planners suggest complete deployment recipes. Each dot is one recipe: further left is faster, higher is more accurate. Recipes that break a hard rule are dropped before they cost anything.</p>
-          <ul class="ad-chips"><li><b>40 min</b><span data-en="vs 95 min, random search" data-zh="随机搜索需 95 分钟">vs 95 min, random search</span></li><li><b>0.45 ms</b><span data-en="vs 0.68 ms, random search" data-zh="随机搜索为 0.68 ms">vs 0.68 ms, random search</span></li></ul>
+          <ul class="dep-chips"><li><b>40 min</b><span data-en="vs 95 min, random search" data-zh="随机搜索需 95 分钟">vs 95 min, random search</span></li><li><b>0.45 ms</b><span data-en="vs 0.68 ms, random search" data-zh="随机搜索为 0.68 ms">vs 0.68 ms, random search</span></li></ul>
         </article>
-        <article class="ad-step">
-          <p class="ad-kicker">4 / 6</p>
+        <article class="dep-step">
+          <p class="dep-kicker">4 / 6</p>
           <h3 data-en="Run, check, repair" data-zh="执行、检查、修复">Run, check, repair</h3>
           <p data-en="Each step runs in a sandbox and is checked before the next one starts. If a step fails, AutoDeploy repairs it, swaps the tool or rolls back. Each square is one real step from the evaluation." data-zh="每一步都在沙箱中运行，并在下一步开始前接受检查。若某步失败，AutoDeploy 会修复、替换工具或回滚。每个方块代表评估中真实执行的一步。">Each step runs in a sandbox and is checked before the next one starts. If a step fails, AutoDeploy repairs it, swaps the tool or rolls back. Each square is one real step from the evaluation.</p>
-          <ul class="ad-chips"><li><b>~320</b><span data-en="steps run" data-zh="个步骤">steps run</span></li><li><b>88%</b><span data-en="finished, some after a repair" data-zh="最终完成（部分经修复）">finished, some after a repair</span></li></ul>
+          <ul class="dep-chips"><li><b>~320</b><span data-en="steps run" data-zh="个步骤">steps run</span></li><li><b>88%</b><span data-en="finished, some after a repair" data-zh="最终完成（部分经修复）">finished, some after a repair</span></li></ul>
         </article>
-        <article class="ad-step">
-          <p class="ad-kicker">5 / 6</p>
+        <article class="dep-step">
+          <p class="dep-kicker">5 / 6</p>
           <h3 data-en="One workflow, many chips" data-zh="一套流程，多种芯片">One workflow, many chips</h3>
           <p data-en="The same config deploys to a CPU, a GPU and an FPGA with no hand-written code for each. On the V100 it picked tuned FP16 over INT8, because Volta’s Tensor Cores only speed up FP16." data-zh="同一份配置即可部署到 CPU、GPU 和 FPGA，无需为每种硬件手写代码。在 V100 上，它选择了调优后的 FP16 而非 INT8，因为 Volta 的 Tensor Core 只加速 FP16。">The same config deploys to a CPU, a GPU and an FPGA with no hand-written code for each. On the V100 it picked tuned FP16 over INT8, because Volta’s Tensor Cores only speed up FP16.</p>
-          <ul class="ad-chips"><li><b>0.45 ms</b><span data-en="GPU, measured" data-zh="GPU 实测">GPU, measured</span></li><li><b>72 µs</b><span data-en="FPGA, HLS estimate" data-zh="FPGA HLS 估算">FPGA, HLS estimate</span></li></ul>
+          <ul class="dep-chips"><li><b>0.45 ms</b><span data-en="GPU, measured" data-zh="GPU 实测">GPU, measured</span></li><li><b>72 µs</b><span data-en="FPGA, HLS estimate" data-zh="FPGA HLS 估算">FPGA, HLS estimate</span></li></ul>
         </article>
-        <article class="ad-step">
-          <p class="ad-kicker">6 / 6</p>
+        <article class="dep-step">
+          <p class="dep-kicker">6 / 6</p>
           <h3 data-en="Learn from every run" data-zh="从每次运行中学习">Learn from every run</h3>
           <p data-en="Every result flows back into the graph, so the next deployment starts smarter: fewer tries and fewer dead ends." data-zh="每次结果都会回流到图谱，因此下一次部署起点更高：尝试更少，弯路更少。">Every result flows back into the graph, so the next deployment starts smarter: fewer tries and fewer dead ends.</p>
-          <ul class="ad-chips"><li><b>8 → 2</b><span data-en="tries before the first working setup" data-zh="首个可用方案前的尝试次数">tries before the first working setup</span></li><li><b>35% → 8%</b><span data-en="setups that fail" data-zh="失败方案占比">setups that fail</span></li></ul><p class="pg-note" data-en="Warm-start values are partially estimated in the thesis." data-zh="热启动数值在论文中为部分估算。">Warm-start values are partially estimated in the thesis.</p>
+          <ul class="dep-chips"><li><b>8 → 2</b><span data-en="tries before the first working setup" data-zh="首个可用方案前的尝试次数">tries before the first working setup</span></li><li><b>35% → 8%</b><span data-en="setups that fail" data-zh="失败方案占比">setups that fail</span></li></ul><p class="pg-note" data-en="Warm-start values are partially estimated in the thesis." data-zh="热启动数值在论文中为部分估算。">Warm-start values are partially estimated in the thesis.</p>
         </article>
     </div>
-    <div class="ad-progress" aria-hidden="true"><i></i></div>
+    <div class="dep-progress" aria-hidden="true"><i></i></div>
   </div>
 </section>
 
-<section id="ad-lab" class="ad-lab" data-shape="network" data-dim=".1" data-ink=".3">
-  <div class="ad-lab-head">
+<section id="dep-lab" class="dep-lab" data-shape="network" data-dim=".1" data-ink=".3">
+  <div class="dep-lab-head">
     <div>
       <p class="eyebrow" data-en="AutoDeploy lab · Real thesis numbers" data-zh="AutoDeploy 实验台 · 论文真实数据">AutoDeploy lab · Real thesis numbers</p>
       <h2 data-split data-en="Try AutoDeploy <i>yourself.</i>" data-zh="亲手试试 <i>AutoDeploy。</i>">Try AutoDeploy <i>yourself.</i></h2>
     </div>
     <p data-reveal data-en="The problem it solves: one trained model, one chip, and many ways to run it. Some are fast, some keep more accuracy. Pick a chip and how much accuracy you can give up, then start the race. AutoDeploy picks the fastest setup that stays within your limit. The model is ParT, which classifies particle jets in collider data, and every number is a real measurement from my thesis." data-zh="它解决的问题：一个训练好的模型，一块芯片，却有很多种运行方式，有的快，有的更准。选择芯片和可接受的精度损失，然后开始比赛。AutoDeploy 会选出在你的限度内最快的方案。模型是 ParT，用于对撞机数据中的粒子喷注分类；所有数字均为我论文中的真实测量值。">The problem it solves: one trained model, one chip, and many ways to run it. Some are fast, some keep more accuracy. Pick a chip and how much accuracy you can give up, then start the race. AutoDeploy picks the fastest setup that stays within your limit. The model is ParT, which classifies particle jets in collider data, and every number is a real measurement from my thesis.</p>
   </div>
-  <div class="ad-console race-lab">
+  <div class="dep-console race-lab">
     <div class="lab-controls">
       <div class="lab-step"><span class="lab-n">1</span><div class="lab-field">
         <b data-en="Pick a chip" data-zh="选择芯片">Pick a chip</b>
-        <div class="chip-pick" id="ad-targets" role="radiogroup" aria-label="Target hardware">
+        <div class="chip-pick" id="dep-targets" role="radiogroup" aria-label="Target hardware">
           <button type="button" role="radio" aria-checked="false" data-target="cpu"><svg class="chip-ico" viewBox="0 0 40 40" aria-hidden="true"><rect x="9" y="9" width="22" height="22" rx="2"/><rect x="14" y="14" width="12" height="12"/><path d="M14 9V5M20 9V5M26 9V5M14 35v-4M20 35v-4M26 35v-4M9 14H5M9 20H5M9 26H5M35 14h-4M35 20h-4M35 26h-4"/></svg><b>CPU</b><small>Intel Xeon Gold 6248</small></button>
           <button type="button" role="radio" aria-checked="true" data-target="gpu"><img src="assets/showcase/v100.webp" alt="" width="420" height="466"><b>GPU</b><small>NVIDIA Tesla V100</small></button>
           <button type="button" role="radio" aria-checked="false" data-target="fpga"><svg class="chip-ico" viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="7" width="26" height="26" rx="2"/><path d="M7 15h26M7 22h26M7 29h26M15 7v26M22 7v26M29 7v26"/></svg><b>FPGA</b><small>Xilinx Alveo U200</small></button>
@@ -293,7 +293,7 @@ setTimeout(function(){if(!window.__fxReady){c.remove('fx','wipe-in');c.add('intr
       </div></div>
       <div class="lab-step"><span class="lab-n">2</span><div class="lab-field">
         <b data-en="How much accuracy can you give up?" data-zh="能接受多少精度损失？">How much accuracy can you give up?</b>
-        <div class="seg loss-pick" id="ad-floor-pick" role="radiogroup" aria-label="Accuracy you can give up">
+        <div class="seg loss-pick" id="dep-floor-pick" role="radiogroup" aria-label="Accuracy you can give up">
           <button type="button" role="radio" aria-checked="false" data-floor="94"><span data-en="None" data-zh="不能损失">None</span></button>
           <button type="button" role="radio" aria-checked="false" data-floor="93.5"><span data-en="0.5 pt" data-zh="0.5 个点">0.5 pt</span></button>
           <button type="button" role="radio" aria-checked="true" data-floor="93"><span data-en="1 pt" data-zh="1 个点">1 pt</span></button>
@@ -302,17 +302,17 @@ setTimeout(function(){if(!window.__fxReady){c.remove('fx','wipe-in');c.add('intr
         <small data-en="The model starts at 94.0% accuracy." data-zh="模型原始精度为 94.0%。">The model starts at 94.0% accuracy.</small>
       </div></div>
       <div class="lab-step"><span class="lab-n">3</span><div class="lab-field">
-        <button type="button" class="button primary" id="ad-run"><span data-en="▶ Start the race" data-zh="▶ 开始比赛">▶ Start the race</span></button>
+        <button type="button" class="button primary" id="dep-run"><span data-en="▶ Start the race" data-zh="▶ 开始比赛">▶ Start the race</span></button>
         <small data-en="Replays a real run, failure and all." data-zh="重放一次真实运行，包括其中的失败与修复。">Replays a real run, failure and all.</small>
       </div></div>
     </div>
-    <div class="race" id="ad-race">
+    <div class="race" id="dep-race">
       <div class="race-legend"><span data-en="Setup" data-zh="运行方式">Setup</span><span data-en="Speed per inference · longer bar is faster" data-zh="单次推理速度 · 条越长越快">Speed per inference · longer bar is faster</span><span data-en="Accuracy" data-zh="精度">Accuracy</span></div>
-      <div class="race-rows" id="ad-race-rows" aria-live="polite"></div>
+      <div class="race-rows" id="dep-race-rows" aria-live="polite"></div>
     </div>
-    <div class="ad-side">
-      <div class="ad-pick" id="ad-pick" aria-live="polite"></div>
-      <ol class="ad-run-steps" id="ad-run-steps">
+    <div class="dep-side">
+      <div class="dep-pick" id="dep-pick" aria-live="polite"></div>
+      <ol class="dep-run-steps" id="dep-run-steps">
         <li data-step="parse" data-en="Read the model (13 checks)" data-zh="读取模型（13 项检查）">Read the model (13 checks)</li>
         <li data-step="kg" data-en="Look up similar past runs" data-zh="检索相似的历史运行">Look up similar past runs</li>
         <li data-step="plan" data-en="Plan candidate setups" data-zh="规划候选方案">Plan candidate setups</li>
@@ -321,28 +321,28 @@ setTimeout(function(){if(!window.__fxReady){c.remove('fx','wipe-in');c.add('intr
         <li data-step="save" data-en="Save the result to the graph" data-zh="将结果写回图谱">Save the result to the graph</li>
       </ol>
     </div>
-    <details class="ad-dev">
+    <details class="dep-dev">
       <summary data-en="For engineers: the raw log and the JSON contracts" data-zh="工程师视角：原始日志与 JSON 契约">For engineers: the raw log and the JSON contracts</summary>
-      <div class="ad-dev-grid">
-        <pre class="ad-log" id="ad-log" aria-label="Replay of a deployment run"></pre>
-        <div class="ad-contract">
-          <div class="ad-tabs" id="ad-contracts">
+      <div class="dep-dev-grid">
+        <pre class="dep-log" id="dep-log" aria-label="Replay of a deployment run"></pre>
+        <div class="dep-contract">
+          <div class="dep-tabs" id="dep-contracts">
             <button type="button" data-contract="StateContract" aria-selected="true">StateContract</button>
             <button type="button" data-contract="PlanBundle" aria-selected="false">PlanBundle</button>
             <button type="button" data-contract="StepEvent" aria-selected="false">StepEvent</button>
             <button type="button" data-contract="ControlAction" aria-selected="false">ControlAction</button>
           </div>
-          <pre class="ad-json" id="ad-json" tabindex="0"></pre>
+          <pre class="dep-json" id="dep-json" tabindex="0"></pre>
           <p class="pg-note" data-en="Subsystems only talk through versioned JSON contracts like these, so every run can be replayed from its logs. Excerpts from Appendix A of the thesis." data-zh="各子系统只通过这样带版本的 JSON 契约通信，因此每次运行都可以根据日志重放。摘自论文附录 A。">Subsystems only talk through versioned JSON contracts like these, so every run can be replayed from its logs. Excerpts from Appendix A of the thesis.</p>
         </div>
       </div>
     </details>
   </div>
-  <div class="ad-foot">
+  <div class="dep-foot">
     <button type="button" class="case-open button primary" data-case="autodeploy" data-magnetic data-cursor="OPEN"><span data-en="Read the full case study" data-zh="阅读完整案例">Read the full case study</span></button>
     <a class="text-link" href="https://doi.org/10.1007/s41605-026-00734-w" target="_blank" rel="noopener" data-en="Read the paper ↗" data-zh="阅读论文 ↗">Read the paper ↗</a>
     <a class="text-link" href="assets/Thesis-Defense-Mustofa-Ahmed.pdf" target="_blank" rel="noopener" data-en="Defense slides (PDF, 36 MB) ↗" data-zh="答辩幻灯片（PDF，36 MB）↗">Defense slides (PDF, 36 MB) ↗</a>
-    <p class="ad-bench-note" data-en="The 10.4× headline on this page is a separate benchmark: TensorRT FP16 at 0.972 ms against the eager baseline. This lab uses the thesis evaluation tables." data-zh="本页 10.4 倍的标题数据来自另一组基准测试：TensorRT FP16（0.972 ms）对比 eager 基线。本实验台使用论文评估表中的数据。">The 10.4× headline on this page is a separate benchmark: TensorRT FP16 at 0.972 ms against the eager baseline. This lab uses the thesis evaluation tables.</p>
+    <p class="dep-bench-note" data-en="The 10.4× headline on this page is a separate benchmark: TensorRT FP16 at 0.972 ms against the eager baseline. This lab uses the thesis evaluation tables." data-zh="本页 10.4 倍的标题数据来自另一组基准测试：TensorRT FP16（0.972 ms）对比 eager 基线。本实验台使用论文评估表中的数据。">The 10.4× headline on this page is a separate benchmark: TensorRT FP16 at 0.972 ms against the eager baseline. This lab uses the thesis evaluation tables.</p>
   </div>
 </section>
 
@@ -781,15 +781,15 @@ setTimeout(function(){if(!window.__fxReady){c.remove('fx','wipe-in');c.add('intr
       <h3 data-en="Inside the system" data-zh="系统内部">Inside the system</h3>
       <p data-en="Figures from the thesis, the real command line and the live knowledge graph. Click any figure to enlarge it." data-zh="论文中的图示、真实命令行与知识图谱。点击任意图片可放大查看。">Figures from the thesis, the real command line and the live knowledge graph. Click any figure to enlarge it.</p>
       <div class="fig-grid">
-        <figure class="fig-card"><img src="assets/showcase/ad-cli.webp" alt="The real AutoDeploy command-line interface: run, chat, validate, recommend, doctor and admin commands" loading="lazy" data-enlarge data-cursor="VIEW"><figcaption data-en="The real CLI." data-zh="真实的命令行界面。">The real CLI.</figcaption></figure>
-        <figure class="fig-card"><img src="assets/showcase/ad-neo4j.webp" alt="The AutoDeploy knowledge graph in Neo4j, linking models, tools, techniques, hardware, runs and a failure" loading="lazy" data-enlarge data-cursor="VIEW"><figcaption data-en="The knowledge graph in Neo4j." data-zh="Neo4j 中的知识图谱。">The knowledge graph in Neo4j.</figcaption></figure>
-        <figure class="fig-card"><img src="assets/showcase/ad-parser.webp" alt="Parser subsystem: model artefact, adapters, ParserIR, 13 analysis stages and three outputs" loading="lazy" data-enlarge data-cursor="VIEW"><figcaption data-en="Parser: 13 stages to a StateContract." data-zh="解析器：13 个阶段生成 StateContract。">Parser: 13 stages to a StateContract.</figcaption></figure>
-        <figure class="fig-card"><img src="assets/showcase/ad-re.webp" alt="Recommendation engine architecture in seven stages, from state encoding to the PlanBundle" loading="lazy" data-enlarge data-cursor="VIEW"><figcaption data-en="Recommendation engine, end to end." data-zh="推荐引擎全流程。">Recommendation engine, end to end.</figcaption></figure>
-        <figure class="fig-card"><img src="assets/showcase/ad-orchestrator.webp" alt="Orchestrator: isolation tiers, pre and post gates, step events and checkpointed rollback" loading="lazy" data-enlarge data-cursor="VIEW"><figcaption data-en="Orchestrator: gates, sandboxes, rollback." data-zh="编排器：门禁、沙箱与回滚。">Orchestrator: gates, sandboxes, rollback.</figcaption></figure>
-        <figure class="fig-card"><img src="assets/showcase/ad-loop.webp" alt="Closed-loop control: step events go to the recommendation engine, which answers with control actions" loading="lazy" data-enlarge data-cursor="VIEW"><figcaption data-en="Closed-loop repair." data-zh="闭环修复。">Closed-loop repair.</figcaption></figure>
-        <figure class="fig-card"><img src="assets/showcase/ad-rap.webp" alt="Retrieval-augmented planning with exact, motif, embedding and temporal retrieval" loading="lazy" data-enlarge data-cursor="VIEW"><figcaption data-en="Retrieval-augmented planning." data-zh="检索增强规划。">Retrieval-augmented planning.</figcaption></figure>
-        <figure class="fig-card"><img src="assets/showcase/ad-mdp.webp" alt="AutoDeploy framed as a sequential decision process with state, action, reward and environment" loading="lazy" data-enlarge data-cursor="VIEW"><figcaption data-en="Deployment as a decision process." data-zh="将部署建模为序列决策过程。">Deployment as a decision process.</figcaption></figure>
-        <figure class="fig-card"><img src="assets/showcase/ad-rainbow.webp" alt="The Rainbow-style value-based agent used by the recommendation engine" loading="lazy" data-enlarge data-cursor="VIEW"><figcaption data-en="The Rainbow DQN planner." data-zh="Rainbow DQN 规划器。">The Rainbow DQN planner.</figcaption></figure>
+        <figure class="fig-card"><img src="assets/showcase/deploy-cli.webp" alt="The real AutoDeploy command-line interface: run, chat, validate, recommend, doctor and admin commands" loading="lazy" data-enlarge data-cursor="VIEW"><figcaption data-en="The real CLI." data-zh="真实的命令行界面。">The real CLI.</figcaption></figure>
+        <figure class="fig-card"><img src="assets/showcase/deploy-neo4j.webp" alt="The AutoDeploy knowledge graph in Neo4j, linking models, tools, techniques, hardware, runs and a failure" loading="lazy" data-enlarge data-cursor="VIEW"><figcaption data-en="The knowledge graph in Neo4j." data-zh="Neo4j 中的知识图谱。">The knowledge graph in Neo4j.</figcaption></figure>
+        <figure class="fig-card"><img src="assets/showcase/deploy-parser.webp" alt="Parser subsystem: model artefact, adapters, ParserIR, 13 analysis stages and three outputs" loading="lazy" data-enlarge data-cursor="VIEW"><figcaption data-en="Parser: 13 stages to a StateContract." data-zh="解析器：13 个阶段生成 StateContract。">Parser: 13 stages to a StateContract.</figcaption></figure>
+        <figure class="fig-card"><img src="assets/showcase/deploy-re.webp" alt="Recommendation engine architecture in seven stages, from state encoding to the PlanBundle" loading="lazy" data-enlarge data-cursor="VIEW"><figcaption data-en="Recommendation engine, end to end." data-zh="推荐引擎全流程。">Recommendation engine, end to end.</figcaption></figure>
+        <figure class="fig-card"><img src="assets/showcase/deploy-orchestrator.webp" alt="Orchestrator: isolation tiers, pre and post gates, step events and checkpointed rollback" loading="lazy" data-enlarge data-cursor="VIEW"><figcaption data-en="Orchestrator: gates, sandboxes, rollback." data-zh="编排器：门禁、沙箱与回滚。">Orchestrator: gates, sandboxes, rollback.</figcaption></figure>
+        <figure class="fig-card"><img src="assets/showcase/deploy-loop.webp" alt="Closed-loop control: step events go to the recommendation engine, which answers with control actions" loading="lazy" data-enlarge data-cursor="VIEW"><figcaption data-en="Closed-loop repair." data-zh="闭环修复。">Closed-loop repair.</figcaption></figure>
+        <figure class="fig-card"><img src="assets/showcase/deploy-rap.webp" alt="Retrieval-augmented planning with exact, motif, embedding and temporal retrieval" loading="lazy" data-enlarge data-cursor="VIEW"><figcaption data-en="Retrieval-augmented planning." data-zh="检索增强规划。">Retrieval-augmented planning.</figcaption></figure>
+        <figure class="fig-card"><img src="assets/showcase/deploy-mdp.webp" alt="AutoDeploy framed as a sequential decision process with state, action, reward and environment" loading="lazy" data-enlarge data-cursor="VIEW"><figcaption data-en="Deployment as a decision process." data-zh="将部署建模为序列决策过程。">Deployment as a decision process.</figcaption></figure>
+        <figure class="fig-card"><img src="assets/showcase/deploy-rainbow.webp" alt="The Rainbow-style value-based agent used by the recommendation engine" loading="lazy" data-enlarge data-cursor="VIEW"><figcaption data-en="The Rainbow DQN planner." data-zh="Rainbow DQN 规划器。">The Rainbow DQN planner.</figcaption></figure>
       </div>
     </div>
     <p class="case-links"><a class="text-link" href="https://doi.org/10.1007/s41605-026-00734-w" target="_blank" rel="noopener" data-en="Read the paper ↗" data-zh="阅读论文 ↗">Read the paper ↗</a><a class="text-link" href="assets/Thesis-Defense-Mustofa-Ahmed.pdf" target="_blank" rel="noopener" data-en="Defense slides (PDF, 36 MB) ↗" data-zh="答辩幻灯片（PDF，36 MB）↗">Defense slides (PDF, 36 MB) ↗</a></p>
@@ -911,9 +911,9 @@ setTimeout(function(){if(!window.__fxReady){c.remove('fx','wipe-in');c.add('intr
 <template id="case-curiosity">
   <article class="case-body cu">
     <header class="case-head">
-      <div class="cu-banner" aria-hidden="true">
+      <div class="cu-emblem" aria-hidden="true">
         <span class="cu-ring r1"></span><span class="cu-ring r2"></span><span class="cu-ring r3"></span>
-        <img class="cu-banner-core" src="assets/showcase/logo-hermes.png" alt="" width="240" height="240">
+        <img class="cu-emblem-core" src="assets/showcase/logo-hermes.png" alt="" width="240" height="240">
         <span class="cu-orbit o1"><img src="assets/showcase/logo-qwen-mark.png" alt="" width="160" height="160"></span>
         <span class="cu-orbit o2"><img src="assets/showcase/logo-ollama.png" alt="" width="160" height="234"></span>
         <span class="cu-orbit o3"><img src="assets/showcase/v100.webp" alt="" width="420" height="466"></span>

@@ -1350,7 +1350,7 @@
       ['Copy email', '复制邮箱', 'COPY', () => { dialog.close(); copyText('hafizabc77@gmail.com'); }],
       ['Copy WeChat ID', '复制微信号', 'COPY', () => { dialog.close(); copyText('hafizabc77'); }],
       ['Go to AutoDeploy, my flagship project', '前往旗舰项目 AutoDeploy', 'GO', jump('autodeploy')],
-      ['Try the AutoDeploy lab', '体验 AutoDeploy 实验台', 'TRY', jump('ad-lab')],
+      ['Try the AutoDeploy lab', '体验 AutoDeploy 实验台', 'TRY', jump('dep-lab')],
       ['Case study: AutoDeploy', '案例：AutoDeploy', 'READ', study('autodeploy')],
       ['Case study: speculative decoding', '案例：投机解码', 'READ', study('decoding')],
       ['Case study: LHAASO gamma-ray bursts', '案例：LHAASO 伽马射线暴', 'READ', study('lhaaso')],
