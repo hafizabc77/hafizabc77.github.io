@@ -38,6 +38,8 @@ Resume viewer: resume buttons open a pop-up showing `assets/resume/resume-en-1.w
 
 Ad blockers: class names, ids and file names must not start with `ad-` or contain words such as banner, sponsor or promo. Ad-blocker extensions (uBlock Origin, AdBlock, AdGuard) hide elements named like that, which once left the AutoDeploy story and half of the lab blank in Chrome. AutoDeploy elements use the `dep-` prefix and its figures the `deploy-` prefix.
 
+Phones: on touch screens the three scroll stories (Results, the AutoDeploy story and the MetaHuman film) have a snap point at every step, using CSS scroll snapping with `scroll-snap-stop: always`, so one swipe or fling moves exactly one step. Snapping is off with a mouse and with reduced motion. On phones the "0X /" labels are larger pills, the outlined ghost words are hidden, and a small pill at the top shows the current section while the header is hidden. Captions, notes and chip names are at least 11.5 to 13 px, tap targets are at least about 40 px, and the AutoDeploy canvas uses larger labels (the loop drawing drops its contract names on phones so they do not overlap the stations).
+
 Scrollbar: the page scrollbar is hidden at the owner's request. The top progress bar and the section rail still show position, and keyboard, wheel and touch scrolling are unchanged.
 
 Not linked: `assets/Mustofa-Ahmed-CV.pdf`, which contains older contact details.

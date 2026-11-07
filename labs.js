@@ -51,6 +51,9 @@
     legend: ['Labelled points are measured on the V100. The cloud illustrates the search.', '带标注的点为 V100 实测值；点云仅为搜索过程示意。'],
     first: ['first attempt', '首次成功'],
     repaired: ['repaired or retried', '修复或重试'],
+    firstS: ['first try', '首次成功'],
+    repairedS: ['repaired', '已修复'],
+    rolledS: ['rolled back', '已回滚'],
     rolled: ['rolled back, plan replaced', '回滚并替换方案'],
     iso: ['isolation tier by step', '各步骤隔离级别'],
     host: ['host', '主机'],
@@ -203,7 +206,7 @@
         [0, 7, 14, 21].forEach(d => {
           const x = R.x + d / 21 * R.w;
           ctx.fillStyle = 'rgba(243,239,220,.28)'; ctx.fillRect(x, laneY + laneH * .6, 1, 7);
-          label(`${d}d`, x, laneY + laneH * .6 + 20, '#9aa5a1', small ? 9 : 11, d === 21 ? 'right' : 'left');
+          label(`${d}d`, x, laneY + laneH * .6 + 20, '#9aa5a1', small ? 10.5 : 11, d === 21 ? 'right' : 'left');
         });
         const y2 = laneY + laneH * 1.65;
         label(T('auto'), R.x, y2 - 10, '#d8bb73');
@@ -220,10 +223,10 @@
         AD_STAGES.forEach((name, i) => {
           const y = R.y + R.h * .1 + i * rowH + rowH * .6, req = AD_REQUIRED.has(name), on = i === scan;
           if (on) { ctx.fillStyle = 'rgba(243,239,220,.14)'; ctx.fillRect(x0 - 6, y - rowH * .72, colW + 12, rowH * .96); }
-          label(small ? name.replace('_environment', '_env').replace('baseline_', 'base_') : name, x0, y, on ? '#f3efdc' : req ? '#d8bb73' : '#a7b0ac', small ? 8.5 : 11);
+          label(small ? name.replace('_environment', '_env').replace('baseline_', 'base_') : name, x0, y, on ? '#f3efdc' : req ? '#d8bb73' : '#a7b0ac', small ? 10 : 11);
         });
-        label(T('model'), R.x, R.y + R.h * .05, '#d8bb73', small ? 9.5 : 12);
-        label('StateContract', R.x + R.w, R.y + R.h * .05, '#f3efdc', small ? 9.5 : 12, 'right');
+        label(T('model'), R.x, R.y + R.h * .05, '#d8bb73', small ? 11 : 12);
+        label('StateContract', R.x + R.w, R.y + R.h * .05, '#f3efdc', small ? 11 : 12, 'right');
         if (!small) label(T('blocks'), R.x, R.y + R.h * .93, '#9aa5a1', 11);
         if (!small) label(T('required'), mid, R.y + R.h * .93, '#d8bb73', 11, 'center');
         // Model layers, drawn as real blocks.
@@ -257,32 +260,32 @@
         });
         nodes.forEach(n => {
           const y = n.y - Math.min(R.w, R.h) * .075;
-          ctx.font = `${small ? 9.5 : 12}px ${FONT}`;
+          ctx.font = `${small ? 11 : 12}px ${FONT}`;
           const w = ctx.measureText(n.label).width;
           ctx.fillStyle = 'rgba(5,14,16,.72)'; ctx.fillRect(n.x - w / 2 - 4, y - (small ? 10 : 12), w + 8, small ? 14 : 16);
-          label(n.label, n.x, y, AD_PAL[n.color] === AD_PAL[3] ? '#f3efdc' : AD_PAL[n.color], small ? 9.5 : 12, 'center');
+          label(n.label, n.x, y, AD_PAL[n.color] === AD_PAL[3] ? '#f3efdc' : AD_PAL[n.color], small ? 11 : 12, 'center');
         });
       },
       now => { // Pareto
         const axisY = ly(92.75);
         ctx.strokeStyle = 'rgba(243,239,220,.26)'; ctx.lineWidth = 1;
         ctx.beginPath(); ctx.moveTo(R.x, ly(94.3)); ctx.lineTo(R.x, axisY); ctx.lineTo(R.x + R.w, axisY); ctx.stroke();
-        [0.5, 1, 2, 4].forEach(v => { ctx.fillStyle = 'rgba(243,239,220,.3)'; ctx.fillRect(lx(v), axisY, 1, 5); label(String(v), lx(v), axisY + 17, '#9aa5a1', small ? 9 : 11, 'center'); });
-        [93, 93.5, 94].forEach(v => { label(v.toFixed(1), R.x - 6, ly(v) + 4, '#9aa5a1', small ? 8.5 : 11, 'right'); ctx.fillStyle = 'rgba(243,239,220,.06)'; ctx.fillRect(R.x, ly(v), R.w, 1); });
-        label(T('latency'), R.x + R.w, axisY - 7, '#9aa5a1', small ? 9 : 11, 'right');
-        label(T('accuracy'), R.x + 6, ly(94.3) + 2, '#9aa5a1', small ? 9 : 11);
+        [0.5, 1, 2, 4].forEach(v => { ctx.fillStyle = 'rgba(243,239,220,.3)'; ctx.fillRect(lx(v), axisY, 1, 5); label(String(v), lx(v), axisY + 17, '#9aa5a1', small ? 10.5 : 11, 'center'); });
+        [93, 93.5, 94].forEach(v => { label(v.toFixed(1), R.x - 6, ly(v) + 4, '#9aa5a1', small ? 10 : 11, 'right'); ctx.fillStyle = 'rgba(243,239,220,.06)'; ctx.fillRect(R.x, ly(v), R.w, 1); });
+        label(T('latency'), R.x + R.w, axisY - 7, '#9aa5a1', small ? 10.5 : 11, 'right');
+        label(T('accuracy'), R.x + 6, ly(94.3) + 2, '#9aa5a1', small ? 10.5 : 11);
         [['PyTorch FP32', 3.8, 94.0, '#f3efdc', 'right'], ['TensorRT FP16', .82, 93.7, '#f3efdc', 'left'], ['TensorRT INT8', .51, 93.4, '#f3efdc', 'left'], ['AutoDeploy Best, 0.45 ms', .45, 93.5, '#d8bb73', 'left']].forEach(([name, l, a, color, align]) => {
           const x = lx(l), y = ly(a), best = name.startsWith('Auto');
           if (best) { const p = (now * .8) % 1; ctx.strokeStyle = `rgba(216,187,115,${1 - p})`; ctx.beginPath(); ctx.arc(x, y, 5 + p * 16, 0, 6.283); ctx.stroke(); }
           ctx.fillStyle = color; ctx.beginPath(); ctx.arc(x, y, best ? 5.5 : 4, 0, 6.283); ctx.fill();
           const dy = best ? -20 : name === 'TensorRT INT8' ? 16 : -11;
           const text = name;
-          ctx.font = `${small ? 9 : 11.5}px ${FONT}`;
+          ctx.font = `${small ? 10.5 : 11.5}px ${FONT}`;
           const tw = ctx.measureText(text).width, tx = x + (align === 'right' ? -8 - tw : best ? -6 : 8);
           ctx.fillStyle = 'rgba(7,29,25,.88)'; ctx.fillRect(tx - 3, y + dy - 11, tw + 6, 15);
-          label(text, tx, y + dy, color, small ? 9 : 11.5, 'left');
+          label(text, tx, y + dy, color, small ? 10.5 : 11.5, 'left');
         });
-        label(T('masked'), R.x, R.y + R.h * .885, '#d98a5f', small ? 9 : 11);
+        label(T('masked'), R.x, R.y + R.h * .885, '#d98a5f', small ? 10.5 : 11);
         if (!small) label(T('legend'), R.x + R.w, R.y + R.h, '#8a9592', 11, 'right');
       },
       now => { // Orchestrator
@@ -296,15 +299,15 @@
           const x = gx + i * gap;
           ctx.fillStyle = c; ctx.fillRect(x, by + 1, 10, 10);
           label(pct, x + 15, by + 11, c, small ? 11 : 14);
-          label(T(key), x, by + (small ? 25 : 30), '#b7c0bc', small ? 8.5 : 11);
+          label(T(small ? key + 'S' : key), x, by + (small ? 25 : 30), '#b7c0bc', small ? 10.5 : 11);
         });
         const iy = by + (small ? 42 : 56), total = cell * cols;
-        label(T('iso'), gx, iy, '#9aa5a1', small ? 9 : 11);
+        label(T('iso'), gx, iy, '#9aa5a1', small ? 10.5 : 11);
         let x = gx;
         [['container', 38, '#f3efdc'], [T('host'), 35, 'rgba(243,239,220,.42)'], ['namespace', 16, '#84c7a2'], ['bwrap', 6, '#d8bb73'], ['venv', 5, '#d98a5f']].forEach(([name, pct, c]) => {
           const w = total * pct / 100;
           ctx.fillStyle = c; ctx.fillRect(x, iy + 7, Math.max(1, w - 2), 9);
-          if (pct >= 16) label(`${name} ${pct}%`, x, iy + 31, '#b7c0bc', small ? 8.5 : 11);
+          if (pct >= 16) label(`${name} ${pct}%`, x, iy + 31, '#b7c0bc', small ? 10 : 11);
           x += w;
         });
       },
@@ -339,7 +342,7 @@
             ctx.fillRect(c.x - h + (i + .5) / 4 * s - 1, c.y - h - s * .12 - (1 - f) * s * .35, 2, 6);
           }
           const ty = c.y + h + (small ? 22 : 30);
-          label(small ? type : ` · `, c.x, ty, small ? color : '#c9d0cc', small ? 10 : 11.5, 'center');
+          label(small ? type : ` · `, c.x, ty, small ? color : '#c9d0cc', small ? 11 : 11.5, 'center');
           if (small) label(name, c.x, ty + 12, '#9fb3a8', 8, 'center');
           label(value, c.x, ty + (small ? 30 : 30), color, small ? 15 : 26, 'center');
           if (!small) label(sub, c.x, ty + 50, '#9fb3a8', 10.5, 'center');
@@ -351,22 +354,23 @@
         const contracts = [['GraphPatch', -1.57], ['PlanBundle', 0], ['StepEvent', 1.57], ['StateContract', 3.14]];
         stations.forEach(([name, a]) => {
           const x = ring.x + Math.cos(a) * ring.r, y = ring.y + Math.sin(a) * ring.r;
-          ctx.font = `${small ? 10.5 : 14}px ${FONT}`;
+          ctx.font = `${small ? 11.5 : 14}px ${FONT}`;
           const w = ctx.measureText(name).width + 20;
           ctx.fillStyle = '#0c2923'; ctx.strokeStyle = '#d8bb73'; ctx.lineWidth = 1.2;
           ctx.fillRect(x - w / 2, y - 15, w, 30); ctx.strokeRect(x - w / 2, y - 15, w, 30);
-          label(name, x, y + 5, '#f3efdc', small ? 10.5 : 14, 'center');
+          label(name, x, y + 5, '#f3efdc', small ? 11.5 : 14, 'center');
         });
-        contracts.forEach(([name, a]) => {
-          const x = ring.x + Math.cos(a) * ring.r * (small ? .7 : .72), y = ring.y + Math.sin(a) * ring.r * .72;
-          label(name, x, y + 4, '#f3efdc', small ? 8.5 : 11, 'center');
+        // The contract names would collide with the station boxes on a phone-sized ring, so they are desktop-only.
+        if (!small) contracts.forEach(([name, a]) => {
+          const x = ring.x + Math.cos(a) * ring.r * .72, y = ring.y + Math.sin(a) * ring.r * .72;
+          label(name, x, y + 4, '#f3efdc', 11, 'center');
         });
         for (let i = 0; i < 5; i++) {
           const a = now * .55 + i / 5 * 6.283;
           ctx.fillStyle = '#ffffff';
           ctx.beginPath(); ctx.arc(ring.x + Math.cos(a) * ring.r, ring.y + Math.sin(a) * ring.r, 3.4, 0, 6.283); ctx.fill();
         }
-        label(T('loop'), ring.x, ring.y + 4, '#d8bb73', small ? 10.5 : 13, 'center');
+        label(T('loop'), ring.x, ring.y + 4, '#d8bb73', small ? 11.5 : 13, 'center');
       }
     ];
 
@@ -423,7 +427,7 @@
         }
       }
       // Labels and axes go on top, so dots never cover the text.
-      const title = (k, alpha) => { ctx.globalAlpha = alpha; label(AD_TITLES[k][currentLang() === 'zh' ? 1 : 0].toUpperCase(), R.x, R.y - (small ? 18 : 30), '#d8bb73', small ? 9.5 : 12); };
+      const title = (k, alpha) => { ctx.globalAlpha = alpha; label(AD_TITLES[k][currentLang() === 'zh' ? 1 : 0].toUpperCase(), R.x, R.y - (small ? 18 : 30), '#d8bb73', small ? 11 : 12); };
       if (mix < .9) { ctx.globalAlpha = 1 - sstep(0, .5, mix); OVERLAYS[a](now); title(a, 1 - sstep(0, .5, mix)); }
       if (mix > .1 && b !== a) { ctx.globalAlpha = sstep(.5, 1, mix); OVERLAYS[b](now); title(b, sstep(.5, 1, mix)); }
       ctx.globalAlpha = 1;

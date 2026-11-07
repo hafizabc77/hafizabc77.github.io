@@ -386,6 +386,8 @@
       rail.classList.toggle('over-panels', sections[index].id === 'projects');
       railIndex.textContent = String(index + 1).padStart(2, '0');
       railName.textContent = sections[index].dataset[currentLang() === 'zh' ? 'railZh' : 'railEn'];
+      const now = $('.m-now');
+      if (now) { now.firstElementChild.textContent = sections[index].dataset[currentLang() === 'zh' ? 'railZh' : 'railEn']; now.classList.toggle('on', index > 0 && !['numbers', 'autodeploy'].includes(sections[index].id)); }
       if (FX && FINE) scramble(railName, 380);
     };
     refreshTasks.push(() => updateRail(true));
@@ -1536,6 +1538,31 @@
     window.__scene = scene;
   }
 
+  /* ---------- Touch screens: scroll stories stop on each step instead of flying past several ---------- */
+  function initSnaps() {
+    if (!FX || !(window.matchMedia && matchMedia('(hover: none) and (pointer: coarse)').matches)) return;
+    const stories = [
+      { el: $('#numbers'), count: () => $$('#numbers .step').length, at: (k, n) => (k + 0.3) / n },
+      { el: $('#autodeploy'), count: () => 7, at: (k, n) => Math.min(1, (k + 0.04) / (n - 1)) },
+      { el: $('#meta'), count: () => $$('#meta .meta-line').length, at: (k, n) => (k + 0.35) / n }
+    ].filter(story => story.el && story.count() > 0);
+    if (!stories.length) return;
+    root.classList.add('snap-on');
+    stories.forEach(story => {
+      story.points = Array.from({ length: story.count() }, () => {
+        const point = document.createElement('i');
+        point.className = 'snap-pt';
+        point.setAttribute('aria-hidden', 'true');
+        story.el.append(point);
+        return point;
+      });
+    });
+    measureTasks.push(() => stories.forEach(story => {
+      const range = Math.max(1, story.el.offsetHeight - state.vh);
+      story.points.forEach((point, k) => { point.style.top = `${Math.round(range * story.at(k, story.points.length))}px`; });
+    }));
+  }
+
   /* ---------- Main loop ---------- */
   function startLoop() {
     let last = performance.now();
@@ -1591,6 +1618,7 @@
   safe('media', initMedia);
   safe('transitions', initTransitions);
   safe('reveal', initReveal);
+  safe('snaps', initSnaps);
   measureAll();
   window.addEventListener('resize', measureSoon);
   window.addEventListener('load', measureAll);
