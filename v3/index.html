@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en" class="no-js locked">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Hafiz · Forward Pass (prototype)</title>
+<meta name="description" content="The life of a neural network, from a human brain to a transistor, and the story of Mustofa A. Ahmed (Hafiz) inside it.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="../assets/showcase/logo.webp">
+<link rel="preload" href="fonts/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/dm-sans.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="v3.css">
+<script type="importmap">{ "imports": { "three": "../assets/vendor/three/three.module.min.js", "three/addons/": "../assets/vendor/three/addons/" } }</script>
+<script>document.documentElement.classList.replace('no-js', 'js');</script>
+</head>
+<body>
+<canvas id="gl" aria-hidden="true"></canvas>
+<div id="labels" aria-hidden="true"></div>
+<div id="captions" aria-live="polite"></div>
+<div id="scene-ui" class="scene-ui"></div>
+
+<!-- Loading, then the title: the only place the full name appears -->
+<div class="intro" id="intro">
+  <div class="loader"><span class="loader-n" id="loader-n">000</span><span class="loader-t">initialising weights</span></div>
+  <div class="title">
+    <h1 class="name">Mustofa A. Ahmed</h1>
+    <p class="role">Machine learning engineer <i>·</i> PhD student, UCAS · IHEP <i>·</i> Beijing</p>
+    <div class="enter">
+      <button type="button" class="btn gold" id="enter-sound"><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>Enter with sound</button>
+      <button type="button" class="btn" id="enter-quiet">Enter quietly</button>
+    </div>
+    <p class="how">A short film you play with · It plays by itself, or scroll to travel · Touch, drag and type to explore</p>
+  </div>
+</div>
+
+<header class="hud">
+  <a class="logo" href="#" data-top aria-label="Hafiz, back to the start"><img src="../assets/showcase/logo.webp" alt="Hafiz" width="200" height="98"></a>
+  <div class="hud-r">
+    <button type="button" class="snd" id="snd" aria-pressed="false" aria-label="Sound off. Click to turn on"><span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
+    <button type="button" class="skip hire" id="skip" aria-haspopup="dialog"><i class="hire-dot" aria-hidden="true"></i>Hiring?</button>
+  </div>
+</header>
+<p class="scroll-hint" aria-hidden="true"><span>Scroll</span><i></i></p>
+<nav class="acts" id="acts" aria-label="Acts of the film"></nav>
+
+<div id="scroller" class="scroller" aria-hidden="true"></div>
+
+<!-- Hiring?: the short version, the roles he fits with proof inside the film, and how to reach him -->
+<dialog id="summary" aria-labelledby="sum-name">
+  <button type="button" class="x" data-close aria-label="Close">×</button>
+  <div class="sum">
+    <figure class="sum-photo"><img src="../assets/showcase/portrait.webp" alt="Hafiz listening at a conference" width="1600" height="1066" loading="lazy"></figure>
+    <div class="sum-body">
+      <p class="sum-k"><i class="hire-dot" aria-hidden="true"></i>Open to AI / ML jobs and internships · Beijing</p>
+      <h2 id="sum-name">Mustofa A. Ahmed <span>(Hafiz)</span></h2>
+      <p class="sum-role">Machine learning engineer and PhD student at UCAS / IHEP, Chinese Academy of Sciences, in Beijing. I make large models run fast: LLM inference, model optimisation and deployment on GPU, FPGA and NPU. English, Amharic, Mandarin.</p>
+      <div class="roles" id="roles">
+        <p class="roles-q">What are you hiring for?</p>
+        <div class="roles-chips" role="tablist" aria-label="Roles"></div>
+        <div class="roles-panel" role="tabpanel" aria-live="polite"></div>
+      </div>
+      <ul class="sum-stats">
+        <li><b>3.03×</b><span>faster LLM decoding, speculative decoding in vLLM</span></li>
+        <li><b>10.4×</b><span>faster GPU inference, ParT on TensorRT, V100</span></li>
+        <li><b>63×</b><span>faster deployment workflow with AutoDeploy</span></li>
+        <li><b>6</b><span>papers, 5 published, 25 citations</span></li>
+      </ul>
+      <p class="sum-exp"><b>Zidong Taichu</b> Algorithm R&amp;D Intern, 2026 · <b>IHEP Computing Center</b> Research Fellow, 2023 – now · <b>GeePower</b> Web Developer, 2021 – 22</p>
+      <div class="sum-actions">
+        <a class="btn gold" href="../assets/Mustofa-Ahmed-Resume-EN.pdf" target="_blank" rel="noopener">Resume, English</a>
+        <a class="btn" href="../assets/Mustofa-Ahmed-Resume-ZH.pdf" target="_blank" rel="noopener">简历 · 中文</a>
+        <a class="btn" href="mailto:hafizabc77@gmail.com">hafizabc77@gmail.com</a>
+      </div>
+      <p class="sum-links">Work email <a href="mailto:mustofa@ihep.ac.cn">mustofa@ihep.ac.cn</a> · WeChat <b>hafizabc77</b> · <a href="https://github.com/hafizabc77" target="_blank" rel="noopener">GitHub</a> · <a href="https://orcid.org/0009-0009-4363-9342" target="_blank" rel="noopener">ORCID</a> · <a href="../index.html">Classic site</a></p>
+      <button type="button" class="btn ghost back-film" data-close>Back to the film</button>
+    </div>
+  </div>
+</dialog>
+
+<noscript><p class="nojs">This film needs JavaScript. <a href="../index.html">See the classic site</a>.</p></noscript>
+<script src="../assets/vendor/lenis.min.js"></script>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
